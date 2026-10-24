@@ -53,11 +53,11 @@
       "type": "number",
       "exclusiveMinimum": 0,
       "maximum": 400,
-      "description": "Quarter-note BPM in every meter, including 6/8"
+      "description": "Quarter-note BPM in every meter, including 6/8 and 2/2"
     },
     "timeSignature": {
-      "description": "4/4 and 3/4 bars use that many quarter-beats. A 6/8 bar is 3 quarter-beats grouped as two dotted-quarter pulses. dur is always in quarter-note beats.",
-      "enum": ["4/4", "3/4", "6/8"]
+      "description": "dur is always in quarter-note beats. 4/4 is 4 quarter-beats, 3/4 is 3, 2/4 is 2. A 2/2 bar is 4 quarter-beats grouped as two half-note pulses. A 6/8 bar is 3 quarter-beats grouped as two dotted-quarter pulses.",
+      "enum": ["4/4", "3/4", "2/4", "2/2", "6/8"]
     },
     "arrangements": {
       "type": "object",

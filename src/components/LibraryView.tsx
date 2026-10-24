@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
+import { collectTags, filterSongs, type LibrarySort } from "../lib/library";
 import { minimumLayout, missingTongues, parseNote } from "../lib/music";
-import type { Song } from "../lib/types";
-import type { Difficulty, DrumKey, LayoutId } from "../lib/types";
+import type { Difficulty, DrumKey, LayoutId, Song } from "../lib/types";
 
 type Props = {
   songs: Song[];
@@ -21,60 +21,89 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
   const [query, setQuery] = useState("");
   const [difficulty, setDifficulty] = useState<Difficulty | "all">("all");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [fitsOnly, setFitsOnly] = useState(false);
+  const [sort, setSort] = useState<LibrarySort>("title");
 
-  const tags = useMemo(() => {
-    const all = new Set<string>();
-    for (const song of songs) for (const tag of song.tags ?? []) all.add(tag);
-    return [...all].sort((a, b) => a.localeCompare(b, "en"));
-  }, [songs]);
+  const tags = useMemo(() => collectTags(songs), [songs]);
+  const visible = useMemo(
+    () =>
+      filterSongs(songs, {
+        text: query,
+        difficulty,
+        tags: selectedTags,
+        fitsOnly,
+        sort,
+        drumKey,
+        layout,
+      }),
+    [songs, query, difficulty, selectedTags, fitsOnly, sort, drumKey, layout],
+  );
 
-  const visible = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    return songs.filter((song) => {
-      if (needle && !`${song.title} ${song.artist}`.toLowerCase().includes(needle)) return false;
-      if (difficulty !== "all" && song.difficulty !== difficulty) return false;
-      if (selectedTags.length > 0 && !selectedTags.some((tag) => song.tags?.includes(tag))) return false;
-      return true;
-    });
-  }, [songs, query, difficulty, selectedTags]);
+  const filtersOn = query.trim() !== "" || difficulty !== "all" || selectedTags.length > 0 || fitsOnly;
 
-  const filtersOn = query.trim() !== "" || difficulty !== "all" || selectedTags.length > 0;
+  const clear = () => {
+    setQuery("");
+    setDifficulty("all");
+    setSelectedTags([]);
+    setFitsOnly(false);
+    setSort("title");
+  };
 
   return (
     <div className="library">
       <header className="page-intro">
         <h1>Songs for your drum</h1>
         <p>
-          Browse a tune, then see it in numbered notation. Switch between a C major and a D major drum, and
-          the note names follow.
+          Browse a tune, then see it in numbered notation. Filters follow the C or D drum and the layout
+          selected above.
         </p>
       </header>
 
       <div className="filters">
         <label className="search">
-          <span>Search title or artist</span>
+          <span>Search</span>
           <input
             type="search"
             value={query}
-            placeholder="Try Ode, lullaby, traditional…"
+            placeholder="Title, artist, or tag"
             onChange={(event) => setQuery(event.target.value)}
           />
         </label>
-        <fieldset className="pills compact">
-          <legend>Difficulty</legend>
-          {DIFFICULTIES.map((value) => (
-            <label key={value} className={difficulty === value ? "is-selected" : ""}>
-              <input
-                type="radio"
-                name="difficulty"
-                value={value}
-                checked={difficulty === value}
-                onChange={() => setDifficulty(value)}
-              />
-              {value === "all" ? "All" : labelDifficulty(value)}
-            </label>
-          ))}
-        </fieldset>
+
+        <div className="tool-row">
+          <fieldset className="pills compact">
+            <legend>Difficulty</legend>
+            {DIFFICULTIES.map((value) => (
+              <label key={value} className={difficulty === value ? "is-selected" : ""}>
+                <input
+                  type="radio"
+                  name="difficulty"
+                  value={value}
+                  checked={difficulty === value}
+                  onChange={() => setDifficulty(value)}
+                />
+                {value === "all" ? "All" : labelDifficulty(value)}
+              </label>
+            ))}
+          </fieldset>
+
+          <label className="sort">
+            <span>Sort</span>
+            <select value={sort} onChange={(event) => setSort(event.target.value as LibrarySort)}>
+              <option value="title">Title</option>
+              <option value="difficulty">Difficulty</option>
+            </select>
+          </label>
+
+          <label className={fitsOnly ? "fits-toggle is-on" : "fits-toggle"}>
+            <input type="checkbox" checked={fitsOnly} onChange={(event) => setFitsOnly(event.target.checked)} />
+            <span>Fits my drum</span>
+            <span className="fits-detail">
+              {drumKey} major · {layout}-note
+            </span>
+          </label>
+        </div>
+
         {tags.length > 0 ? (
           <div className="tag-filter">
             <p id="tag-filter-label">Tags</p>
@@ -98,29 +127,28 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
                 );
               })}
             </div>
+            <p className="filter-hint">Select any tags. A tune matches if it has one of them.</p>
           </div>
         ) : null}
+
         {filtersOn ? (
-          <button
-            type="button"
-            className="text-button"
-            onClick={() => {
-              setQuery("");
-              setDifficulty("all");
-              setSelectedTags([]);
-            }}
-          >
+          <button type="button" className="text-button" onClick={clear}>
             Clear filters
           </button>
         ) : null}
       </div>
 
       <p className="result-count" aria-live="polite">
-        {visible.length} {visible.length === 1 ? "tune" : "tunes"}
+        {visible.length} of {songs.length} {songs.length === 1 ? "tune" : "tunes"}
       </p>
 
       {visible.length === 0 ? (
-        <p className="empty">Nothing matches that yet. Clear a filter, or try another word.</p>
+        <div className="empty">
+          <p>No tunes match these filters.</p>
+          <button type="button" className="text-button" onClick={clear}>
+            Clear filters
+          </button>
+        </div>
       ) : (
         <ul className="song-grid-list">
           {visible.map((song) => (
@@ -159,9 +187,7 @@ function SongCard({ song, drumKey, layout }: { song: Song; drumKey: DrumKey; lay
         <span>{song.timeSignature}</span>
         <span>{song.tempo} BPM</span>
       </p>
-      {song.tags && song.tags.length > 0 ? (
-        <p className="card-tags">{song.tags.join(" · ")}</p>
-      ) : null}
+      {song.tags && song.tags.length > 0 ? <p className="card-tags">{song.tags.join(" · ")}</p> : null}
       <p className={fits ? "fit is-fit" : "fit is-short"}>{fit}</p>
     </a>
   );

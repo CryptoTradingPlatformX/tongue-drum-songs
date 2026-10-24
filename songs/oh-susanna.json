@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": 1,
+  "id": "oh-susanna",
+  "title": "Oh! Susanna",
+  "artist": "Stephen Foster",
+  "source": {
+    "name": "Wikipedia (fr) – Oh! Susanna (verse and chorus scores), LilyPond score",
+    "url": "https://fr.wikipedia.org/wiki/Oh%21_Susanna_%28chanson%29"
+  },
+  "license": "public-domain",
+  "attribution": "Words and music: Stephen Foster (1848). Public domain. Lyrics modernised from Foster's dialect spelling. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "folk",
+    "american"
+  ],
+  "tempo": 120,
+  "timeSignature": "2/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "I came from Alabama",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "with my banjo on my knee,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "I'm going to Louisiana,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "my true love for to see.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "It rained all night the day I left,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "the weather it was dry,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "the sun so hot I froze to death,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Susanna, don't you cry.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "Oh! Susanna,",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "oh don't you cry for me,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "I've come from Alabama",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "with my banjo on my knee.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "I came from Alabama",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "with my banjo on my knee,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "I'm going to Louisiana,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "my true love for to see.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "It rained all night the day I left,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "the weather it was dry,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "the sun so hot I froze to death,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Susanna, don't you cry.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "Oh! Susanna,",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "oh don't you cry for me,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "I've come from Alabama",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "with my banjo on my knee.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "2/4 time (eighth = 0.5, sixteenth = 0.25 beat). Verse and chorus verified against the two LilyPond scores on French Wikipedia (vocal line only; the piano and choir parts are left out). The chorus is written once (the score marks it to repeat). The slurred pickup (1-2) carries one syllable. No accidentals. Range 1–6, minLayout 8. Medium because of the sixteenth-note pickups and dotted rhythms. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

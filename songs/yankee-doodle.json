@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 1,
+  "id": "yankee-doodle",
+  "title": "Yankee Doodle",
+  "artist": "Traditional",
+  "source": {
+    "name": "Wikipedia (ja) – Yankee Doodle (ヤンキードゥードゥル), LilyPond score",
+    "url": "https://ja.wikipedia.org/wiki/%E3%83%A4%E3%83%B3%E3%82%AD%E3%83%BC%E3%83%89%E3%82%A5%E3%83%BC%E3%83%89%E3%82%A5%E3%83%AB"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional American (18th century). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "folk",
+    "patriotic"
+  ],
+  "tempo": 110,
+  "timeSignature": "2/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Yankee Doodle went to town, a-",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "riding on a pony; he",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "stuck a feather in his cap and",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "called it macaroni.",
+          "notes": [
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Yankee Doodle, keep it up,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "Yankee Doodle dandy;",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "mind the music and the step, and",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "with the girls be handy!",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "15",
+      "lines": [
+        {
+          "lyric": "Yankee Doodle went to town, a-",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "riding on a pony; he",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "stuck a feather in his cap and",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "called it macaroni.",
+          "notes": [
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Yankee Doodle, keep it up,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "Yankee Doodle dandy;",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "mind the music and the step, and",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "with the girls be handy!",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "2/4 time (eighth = 0.5 beat). Verified against the LilyPond score on Japanese Wikipedia (same engraving on Chinese Wikipedia). D drum: exactly as the score, which dips to low 3 and low 4 on 'Doodle dandy', so D minLayout 15. C drum: the C drum has no low 3 or 4, so the 'Yankee Doodle, keep it up, Yankee Doodle dandy' phrase (2 lines) is played one octave higher. All other notes are as written. C minLayout 11. Medium because of the dotted rhythms and the low register. C and D arrangements differ where noted above (each fits its own drum).",
+  "verified": true
+}
