@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "id": "here-we-go-round-the-mulberry-bush",
+  "title": "Here We Go Round the Mulberry Bush",
+  "artist": "Traditional",
+  "source": {
+    "name": "Wikipedia (en) – Here We Go Round the Mulberry Bush, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Here_We_Go_Round_the_Mulberry_Bush"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional English nursery rhyme (19th century). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "kids",
+    "nursery"
+  ],
+  "tempo": 100,
+  "timeSignature": "6/8",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Here we go round the mulberry bush,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "the mulberry bush, the mulberry bush,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "here we go round the mulberry bush,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "so early in the morning.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Here we go round the mulberry bush,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "the mulberry bush, the mulberry bush,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "here we go round the mulberry bush,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "so early in the morning.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "6/8 time (eighth = 0.5 beat). Verified against the Wikipedia LilyPond score. No simplification needed. Low 5, 6 and 7 (dots below), so minLayout 11 on both drums. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

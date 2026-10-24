@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 1,
+  "id": "pop-goes-the-weasel",
+  "title": "Pop Goes the Weasel",
+  "artist": "Traditional",
+  "source": {
+    "name": "Wikipedia (en) – Pop Goes the Weasel, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Pop_Goes_the_Weasel"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional English (dance tune from the 1850s). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "kids",
+    "nursery"
+  ],
+  "tempo": 100,
+  "timeSignature": "6/8",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Half a pound of tuppenny rice,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "half a pound of treacle.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "That's the way the money goes,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Pop! goes the weasel.",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Half a pound of tuppenny rice,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "half a pound of treacle.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "That's the way the money goes,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Pop! goes the weasel.",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "6/8 time (eighth = 0.5 beat). Verified against the Wikipedia LilyPond score, including the eighth rests after 'treacle' and after 'Pop!'. No simplification needed. Range 1–6, minLayout 8. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

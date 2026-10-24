@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "id": "hot-cross-buns",
+  "title": "Hot Cross Buns",
+  "artist": "Traditional",
+  "source": {
+    "name": "Wikipedia (en) – Hot Cross Buns (song), 'Alternative' tune, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Hot_Cross_Buns_(song)"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional English street cry / nursery rhyme (printed 1733 onwards). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "kids",
+    "nursery"
+  ],
+  "tempo": 100,
+  "timeSignature": "4/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Hot cross buns!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "Hot cross buns!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "One a penny, two a penny,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "hot cross buns!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Hot cross buns!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "Hot cross buns!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "One a penny, two a penny,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "hot cross buns!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the 'Alternative' tune in the Wikipedia LilyPond score (the familiar 3-2-1 version; the page also engraves an older street-cry tune, which we don't use). No simplification needed. Uses only degrees 1, 2, 3. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

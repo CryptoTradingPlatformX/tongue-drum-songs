@@ -1,0 +1,569 @@
+{
+  "schemaVersion": 1,
+  "id": "o-tannenbaum",
+  "title": "O Tannenbaum (O Christmas Tree)",
+  "artist": "Traditional",
+  "source": {
+    "name": "Wikipedia (en) – O Tannenbaum, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/O_Tannenbaum"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional German melody; words: Ernst Anschütz (1824). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "holiday",
+    "christmas"
+  ],
+  "tempo": 90,
+  "timeSignature": "3/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "O Tannenbaum, o Tannenbaum,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "wie treu sind deine Blätter!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Du grünst nicht nur zur Sommerzeit,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "nein, auch im Winter, wenn es schneit.",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "O Tannenbaum, o Tannenbaum,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "wie treu sind deine Blätter!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "O Tannenbaum, o Tannenbaum,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "wie treu sind deine Blätter!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Du grünst nicht nur zur Sommerzeit,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "nein, auch im Winter, wenn es schneit.",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "O Tannenbaum, o Tannenbaum,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "wie treu sind deine Blätter!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "3/4 time. Verified against the Wikipedia LilyPond score, with its 'D.C. al Fine' written out (A, B, A). German first verse as engraved. No accidentals. Low 5 and 7 (dots below), so minLayout 11 on both drums. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

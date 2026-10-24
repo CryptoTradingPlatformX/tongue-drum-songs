@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "id": "old-hundredth",
+  "title": "Old Hundredth (Praise God, from Whom All Blessings Flow)",
+  "artist": "Louis Bourgeois",
+  "source": {
+    "name": "Wikipedia (en) – Old 100th (Genevan Psalter melody), LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Old_100th"
+  },
+  "license": "public-domain",
+  "attribution": "Tune: Louis Bourgeois, Genevan Psalter (1551); words: Thomas Ken, Doxology (1674). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "hymn"
+  ],
+  "tempo": 100,
+  "timeSignature": "2/2",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Praise God, from whom all blessings flow;",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "praise Him, all creatures here below;",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "praise Him above, ye heavenly host;",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "praise Father, Son, and Holy Ghost.",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Praise God, from whom all blessings flow;",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "praise Him, all creatures here below;",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "praise Him above, ye heavenly host;",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "praise Father, Son, and Holy Ghost.",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the first Wikipedia LilyPond score (the original Genevan rhythm, half and quarter notes). That score has French words; Thomas Ken's English Doxology fits the same notes. No accidentals. Range low 5 to 5, minLayout 11 on both drums. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

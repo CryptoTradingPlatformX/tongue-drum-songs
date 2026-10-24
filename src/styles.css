@@ -135,6 +135,37 @@ main.has-player { padding-bottom: 8.5rem; }
 
 .page-intro { margin-bottom: 1rem; max-width: 40rem; }
 .filters { display: grid; gap: 0.85rem; margin-bottom: 0.5rem; }
+.tool-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  align-items: end;
+}
+.sort { display: grid; gap: 0.3rem; }
+.sort span { color: var(--ink-soft); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.sort select {
+  min-height: 44px;
+  min-width: 10rem;
+  border-radius: 12px;
+  border: 2px solid var(--line);
+  background: var(--paper);
+  padding: 0.2rem 0.7rem;
+}
+.fits-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  background: var(--paper);
+  cursor: pointer;
+}
+.fits-toggle input { width: 1.05rem; height: 1.05rem; accent-color: var(--moss); }
+.fits-toggle.is-on { background: var(--moss-soft); border-color: var(--moss); }
+.fits-detail { color: var(--ink-soft); font-size: 0.88rem; }
+.filter-hint { margin: 0; color: var(--ink-soft); font-size: 0.9rem; }
 .search { display: grid; gap: 0.3rem; }
 .search input, .text-button, .transport button, .tag {
   min-height: 44px;
@@ -280,8 +311,10 @@ main.has-player { padding-bottom: 8.5rem; }
 .barline.end::after { display: none; }
 .bar-no { font-size: 0.72rem; color: var(--ink-soft); line-height: 1; }
 .clusters, .cluster { display: flex; align-items: stretch; gap: 0.15rem; }
-.meter-68 .clusters { gap: 0.45rem; }
-.meter-68 .cluster {
+.meter-68 .clusters,
+.meter-22 .clusters { gap: 0.45rem; }
+.meter-68 .cluster,
+.meter-22 .cluster {
   background: rgba(196, 92, 50, 0.08);
   border-radius: 14px;
   padding: 0.15rem;
@@ -427,6 +460,12 @@ main.has-player + .site-footer { padding-bottom: 7.5rem; }
   .tempo-unit { display: none; }
   .diagram-panel { order: -1; }
   .brand-tag { display: none; }
+  .search input, .sort, .sort select { width: 100%; }
+  .tool-row { align-items: stretch; }
+  .fits-toggle { width: 100%; justify-content: flex-start; }
+  .song-grid-list { grid-template-columns: 1fr; }
+  .tags { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 0.35rem; }
+  .tag { flex: 0 0 auto; }
 }
 @media (min-width: 900px) {
   .practice-grid { grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr); align-items: start; }

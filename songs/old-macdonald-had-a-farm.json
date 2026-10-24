@@ -1,0 +1,713 @@
+{
+  "schemaVersion": 1,
+  "id": "old-macdonald-had-a-farm",
+  "title": "Old MacDonald Had a Farm",
+  "artist": "Traditional",
+  "source": {
+    "name": "Wikipedia (es) – Old MacDonald Had a Farm, LilyPond score",
+    "url": "https://es.wikipedia.org/wiki/El_viejo_MacDonald_ten%C3%ADa_una_granja"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional American/English children's song (melody in print from 1917; earlier folk versions). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "kids",
+    "nursery"
+  ],
+  "tempo": 120,
+  "timeSignature": "4/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Old MacDonald had a farm,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "E-I-E-I-O. And",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "on that farm he had a cow,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "E-I-E-I-O. With a",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "moo moo here and a",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "moo moo there,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "here a moo, there a moo, everywhere a moo moo.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "Old MacDonald had a farm,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "E-I-E-I-O.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Old MacDonald had a farm,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "E-I-E-I-O. And",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "on that farm he had a cow,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "E-I-E-I-O. With a",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "moo moo here and a",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "moo moo there,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "here a moo, there a moo, everywhere a moo moo.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "Old MacDonald had a farm,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "E-I-E-I-O.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the LilyPond score on Spanish Wikipedia (the same engraving is used on the French, Swedish, Japanese and Chinese articles). No simplification needed. Low 5 and 6 (dots below), so minLayout 11 on both drums. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

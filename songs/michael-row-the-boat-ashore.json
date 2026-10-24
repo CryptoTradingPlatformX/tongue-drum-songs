@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "id": "michael-row-the-boat-ashore",
+  "title": "Michael, Row the Boat Ashore",
+  "artist": "Traditional",
+  "source": {
+    "name": "Wikipedia (en) – Michael, Row the Boat Ashore, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Michael,_Row_the_Boat_Ashore"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional African-American spiritual (Sea Islands, transcribed 1860s). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "spiritual",
+    "folk"
+  ],
+  "tempo": 90,
+  "timeSignature": "4/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Michael, row the boat ashore,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "hallelujah!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "Michael, row the boat ashore,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "hallelujah!",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Michael, row the boat ashore,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "hallelujah!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "Michael, row the boat ashore,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "hallelujah!",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the Wikipedia LilyPond score. The slurred 3-2 on the last 'hallelujah' is written as two notes. No simplification needed. Range 1–6, minLayout 8. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

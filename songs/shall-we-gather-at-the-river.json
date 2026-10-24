@@ -1,0 +1,812 @@
+{
+  "schemaVersion": 1,
+  "id": "shall-we-gather-at-the-river",
+  "title": "Shall We Gather at the River?",
+  "artist": "Robert Lowry",
+  "source": {
+    "name": "Wikipedia (en) – Shall We Gather at the River?, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Shall_We_Gather_at_the_River%3F"
+  },
+  "license": "public-domain",
+  "attribution": "Words and music: Robert Lowry (1864). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "hymn"
+  ],
+  "tempo": 88,
+  "timeSignature": "4/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Shall we gather at the river,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "where bright angel feet have trod;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "with its crystal tide forever",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "flowing by the throne of God?",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "Yes, we'll gather at the river,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "the beautiful, the beautiful river;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "gather with the saints at the river",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "that flows by the throne of God.",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Shall we gather at the river,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "where bright angel feet have trod;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "with its crystal tide forever",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "flowing by the throne of God?",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "Yes, we'll gather at the river,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "the beautiful, the beautiful river;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "gather with the saints at the river",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "that flows by the throne of God.",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the soprano line of the Wikipedia LilyPond SATB score. Slurred notes are written separately. No accidentals. Range 1 to high 1, minLayout 8. Medium because of the dotted eighth-sixteenth rhythms. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

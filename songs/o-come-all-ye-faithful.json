@@ -1,0 +1,734 @@
+{
+  "schemaVersion": 1,
+  "id": "o-come-all-ye-faithful",
+  "title": "O Come, All Ye Faithful (Adeste Fideles)",
+  "artist": "John Francis Wade (attr.)",
+  "source": {
+    "name": "Wikipedia (en) – O Come, All Ye Faithful, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/O_Come,_All_Ye_Faithful"
+  },
+  "license": "public-domain",
+  "attribution": "Tune 'Adeste Fideles', attributed to John Francis Wade (c. 1743); English words: Frederick Oakeley (1841). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "holiday",
+    "christmas",
+    "hymn"
+  ],
+  "tempo": 90,
+  "timeSignature": "4/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "O come, all ye faithful,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "joyful and triumphant, O",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come ye, O come ye to Bethlehem.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "Come and behold Him,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "born the King of angels. O",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come, let us adore Him, O",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come, let us adore Him, O",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come, let us adore Him,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "Christ the Lord.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "O come, all ye faithful,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "joyful and triumphant, O",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come ye, O come ye to Bethlehem.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "Come and behold Him,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "born the King of angels. O",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come, let us adore Him, O",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come, let us adore Him, O",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "come, let us adore Him,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "Christ the Lord.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the melody (top voice) of the Wikipedia LilyPond organ score (alto and bass voices left out). Slurred notes are written separately. No accidentals. Range low 5 to 5, minLayout 11 on both drums. Medium because of the length and the low notes. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

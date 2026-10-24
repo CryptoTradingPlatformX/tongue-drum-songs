@@ -151,13 +151,17 @@ describe("notation marks", () => {
 });
 
 describe("meters and playback timing", () => {
-  it("counts 4/4, 3/4, and 6/8 in quarter-note beats", () => {
+  it("counts 4/4, 3/4, 2/4, 2/2, and 6/8 in quarter-note beats", () => {
     expect(beatsPerBar("4/4")).toBe(4);
     expect(beatsPerBar("3/4")).toBe(3);
+    expect(beatsPerBar("2/4")).toBe(2);
+    expect(beatsPerBar("2/2")).toBe(4);
     expect(beatsPerBar("6/8")).toBe(3);
     expect(pulseBeats("6/8")).toBe(1.5);
+    expect(pulseBeats("2/2")).toBe(2);
     expect(pulseBeats("4/4")).toBeNull();
     expect(pulseBeats("3/4")).toBeNull();
+    expect(pulseBeats("2/4")).toBeNull();
     expect(() => beatsPerBar("5/4")).toThrow(/Unsupported/);
     expect(() => pulseBeats("7/8")).toThrow(/Unsupported/);
   });
@@ -212,6 +216,29 @@ describe("meters and playback timing", () => {
     expect(held[0].bars[0].slices[0].dividerBefore).toBe(false);
   });
 
+  it("groups 2/4 as two quarter-beats and 2/2 as two half-note pulses", () => {
+    const twoFour = layoutNotation(
+      [{ notes: [pitched(1, 0, 0.5), pitched(2, 0, 0.5), pitched(3, 0, 1), pitched(4, 0, 1), pitched(5, 0, 1)] }],
+      "2/4",
+    );
+    expect(twoFour[0].bars).toHaveLength(2);
+    expect(twoFour[0].bars[0].beats).toBeCloseTo(2);
+    expect(twoFour[0].bars[1].beats).toBeCloseTo(2);
+    expect(
+      twoFour[0].bars.every((bar) => bar.slices.every((slice) => !slice.dividerBefore && slice.pulseMarks.length === 0)),
+    ).toBe(true);
+
+    const cut = layoutNotation(
+      [{ notes: [pitched(1, 0, 1), pitched(1, 0, 1), pitched(2, 0, 2), pitched(3, 0, 4)] }],
+      "2/2",
+    );
+    expect(cut[0].bars).toHaveLength(2);
+    expect(cut[0].bars[0].beats).toBeCloseTo(4);
+    expect(cut[0].bars[0].slices.map((slice) => slice.dividerBefore)).toEqual([false, false, true]);
+    expect(cut[0].bars[1].slices[0].pulseMarks).toEqual([0.5]);
+    expect(quarterSeconds(2, 60)).toBe(2);
+  });
+
   it("ties a note that crosses a barline and continues a bar onto the next phrase", () => {
     const crossing = layoutNotation(
       [{ notes: [pitched(3, 0, 0.5), pitched(5, 0, 0.5), pitched(1, 1, 1), pitched(7, 0, 1.5)] }],
@@ -237,11 +264,11 @@ describe("sample songs", () => {
   const files = readdirSync(path.join(root, "songs")).filter((name) => name.endsWith(".json")).sort();
 
   it("loads every delivered song and keeps duration when grouping bars", () => {
-    expect(files.length).toBeGreaterThanOrEqual(10);
+    expect(files.length).toBe(30);
     for (const file of files) {
       const song = JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song;
       expect(song.id + ".json").toBe(file);
-      expect(["4/4", "3/4", "6/8"]).toContain(song.timeSignature);
+      expect(["4/4", "3/4", "2/4", "2/2", "6/8"]).toContain(song.timeSignature);
       for (const key of ["C", "D"] as const) {
         const arrangement = song.arrangements[key];
         const lines = arrangement.lines.map((line) => ({
@@ -263,7 +290,7 @@ describe("sample songs", () => {
           for (const bar of line.bars) {
             for (const slice of bar.slices) {
               expect(slice.dur).toBeGreaterThan(0);
-              if (song.timeSignature === "6/8") continue;
+              if (song.timeSignature === "6/8" || song.timeSignature === "2/2") continue;
               expect(slice.dividerBefore).toBe(false);
               expect(slice.pulseMarks).toEqual([]);
             }
@@ -286,5 +313,69 @@ describe("sample songs", () => {
     const first = layoutNotation(lines, "6/8")[0];
     expect(first.bars[0].slices.some((slice) => slice.dividerBefore)).toBe(true);
     expect(minimumLayout(lines.flatMap((line) => line.notes))).toBe(row!.arrangements.C.minLayout);
+  });
+
+  it("groups a 2/2 song into half-note pulses and keeps lines that have no lyric", () => {
+    const songs = files.map(
+      (file) => JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song,
+    );
+    const hundred = songs.find((song) => song.id === "old-hundredth");
+    expect(hundred?.timeSignature).toBe("2/2");
+    const lines = hundred!.arrangements.C.lines.map((line) => ({
+      lyric: line.lyric,
+      notes: line.notes.map((note) => parseNote(note)),
+    }));
+    const first = layoutNotation(lines, "2/2")[0];
+    expect(first.bars[0].beats).toBeCloseTo(4);
+    expect(first.bars[0].slices.some((slice) => slice.dividerBefore)).toBe(true);
+
+    const instrumental = songs.filter((song) => song.arrangements.C.lines.every((line) => line.lyric == null));
+    expect(instrumental.map((song) => song.id).sort()).toEqual(["minuet-in-g", "morning-mood", "pachelbel-canon"]);
+    for (const song of instrumental) {
+      const laid = layoutNotation(
+        song.arrangements.C.lines.map((line) => ({
+          notes: line.notes.map((note) => parseNote(note)),
+        })),
+        song.timeSignature,
+      );
+      expect(laid.every((line) => line.lyric == null)).toBe(true);
+      expect(laid.some((line) => line.bars.length > 0)).toBe(true);
+    }
+  });
+
+  it("uses each key's own notes and minLayout when C and D differ", () => {
+    const load = (id: string) =>
+      JSON.parse(readFileSync(path.join(root, "songs", `${id}.json`), "utf8")) as Song;
+    const notesOf = (song: Song, key: "C" | "D") =>
+      song.arrangements[key].lines.flatMap((line) => line.notes.map((note) => parseNote(note)));
+
+    const yankee = load("yankee-doodle");
+    expect(yankee.timeSignature).toBe("2/4");
+    expect(yankee.arrangements.C.minLayout).toBe("11");
+    expect(yankee.arrangements.D.minLayout).toBe("15");
+    const yankeeC = notesOf(yankee, "C");
+    const yankeeD = notesOf(yankee, "D");
+    expect(yankeeC.map((note) => `${note.deg}:${note.oct}`).join(" ")).not.toBe(
+      yankeeD.map((note) => `${note.deg}:${note.oct}`).join(" "),
+    );
+    const keepC = yankee.arrangements.C.lines.find((line) => line.lyric?.startsWith("Yankee Doodle, keep"));
+    const keepD = yankee.arrangements.D.lines.find((line) => line.lyric?.startsWith("Yankee Doodle, keep"));
+    expect(keepC?.notes[0]).toMatchObject({ deg: 6, oct: 0 });
+    expect(keepD?.notes[0]).toMatchObject({ deg: 6, oct: -1 });
+    expect(minimumLayout(yankeeC)).toBe("11");
+    expect(minimumLayout(yankeeD)).toBe("15");
+    expect(missingTongues(yankeeD, "11").some((tongue) => tongue.deg === 3 && tongue.oct === -1)).toBe(true);
+    expect(missingTongues(yankeeC, "11")).toEqual([]);
+
+    const canon = load("pachelbel-canon");
+    expect(canon.arrangements.C.minLayout).toBe("11");
+    expect(canon.arrangements.D.minLayout).toBe("13");
+    expect(canon.arrangements.C.lines[0].lyric).toBeUndefined();
+    expect(canon.arrangements.C.lines[0].notes[0]).toMatchObject({ deg: 3, oct: 0 });
+    expect(canon.arrangements.D.lines[0].notes[0]).toMatchObject({ deg: 3, oct: 1 });
+    expect(minimumLayout(notesOf(canon, "C"))).toBe("11");
+    expect(minimumLayout(notesOf(canon, "D"))).toBe("13");
+    expect(arrangementFits(notesOf(canon, "D"), "11")).toBe(false);
+    expect(arrangementFits(notesOf(canon, "D"), "13")).toBe(true);
   });
 });

@@ -1,0 +1,554 @@
+{
+  "schemaVersion": 1,
+  "id": "away-in-a-manger",
+  "title": "Away in a Manger",
+  "artist": "William J. Kirkpatrick",
+  "source": {
+    "name": "Wikipedia (en) – Away in a Manger (tune 'Cradle Song', first score), LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Away_in_a_Manger"
+  },
+  "license": "public-domain",
+  "attribution": "Tune 'Cradle Song': William J. Kirkpatrick (1895); words: anonymous (1885). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "holiday",
+    "christmas",
+    "lullaby"
+  ],
+  "tempo": 100,
+  "timeSignature": "3/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Away in a manger,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "no crib for a bed.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "The little Lord Jesus laid",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "down his sweet head.",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "The stars in the sky",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "looked down where He lay,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "the little Lord Jesus",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "asleep on the hay.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Away in a manger,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "no crib for a bed.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "The little Lord Jesus laid",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "down his sweet head.",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "The stars in the sky",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "looked down where He lay,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "the little Lord Jesus",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "asleep on the hay.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "3/4 time. Verified against the first Wikipedia LilyPond score (Kirkpatrick's 'Cradle Song', the tune usually sung in the US and UK; the page's second score is the American 'Mueller' tune, not used). No accidentals. Range low 5 to 5, minLayout 11 on both drums. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

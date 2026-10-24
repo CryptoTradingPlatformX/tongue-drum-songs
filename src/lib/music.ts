@@ -217,6 +217,11 @@ export function beatsPerBar(timeSignature: string): number {
       return 4;
     case "3/4":
       return 3;
+    case "2/4":
+      return 2;
+    case "2/2":
+      // Two half-note pulses. A half note is 2 quarter-beats, so the bar is 4.
+      return 4;
     case "6/8":
       // 6 eighths = 3 quarter-note beats, grouped as two dotted quarters.
       return 3;
@@ -225,10 +230,15 @@ export function beatsPerBar(timeSignature: string): number {
   }
 }
 
-/** Dotted-quarter pulse length for 6/8. Simple meters have no inner pulse. */
+/**
+ * Inner pulse length in quarter-note beats.
+ * 6/8 is two dotted quarters (1.5). 2/2 is two half notes (2).
+ * 4/4, 3/4, and 2/4 have no inner pulse.
+ */
 export function pulseBeats(timeSignature: string): number | null {
   if (timeSignature === "6/8") return 1.5;
-  if (timeSignature === "4/4" || timeSignature === "3/4") return null;
+  if (timeSignature === "2/2") return 2;
+  if (timeSignature === "4/4" || timeSignature === "3/4" || timeSignature === "2/4") return null;
   throw new NotationError(`Unsupported time signature: ${timeSignature}`);
 }
 
@@ -238,6 +248,10 @@ export function meterHelp(timeSignature: TimeSignature): string {
       return "4/4 · four quarter-note beats in a bar";
     case "3/4":
       return "3/4 · three quarter-note beats in a bar";
+    case "2/4":
+      return "2/4 · two quarter-note beats in a bar";
+    case "2/2":
+      return "2/2 · four quarter-beats, grouped as two half-note pulses";
     case "6/8":
       return "6/8 · three quarter-beats, grouped as two dotted-quarter pulses";
   }
