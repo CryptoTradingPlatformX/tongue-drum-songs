@@ -1,0 +1,101 @@
+{
+  "keys": {
+    "C": {
+      "id": "C",
+      "label": "C major",
+      "tonicMidi": 60,
+      "mainOctave": "C4–C5"
+    },
+    "D": {
+      "id": "D",
+      "label": "D major",
+      "tonicMidi": 62,
+      "mainOctave": "D4–D5"
+    }
+  },
+  "layouts": [
+    {
+      "id": "8",
+      "noteCount": 8,
+      "label": "8-note",
+      "typical": false,
+      "blurb": "Main octave degrees 1–7, plus high 1. On a C drum that is C4–C5; on a D drum, D4–D5.",
+      "tongues": [
+        { "deg": 1, "oct": 0 },
+        { "deg": 2, "oct": 0 },
+        { "deg": 3, "oct": 0 },
+        { "deg": 4, "oct": 0 },
+        { "deg": 5, "oct": 0 },
+        { "deg": 6, "oct": 0 },
+        { "deg": 7, "oct": 0 },
+        { "deg": 1, "oct": 1 }
+      ]
+    },
+    {
+      "id": "11",
+      "noteCount": 11,
+      "label": "11-note",
+      "typical": true,
+      "blurb": "The 8-note set, plus low 5, 6, and 7. A typical extended layout; the exact tongues vary by maker.",
+      "tongues": [
+        { "deg": 5, "oct": -1 },
+        { "deg": 6, "oct": -1 },
+        { "deg": 7, "oct": -1 },
+        { "deg": 1, "oct": 0 },
+        { "deg": 2, "oct": 0 },
+        { "deg": 3, "oct": 0 },
+        { "deg": 4, "oct": 0 },
+        { "deg": 5, "oct": 0 },
+        { "deg": 6, "oct": 0 },
+        { "deg": 7, "oct": 0 },
+        { "deg": 1, "oct": 1 }
+      ]
+    },
+    {
+      "id": "13",
+      "noteCount": 13,
+      "label": "13-note",
+      "typical": true,
+      "blurb": "The 11-note set, plus high 2 and high 3. A typical extended layout; the exact tongues vary by maker.",
+      "tongues": [
+        { "deg": 5, "oct": -1 },
+        { "deg": 6, "oct": -1 },
+        { "deg": 7, "oct": -1 },
+        { "deg": 1, "oct": 0 },
+        { "deg": 2, "oct": 0 },
+        { "deg": 3, "oct": 0 },
+        { "deg": 4, "oct": 0 },
+        { "deg": 5, "oct": 0 },
+        { "deg": 6, "oct": 0 },
+        { "deg": 7, "oct": 0 },
+        { "deg": 1, "oct": 1 },
+        { "deg": 2, "oct": 1 },
+        { "deg": 3, "oct": 1 }
+      ]
+    },
+    {
+      "id": "15",
+      "noteCount": 15,
+      "label": "15-note",
+      "typical": true,
+      "blurb": "Hopewell-style: low 3–7, main-octave 1–7, and high 1–3. There is no high 4 or high 5. A C drum spans E3–E5; a D drum spans F♯3–F♯5. A typical layout; makers differ.",
+      "tongues": [
+        { "deg": 3, "oct": -1 },
+        { "deg": 4, "oct": -1 },
+        { "deg": 5, "oct": -1 },
+        { "deg": 6, "oct": -1 },
+        { "deg": 7, "oct": -1 },
+        { "deg": 1, "oct": 0 },
+        { "deg": 2, "oct": 0 },
+        { "deg": 3, "oct": 0 },
+        { "deg": 4, "oct": 0 },
+        { "deg": 5, "oct": 0 },
+        { "deg": 6, "oct": 0 },
+        { "deg": 7, "oct": 0 },
+        { "deg": 1, "oct": 1 },
+        { "deg": 2, "oct": 1 },
+        { "deg": 3, "oct": 1 }
+      ]
+    }
+  ]
+}
