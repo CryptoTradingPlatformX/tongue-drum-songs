@@ -235,9 +235,10 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
             <span className="now-value">{nowText}</span>
           </p>
           <p className="diagram-caption">
-            {range.low}–{range.high}. Low notes start at the top and climb clockwise. This is a schematic —
-            a real drum’s tongues may sit in a different order.
-            {layoutInfo.typical ? " Typical layout; makers vary." : ""}
+            {range.low}–{range.high}.{" "}
+            {layout === "15"
+              ? "Paired tongues, longer one lower, with low 3 in the center. A dot above the number is the higher octave; a dot below is the lower one."
+              : `Low notes start at the top and climb clockwise. This is a schematic — a real drum’s tongues may sit in a different order.${layoutInfo.typical ? " Typical layout; makers vary." : ""}`}
           </p>
         </section>
       </div>
