@@ -34,7 +34,7 @@ Drum maps live in [data/layouts.json](data/layouts.json).
 | 8 | 1–7 in the main octave, plus high 1 | C drum C4–C5, D drum D4–D5 |
 | 11 | the 8-note set, plus low 5, 6, and 7 | Typical extended layout; makers vary |
 | 13 | the 11-note set, plus high 2 and high 3 | Typical extended layout; makers vary |
-| 15 | low 3–7, main 1–7, high 1–3 | Hopewell-style. No high 4 or high 5. C drum E3–E5, D drum F♯3–F♯5. Typical; makers vary |
+| 15 | low 3–7, main 1–7, high 1–3 | Hopewell-style. No high 4 or high 5. C drum E3–E5, D drum F♯3–F♯5. The picture is a real 15-note drum: paired tongues around a center low 3. Typical; makers vary |
 
 Numbers in the app are scale degrees. A dot above is the octave above the main one (`oct: 1`), a dot below is the octave below (`oct: -1`).
 

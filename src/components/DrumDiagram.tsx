@@ -1,6 +1,7 @@
 import { useId } from "react";
 import { layoutById, noteName, pitchCompare } from "../lib/music";
 import type { DrumKey, LayoutId, Tongue } from "../lib/types";
+import { Drum15Diagram } from "./Drum15Diagram";
 
 type Props = {
   layoutId: LayoutId;
@@ -22,6 +23,11 @@ function sector(cx: number, cy: number, inner: number, outer: number, start: num
 }
 
 export function DrumDiagram({ layoutId, drumKey, active }: Props) {
+  if (layoutId === "15") return <Drum15Diagram drumKey={drumKey} active={active} />;
+  return <SchematicDrum layoutId={layoutId} drumKey={drumKey} active={active} />;
+}
+
+function SchematicDrum({ layoutId, drumKey, active }: Props) {
   const rawId = useId().replace(/:/g, "");
   const layout = layoutById(layoutId);
   const tongues = [...layout.tongues].sort(pitchCompare);
