@@ -157,7 +157,11 @@ describe("meters and playback timing", () => {
     expect(beatsPerBar("2/4")).toBe(2);
     expect(beatsPerBar("2/2")).toBe(4);
     expect(beatsPerBar("6/8")).toBe(3);
+    expect(beatsPerBar("9/8")).toBe(4.5);
+    expect(beatsPerBar("12/8")).toBe(6);
     expect(pulseBeats("6/8")).toBe(1.5);
+    expect(pulseBeats("9/8")).toBe(1.5);
+    expect(pulseBeats("12/8")).toBe(1.5);
     expect(pulseBeats("2/2")).toBe(2);
     expect(pulseBeats("4/4")).toBeNull();
     expect(pulseBeats("3/4")).toBeNull();
@@ -171,6 +175,8 @@ describe("meters and playback timing", () => {
     expect(quarterSeconds(3, 90)).toBeCloseTo(2);
     expect(quarterSeconds(1.5, 90)).toBeCloseTo(1);
     expect(quarterSeconds(0.5, 120)).toBeCloseTo(0.25);
+    expect(quarterSeconds(4.5, 60)).toBeCloseTo(4.5);
+    expect(quarterSeconds(6, 60)).toBe(6);
     expect(() => quarterSeconds(1, 0)).toThrow(/bpm/);
   });
 
@@ -214,6 +220,35 @@ describe("meters and playback timing", () => {
     const held = layoutNotation([{ notes: [pitched(5, 0, 3)] }], "6/8");
     expect(held[0].bars[0].slices[0].pulseMarks).toEqual([0.5]);
     expect(held[0].bars[0].slices[0].dividerBefore).toBe(false);
+  });
+
+  it("groups 9/8 into three dotted-quarter pulses and 12/8 into four", () => {
+    const nine = layoutNotation([{ notes: Array.from({ length: 9 }, () => pitched(1, 0, 0.5)) }], "9/8");
+    expect(nine[0].bars).toHaveLength(1);
+    expect(nine[0].bars[0].beats).toBeCloseTo(4.5);
+    expect(nine[0].bars[0].openedHere).toBe(true);
+    expect(nine[0].bars[0].closedHere).toBe(true);
+    const nineDivided = nine[0].bars[0].slices.filter((slice) => slice.dividerBefore);
+    expect(nineDivided.map((slice) => slice.beat)).toEqual([1.5, 3]);
+
+    const twelve = layoutNotation([{ notes: Array.from({ length: 12 }, () => pitched(1, 0, 0.5)) }], "12/8");
+    expect(twelve[0].bars).toHaveLength(1);
+    expect(twelve[0].bars[0].beats).toBeCloseTo(6);
+    expect(twelve[0].bars[0].slices.filter((slice) => slice.dividerBefore).map((slice) => slice.beat)).toEqual([
+      1.5, 3, 4.5,
+    ]);
+
+    const heldNine = layoutNotation([{ notes: [pitched(5, 0, 4.5)] }], "9/8");
+    expect(heldNine[0].bars[0].slices[0].pulseMarks[0]).toBeCloseTo(1 / 3);
+    expect(heldNine[0].bars[0].slices[0].pulseMarks[1]).toBeCloseTo(2 / 3);
+    const heldTwelve = layoutNotation([{ notes: [pitched(5, 0, 6)] }], "12/8");
+    expect(heldTwelve[0].bars[0].slices[0].pulseMarks).toEqual([0.25, 0.5, 0.75]);
+
+    const played = flattenLines([{ notes: Array.from({ length: 9 }, () => pitched(1, 0, 0.5)) }]);
+    const seconds = played.reduce((sum, event) => sum + quarterSeconds(event.dur, 60), 0);
+    expect(seconds).toBeCloseTo(4.5);
+    const twelveSeconds = Array.from({ length: 12 }, () => 0.5).reduce((sum, dur) => sum + quarterSeconds(dur, 60), 0);
+    expect(twelveSeconds).toBeCloseTo(6);
   });
 
   it("groups 2/4 as two quarter-beats and 2/2 as two half-note pulses", () => {
@@ -269,7 +304,7 @@ describe("sample songs", () => {
     for (const file of files) {
       const song = JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song;
       expect(song.id + ".json").toBe(file);
-      if (!["4/4", "3/4", "2/4", "2/2", "6/8"].includes(song.timeSignature)) {
+      if (!["4/4", "3/4", "2/4", "2/2", "6/8", "9/8", "12/8"].includes(song.timeSignature)) {
         unsupported.push(`${file}: timeSignature ${song.timeSignature}`);
         continue;
       }
@@ -294,7 +329,14 @@ describe("sample songs", () => {
           for (const bar of line.bars) {
             for (const slice of bar.slices) {
               expect(slice.dur).toBeGreaterThan(0);
-              if (song.timeSignature === "6/8" || song.timeSignature === "2/2") continue;
+              if (
+                song.timeSignature === "6/8" ||
+                song.timeSignature === "9/8" ||
+                song.timeSignature === "12/8" ||
+                song.timeSignature === "2/2"
+              ) {
+                continue;
+              }
               expect(slice.dividerBefore).toBe(false);
               expect(slice.pulseMarks).toEqual([]);
             }
@@ -387,5 +429,50 @@ describe("sample songs", () => {
     expect(minimumLayout(notesOf(canon, "D"))).toBe("13");
     expect(arrangementFits(notesOf(canon, "D"), "11")).toBe(false);
     expect(arrangementFits(notesOf(canon, "D"), "13")).toBe(true);
+  });
+
+  it("lays out Arirang and both Beautiful Dreamer arrangements in 9/8", () => {
+    const load = (id: string) => JSON.parse(readFileSync(path.join(root, "songs", `${id}.json`), "utf8")) as Song;
+    const dreamer = load("beautiful-dreamer");
+    const arirang = load("arirang");
+    expect(dreamer.timeSignature).toBe("9/8");
+    expect(arirang.timeSignature).toBe("9/8");
+    expect(dreamer.arrangements.C.minLayout).toBe("11");
+    expect(dreamer.arrangements.D.minLayout).toBe("13");
+
+    const wooC = dreamer.arrangements.C.lines.find((line) => line.lyric?.startsWith("List while I woo"));
+    const wooD = dreamer.arrangements.D.lines.find((line) => line.lyric?.startsWith("List while I woo"));
+    expect(wooC?.notes.map((note) => note.oct)).not.toEqual(wooD?.notes.map((note) => note.oct));
+
+    for (const song of [dreamer, arirang]) {
+      for (const key of ["C", "D"] as const) {
+        const lines = song.arrangements[key].lines.map((line) => ({
+          lyric: line.lyric,
+          notes: line.notes.map((note) => parseNote(note)),
+        }));
+        const laid = layoutNotation(lines, song.timeSignature);
+        expect(laid.length).toBe(lines.length);
+        const fullBars = laid.flatMap((line) => line.bars).filter((bar) => bar.openedHere && bar.closedHere);
+        expect(fullBars.length).toBeGreaterThan(0);
+        expect(fullBars.every((bar) => Math.abs(bar.beats - 4.5) < 1e-6)).toBe(true);
+        expect(fullBars.some((bar) => bar.slices.some((slice) => slice.dividerBefore))).toBe(true);
+        const seconds = lines
+          .flatMap((line) => line.notes)
+          .reduce((sum, note) => sum + quarterSeconds(note.dur, song.tempo), 0);
+        expect(seconds).toBeGreaterThan(0);
+      }
+    }
+
+    const dreamerLine = layoutNotation(
+      [
+        {
+          notes: dreamer.arrangements.D.lines[0].notes.map((note) => parseNote(note)),
+        },
+      ],
+      "9/8",
+    )[0];
+    expect(dreamerLine.bars).toHaveLength(2);
+    expect(dreamerLine.bars.every((bar) => Math.abs(bar.beats - 4.5) < 1e-6)).toBe(true);
+    expect(quarterSeconds(9, dreamer.tempo)).toBeCloseTo(9);
   });
 });

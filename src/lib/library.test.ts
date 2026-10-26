@@ -67,10 +67,13 @@ describe("library browsing", () => {
   it("pages a filtered list", () => {
     const all = filterSongs(songs, base);
     const page = paginate(all, 2, 24);
-    expect(all.length).toBeGreaterThan(24);
-    expect(page.pageCount).toBe(2);
+    expect(all.length).toBe(50);
+    expect(page.pageCount).toBe(3);
     expect(page.start).toBe(25);
-    expect(page.items).toHaveLength(all.length - 24);
+    expect(page.items).toHaveLength(24);
+    const last = paginate(all, 3, 24);
+    expect(last.start).toBe(49);
+    expect(last.items).toHaveLength(2);
     expect(paginate([], 4, 24)).toMatchObject({ page: 1, pageCount: 1, start: 0, end: 0, items: [] });
   });
 });

@@ -5,7 +5,7 @@ export type License =
   | "CC-BY-4.0"
   | "CC-BY-SA-4.0"
   | "other-permissive";
-export type TimeSignature = "4/4" | "3/4" | "2/4" | "2/2" | "6/8";
+export type TimeSignature = "4/4" | "3/4" | "2/4" | "2/2" | "6/8" | "9/8" | "12/8";
 export type LayoutId = "8" | "11" | "13" | "15";
 export type DrumKey = "C" | "D";
 

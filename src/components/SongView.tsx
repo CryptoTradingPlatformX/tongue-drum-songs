@@ -390,6 +390,12 @@ function SongPractice({
             {song.timeSignature === "6/8" ? (
               <li>In 6/8, each bar is two dotted-quarter pulses. The gap between them is the middle of the bar.</li>
             ) : null}
+            {song.timeSignature === "9/8" ? (
+              <li>In 9/8, each bar is three dotted-quarter pulses. The gaps mark those pulses.</li>
+            ) : null}
+            {song.timeSignature === "12/8" ? (
+              <li>In 12/8, each bar is four dotted-quarter pulses. The gaps mark those pulses.</li>
+            ) : null}
             {song.timeSignature === "2/2" ? (
               <li>In 2/2, each bar is two half-note pulses. The gap between them is the middle of the bar.</li>
             ) : null}
