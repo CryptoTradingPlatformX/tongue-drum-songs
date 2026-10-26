@@ -353,7 +353,7 @@ describe("sample songs", () => {
   const files = readdirSync(path.join(root, "songs")).filter((name) => name.endsWith(".json")).sort();
 
   it("loads every delivered song and keeps duration when grouping bars", () => {
-    expect(files.length).toBe(90);
+    expect(files.length).toBe(109);
     const unsupported: string[] = [];
     for (const file of files) {
       const song = JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song;

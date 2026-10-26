@@ -1,0 +1,1074 @@
+{
+  "schemaVersion": 1,
+  "id": "oats-peas-beans-and-barley-grow",
+  "title": "Oats, Peas, Beans and Barley Grow",
+  "artist": "Traditional (English)",
+  "source": {
+    "name": "Wikisource – Singing Games (children's game-song collection), page 19, LilyPond score",
+    "url": "https://en.wikisource.org/wiki/Page%3ASinging_games.djvu/19"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional English singing game. Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "kids",
+    "folk",
+    "singing-game"
+  ],
+  "tempo": 120,
+  "timeSignature": "12/8",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Oats, pease, beans and barley grows,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "oats, pease, beans and barley grows;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "you, nor I, nor nobody knows",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "how oats, pease, beans and barley grows.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Thus the farmer sows his seed,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "thus he stands and takes his ease;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "stamps his foot and claps his hands,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and turns around to view his lands:",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "a-waiting for a partner,",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "a-waiting for a partner;",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "so open the ring, and choose one in,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and kiss her when you get her in.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Oats, pease, beans and barley grows,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "oats, pease, beans and barley grows;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "you, nor I, nor nobody knows",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "how oats, pease, beans and barley grows.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Thus the farmer sows his seed,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "thus he stands and takes his ease;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "stamps his foot and claps his hands,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and turns around to view his lands:",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "a-waiting for a partner,",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "a-waiting for a partner;",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "so open the ring, and choose one in,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and kiss her when you get her in.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "12/8 time (eighth = 0.5 beat). Verified against the LilyPond score on the Wikisource transcription of the 'Singing Games' book (words as in the score). Slurred notes carry one syllable over two notes. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

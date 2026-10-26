@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 1,
+  "id": "the-needles-eye",
+  "title": "The Needle's Eye",
+  "artist": "Traditional (English)",
+  "source": {
+    "name": "Wikisource – Singing Games (children's game-song collection), page 12, LilyPond score",
+    "url": "https://en.wikisource.org/wiki/Page%3ASinging_games.djvu/12"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional English singing game. Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "kids",
+    "folk",
+    "singing-game"
+  ],
+  "tempo": 104,
+  "timeSignature": "4/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Needle's eye as I pass by,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "a-waiting to go through,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "there's many a lass that I have passed,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and now I have got you.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Needle's eye as I pass by,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "a-waiting to go through,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "there's many a lass that I have passed,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and now I have got you.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the LilyPond score on the Wikisource transcription of the 'Singing Games' book (words as in the score). No simplification needed. Range 1 to 6. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

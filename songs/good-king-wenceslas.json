@@ -1,0 +1,644 @@
+{
+  "schemaVersion": 1,
+  "id": "good-king-wenceslas",
+  "title": "Good King Wenceslas",
+  "artist": "John Mason Neale",
+  "source": {
+    "name": "Mutopia Project – Good King Wenceslas (LilyPond source, from Hutchins, Carols Old and Carols New, 1916)",
+    "url": "https://www.mutopiaproject.org/ftp/Anonymous/GoodKingWenceslas/GoodKingWenceslas.ly"
+  },
+  "license": "public-domain",
+  "attribution": "Words: John Mason Neale (1853); tune: 'Tempus adest floridum' (Piae Cantiones, 1582). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "holiday",
+    "christmas",
+    "carol"
+  ],
+  "tempo": 100,
+  "timeSignature": "4/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Good King Wenceslas looked out",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "on the feast of Stephen,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "when the snow lay round about,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "deep and crisp and even;",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "brightly shone the moon that night,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "though the frost was cruel,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "when a poor man came in sight,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "gathering winter fuel.",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Good King Wenceslas looked out",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "on the feast of Stephen,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "when the snow lay round about,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "deep and crisp and even;",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "brightly shone the moon that night,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "though the frost was cruel,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "when a poor man came in sight,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "gathering winter fuel.",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verse 1, melody line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two notes ('fuel' is sung over three notes). No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}
