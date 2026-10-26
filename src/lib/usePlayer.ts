@@ -132,5 +132,5 @@ export function usePlayer(
     setIndex(-1);
   }, [clearTimer]);
 
-  return { index, playing, step, jumpTo, toggle, stop };
+  return { index, playing, step, jumpTo, toggle, pause, stop };
 }

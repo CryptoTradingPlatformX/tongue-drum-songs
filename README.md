@@ -12,7 +12,7 @@ npm run dev
 The dev server uses the GitHub Pages base path, so open `http://localhost:5173/tongue-drum-songs/`.
 
 ```bash
-npm test                 # notation, transposition, layout fit, meters
+npm test                 # notation, layout fit, meters, scroll timing, library scale
 npm run validate:songs   # JSON Schema + layout checks for songs/*.json
 npm run build            # typecheck and production build into dist/
 npm run preview
@@ -25,7 +25,7 @@ npm run preview
 3. Include both a `C` and a `D` arrangement. Scale degrees are the same idea on either drum (1 is the tonic), but the two arrangements can use different notes and a different `minLayout` when one drum needs a different octave. `minLayout` is the smallest drum that can play that arrangement: `"8"`, `"11"`, `"13"`, or `"15"`. A line’s `lyric` is optional.
 4. `timeSignature` is `"4/4"`, `"3/4"`, `"2/4"`, `"2/2"`, or `"6/8"`. `dur` is always in quarter-note beats, and `tempo` is always the quarter-note BPM. A 2/4 bar is 2 quarter-beats. A 2/2 bar is 4 quarter-beats, grouped as two half-note pulses (`dur` 2 each). A 6/8 bar is 3 quarter-beats, grouped as two dotted-quarter pulses (`dur` 1.5 each).
 5. Only public-domain or openly licensed melodies. `source.url` should point at the score or transcription you used, and `attribution` is shown on the song page.
-6. Run `npm run validate:songs`. The app does not need a hand-written index: Vite builds one from `songs/*.json` on the next `npm run dev` or `npm run build`.
+6. Run `npm run validate:songs`. The app does not need a hand-written index. The dev server and production build read `songs/*.json` and publish a lightweight list (title, artist, tags, difficulty, tempo, and the smallest drum for each key). Opening a tune loads that song file on its own.
 
 Drum maps live in [data/layouts.json](data/layouts.json).
 

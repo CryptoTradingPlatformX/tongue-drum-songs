@@ -2,8 +2,8 @@ import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { filterSongs, songFitsDrum } from "./library";
-import type { Song } from "./types";
+import { filterSongs, paginate, songFitsDrum, type LibraryEntry } from "./library";
+import type { Difficulty, LayoutId, Song } from "./types";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -62,5 +62,54 @@ describe("library browsing", () => {
 
     const hymnOn8 = filterSongs(songs, { ...base, tags: ["hymn"], fitsOnly: true, drumKey: "C", layout: "8" });
     expect(hymnOn8.every((song) => songFitsDrum(song, "C", "8") && song.tags?.includes("hymn"))).toBe(true);
+  });
+
+  it("pages a filtered list", () => {
+    const all = filterSongs(songs, base);
+    const page = paginate(all, 2, 24);
+    expect(all.length).toBeGreaterThan(24);
+    expect(page.pageCount).toBe(2);
+    expect(page.start).toBe(25);
+    expect(page.items).toHaveLength(all.length - 24);
+    expect(paginate([], 4, 24)).toMatchObject({ page: 1, pageCount: 1, start: 0, end: 0, items: [] });
+  });
+});
+
+function syntheticSongs(count: number): LibraryEntry[] {
+  const tags = ["folk", "hymn", "christmas", "lullaby", "dance", "classical"];
+  const layouts: LayoutId[] = ["8", "11", "13", "15"];
+  const difficulties: Difficulty[] = ["easy", "medium", "hard"];
+  return Array.from({ length: count }, (_, index) => ({
+    id: `synthetic-${index}`,
+    title: `Tune ${String(index).padStart(3, "0")} ${tags[index % tags.length]}`,
+    artist: `Artist ${index % 17}`,
+    difficulty: difficulties[index % difficulties.length],
+    tags: [tags[index % tags.length], tags[(index + 3) % tags.length]],
+    minLayout: { C: layouts[index % layouts.length], D: layouts[(index + 1) % layouts.length] },
+  }));
+}
+
+describe("library scale", () => {
+  it("searches and filters 150 songs quickly from metadata alone", () => {
+    const songs = syntheticSongs(150);
+    expect(songs.every((song) => song.arrangements == null)).toBe(true);
+    const started = performance.now();
+    for (let index = 0; index < 50; index += 1) {
+      filterSongs(songs, {
+        ...base,
+        text: index % 2 === 0 ? "folk" : "tune 01",
+        difficulty: index % 3 === 0 ? "easy" : "all",
+        tags: index % 4 === 0 ? ["hymn"] : [],
+        fitsOnly: index % 5 === 0,
+        drumKey: "C",
+        layout: "8",
+        sort: index % 2 === 0 ? "title" : "difficulty",
+      });
+    }
+    expect(performance.now() - started).toBeLessThan(200);
+    const fits = filterSongs(songs, { ...base, fitsOnly: true, drumKey: "C", layout: "8" });
+    expect(fits.length).toBeGreaterThan(0);
+    expect(fits.every((song) => song.minLayout?.C === "8")).toBe(true);
+    expect(paginate(fits, 2, 24).items.every((song) => song.minLayout?.C === "8")).toBe(true);
   });
 });

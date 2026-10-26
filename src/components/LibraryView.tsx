@@ -1,10 +1,20 @@
-import { useMemo, useState } from "react";
-import { collectTags, filterSongs, type LibrarySort } from "../lib/library";
-import { minimumLayout, missingTongues, parseNote } from "../lib/music";
-import type { Difficulty, DrumKey, LayoutId, Song } from "../lib/types";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { collectTags, filterSongs, paginate, PAGE_SIZE, type LibrarySort } from "../lib/library";
+import {
+  libraryHash,
+  parseLibraryHash,
+  rememberLibraryHash,
+  replaceLibraryHash,
+  SEARCH_DEBOUNCE_MS,
+  type LibraryUrlState,
+} from "../lib/libraryUrl";
+import { songNeedsBiggerLayout } from "../lib/music";
+import { scrollBehavior } from "../lib/scroll";
+import type { SongSummary } from "../lib/songs";
+import type { Difficulty, DrumKey, LayoutId } from "../lib/types";
 
 type Props = {
-  songs: Song[];
+  songs: SongSummary[];
   drumKey: DrumKey;
   layout: LayoutId;
 };
@@ -17,37 +27,83 @@ function labelDifficulty(value: Difficulty): string {
   return "Hard";
 }
 
-export function LibraryView({ songs, drumKey, layout }: Props) {
-  const [query, setQuery] = useState("");
-  const [difficulty, setDifficulty] = useState<Difficulty | "all">("all");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [fitsOnly, setFitsOnly] = useState(false);
-  const [sort, setSort] = useState<LibrarySort>("title");
+function useLibraryUrl(): [LibraryUrlState, (next: LibraryUrlState) => void] {
+  const [state, setState] = useState<LibraryUrlState>(() => parseLibraryHash(window.location.hash));
+  const commit = useCallback((next: LibraryUrlState) => {
+    const hash = libraryHash(next);
+    replaceLibraryHash(hash);
+    rememberLibraryHash(hash);
+    setState(parseLibraryHash(hash));
+  }, []);
 
+  useEffect(() => {
+    rememberLibraryHash(window.location.hash || "#/");
+    const onChange = () => setState(parseLibraryHash(window.location.hash));
+    window.addEventListener("hashchange", onChange);
+    return () => window.removeEventListener("hashchange", onChange);
+  }, []);
+
+  return [state, commit];
+}
+
+export function LibraryView({ songs, drumKey, layout }: Props) {
+  const [state, commit] = useLibraryUrl();
+  const [draft, setDraft] = useState(state.text);
   const tags = useMemo(() => collectTags(songs), [songs]);
   const visible = useMemo(
     () =>
       filterSongs(songs, {
-        text: query,
-        difficulty,
-        tags: selectedTags,
-        fitsOnly,
-        sort,
+        text: state.text,
+        difficulty: state.difficulty,
+        tags: state.tags,
+        fitsOnly: state.fitsOnly,
+        sort: state.sort,
         drumKey,
         layout,
       }),
-    [songs, query, difficulty, selectedTags, fitsOnly, sort, drumKey, layout],
+    [songs, state, drumKey, layout],
   );
+  const paged = paginate(visible, state.page, PAGE_SIZE);
+  const countRef = useRef<HTMLParagraphElement>(null);
+  const sawPage = useRef(false);
 
-  const filtersOn = query.trim() !== "" || difficulty !== "all" || selectedTags.length > 0 || fitsOnly;
+  useEffect(() => {
+    setDraft((current) => (current.trim() === state.text ? current : state.text));
+  }, [state.text]);
+
+  useEffect(() => {
+    const handle = window.setTimeout(() => {
+      const text = draft.trim();
+      if (text === state.text) return;
+      commit({ ...state, text, page: 1 });
+    }, SEARCH_DEBOUNCE_MS);
+    return () => window.clearTimeout(handle);
+  }, [draft, state, commit]);
+
+  useEffect(() => {
+    if (paged.page !== state.page) commit({ ...state, page: paged.page });
+  }, [paged.page, state, commit]);
+
+  useEffect(() => {
+    if (!sawPage.current) {
+      sawPage.current = true;
+      return;
+    }
+    countRef.current?.scrollIntoView({ block: "nearest", behavior: scrollBehavior() });
+  }, [state.page]);
+
+  const filtersOn =
+    state.text.trim() !== "" || state.difficulty !== "all" || state.tags.length > 0 || state.fitsOnly || state.sort !== "title";
 
   const clear = () => {
-    setQuery("");
-    setDifficulty("all");
-    setSelectedTags([]);
-    setFitsOnly(false);
-    setSort("title");
+    setDraft("");
+    commit({ text: "", difficulty: "all", tags: [], fitsOnly: false, sort: "title", page: 1 });
   };
+
+  const count =
+    paged.pageCount > 1
+      ? `Showing ${paged.start}–${paged.end} of ${visible.length} matching ${visible.length === 1 ? "tune" : "tunes"}`
+      : `${visible.length} of ${songs.length} ${songs.length === 1 ? "tune" : "tunes"}`;
 
   return (
     <div className="library">
@@ -64,9 +120,9 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
           <span>Search</span>
           <input
             type="search"
-            value={query}
+            value={draft}
             placeholder="Title, artist, or tag"
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => setDraft(event.target.value)}
           />
         </label>
 
@@ -74,13 +130,13 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
           <fieldset className="pills compact">
             <legend>Difficulty</legend>
             {DIFFICULTIES.map((value) => (
-              <label key={value} className={difficulty === value ? "is-selected" : ""}>
+              <label key={value} className={state.difficulty === value ? "is-selected" : ""}>
                 <input
                   type="radio"
                   name="difficulty"
                   value={value}
-                  checked={difficulty === value}
-                  onChange={() => setDifficulty(value)}
+                  checked={state.difficulty === value}
+                  onChange={() => commit({ ...state, difficulty: value, page: 1 })}
                 />
                 {value === "all" ? "All" : labelDifficulty(value)}
               </label>
@@ -89,14 +145,21 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
 
           <label className="sort">
             <span>Sort</span>
-            <select value={sort} onChange={(event) => setSort(event.target.value as LibrarySort)}>
+            <select
+              value={state.sort}
+              onChange={(event) => commit({ ...state, sort: event.target.value as LibrarySort, page: 1 })}
+            >
               <option value="title">Title</option>
               <option value="difficulty">Difficulty</option>
             </select>
           </label>
 
-          <label className={fitsOnly ? "fits-toggle is-on" : "fits-toggle"}>
-            <input type="checkbox" checked={fitsOnly} onChange={(event) => setFitsOnly(event.target.checked)} />
+          <label className={state.fitsOnly ? "fits-toggle is-on" : "fits-toggle"}>
+            <input
+              type="checkbox"
+              checked={state.fitsOnly}
+              onChange={(event) => commit({ ...state, fitsOnly: event.target.checked, page: 1 })}
+            />
             <span>Fits my drum</span>
             <span className="fits-detail">
               {drumKey} major · {layout}-note
@@ -109,7 +172,7 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
             <p id="tag-filter-label">Tags</p>
             <div className="tags" role="group" aria-labelledby="tag-filter-label">
               {tags.map((tag) => {
-                const on = selectedTags.includes(tag);
+                const on = state.tags.includes(tag);
                 return (
                   <button
                     key={tag}
@@ -117,9 +180,11 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
                     className={on ? "tag is-on" : "tag"}
                     aria-pressed={on}
                     onClick={() =>
-                      setSelectedTags((current) =>
-                        current.includes(tag) ? current.filter((item) => item !== tag) : [...current, tag],
-                      )
+                      commit({
+                        ...state,
+                        page: 1,
+                        tags: on ? state.tags.filter((item) => item !== tag) : [...state.tags, tag],
+                      })
                     }
                   >
                     {tag}
@@ -138,8 +203,8 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
         ) : null}
       </div>
 
-      <p className="result-count" aria-live="polite">
-        {visible.length} of {songs.length} {songs.length === 1 ? "tune" : "tunes"}
+      <p className="result-count" aria-live="polite" ref={countRef}>
+        {count}
       </p>
 
       {visible.length === 0 ? (
@@ -151,30 +216,49 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
         </div>
       ) : (
         <ul className="song-grid-list">
-          {visible.map((song) => (
+          {paged.items.map((song) => (
             <li key={song.id}>
               <SongCard song={song} drumKey={drumKey} layout={layout} />
             </li>
           ))}
         </ul>
       )}
+
+      {paged.pageCount > 1 ? (
+        <nav className="pager" aria-label="Pages">
+          <button type="button" disabled={paged.page <= 1} onClick={() => commit({ ...state, page: paged.page - 1 })}>
+            Previous
+          </button>
+          {Array.from({ length: paged.pageCount }, (_, index) => {
+            const number = index + 1;
+            return (
+              <button
+                key={number}
+                type="button"
+                aria-current={number === paged.page ? "page" : undefined}
+                onClick={() => commit({ ...state, page: number })}
+              >
+                {number}
+              </button>
+            );
+          })}
+          <button
+            type="button"
+            disabled={paged.page >= paged.pageCount}
+            onClick={() => commit({ ...state, page: paged.page + 1 })}
+          >
+            Next
+          </button>
+        </nav>
+      ) : null}
     </div>
   );
 }
 
-function SongCard({ song, drumKey, layout }: { song: Song; drumKey: DrumKey; layout: LayoutId }) {
-  let fit = "Ready to play";
-  let fits = true;
-  try {
-    const notes = song.arrangements[drumKey].lines.flatMap((line) => line.notes.map((note) => parseNote(note)));
-    const missing = missingTongues(notes, layout);
-    fits = missing.length === 0;
-    const needed = minimumLayout(notes) ?? song.arrangements[drumKey].minLayout;
-    fit = fits ? `Fits your ${layout}-note drum` : `Needs a ${needed}-note drum`;
-  } catch {
-    fit = "Could not read this arrangement";
-    fits = false;
-  }
+function SongCard({ song, drumKey, layout }: { song: SongSummary; drumKey: DrumKey; layout: LayoutId }) {
+  const needed = song.minLayout[drumKey];
+  const fits = !songNeedsBiggerLayout(needed, layout);
+  const fit = fits ? `Fits your ${layout}-note drum` : `Needs a ${needed}-note drum`;
 
   return (
     <a className="song-card" href={`#/song/${song.id}`}>
@@ -187,7 +271,7 @@ function SongCard({ song, drumKey, layout }: { song: Song; drumKey: DrumKey; lay
         <span>{song.timeSignature}</span>
         <span>{song.tempo} BPM</span>
       </p>
-      {song.tags && song.tags.length > 0 ? <p className="card-tags">{song.tags.join(" · ")}</p> : null}
+      {song.tags.length > 0 ? <p className="card-tags">{song.tags.join(" · ")}</p> : null}
       <p className={fits ? "fit is-fit" : "fit is-short"}>{fit}</p>
     </a>
   );

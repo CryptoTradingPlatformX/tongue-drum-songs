@@ -1,8 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DrumDiagram } from "./DrumDiagram";
 import { Notation } from "./Notation";
+import { NotationTools } from "./NotationTools";
 import { PlayerBar } from "./PlayerBar";
+import { libraryBackHref } from "../lib/libraryUrl";
 import {
+  beatsPerBar,
   eventIndex,
   flattenLines,
   layoutById,
@@ -14,9 +17,19 @@ import {
   noteMidi,
   parseNote,
   tonguePhrase,
+  type DisplayLine,
   type NoteEvent,
 } from "../lib/music";
-import { findSong } from "../lib/songs";
+import type { NoteSize } from "../lib/settings";
+import { loadSong } from "../lib/songs";
+import {
+  clampSpeed,
+  lineDurationMs,
+  linesPerMinute,
+  nextScrollLine,
+  scrollBehavior,
+  scrollTopFor,
+} from "../lib/scroll";
 import { usePlayer } from "../lib/usePlayer";
 import type { DrumKey, LayoutId, License, Song } from "../lib/types";
 
@@ -32,14 +45,41 @@ type Props = {
   songId: string;
   drumKey: DrumKey;
   layout: LayoutId;
+  noteSize: NoteSize;
+  onNoteSize: (size: NoteSize) => void;
+  followScroll: boolean;
+  onFollowScroll: (value: boolean) => void;
 };
 
-export function SongView({ songId, drumKey, layout }: Props) {
-  const song = findSong(songId);
+export function SongView({ songId, drumKey, layout, noteSize, onNoteSize, followScroll, onFollowScroll }: Props) {
+  const [song, setSong] = useState<Song | null | undefined>(undefined);
+
+  useEffect(() => {
+    let live = true;
+    setSong(undefined);
+    loadSong(songId).then((found) => {
+      if (live) setSong(found);
+    });
+    return () => {
+      live = false;
+    };
+  }, [songId]);
+
+  if (song === undefined) {
+    return (
+      <div className="song-page">
+        <a className="back" href={libraryBackHref()}>
+          All songs
+        </a>
+        <p className="loading-tune">Loading this tune…</p>
+      </div>
+    );
+  }
+
   if (!song) {
     return (
       <div className="song-page">
-        <a className="back" href="#/">
+        <a className="back" href={libraryBackHref()}>
           All songs
         </a>
         <h1>That tune isn’t in the library</h1>
@@ -47,11 +87,55 @@ export function SongView({ songId, drumKey, layout }: Props) {
       </div>
     );
   }
-  return <SongPractice key={song.id} song={song} drumKey={drumKey} layout={layout} />;
+
+  return (
+    <SongPractice
+      key={song.id}
+      song={song}
+      drumKey={drumKey}
+      layout={layout}
+      noteSize={noteSize}
+      onNoteSize={onNoteSize}
+      followScroll={followScroll}
+      onFollowScroll={onFollowScroll}
+    />
+  );
 }
 
-function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey; layout: LayoutId }) {
+function lineBeats(line: DisplayLine): number {
+  return line.bars.reduce((sum, bar) => sum + bar.slices.reduce((inner, slice) => inner + slice.dur, 0), 0);
+}
+
+function chromeHeight(): number {
+  const header = document.querySelector(".top");
+  const headerBottom = header instanceof HTMLElement ? header.getBoundingClientRect().bottom : 0;
+  const tools = document.querySelector(".notation-tools");
+  const toolsHeight = tools instanceof HTMLElement ? tools.getBoundingClientRect().height : 0;
+  return headerBottom + toolsHeight;
+}
+
+function SongPractice({
+  song,
+  drumKey,
+  layout,
+  noteSize,
+  onNoteSize,
+  followScroll,
+  onFollowScroll,
+}: {
+  song: Song;
+  drumKey: DrumKey;
+  layout: LayoutId;
+  noteSize: NoteSize;
+  onNoteSize: (size: NoteSize) => void;
+  followScroll: boolean;
+  onFollowScroll: (value: boolean) => void;
+}) {
   const [bpm, setBpm] = useState(song.tempo);
+  const [speed, setSpeed] = useState(1);
+  const [manualPlaying, setManualPlaying] = useState(false);
+  const [guide, setGuide] = useState<number | null>(null);
+  const followedLine = useRef(-1);
   const arrangement = song.arrangements[drumKey];
   const parsed = useMemo(() => {
     try {
@@ -77,6 +161,11 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
   const missing = useMemo(() => missingTongues(notes, layout), [notes, layout]);
   const missingSet = useMemo(() => new Set(missing.map((tongue) => `${tongue.deg}:${tongue.oct}`)), [missing]);
   const needed = minimumLayout(notes) ?? arrangement.minLayout;
+  const averageBeats = useMemo(() => {
+    if (!laid.length) return beatsPerBar(song.timeSignature);
+    const total = laid.reduce((sum, line) => sum + lineBeats(line), 0);
+    return total / laid.length || beatsPerBar(song.timeSignature);
+  }, [laid, song.timeSignature]);
 
   const midiFor = useMemo(
     () => (event: { rest: boolean; deg?: number; oct?: number }) => {
@@ -91,13 +180,41 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
 
   const player = usePlayer(events, bpm, midiFor);
   const active = player.index >= 0 ? events[player.index] : undefined;
+  const markedLine = player.playing || guide == null ? (active?.lineIndex ?? -1) : guide;
+
+  const revealLine = useCallback((lineIndex: number, preferNote: boolean) => {
+    const line = document.querySelector(`[data-line="${lineIndex}"]`);
+    if (!(line instanceof HTMLElement)) return;
+    const chrome = chromeHeight();
+    const note = line.querySelector(".note.is-active");
+    const lineRect = line.getBoundingClientRect();
+    const room = window.innerHeight - chrome - 120;
+    const focus = preferNote && note instanceof HTMLElement && lineRect.height > room ? note : line;
+    const top = scrollTopFor(focus.getBoundingClientRect().top, window.scrollY, window.innerHeight, chrome);
+    if (Math.abs(top - window.scrollY) < 12) return;
+    window.scrollTo({ top, behavior: scrollBehavior() });
+  }, []);
+
+  const clearGuide = useCallback(() => {
+    setManualPlaying(false);
+    setGuide(null);
+  }, []);
 
   useEffect(() => {
     player.stop();
     setBpm(song.tempo);
+    setSpeed(1);
+    setManualPlaying(false);
+    setGuide(null);
     // Reset only when the song changes. Key and layout keep your place.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [song.id]);
+
+  useEffect(() => {
+    if (!player.playing) return;
+    setManualPlaying(false);
+    setGuide(null);
+  }, [player.playing]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -105,15 +222,19 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
       if (target?.closest("input, textarea, select")) return;
       if (event.key === "ArrowRight" || event.key === "ArrowDown") {
         event.preventDefault();
+        clearGuide();
         player.step(1);
       } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
         event.preventDefault();
+        clearGuide();
         player.step(-1);
       } else if (event.key === "Home") {
         event.preventDefault();
+        clearGuide();
         player.jumpTo(0);
       } else if (event.key === "End") {
         event.preventDefault();
+        clearGuide();
         player.jumpTo(events.length - 1);
       } else if (event.key === " ") {
         if (target?.closest("button, a")) return;
@@ -123,12 +244,72 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [player, events.length]);
+  }, [player, events.length, clearGuide]);
 
   useEffect(() => {
-    if (player.index < 0) return;
-    document.querySelector(".note.is-active")?.scrollIntoView({ block: "nearest", inline: "nearest" });
-  }, [player.index]);
+    const fromControls = (event: Event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      return Boolean(target?.closest("[data-scroll-controls]"));
+    };
+    const pauseForInput = (event: Event) => {
+      if (fromControls(event)) return;
+      setManualPlaying(false);
+    };
+    const onKeyScroll = (event: KeyboardEvent) => {
+      if (event.key === "PageDown" || event.key === "PageUp") setManualPlaying(false);
+    };
+    window.addEventListener("wheel", pauseForInput, { passive: true });
+    window.addEventListener("touchmove", pauseForInput, { passive: true });
+    window.addEventListener("pointerdown", pauseForInput);
+    window.addEventListener("keydown", onKeyScroll);
+    return () => {
+      window.removeEventListener("wheel", pauseForInput);
+      window.removeEventListener("touchmove", pauseForInput);
+      window.removeEventListener("pointerdown", pauseForInput);
+      window.removeEventListener("keydown", onKeyScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!player.playing || !followScroll) return;
+    const lineIndex = active?.lineIndex ?? -1;
+    if (lineIndex < 0) return;
+    const note = document.querySelector(".note.is-active");
+    const rect = note instanceof HTMLElement ? note.getBoundingClientRect() : null;
+    const chrome = chromeHeight();
+    const hidden = !rect || rect.top < chrome - 4 || rect.bottom > window.innerHeight - 96;
+    if (followedLine.current === lineIndex && !hidden) return;
+    followedLine.current = lineIndex;
+    revealLine(lineIndex, true);
+  }, [player.playing, player.index, followScroll, active?.lineIndex, active?.noteIndex, revealLine]);
+
+  useEffect(() => {
+    if (!manualPlaying || guide == null) return;
+    const line = laid[guide];
+    if (!line) {
+      setManualPlaying(false);
+      return;
+    }
+    revealLine(guide, false);
+    const beats = Math.max(lineBeats(line), 0.25);
+    const step = nextScrollLine(guide, laid.length);
+    const timer = window.setTimeout(() => {
+      if (step.playing) setGuide(step.line);
+      else setManualPlaying(false);
+    }, lineDurationMs(beats, bpm, speed));
+    return () => window.clearTimeout(timer);
+  }, [manualPlaying, guide, laid, bpm, speed, revealLine]);
+
+  const startManual = () => {
+    if (!laid.length) return;
+    player.pause();
+    const last = laid.length - 1;
+    const fromPlayer = active?.lineIndex ?? -1;
+    let next = fromPlayer >= 0 ? fromPlayer : (guide ?? 0);
+    if (next >= last) next = 0;
+    setGuide(Math.max(0, next));
+    setManualPlaying(true);
+  };
 
   const activeTongue =
     active && !active.rest && active.deg != null && active.oct != null ? { deg: active.deg, oct: active.oct } : null;
@@ -144,8 +325,8 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
         : `${tonguePhrase(drumKey, activeTongue!)} · not on this drum`;
 
   return (
-    <div className="song-page">
-      <a className="back" href="#/">
+    <div className={`song-page notes-${noteSize}`}>
+      <a className="back" href={libraryBackHref()}>
         All songs
       </a>
       <header className="song-head">
@@ -188,6 +369,19 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
             <h2 id="notation-heading">Notation</h2>
             <p>Same scale degrees on either drum. Note names follow {drumKey} major.</p>
           </div>
+          <NotationTools
+            noteSize={noteSize}
+            onNoteSize={onNoteSize}
+            followScroll={followScroll}
+            onFollowScroll={onFollowScroll}
+            manualPlaying={manualPlaying}
+            onToggleManual={() => (manualPlaying ? setManualPlaying(false) : startManual())}
+            canScroll={laid.length > 0}
+            speed={speed}
+            onSpeed={(value) => setSpeed(clampSpeed(value))}
+            linesPerMinute={linesPerMinute(averageBeats, bpm, speed)}
+            bpm={bpm}
+          />
           <ul className="legend">
             <li>A number is a scale degree, 1–7.</li>
             <li>A dot above is the higher octave. A dot below is the lower one.</li>
@@ -207,8 +401,10 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
               drumKey={drumKey}
               activeLine={active?.lineIndex ?? -1}
               activeNote={active?.noteIndex ?? -1}
+              markedLine={markedLine}
               missing={missingSet}
               onSelect={(lineIndex, noteIndex) => {
+                clearGuide();
                 const index = eventIndex(events, lineIndex, noteIndex);
                 if (index >= 0) player.jumpTo(index);
               }}
@@ -221,7 +417,10 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
           <button
             type="button"
             className="drum-hit"
-            onClick={() => player.step(1)}
+            onClick={() => {
+              clearGuide();
+              player.step(1);
+            }}
             aria-label={
               active
                 ? `Top-down ${layoutInfo.label} ${drumKey} major drum. Now ${nowText}. Tap for the next note.`
@@ -244,7 +443,8 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
       </div>
 
       <p className="practice-help" id="practice-help">
-        Arrow keys step. Space plays and pauses. Tap a note, or tap the drum, to jump in.
+        Arrow keys step. Space plays and pauses. Tap a note, or tap the drum, to jump in. Scroll along moves down the
+        page without playing audio, and pauses if you scroll or tap.
       </p>
 
       <PlayerBar
@@ -255,8 +455,14 @@ function SongPractice({ song, drumKey, layout }: { song: Song; drumKey: DrumKey;
         songBpm={song.tempo}
         onBpm={setBpm}
         onToggle={player.toggle}
-        onPrev={() => player.step(-1)}
-        onNext={() => player.step(1)}
+        onPrev={() => {
+          clearGuide();
+          player.step(-1);
+        }}
+        onNext={() => {
+          clearGuide();
+          player.step(1);
+        }}
       />
 
       <section className="panel attribution" aria-labelledby="source-heading">
