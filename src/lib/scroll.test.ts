@@ -11,6 +11,8 @@ describe("auto-scroll timing", () => {
     expect(lineDurationMs(6, 60, 1)).toBe(6000);
     expect(lineDurationMs(9, 60, 1)).toBe(9000);
     expect(lineDurationMs(4, 60, 4)).toBeCloseTo(4000 / 3);
+    expect(lineDurationMs(63.50000000000004, 100, 1)).toBe(lineDurationMs(63.5, 100, 1));
+    expect(lineDurationMs(0.3333333333333333 + 0.3333333333333333 + 0.3333333333333333, 60, 1)).toBe(1000);
     expect(clampSpeed(0.1)).toBe(0.25);
     expect(clampSpeed(9)).toBe(3);
   });

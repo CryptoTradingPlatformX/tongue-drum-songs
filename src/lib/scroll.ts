@@ -1,3 +1,5 @@
+import { roundBeats } from "./music";
+
 export const MIN_SCROLL_SPEED = 0.25;
 export const MAX_SCROLL_SPEED = 3;
 
@@ -10,7 +12,8 @@ export function clampSpeed(speed: number): number {
 
 /** How long one notation line stays on screen. Beats are quarter-notes; tempo is quarter BPM. */
 export function lineDurationMs(beats: number, bpm: number, speed: number): number {
-  const safeBeats = beats > 0 ? beats : 1;
+  const rounded = roundBeats(beats);
+  const safeBeats = rounded > 0 ? rounded : 1;
   const safeBpm = bpm > 0 ? bpm : 60;
   return (safeBeats * 60_000) / safeBpm / clampSpeed(speed);
 }

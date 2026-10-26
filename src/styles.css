@@ -391,15 +391,49 @@ main.has-player { padding-bottom: 8.5rem; }
 .meter-68 .clusters,
 .meter-98 .clusters,
 .meter-128 .clusters,
-.meter-22 .clusters { gap: 0.45rem; }
+.meter-22 .clusters,
+.meter-32 .clusters,
+.meter-42 .clusters { gap: 0.45rem; }
 .meter-68 .cluster,
 .meter-98 .cluster,
 .meter-128 .cluster,
-.meter-22 .cluster {
+.meter-22 .cluster,
+.meter-32 .cluster,
+.meter-42 .cluster {
   background: rgba(196, 92, 50, 0.08);
   border-radius: 14px;
   padding: 0.15rem;
 }
+.triplet {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+}
+.triplet-mark {
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+.triplet-notes {
+  display: inline-flex;
+  gap: 0.1rem;
+  position: relative;
+  border-top: 1.5px solid var(--ink);
+  padding: 0.12rem 0.15rem 0;
+}
+.triplet-notes::before,
+.triplet-notes::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 1.5px;
+  height: 5px;
+  background: var(--ink);
+}
+.triplet-notes::before { left: 0; }
+.triplet-notes::after { right: 0; }
 .note {
   position: relative;
   display: flex;

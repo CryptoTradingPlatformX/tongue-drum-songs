@@ -2,7 +2,17 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv, { type ErrorObject } from "ajv/dist/2020";
-import { layoutProblems, parseNote, type NoteEvent } from "../src/lib/music.ts";
+import {
+  beatsPerBar,
+  beatsWithin,
+  formatBeats,
+  layoutNotation,
+  layoutProblems,
+  measureBars,
+  parseNote,
+  totalBeats,
+  type NoteEvent,
+} from "../src/lib/music.ts";
 import type { LayoutId, Song } from "../src/lib/types.ts";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -43,9 +53,12 @@ function checkSong(file: string, data: unknown): Failure[] {
 
   for (const drum of ["C", "D"] as const) {
     const arrangement = song.arrangements[drum];
-    let notes: NoteEvent[];
+    let parsedLines: { lyric?: string; notes: NoteEvent[] }[];
     try {
-      notes = arrangement.lines.flatMap((line) => line.notes.map((note) => parseNote(note)));
+      parsedLines = arrangement.lines.map((line) => ({
+        lyric: line.lyric,
+        notes: line.notes.map((note) => parseNote(note)),
+      }));
     } catch (error) {
       failures.push({
         file,
@@ -54,11 +67,42 @@ function checkSong(file: string, data: unknown): Failure[] {
       });
       continue;
     }
+    const notes = parsedLines.flatMap((line) => line.notes);
     for (const problem of layoutProblems(notes, arrangement.minLayout as LayoutId)) {
       failures.push({
         file,
         field: `/arrangements/${drum}/minLayout`,
         error: problem,
+      });
+    }
+    let laid;
+    try {
+      laid = layoutNotation(parsedLines, song.timeSignature);
+    } catch (error) {
+      failures.push({
+        file,
+        field: `/arrangements/${drum}`,
+        error: error instanceof Error ? error.message : "Could not lay out notation",
+      });
+      continue;
+    }
+    const expected = beatsPerBar(song.timeSignature);
+    for (const bar of measureBars(laid)) {
+      if (bar.opened && bar.closed && !beatsWithin(bar.beats, expected)) {
+        failures.push({
+          file,
+          field: `/arrangements/${drum}/lines`,
+          error: `bar ${bar.number} totals ${formatBeats(bar.beats)} beats; expected ${formatBeats(expected)}`,
+        });
+      }
+    }
+    const raw = notes.reduce((sum, note) => sum + note.dur, 0);
+    const rounded = totalBeats(notes);
+    if (!beatsWithin(raw, rounded)) {
+      failures.push({
+        file,
+        field: `/arrangements/${drum}`,
+        error: `total ${raw} beats differs from rounded ${formatBeats(rounded)} by more than ${1e-6}`,
       });
     }
   }

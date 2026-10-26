@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playTongue, unlockAudio } from "./audio";
-import { quarterSeconds, type PlayEvent } from "./music";
+import { scheduleCursorMs, type PlayEvent } from "./music";
 
 export function usePlayer(
   events: PlayEvent[],
@@ -15,6 +15,7 @@ export function usePlayer(
   const playingRef = useRef(false);
   const indexRef = useRef(-1);
   const timer = useRef<number | null>(null);
+  const clock = useRef<{ origin: number; baseIndex: number } | null>(null);
 
   eventsRef.current = events;
   bpmRef.current = bpm;
@@ -39,20 +40,28 @@ export function usePlayer(
   }, []);
 
   const arm = useCallback(
-    (nextIndex: number) => {
+    (nextIndex: number, rebase: boolean) => {
       clearTimer();
       const list = eventsRef.current;
       if (nextIndex < 0 || nextIndex >= list.length) {
         playingRef.current = false;
         setPlaying(false);
+        clock.current = null;
         return;
+      }
+      if (rebase || !clock.current || nextIndex < clock.current.baseIndex) {
+        clock.current = { origin: performance.now(), baseIndex: nextIndex };
       }
       indexRef.current = nextIndex;
       setIndex(nextIndex);
       sound(list[nextIndex]);
       if (!playingRef.current) return;
-      const ms = Math.max(1, quarterSeconds(list[nextIndex].dur, bpmRef.current) * 1000);
-      timer.current = window.setTimeout(() => arm(nextIndex + 1), ms);
+      const span = list.slice(clock.current.baseIndex).map((event) => event.dur);
+      const cursor = scheduleCursorMs(span, bpmRef.current);
+      const local = nextIndex - clock.current.baseIndex;
+      const target = clock.current.origin + (cursor[local + 1] ?? cursor[cursor.length - 1]);
+      const delay = Math.max(1, Math.round(target - performance.now()));
+      timer.current = window.setTimeout(() => arm(nextIndex + 1, false), delay);
     },
     [clearTimer, sound],
   );
@@ -77,7 +86,7 @@ export function usePlayer(
       if (!list.length) return;
       const current = indexRef.current;
       const next = current < 0 ? 0 : Math.max(0, Math.min(list.length - 1, current + delta));
-      if (playingRef.current) arm(next);
+      if (playingRef.current) arm(next, true);
       else {
         indexRef.current = next;
         setIndex(next);
@@ -92,7 +101,7 @@ export function usePlayer(
       unlockAudio();
       const list = eventsRef.current;
       if (nextIndex < 0 || nextIndex >= list.length) return;
-      if (playingRef.current) arm(nextIndex);
+      if (playingRef.current) arm(nextIndex, true);
       else {
         indexRef.current = nextIndex;
         setIndex(nextIndex);
@@ -116,7 +125,7 @@ export function usePlayer(
     setPlaying(true);
     const current = indexRef.current;
     const atEnd = current >= list.length - 1 && current >= 0;
-    arm(atEnd || current < 0 ? 0 : current);
+    arm(atEnd || current < 0 ? 0 : current, true);
   }, [arm]);
 
   const toggle = useCallback(() => {
