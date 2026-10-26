@@ -388,12 +388,14 @@ main.has-player { padding-bottom: 8.5rem; }
   max-width: 100%;
 }
 .clusters { flex: 1 1 auto; }
+.meter-64 .clusters,
 .meter-68 .clusters,
 .meter-98 .clusters,
 .meter-128 .clusters,
 .meter-22 .clusters,
 .meter-32 .clusters,
 .meter-42 .clusters { gap: 0.45rem; }
+.meter-64 .cluster,
 .meter-68 .cluster,
 .meter-98 .cluster,
 .meter-128 .cluster,

@@ -165,9 +165,11 @@ describe("meters and playback timing", () => {
     expect(beatsPerBar("2/2")).toBe(4);
     expect(beatsPerBar("3/2")).toBe(6);
     expect(beatsPerBar("4/2")).toBe(8);
+    expect(beatsPerBar("6/4")).toBe(6);
     expect(beatsPerBar("6/8")).toBe(3);
     expect(beatsPerBar("9/8")).toBe(4.5);
     expect(beatsPerBar("12/8")).toBe(6);
+    expect(pulseBeats("6/4")).toBe(3);
     expect(pulseBeats("6/8")).toBe(1.5);
     expect(pulseBeats("9/8")).toBe(1.5);
     expect(pulseBeats("12/8")).toBe(1.5);
@@ -306,6 +308,26 @@ describe("meters and playback timing", () => {
     expect(meterHelp("4/2")).toMatch(/eight quarter-beats/);
   });
 
+  it("groups 6/4 into two dotted-half pulses", () => {
+    const bar = layoutNotation(
+      [{ notes: [pitched(1, 0, 1), pitched(2, 0, 2), pitched(3, 0, 3)] }],
+      "6/4",
+    );
+    expect(bar[0].bars).toHaveLength(1);
+    expect(bar[0].bars[0].beats).toBe(6);
+    expect(bar[0].bars[0].openedHere).toBe(true);
+    expect(bar[0].bars[0].closedHere).toBe(true);
+    expect(bar[0].bars[0].slices.map((slice) => slice.dividerBefore)).toEqual([false, false, true]);
+    expect(bar[0].bars[0].slices[2].beat).toBe(3);
+
+    const held = layoutNotation([{ notes: [pitched(5, 0, 6)] }], "6/4");
+    expect(held[0].bars[0].slices[0].pulseMarks).toEqual([0.5]);
+    expect(held[0].bars[0].slices[0].dividerBefore).toBe(false);
+    expect(meterHelp("6/4")).toMatch(/two dotted-half pulses/);
+    expect(quarterSeconds(3, 60)).toBe(3);
+    expect(quarterSeconds(6, 100)).toBeCloseTo(3.6);
+  });
+
   it("ties a note that crosses a barline and continues a bar onto the next phrase", () => {
     const crossing = layoutNotation(
       [{ notes: [pitched(3, 0, 0.5), pitched(5, 0, 0.5), pitched(1, 1, 1), pitched(7, 0, 1.5)] }],
@@ -331,12 +353,12 @@ describe("sample songs", () => {
   const files = readdirSync(path.join(root, "songs")).filter((name) => name.endsWith(".json")).sort();
 
   it("loads every delivered song and keeps duration when grouping bars", () => {
-    expect(files.length).toBe(70);
+    expect(files.length).toBe(90);
     const unsupported: string[] = [];
     for (const file of files) {
       const song = JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song;
       expect(song.id + ".json").toBe(file);
-      if (!["4/4", "3/4", "2/4", "2/2", "3/2", "4/2", "6/8", "9/8", "12/8"].includes(song.timeSignature)) {
+      if (!["4/4", "3/4", "2/4", "2/2", "3/2", "4/2", "6/4", "6/8", "9/8", "12/8"].includes(song.timeSignature)) {
         unsupported.push(`${file}: timeSignature ${song.timeSignature}`);
         continue;
       }
@@ -363,6 +385,7 @@ describe("sample songs", () => {
             for (const slice of bar.slices) {
               expect(slice.dur).toBeGreaterThan(0);
               if (
+                song.timeSignature === "6/4" ||
                 song.timeSignature === "6/8" ||
                 song.timeSignature === "9/8" ||
                 song.timeSignature === "12/8" ||
@@ -559,6 +582,44 @@ describe("triplets", () => {
     expect(nine[0]).toBe(0);
     expect(nine[nine.length - 1]).toBe(3000);
     expect(scheduleCursorMs(Array.from({ length: 40 }, () => third), 100).at(-1)).toBe(8000);
+  });
+
+  it("lays out Just As I Am in 6/4 and the distinct C and D arrangements of The Old Oaken Bucket and The Water of Tyne", () => {
+    const just = JSON.parse(readFileSync(path.join(root, "songs", "just-as-i-am.json"), "utf8")) as Song;
+    expect(just.timeSignature).toBe("6/4");
+    for (const key of ["C", "D"] as const) {
+      const lines = just.arrangements[key].lines.map((line) => ({
+        lyric: line.lyric,
+        notes: line.notes.map((note) => parseNote(note)),
+      }));
+      expect(layoutProblems(lines.flatMap((line) => line.notes), just.arrangements[key].minLayout)).toEqual([]);
+      const laid = layoutNotation(lines, "6/4");
+      const bars = measureBars(laid);
+      expect(bars.length).toBeGreaterThan(0);
+      expect(bars.every((bar) => bar.opened && bar.closed && beatsWithin(bar.beats, 6))).toBe(true);
+      expect(laid.some((line) => line.bars.some((bar) => bar.slices.some((slice) => slice.dividerBefore)))).toBe(true);
+    }
+
+    for (const id of ["the-old-oaken-bucket", "the-water-of-tyne"]) {
+      const song = JSON.parse(readFileSync(path.join(root, "songs", `${id}.json`), "utf8")) as Song;
+      const fingerprint = (key: "C" | "D") =>
+        song.arrangements[key].lines
+          .map((line) => line.notes.map((note) => `${note.rest ? "r" : note.deg + ":" + note.oct}/${note.dur}`).join(" "))
+          .join("|");
+      expect(fingerprint("C")).not.toBe(fingerprint("D"));
+      for (const key of ["C", "D"] as const) {
+        const lines = song.arrangements[key].lines.map((line) => ({
+          lyric: line.lyric,
+          notes: line.notes.map((note) => parseNote(note)),
+        }));
+        expect(layoutProblems(lines.flatMap((line) => line.notes), song.arrangements[key].minLayout)).toEqual([]);
+        const laid = layoutNotation(lines, song.timeSignature);
+        expect(laid.some((line) => line.bars.some((bar) => bar.slices.length > 0))).toBe(true);
+        for (const bar of measureBars(laid)) {
+          if (bar.opened && bar.closed) expect(beatsWithin(bar.beats, beatsPerBar(song.timeSignature))).toBe(true);
+        }
+      }
+    }
   });
 
   it("lays out distinct C and D arrangements for Lorelei, Grandfather's Clock, and Blessed Assurance", () => {
