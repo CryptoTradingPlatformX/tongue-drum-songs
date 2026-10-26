@@ -1,0 +1,672 @@
+{
+  "schemaVersion": 1,
+  "id": "jesus-lover-of-my-soul",
+  "title": "Jesus, Lover of My Soul",
+  "artist": "Charles Wesley",
+  "source": {
+    "name": "Mutopia Project – Martyn (SATB hymn setting) (LilyPond source, public domain / CC licence per Mutopia)",
+    "url": "https://www.mutopiaproject.org/ftp/MarshSB/martyn/martyn.ly"
+  },
+  "license": "public-domain",
+  "attribution": "Words: Charles Wesley (1740); tune: 'Martyn', Simeon B. Marsh (1834). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "hymn"
+  ],
+  "tempo": 120,
+  "timeSignature": "6/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Jesus, lover of my soul,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "let me to thy bosom fly,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "while the nearer waters roll,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "while the tempest still is high:",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "hide me, O my Saviour, hide,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "till the storm of life is past;",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "safe into the haven guide;",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "O receive my soul at last!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "lyric": "Jesus, lover of my soul,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "let me to thy bosom fly,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "while the nearer waters roll,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "while the tempest still is high:",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "hide me, O my Saviour, hide,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "till the storm of life is past;",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "lyric": "safe into the haven guide;",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "lyric": "O receive my soul at last!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 6
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "6/4 time (quarter-note beats, six per bar). Verse 1, soprano (melody) line, verified against the Mutopia LilyPond score. The Mutopia file has no words; the tune is strictly one note per syllable (7.7.7.7 D), so the words are laid one syllable per note. No simplification needed. Range 1 to 6. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

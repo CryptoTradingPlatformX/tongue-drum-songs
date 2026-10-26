@@ -353,7 +353,7 @@ describe("sample songs", () => {
   const files = readdirSync(path.join(root, "songs")).filter((name) => name.endsWith(".json")).sort();
 
   it("loads every delivered song and keeps duration when grouping bars", () => {
-    expect(files.length).toBe(109);
+    expect(files.length).toBe(130);
     const unsupported: string[] = [];
     for (const file of files) {
       const song = JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song;
@@ -436,11 +436,16 @@ describe("sample songs", () => {
 
     const instrumental = songs.filter((song) => song.arrangements.C.lines.every((line) => line.lyric == null));
     expect(instrumental.map((song) => song.id).sort()).toEqual([
+      "clementi-sonatina-in-c",
+      "drumroll-symphony-finale",
       "eine-kleine-nachtmusik",
+      "great-c-major-symphony-theme",
+      "london-symphony-finale",
       "minuet-in-g",
       "morning-mood",
       "pachelbel-canon",
       "surprise-symphony",
+      "the-girl-i-left-behind-me",
     ]);
     for (const song of instrumental) {
       const laid = layoutNotation(
@@ -451,6 +456,46 @@ describe("sample songs", () => {
       );
       expect(laid.every((line) => line.lyric == null)).toBe(true);
       expect(laid.some((line) => line.bars.length > 0)).toBe(true);
+    }
+  });
+
+  it("keeps the final batch's distinct arrangements, lyric-free lines, and 6/4 hymn", () => {
+    const load = (id: string) => JSON.parse(readFileSync(path.join(root, "songs", `${id}.json`), "utf8")) as Song;
+    const lay = (song: Song, key: "C" | "D") => {
+      const lines = song.arrangements[key].lines.map((line) => ({
+        lyric: line.lyric,
+        notes: line.notes.map((note) => parseNote(note)),
+      }));
+      expect(layoutProblems(lines.flatMap((line) => line.notes), song.arrangements[key].minLayout)).toEqual([]);
+      return layoutNotation(lines, song.timeSignature);
+    };
+
+    for (const id of ["santa-lucia", "funiculi-funicula", "die-gedanken-sind-frei"]) {
+      const song = load(id);
+      const fingerprint = (key: "C" | "D") =>
+        song.arrangements[key].lines
+          .map((line) => line.notes.map((note) => `${note.rest ? "r" : note.deg + ":" + note.oct}/${note.dur}`).join(" "))
+          .join("|");
+      expect(fingerprint("C")).not.toBe(fingerprint("D"));
+      for (const key of ["C", "D"] as const) {
+        const laid = lay(song, key);
+        expect(laid.some((line) => line.bars.some((bar) => bar.slices.length > 0))).toBe(true);
+      }
+    }
+
+    const girl = load("the-girl-i-left-behind-me");
+    for (const key of ["C", "D"] as const) {
+      const laid = lay(girl, key);
+      expect(laid.every((line) => line.lyric == null)).toBe(true);
+      expect(laid.flatMap((line) => line.bars.flatMap((bar) => bar.slices)).length).toBeGreaterThan(0);
+    }
+
+    const jesus = load("jesus-lover-of-my-soul");
+    expect(jesus.timeSignature).toBe("6/4");
+    for (const key of ["C", "D"] as const) {
+      const bars = measureBars(lay(jesus, key));
+      expect(bars.length).toBeGreaterThan(0);
+      expect(bars.every((bar) => bar.opened && bar.closed && beatsWithin(bar.beats, 6))).toBe(true);
     }
   });
 
