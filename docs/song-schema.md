@@ -39,14 +39,16 @@ One file per song: `songs/<id>.json`. All fields required unless marked optional
 Rules
 - Only public-domain or properly (openly) licensed melodies. `source.url` must point to where the melody/score came from.
 - Octave: oct 0 = the drum's main octave (8-note drum: 1 2 3 4 5 6 7 1̇ where 1̇ is deg 1, oct +1). Extended layouts add notes below (oct -1) and/or above (oct +1).
-- `dur` is in beats (0.5 = eighth note in 4/4, 1.5 = dotted quarter, 2 = half).
+- `dur` is in beats (0.5 = eighth note in 4/4, 1.5 = dotted quarter, 2 = half). `dur` 1/3 (often written `0.333...`) is a triplet eighth; three in a row fill one quarter-beat.
 - No accidentals: anything off the major scale must be simplified away by the arranger.
 
 Time signatures
-- `timeSignature` must be one of `"4/4"`, `"3/4"`, `"2/4"`, `"2/2"`, `"6/8"`, `"9/8"`, or `"12/8"`.
+- `timeSignature` must be one of `"4/4"`, `"3/4"`, `"2/4"`, `"2/2"`, `"3/2"`, `"4/2"`, `"6/8"`, `"9/8"`, or `"12/8"`.
 - In every meter, `dur` stays in quarter-note beats and `tempo` is the quarter-note BPM.
 - A 4/4 bar is 4 quarter-beats. A 3/4 bar is 3 quarter-beats. A 2/4 bar is 2 quarter-beats.
 - A 2/2 bar is 4 quarter-beats, grouped as two half-note pulses (each pulse is `dur` 2).
+- A 3/2 bar is 6 quarter-beats, grouped as three half-note pulses (each pulse is `dur` 2). A bar of 3/2 held for its full length is `dur` 6.
+- A 4/2 bar is 8 quarter-beats, grouped as four half-note pulses (each pulse is `dur` 2). A bar of 4/2 held for its full length is `dur` 8.
 - A 6/8 bar is 3 quarter-beats, grouped as two dotted-quarter pulses (each pulse is `dur` 1.5). An eighth note is `dur` 0.5; a dotted quarter is `dur` 1.5; a bar of 6/8 that is held for its full length is `dur` 3.
 - A 9/8 bar is 4.5 quarter-beats, grouped as three dotted-quarter pulses (each pulse is `dur` 1.5). A bar of 9/8 held for its full length is `dur` 4.5.
 - A 12/8 bar is 6 quarter-beats, grouped as four dotted-quarter pulses (each pulse is `dur` 1.5). A bar of 12/8 held for its full length is `dur` 6.

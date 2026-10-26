@@ -17,6 +17,7 @@ function durationPhrase(dur: number): string {
   const rounded = Math.round(dur * 1000) / 1000;
   const known: Record<string, string> = {
     "0.25": "sixteenth note",
+    "0.333": "triplet eighth note",
     "0.5": "eighth note",
     "0.75": "dotted eighth note",
     "1": "quarter note",
@@ -37,15 +38,42 @@ function clusters(bar: DisplayBar): Array<{ key: string; span: boolean; slices: 
     current = [];
   };
   for (const slice of bar.slices) {
-    if (slice.pulseMarks.length > 0) {
+    const insideTriplet = slice.triplet === "mid" || slice.triplet === "end";
+    if (!insideTriplet && slice.pulseMarks.length > 0) {
       flush();
       groups.push({ key: `s-${slice.beat}`, span: true, slices: [slice] });
       continue;
     }
-    if (slice.dividerBefore) flush();
+    if (!insideTriplet && slice.dividerBefore) flush();
     current.push(slice);
   }
   flush();
+  return groups;
+}
+
+function noteMissing(slice: DisplaySlice, missing: Set<string>): boolean {
+  return (
+    !slice.note.rest &&
+    slice.note.deg != null &&
+    slice.note.oct != null &&
+    missing.has(`${slice.note.deg}:${slice.note.oct}`)
+  );
+}
+
+function sliceGroups(slices: DisplaySlice[]): Array<{ kind: "triplet" | "note"; slices: DisplaySlice[] }> {
+  const groups: Array<{ kind: "triplet" | "note"; slices: DisplaySlice[] }> = [];
+  for (let index = 0; index < slices.length; ) {
+    const slice = slices[index];
+    const middle = slices[index + 1];
+    const end = slices[index + 2];
+    if (slice.triplet === "start" && middle?.triplet === "mid" && end?.triplet === "end") {
+      groups.push({ kind: "triplet", slices: [slice, middle, end] });
+      index += 3;
+    } else {
+      groups.push({ kind: "note", slices: [slice] });
+      index += 1;
+    }
+  }
   return groups;
 }
 
@@ -72,21 +100,36 @@ export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote
                   <div className="clusters">
                     {clusters(bar).map((group) => (
                       <div key={group.key} className={group.span ? "cluster is-span" : "cluster"}>
-                        {group.slices.map((slice) => (
-                          <NoteButton
-                            key={`${slice.noteIndex}-${slice.beat}`}
-                            slice={slice}
-                            drumKey={drumKey}
-                            active={slice.lineIndex === activeLine && slice.noteIndex === activeNote}
-                            missing={
-                              !slice.note.rest &&
-                              slice.note.deg != null &&
-                              slice.note.oct != null &&
-                              missing.has(`${slice.note.deg}:${slice.note.oct}`)
-                            }
-                            onSelect={onSelect}
-                          />
-                        ))}
+                        {sliceGroups(group.slices).map((item) =>
+                          item.kind === "triplet" ? (
+                            <span key={`triplet-${item.slices[0].beat}`} className="triplet">
+                              <span className="triplet-mark" aria-hidden="true">
+                                3
+                              </span>
+                              <span className="triplet-notes">
+                                {item.slices.map((slice) => (
+                                  <NoteButton
+                                    key={`${slice.noteIndex}-${slice.beat}`}
+                                    slice={slice}
+                                    drumKey={drumKey}
+                                    active={slice.lineIndex === activeLine && slice.noteIndex === activeNote}
+                                    missing={noteMissing(slice, missing)}
+                                    onSelect={onSelect}
+                                  />
+                                ))}
+                              </span>
+                            </span>
+                          ) : (
+                            <NoteButton
+                              key={`${item.slices[0].noteIndex}-${item.slices[0].beat}`}
+                              slice={item.slices[0]}
+                              drumKey={drumKey}
+                              active={item.slices[0].lineIndex === activeLine && item.slices[0].noteIndex === activeNote}
+                              missing={noteMissing(item.slices[0], missing)}
+                              onSelect={onSelect}
+                            />
+                          ),
+                        )}
                       </div>
                     ))}
                   </div>

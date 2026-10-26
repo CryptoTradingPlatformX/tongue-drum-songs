@@ -16,6 +16,7 @@ import {
   missingTongues,
   noteMidi,
   parseNote,
+  roundBeats,
   tonguePhrase,
   type DisplayLine,
   type NoteEvent,
@@ -103,7 +104,8 @@ export function SongView({ songId, drumKey, layout, noteSize, onNoteSize, follow
 }
 
 function lineBeats(line: DisplayLine): number {
-  return line.bars.reduce((sum, bar) => sum + bar.slices.reduce((inner, slice) => inner + slice.dur, 0), 0);
+  const raw = line.bars.reduce((sum, bar) => sum + bar.beats, 0);
+  return roundBeats(raw);
 }
 
 function chromeHeight(): number {
@@ -386,6 +388,7 @@ function SongPractice({
             <li>A number is a scale degree, 1–7.</li>
             <li>A dot above is the higher octave. A dot below is the lower one.</li>
             <li>An underline is an eighth note. A dot beside the number adds half a beat. A dash holds one more beat.</li>
+            <li>A 3 over three underlined notes is a triplet. Those three notes add up to one beat.</li>
             <li>0 is a rest.</li>
             {song.timeSignature === "6/8" ? (
               <li>In 6/8, each bar is two dotted-quarter pulses. The gap between them is the middle of the bar.</li>
@@ -398,6 +401,12 @@ function SongPractice({
             ) : null}
             {song.timeSignature === "2/2" ? (
               <li>In 2/2, each bar is two half-note pulses. The gap between them is the middle of the bar.</li>
+            ) : null}
+            {song.timeSignature === "3/2" ? (
+              <li>In 3/2, each bar is three half-note pulses. The gaps mark those pulses.</li>
+            ) : null}
+            {song.timeSignature === "4/2" ? (
+              <li>In 4/2, each bar is four half-note pulses. The gaps mark those pulses.</li>
             ) : null}
           </ul>
           {parsed.error ? null : (
