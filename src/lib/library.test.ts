@@ -67,13 +67,13 @@ describe("library browsing", () => {
   it("pages a filtered list", () => {
     const all = filterSongs(songs, base);
     const page = paginate(all, 2, 24);
-    expect(all.length).toBe(109);
-    expect(page.pageCount).toBe(5);
+    expect(all.length).toBe(130);
+    expect(page.pageCount).toBe(6);
     expect(page.start).toBe(25);
     expect(page.items).toHaveLength(24);
-    const last = paginate(all, 5, 24);
-    expect(last.start).toBe(97);
-    expect(last.items).toHaveLength(13);
+    const last = paginate(all, 6, 24);
+    expect(last.start).toBe(121);
+    expect(last.items).toHaveLength(10);
     expect(paginate([], 4, 24)).toMatchObject({ page: 1, pageCount: 1, start: 0, end: 0, items: [] });
   });
 });
@@ -93,6 +93,17 @@ function syntheticSongs(count: number): LibraryEntry[] {
 }
 
 describe("library scale", () => {
+  it("searches the 130-song catalog quickly", () => {
+    const songs = loadSongs();
+    expect(songs).toHaveLength(130);
+    const started = performance.now();
+    for (let index = 0; index < 50; index += 1) {
+      filterSongs(songs, { ...base, text: index % 2 === 0 ? "lucia" : "folk", sort: "title" });
+    }
+    expect(performance.now() - started).toBeLessThan(200);
+    expect(paginate(filterSongs(songs, base), 6, 24)).toMatchObject({ page: 6, pageCount: 6, start: 121, end: 130 });
+  });
+
   it("searches and filters 150 songs quickly from metadata alone", () => {
     const songs = syntheticSongs(150);
     expect(songs.every((song) => song.arrangements == null)).toBe(true);
