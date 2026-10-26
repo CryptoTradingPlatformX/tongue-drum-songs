@@ -8,6 +8,7 @@ type Props = {
   drumKey: DrumKey;
   activeLine: number;
   activeNote: number;
+  markedLine: number;
   missing: Set<string>;
   onSelect: (lineIndex: number, noteIndex: number) => void;
 };
@@ -48,17 +49,21 @@ function clusters(bar: DisplayBar): Array<{ key: string; span: boolean; slices: 
   return groups;
 }
 
-export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote, missing, onSelect }: Props) {
+export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote, markedLine, missing, onSelect }: Props) {
   return (
     <div className={`notation meter-${timeSignature.replace("/", "")}`} aria-label={`Numbered notation in ${timeSignature}`}>
       <ol className="phrases">
         {lines.map((line, lineIndex) => (
-          <li key={`${line.lyric ?? "phrase"}-${lineIndex}`} className={lineIndex === activeLine ? "phrase is-current" : "phrase"}>
+          <li
+            key={`${line.lyric ?? "phrase"}-${lineIndex}`}
+            data-line={lineIndex}
+            className={lineIndex === markedLine ? "phrase is-current" : "phrase"}
+          >
             {line.lyric ? <p className="lyric">{line.lyric}</p> : null}
             <div className="bars">
               {lineIndex === 0 ? <span className="sig">{timeSignature}</span> : null}
               {line.bars.map((bar, barIndex) => (
-                <div key={bar.number + "-" + barIndex} className="bar" style={{ flex: `${bar.beats} 0 auto` }}>
+                <div key={bar.number + "-" + barIndex} className="bar">
                   {bar.openedHere ? (
                     <span className="barline" aria-hidden="true">
                       <span className="bar-no">{bar.number}</span>
@@ -135,7 +140,6 @@ function NoteButton({
       ]
         .filter(Boolean)
         .join(" ")}
-      style={{ flex: `${slice.dur} 0 auto` }}
       aria-current={active ? "true" : undefined}
       aria-label={`${name}, ${durationPhrase(slice.dur)}${tie}${gap}`}
       onClick={() => onSelect(slice.lineIndex, slice.noteIndex)}

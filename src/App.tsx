@@ -3,12 +3,13 @@ import { LibraryView } from "./components/LibraryView";
 import { SettingsBar } from "./components/SettingsBar";
 import { SongView } from "./components/SongView";
 import { useSettings } from "./lib/settings";
-import { loadSongs } from "./lib/songs";
+import { songSummaries } from "./lib/songs";
 
 type Route = { name: "library" } | { name: "song"; id: string };
 
 function parseRoute(hash: string): Route {
-  const path = hash.replace(/^#/, "") || "/";
+  const raw = hash.replace(/^#/, "") || "/";
+  const path = raw.split("?")[0] || "/";
   const match = path.match(/^\/song\/([^/]+)\/?$/);
   if (match) return { name: "song", id: decodeURIComponent(match[1]) };
   return { name: "library" };
@@ -26,8 +27,21 @@ function useRoute(): Route {
 
 export function App() {
   const route = useRoute();
-  const songs = useMemo(() => loadSongs(), []);
+  const songs = useMemo(() => songSummaries(), []);
   const settings = useSettings();
+  const routeKey = route.name === "song" ? `song:${route.id}` : "library";
+
+  useEffect(() => {
+    const top = document.querySelector(".top");
+    if (!(top instanceof HTMLElement)) return;
+    const apply = () => {
+      document.documentElement.style.setProperty("--sticky-top", `${Math.ceil(top.getBoundingClientRect().height)}px`);
+    };
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(top);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (route.name === "library") {
@@ -40,14 +54,14 @@ export function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [route]);
+  }, [routeKey]);
 
   return (
     <>
       <a className="skip" href="#main">
         Skip to content
       </a>
-      <div className="top">
+      <div className="top" data-sticky-chrome>
         <header className="site-header">
           <a className="brand" href="#/">
             <span className="brand-mark" aria-hidden="true">
@@ -74,7 +88,15 @@ export function App() {
         {route.name === "library" ? (
           <LibraryView songs={songs} drumKey={settings.drumKey} layout={settings.layout} />
         ) : (
-          <SongView songId={route.id} drumKey={settings.drumKey} layout={settings.layout} />
+          <SongView
+            songId={route.id}
+            drumKey={settings.drumKey}
+            layout={settings.layout}
+            noteSize={settings.noteSize}
+            onNoteSize={settings.setNoteSize}
+            followScroll={settings.followScroll}
+            onFollowScroll={settings.setFollowScroll}
+          />
         )}
       </main>
       <footer className="site-footer">
