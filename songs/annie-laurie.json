@@ -1,0 +1,716 @@
+{
+  "schemaVersion": 1,
+  "id": "annie-laurie",
+  "title": "Annie Laurie",
+  "artist": "Lady John Scott",
+  "source": {
+    "name": "Wikimedia Commons – Annie Laurie (sheet music, William Hall & Son, New York), page scan from the Internet Archive",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Annie_Laurie_Words_By_William_Douglass_%28IA_Annie_Laurie_Words_By_William_Douglass_%29.pdf"
+  },
+  "license": "public-domain",
+  "attribution": "Melody: Lady John Scott (published 1838); words after William Douglas (c. 1700). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "love",
+    "parlor",
+    "scottish"
+  ],
+  "tempo": 60,
+  "timeSignature": "2/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Maxwelton braes are bonnie,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "where early fa's the dew,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "and it's there that Annie Laurie",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "gie'd me her promise true;",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "gie'd me her promise true,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "which ne'er forgot will be;",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and for bonnie Annie Laurie",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "I'd lay me doon and dee.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "13",
+      "lines": [
+        {
+          "lyric": "Maxwelton braes are bonnie,",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "where early fa's the dew,",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "and it's there that Annie Laurie",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "gie'd me her promise true;",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "gie'd me her promise true,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "which ne'er forgot will be;",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "and for bonnie Annie Laurie",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.75
+            },
+            {
+              "deg": 7,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "I'd lay me doon and dee.",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 1,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Visually verified from scan: the voice part was read note by note from the saved page scan (zoomed crops with staff-line pitch guides and notehead detection, each bar checked by eye), and every bar's beat total was confirmed by script; the transcription is saved in scores/scan/ next to the scan PDF. Verse 1, voice part (bars 1–16). Slurred notes carry one syllable over two notes; the small grace note before 'dew' is left out. No simplification needed. D drum: as written (range 1 to high 3), D minLayout 13. C drum: the C drum has no high 2/3, so the climax 'gie'd me her promise true, which ne'er forgot will be; and for' (melody notes 29–42) is played one octave lower; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum).",
+  "verified": true
+}
