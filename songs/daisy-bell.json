@@ -1,0 +1,688 @@
+{
+  "schemaVersion": 1,
+  "id": "daisy-bell",
+  "title": "Daisy Bell (Bicycle Built for Two)",
+  "artist": "Harry Dacre",
+  "source": {
+    "name": "Wikisource – Daisy Bell (T. B. Harms & Co., 1892), LilyPond transcription of the original sheet music",
+    "url": "https://en.wikisource.org/wiki/Page%3ADaisy_Bell_%28IA_daisybell00harr%29.pdf/3"
+  },
+  "license": "public-domain",
+  "attribution": "Words and music: Harry Dacre (1892). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "love",
+    "popular",
+    "waltz"
+  ],
+  "tempo": 160,
+  "timeSignature": "3/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Daisy, Daisy,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "give me your answer, do!",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 5
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "I'm half crazy,",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "all for the love of you!",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 4
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "It won't be a stylish marriage,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "I can't afford a carriage,",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 3
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "But you'll look sweet",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "on the seat",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "of a bicycle built for two!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Daisy, Daisy,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "give me your answer, do!",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 5
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "I'm half crazy,",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "all for the love of you!",
+          "notes": [
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 4
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "It won't be a stylish marriage,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "lyric": "I can't afford a carriage,",
+          "notes": [
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 2
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 3
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "But you'll look sweet",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "on the seat",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "of a bicycle built for two!",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 2
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 4
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Chorus only (the best-known part), vocal line, verified against the Wikisource LilyPond transcription of the 1892 Harms first edition, page 3. The score's rests are kept. Simplification: the optional small-note triplet ornament on 'marriage' is left out (we play its main note, 2). Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "id": "happy-birthday-to-you",
+  "title": "Happy Birthday to You",
+  "artist": "Mildred J. Hill / Patty Hill",
+  "source": {
+    "name": "Wikipedia (en) – Good Morning to All, LilyPond score (Happy Birthday melody)",
+    "url": "https://en.wikipedia.org/wiki/Happy_Birthday_to_You"
+  },
+  "license": "public-domain",
+  "attribution": "Melody: Mildred J. Hill, 'Good Morning to All' (1893). Public domain; a US federal court ruled in 2015 that the 'Happy Birthday' lyric copyright claim was invalid, and the song was declared public domain in 2016. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "kids",
+    "celebration"
+  ],
+  "tempo": 100,
+  "timeSignature": "3/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Happy birthday to you,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "happy birthday to you,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "happy birthday, dear ___,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "happy birthday to you!",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Happy birthday to you,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "happy birthday to you,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "lyric": "happy birthday, dear ___,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "lyric": "happy birthday to you!",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "Verified against the 'Happy Birthday' LilyPond score on the English Wikipedia article 'Good Morning to All'. No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}

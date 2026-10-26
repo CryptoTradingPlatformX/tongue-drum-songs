@@ -264,11 +264,15 @@ describe("sample songs", () => {
   const files = readdirSync(path.join(root, "songs")).filter((name) => name.endsWith(".json")).sort();
 
   it("loads every delivered song and keeps duration when grouping bars", () => {
-    expect(files.length).toBe(30);
+    expect(files.length).toBe(50);
+    const unsupported: string[] = [];
     for (const file of files) {
       const song = JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song;
       expect(song.id + ".json").toBe(file);
-      expect(["4/4", "3/4", "2/4", "2/2", "6/8"]).toContain(song.timeSignature);
+      if (!["4/4", "3/4", "2/4", "2/2", "6/8"].includes(song.timeSignature)) {
+        unsupported.push(`${file}: timeSignature ${song.timeSignature}`);
+        continue;
+      }
       for (const key of ["C", "D"] as const) {
         const arrangement = song.arrangements[key];
         const lines = arrangement.lines.map((line) => ({
@@ -298,6 +302,7 @@ describe("sample songs", () => {
         }
       }
     }
+    expect(unsupported).toEqual([]);
   });
 
   it("includes a 3/4 song and Row, Row, Row Your Boat in 6/8", () => {
@@ -330,7 +335,12 @@ describe("sample songs", () => {
     expect(first.bars[0].slices.some((slice) => slice.dividerBefore)).toBe(true);
 
     const instrumental = songs.filter((song) => song.arrangements.C.lines.every((line) => line.lyric == null));
-    expect(instrumental.map((song) => song.id).sort()).toEqual(["minuet-in-g", "morning-mood", "pachelbel-canon"]);
+    expect(instrumental.map((song) => song.id).sort()).toEqual([
+      "minuet-in-g",
+      "morning-mood",
+      "pachelbel-canon",
+      "surprise-symphony",
+    ]);
     for (const song of instrumental) {
       const laid = layoutNotation(
         song.arrangements.C.lines.map((line) => ({

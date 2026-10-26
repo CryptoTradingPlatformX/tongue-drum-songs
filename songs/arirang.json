@@ -1,0 +1,738 @@
+{
+  "schemaVersion": 1,
+  "id": "arirang",
+  "title": "Arirang",
+  "artist": "Traditional (Korean)",
+  "source": {
+    "name": "Wikipedia (en) – Arirang, LilyPond score",
+    "url": "https://en.wikipedia.org/wiki/Arirang"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional Korean folk song (this standard version printed 1926). Public domain. Lyrics romanized. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "medium",
+  "tags": [
+    "folk",
+    "korean",
+    "love"
+  ],
+  "tempo": 60,
+  "timeSignature": "9/8",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Arirang, arirang,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "arariyo,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Arirang gogaero",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "neomeoganda.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "rest": true,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Nareul beorigo",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "gasineun nimeun",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "simnido motgaseo",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "balbyeongnanda.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Arirang, arirang,",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "arariyo,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "Arirang gogaero",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "neomeoganda.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "rest": true,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Nareul beorigo",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 3
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "gasineun nimeun",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 2.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "simnido motgaseo",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "lyric": "balbyeongnanda.",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 2.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "9/8 time (eighth = 0.5 beat). Verified against the LilyPond score on English Wikipedia. Pentatonic, so no simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}
