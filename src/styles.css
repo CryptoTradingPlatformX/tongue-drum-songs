@@ -389,8 +389,12 @@ main.has-player { padding-bottom: 8.5rem; }
 }
 .clusters { flex: 1 1 auto; }
 .meter-68 .clusters,
+.meter-98 .clusters,
+.meter-128 .clusters,
 .meter-22 .clusters { gap: 0.45rem; }
 .meter-68 .cluster,
+.meter-98 .cluster,
+.meter-128 .cluster,
 .meter-22 .cluster {
   background: rgba(196, 92, 50, 0.08);
   border-radius: 14px;
