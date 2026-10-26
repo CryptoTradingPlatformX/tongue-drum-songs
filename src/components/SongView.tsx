@@ -390,6 +390,9 @@ function SongPractice({
             <li>An underline is an eighth note. A dot beside the number adds half a beat. A dash holds one more beat.</li>
             <li>A 3 over three underlined notes is a triplet. Those three notes add up to one beat.</li>
             <li>0 is a rest.</li>
+            {song.timeSignature === "6/4" ? (
+              <li>In 6/4, each bar is two dotted-half pulses. The gap between them is the middle of the bar.</li>
+            ) : null}
             {song.timeSignature === "6/8" ? (
               <li>In 6/8, each bar is two dotted-quarter pulses. The gap between them is the middle of the bar.</li>
             ) : null}
