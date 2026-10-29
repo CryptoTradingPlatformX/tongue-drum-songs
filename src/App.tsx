@@ -61,7 +61,7 @@ export function App() {
       <a className="skip" href="#main">
         Skip to content
       </a>
-      <div className="top" data-sticky-chrome>
+      <div className={route.name === "song" ? "top is-song" : "top"} data-sticky-chrome>
         <header className="site-header">
           <a className="brand" href="#/">
             <span className="brand-mark" aria-hidden="true">

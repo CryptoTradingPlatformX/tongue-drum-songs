@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { clampSpeed, lineDurationMs, linesPerMinute, nextScrollLine, scrollOffset, scrollTopFor } from "./scroll";
+import { clampSpeed, lineDurationMs, linesPerMinute, nextScrollLine, noteFitsViewport, scrollOffset, scrollTopFor } from "./scroll";
 
 describe("auto-scroll timing", () => {
   it("follows quarter-note tempo and the speed multiplier", () => {
@@ -28,5 +28,18 @@ describe("auto-scroll timing", () => {
     expect(scrollOffset(900, 0)).toBeCloseTo(252);
     expect(scrollOffset(900, 300)).toBe(300);
     expect(scrollTopFor(400, 1000, 900, 0)).toBeCloseTo(1400 - 252);
+  });
+
+  it("keeps a highlighted note below top chrome and above a bottom bar", () => {
+    const chromeTop = 140;
+    const chromeBottom = 90;
+    const viewport = 800;
+    const top = scrollTopFor(20, 500, viewport, chromeTop, chromeBottom);
+    const landed = 20 + 500 - top;
+    expect(landed).toBeGreaterThanOrEqual(chromeTop);
+    expect(landed).toBeLessThan(viewport - chromeBottom);
+    expect(noteFitsViewport(landed, landed + 48, viewport, chromeTop, chromeBottom)).toBe(true);
+    expect(noteFitsViewport(chromeTop - 20, chromeTop + 10, viewport, chromeTop, chromeBottom)).toBe(false);
+    expect(noteFitsViewport(200, viewport - chromeBottom + 30, viewport, chromeTop, chromeBottom)).toBe(false);
   });
 });

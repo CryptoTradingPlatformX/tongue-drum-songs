@@ -15,7 +15,7 @@ export function PlayerBar({ index, total, playing, bpm, songBpm, onBpm, onToggle
   const position = index < 0 ? "Ready" : `Note ${index + 1} of ${total}`;
 
   return (
-    <div className="player-dock">
+    <div className="player-dock" data-sticky-chrome>
       <div className="player" role="group" aria-label="Practice">
         <div className="transport">
           <button type="button" onClick={onPrev} disabled={total === 0}>

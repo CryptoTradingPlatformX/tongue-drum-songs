@@ -561,7 +561,7 @@ main.has-player { padding-bottom: 8.5rem; }
   font-size: 0.92rem;
   padding-bottom: 1.5rem;
 }
-main.has-player + .site-footer { padding-bottom: 7.5rem; }
+main.has-player + .site-footer { padding-bottom: calc(7.5rem + env(safe-area-inset-bottom, 0px)); }
 
 :focus-visible { outline: 3px solid var(--copper-bright); outline-offset: 2px; }
 .sr-only {
@@ -576,6 +576,36 @@ main.has-player + .site-footer { padding-bottom: 7.5rem; }
   border: 0;
 }
 
+@media (max-width: 932px) {
+  .top.is-song {
+    position: static;
+    z-index: auto;
+    backdrop-filter: none;
+  }
+  .notation-tools {
+    position: static;
+    top: auto;
+    z-index: auto;
+    box-shadow: none;
+  }
+  .player-dock {
+    position: static;
+    z-index: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    padding: 0.6rem 0 calc(0.6rem + env(safe-area-inset-bottom, 0px));
+    background: none;
+  }
+  main.has-player + .site-footer { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); }
+  .diagram-panel { position: static; z-index: 0; }
+  .notation-panel { position: relative; z-index: 1; }
+  .phrase,
+  .note {
+    scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
+    scroll-margin-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+  }
+}
 @media (max-width: 720px) {
   .player { grid-template-columns: 1fr; }
   .transport button { flex: 1; }

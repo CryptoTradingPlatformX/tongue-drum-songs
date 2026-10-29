@@ -33,8 +33,21 @@ export function scrollTopFor(
   scrollY: number,
   viewportHeight: number,
   chromeHeight: number,
+  bottomInset = 0,
 ): number {
-  return Math.max(0, elementViewportTop + scrollY - scrollOffset(viewportHeight, chromeHeight));
+  const usable = Math.max(0, viewportHeight - Math.max(0, bottomInset));
+  return Math.max(0, elementViewportTop + scrollY - scrollOffset(usable, chromeHeight));
+}
+
+/** True when a note sits in the open area between top and bottom chrome. */
+export function noteFitsViewport(
+  noteTop: number,
+  noteBottom: number,
+  viewportHeight: number,
+  chromeTop: number,
+  chromeBottom: number,
+): boolean {
+  return noteTop >= chromeTop - 4 && noteBottom <= viewportHeight - Math.max(0, chromeBottom) + 4;
 }
 
 export function nextScrollLine(current: number, lineCount: number): { line: number; playing: boolean } {
