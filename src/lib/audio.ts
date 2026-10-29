@@ -1,18 +1,113 @@
 let context: AudioContext | null = null;
+let silentLoop: HTMLAudioElement | null = null;
+let silentSrc: string | null = null;
+let lifecycleBound = false;
+
+type AudioSessionNavigator = Navigator & {
+  audioSession?: { type: string };
+};
+
+/** Unsigned 8-bit PCM silence. A real media element is what older iOS uses to leave the ringer switch. */
+function silentWavUrl(): string {
+  if (silentSrc) return silentSrc;
+  const samples = 160;
+  const bytes = new Uint8Array(44 + samples);
+  const view = new DataView(bytes.buffer);
+  const write = (offset: number, text: string) => {
+    for (let index = 0; index < text.length; index += 1) bytes[offset + index] = text.charCodeAt(index);
+  };
+  write(0, "RIFF");
+  view.setUint32(4, 36 + samples, true);
+  write(8, "WAVE");
+  write(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, 8000, true);
+  view.setUint32(28, 8000, true);
+  view.setUint16(32, 1, true);
+  view.setUint16(34, 8, true);
+  write(36, "data");
+  view.setUint32(40, samples, true);
+  bytes.fill(128, 44);
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  silentSrc = `data:audio/wav;base64,${btoa(binary)}`;
+  return silentSrc;
+}
 
 function audioContext(): AudioContext {
   if (!context) {
     const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
     if (!Ctx) throw new Error("Web Audio is not available in this browser");
     context = new Ctx();
+    bindLifecycle();
   }
   return context;
 }
 
+/**
+ * iOS reports "interrupted" as well as "suspended". Resume either, and never
+ * await it: the oscillators have to start in the same turn as the tap.
+ */
+function resumeContext(ctx: AudioContext): void {
+  if (ctx.state === "running" || ctx.state === "closed") return;
+  const pending = ctx.resume();
+  if (pending && typeof pending.catch === "function") pending.catch(() => {});
+}
+
+function enablePlaybackSession(): void {
+  if (typeof navigator === "undefined") return;
+  const session = (navigator as AudioSessionNavigator).audioSession;
+  if (session) session.type = "playback";
+}
+
+function silentElement(): HTMLAudioElement {
+  if (silentLoop) return silentLoop;
+  const element = document.createElement("audio");
+  element.setAttribute("playsinline", "");
+  element.setAttribute("webkit-playsinline", "");
+  (element as HTMLAudioElement & { playsInline?: boolean }).playsInline = true;
+  element.loop = true;
+  element.preload = "auto";
+  element.src = silentWavUrl();
+  element.hidden = true;
+  document.body?.appendChild(element);
+  silentLoop = element;
+  return element;
+}
+
+function startSilentLoop(): void {
+  const element = silentElement();
+  if (!element.paused) return;
+  const pending = element.play();
+  if (pending && typeof pending.catch === "function") pending.catch(() => {});
+}
+
+function bindLifecycle(): void {
+  if (lifecycleBound || typeof document === "undefined" || typeof window === "undefined") return;
+  lifecycleBound = true;
+  const resume = () => {
+    if (!context || context.state === "running" || context.state === "closed") return;
+    const pending = context.resume();
+    if (pending && typeof pending.catch === "function") pending.catch(() => {});
+  };
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") resume();
+  });
+  window.addEventListener("pageshow", resume);
+}
+
+/**
+ * Call from a user gesture before the first tone. Synchronous on purpose:
+ * awaiting resume() or audio.play() would leave the iOS gesture and the note would stay silent.
+ * Play, step, notation taps, and drum-diagram taps all come through here.
+ */
 export function unlockAudio(): void {
   try {
-    const ctx = audioContext();
-    if (ctx.state === "suspended") void ctx.resume();
+    enablePlaybackSession();
+    startSilentLoop();
+    resumeContext(audioContext());
   } catch {
     // Notation still works when Web Audio is unavailable.
   }
@@ -24,6 +119,7 @@ export function unlockAudio(): void {
  */
 export function playTongue(midi: number): void {
   const ctx = audioContext();
+  resumeContext(ctx);
   const now = ctx.currentTime;
   const freq = 440 * 2 ** ((midi - 69) / 12);
 
