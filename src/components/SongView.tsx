@@ -29,6 +29,7 @@ import {
   linesPerMinute,
   nextScrollLine,
   scrollBehavior,
+  noteFitsViewport,
   scrollTopFor,
 } from "../lib/scroll";
 import { usePlayer } from "../lib/usePlayer";
@@ -108,12 +109,42 @@ function lineBeats(line: DisplayLine): number {
   return roundBeats(raw);
 }
 
-function chromeHeight(): number {
-  const header = document.querySelector(".top");
-  const headerBottom = header instanceof HTMLElement ? header.getBoundingClientRect().bottom : 0;
-  const tools = document.querySelector(".notation-tools");
-  const toolsHeight = tools instanceof HTMLElement ? tools.getBoundingClientRect().height : 0;
-  return headerBottom + toolsHeight;
+let safeInsetsCache: { top: number; bottom: number } | null = null;
+
+function safeInsets(): { top: number; bottom: number } {
+  if (safeInsetsCache) return safeInsetsCache;
+  const probe = document.createElement("div");
+  probe.style.cssText =
+    "position:fixed;visibility:hidden;pointer-events:none;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)";
+  document.body.appendChild(probe);
+  const style = getComputedStyle(probe);
+  const top = parseFloat(style.paddingTop);
+  const bottom = parseFloat(style.paddingBottom);
+  probe.remove();
+  safeInsetsCache = {
+    top: Number.isFinite(top) ? top : 0,
+    bottom: Number.isFinite(bottom) ? bottom : 0,
+  };
+  return safeInsetsCache;
+}
+
+/** Edges covered by sticky or fixed bars, including the iPhone safe area. */
+function chromeInsets(): { top: number; bottom: number } {
+  const safe = safeInsets();
+  let top = safe.top;
+  let bottom = safe.bottom;
+  document.querySelectorAll("[data-sticky-chrome]").forEach((node) => {
+    if (!(node instanceof HTMLElement)) return;
+    const position = getComputedStyle(node).position;
+    if (position !== "sticky" && position !== "fixed") return;
+    const rect = node.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return;
+    if (rect.top >= -1 && rect.top < window.innerHeight * 0.55 && rect.bottom > top) top = rect.bottom + 8;
+    if (rect.bottom >= window.innerHeight - 1 && rect.top < window.innerHeight) {
+      bottom = Math.max(bottom, window.innerHeight - rect.top + 8);
+    }
+  });
+  return { top, bottom };
 }
 
 function SongPractice({
@@ -187,12 +218,12 @@ function SongPractice({
   const revealLine = useCallback((lineIndex: number, preferNote: boolean) => {
     const line = document.querySelector(`[data-line="${lineIndex}"]`);
     if (!(line instanceof HTMLElement)) return;
-    const chrome = chromeHeight();
+    const chrome = chromeInsets();
     const note = line.querySelector(".note.is-active");
     const lineRect = line.getBoundingClientRect();
-    const room = window.innerHeight - chrome - 120;
+    const room = window.innerHeight - chrome.top - chrome.bottom;
     const focus = preferNote && note instanceof HTMLElement && lineRect.height > room ? note : line;
-    const top = scrollTopFor(focus.getBoundingClientRect().top, window.scrollY, window.innerHeight, chrome);
+    const top = scrollTopFor(focus.getBoundingClientRect().top, window.scrollY, window.innerHeight, chrome.top, chrome.bottom);
     if (Math.abs(top - window.scrollY) < 12) return;
     window.scrollTo({ top, behavior: scrollBehavior() });
   }, []);
@@ -278,8 +309,9 @@ function SongPractice({
     if (lineIndex < 0) return;
     const note = document.querySelector(".note.is-active");
     const rect = note instanceof HTMLElement ? note.getBoundingClientRect() : null;
-    const chrome = chromeHeight();
-    const hidden = !rect || rect.top < chrome - 4 || rect.bottom > window.innerHeight - 96;
+    const chrome = chromeInsets();
+    const hidden =
+      !rect || !noteFitsViewport(rect.top, rect.bottom, window.innerHeight, chrome.top, chrome.bottom);
     if (followedLine.current === lineIndex && !hidden) return;
     followedLine.current = lineIndex;
     revealLine(lineIndex, true);
