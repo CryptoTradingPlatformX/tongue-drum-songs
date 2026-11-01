@@ -364,8 +364,8 @@ function SongPractice({
         All songs
       </a>
       <header className="song-head">
-        <p className="kicker">{song.artist}</p>
         <h1>{song.title}</h1>
+        <p className="composer">Composer: {song.artist}</p>
         {song.arrangerNotes ? (
           <section className="arrangement-notes" aria-labelledby="arrangement-notes-heading">
             <h2 id="arrangement-notes-heading">Arrangement notes</h2>

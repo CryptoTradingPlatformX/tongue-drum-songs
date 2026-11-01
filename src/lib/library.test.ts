@@ -65,12 +65,17 @@ describe("library browsing", () => {
     expect(jazz?.tags).toEqual(["jazz", "blues", "ragtime"]);
     expect(jazz?.emptyMessage).toBe("Jazz & Blues songs are coming soon");
     expect(filterSongs(songs, { ...base, categoryTags: jazz?.tags })).toEqual([]);
+    const blackComposers = categoryById("black-composers");
+    expect(blackComposers?.tags).toEqual(["black-composers"]);
+    expect(blackComposers?.emptyMessage).toBe("Black Composers songs are coming soon");
+    expect(filterSongs(songs, { ...base, categoryTags: blackComposers?.tags })).toEqual([]);
     expect(LIBRARY_CATEGORIES.map((category) => category.id)).toEqual([
       "hymns",
       "folk",
       "holiday",
       "american-classics",
       "jazz-blues",
+      "black-composers",
     ]);
     const hymns = filterSongs(songs, { ...base, categoryTags: categoryById("hymns")?.tags });
     expect(hymns.length).toBeGreaterThan(0);

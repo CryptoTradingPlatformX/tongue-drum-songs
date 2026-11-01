@@ -305,6 +305,7 @@ main.has-player { padding-bottom: 8.5rem; }
 .back::before { content: "← "; }
 .song-head { margin: 0.2rem 0 1rem; }
 .kicker { margin: 0; color: var(--ink-soft); font-weight: 700; }
+.composer { margin: 0.15rem 0 0.55rem; font-weight: 700; }
 .meter-help { color: var(--ink-soft); }
 
 .banner {

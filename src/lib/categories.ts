@@ -18,6 +18,12 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
     tags: ["jazz", "blues", "ragtime"],
     emptyMessage: "Jazz & Blues songs are coming soon",
   },
+  {
+    id: "black-composers",
+    label: "Black Composers",
+    tags: ["black-composers"],
+    emptyMessage: "Black Composers songs are coming soon",
+  },
 ];
 
 export function categoryById(id: string): LibraryCategory | null {
