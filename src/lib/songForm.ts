@@ -1,5 +1,5 @@
-import { quarterSeconds, totalBeats } from "./music";
-import type { DrumKey, Song, SongLine, SongNote } from "./types";
+import { missingTongues, parseNote, quarterSeconds, tonguePhrase, totalBeats, type NoteEvent } from "./music";
+import type { DrumKey, LayoutId, Song, SongLine, SongNote, VariantLine } from "./types";
 
 export type FormFailure = { field: string; error: string };
 
@@ -47,10 +47,19 @@ export function expandArrangement(song: Song, key: DrumKey): ExpandedLine[] {
     const sectionLines = linesInSection(lines, entry.section);
     const verseLyrics = entry.verse != null ? song.verses?.[entry.section]?.[entry.verse - 1] : undefined;
     sectionLines.forEach((line, index) => {
-      const raw = verseLyrics ? verseLyrics[index] : line.lyric;
+      const variant =
+        entry.verse != null
+          ? song.verseLines?.[entry.section]?.[String(entry.verse)]?.[String(index)]?.[key]
+          : undefined;
+      const raw =
+        variant && variant.lyric !== undefined
+          ? variant.lyric
+          : verseLyrics
+            ? verseLyrics[index]
+            : line.lyric;
       expanded.push({
         lyric: raw && raw.length > 0 ? raw : undefined,
-        notes: line.notes,
+        notes: variant?.notes ?? line.notes,
         heading: index === 0 ? sectionHeading(entry.section, entry.verse) : undefined,
         section: entry.section,
         verse: entry.verse,
@@ -90,6 +99,9 @@ export function formProblems(song: Song): FormFailure[] {
   if (!form) {
     if (verses != null) {
       failures.push({ field: "/verses", error: "verses requires form" });
+    }
+    if (song.verseLines != null) {
+      failures.push({ field: "/verseLines", error: "verseLines requires form" });
     }
     return failures;
   }
@@ -209,5 +221,114 @@ export function formProblems(song: Song): FormFailure[] {
       }
     }
   }
+  failures.push(...verseLineProblems(song, known));
   return failures;
+}
+
+const VERSE_KEY = /^[1-9][0-9]*$/;
+const LINE_KEY = /^(?:0|[1-9][0-9]*)$/;
+
+function verseLineProblems(song: Song, known: Set<string>): FormFailure[] {
+  const verseLines = song.verseLines;
+  if (!verseLines) return [];
+  const failures: FormFailure[] = [];
+  const verses = song.verses;
+  const drums = ["C", "D"] as const;
+  for (const [section, byVerse] of Object.entries(verseLines)) {
+    if (!known.has(section)) {
+      failures.push({
+        field: `/verseLines/${section}`,
+        error: `verseLines section "${section}" is not a section on the lines`,
+      });
+      continue;
+    }
+    if (!verses || !Object.prototype.hasOwnProperty.call(verses, section)) {
+      failures.push({
+        field: `/verseLines/${section}`,
+        error: `verseLines section "${section}" is not in verses`,
+      });
+      continue;
+    }
+    const table = verses[section] ?? [];
+    const counts = drums.map((drum) => linesInSection(song.arrangements[drum].lines, section).length);
+    const lineCount = Math.min(...counts);
+    for (const [verseKey, byLine] of Object.entries(byVerse ?? {})) {
+      if (!VERSE_KEY.test(verseKey) || !Number.isSafeInteger(Number(verseKey))) {
+        failures.push({
+          field: `/verseLines/${section}/${verseKey}`,
+          error: `verseLines verse "${verseKey}" of "${section}" is not a verse number`,
+        });
+        continue;
+      }
+      const verseNumber = Number(verseKey);
+      const row = table[verseNumber - 1];
+      if (!row) {
+        failures.push({
+          field: `/verseLines/${section}/${verseKey}`,
+          error: `verseLines verse ${verseNumber} of "${section}" does not exist`,
+        });
+        continue;
+      }
+      for (const [lineKey, pair] of Object.entries(byLine ?? {})) {
+        if (!LINE_KEY.test(lineKey) || !Number.isSafeInteger(Number(lineKey))) {
+          failures.push({
+            field: `/verseLines/${section}/${verseKey}/${lineKey}`,
+            error: `verseLines line "${lineKey}" of "${section}" is not a line index`,
+          });
+          continue;
+        }
+        const lineIndex = Number(lineKey);
+        if (counts.some((count) => lineIndex >= count)) {
+          failures.push({
+            field: `/verseLines/${section}/${verseKey}/${lineKey}`,
+            error: `verseLines line ${lineIndex} of "${section}" is outside that section's line count (${lineCount})`,
+          });
+          continue;
+        }
+        const record = pair as Partial<Record<DrumKey, VariantLine>> | undefined;
+        if (!record?.C || !record?.D) {
+          failures.push({
+            field: `/verseLines/${section}/${verseKey}/${lineKey}`,
+            error: `verseLines verse ${verseNumber} line ${lineIndex} of "${section}" needs both C and D`,
+          });
+        }
+        for (const drum of drums) {
+          const line = record?.[drum];
+          if (!line) continue;
+          const field = `/verseLines/${section}/${verseKey}/${lineKey}/${drum}`;
+          failures.push(
+            ...variantNoteProblems(line.notes, song.arrangements[drum].minLayout, drum, `${field}/notes`),
+          );
+          if (line.lyric !== undefined && line.lyric !== row[lineIndex]) {
+            failures.push({
+              field: `${field}/lyric`,
+              error: `verseLines ${drum} lyric must equal verses["${section}"][${verseNumber - 1}][${lineIndex}]`,
+            });
+          }
+        }
+      }
+    }
+  }
+  return failures;
+}
+
+function variantNoteProblems(
+  notes: SongNote[] | undefined,
+  minLayout: LayoutId,
+  drum: DrumKey,
+  field: string,
+): FormFailure[] {
+  if (!notes || notes.length === 0) {
+    return [{ field, error: "verseLines notes are required" }];
+  }
+  let parsed: NoteEvent[];
+  try {
+    parsed = notes.map((note) => parseNote(note));
+  } catch (error) {
+    return [{ field, error: error instanceof Error ? error.message : "Could not parse notes" }];
+  }
+  const missing = missingTongues(parsed, minLayout);
+  if (missing.length === 0) return [];
+  const names = missing.map((tongue) => tonguePhrase(drum, tongue)).join(", ");
+  return [{ field, error: `notes are not on the ${minLayout}-note layout: ${names}` }];
 }

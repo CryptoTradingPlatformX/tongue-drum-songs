@@ -23,6 +23,15 @@ export type SongLine = {
   notes: SongNote[];
 };
 
+/** Same note shape as an arrangement line. `section` is omitted. */
+export type VariantLine = {
+  lyric?: string;
+  notes: SongNote[];
+};
+
+/** verseLines[section][verseNumber][lineIndex] replaces that line for one verse. */
+export type VerseLinePair = { C: VariantLine; D: VariantLine };
+
 export type FormEntry = {
   section: string;
   verse?: number;
@@ -50,6 +59,12 @@ export type Song = {
   form?: FormEntry[];
   /** Extra lyrics keyed by section. verses[section][n - 1] is verse n. */
   verses?: Record<string, string[][]>;
+  /**
+   * Optional per-verse note variants.
+   * verseLines[section][verse number][line index within the section] is { C, D }.
+   * Keys are strings. A variant lyric, when present, matches verses[section][verse - 1][line].
+   */
+  verseLines?: Record<string, Record<string, Record<string, VerseLinePair>>>;
   arrangerNotes?: string;
   verified: boolean;
 };

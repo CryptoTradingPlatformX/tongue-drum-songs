@@ -3,7 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv/dist/2020";
 import { describe, expect, it } from "vitest";
-import type { Song } from "./types";
+import { flattenLines, parseNote } from "./music";
+import type { Song, SongNote, VerseLinePair } from "./types";
 import {
   arrangementBeats,
   expandArrangement,
@@ -164,6 +165,153 @@ describe("expanded playback", () => {
     expect(lines).toHaveLength(plain.arrangements.D.lines.length);
     expect(lines.every((line) => line.heading == null && line.section == null)).toBe(true);
     expect(verseIndicator(lines[0])).toBeNull();
+  });
+});
+
+const fitting: SongNote[] = [
+  { deg: 1, oct: 0, dur: 2 },
+  { deg: 2, oct: 0, dur: 2 },
+  { deg: 3, oct: 0, dur: 2 },
+];
+
+function pair(c: Partial<VerseLinePair["C"]>, d: Partial<VerseLinePair["D"]> = {}): VerseLinePair {
+  return {
+    C: { notes: fitting, ...c },
+    D: { notes: fitting, ...d },
+  };
+}
+
+function withVerseLines(song: Song, verseLines: NonNullable<Song["verseLines"]>): Song {
+  const next = clone(song);
+  next.verseLines = verseLines;
+  return next;
+}
+
+describe("verse line variants", () => {
+  const valid = load("valid.json");
+
+  it("uses variant notes and falls back to the shared verse lyric", () => {
+    const song = withVerseLines(valid, {
+      verse: {
+        "2": {
+          "0": pair({}),
+          "1": pair({ lyric: "Line B two" }, { lyric: "Line B two", notes: [{ deg: 5, oct: 0, dur: 4 }] }),
+        },
+      },
+    });
+    expect(validate(song)).toBe(true);
+    expect(formProblems(song)).toEqual([]);
+
+    const cLines = expandArrangement(song, "C");
+    const verseTwo = cLines.filter((line) => line.verse === 2);
+    expect(verseTwo[0].notes).toEqual(fitting);
+    expect(verseTwo[0].lyric).toBe("Line A two");
+    expect(verseTwo[1].lyric).toBe("Line B two");
+    expect(verseTwo[1].notes.map((note) => note.deg)).toEqual([1, 2, 3]);
+    expect(cLines.filter((line) => line.verse === 1)[0].notes.map((note) => note.deg)).toEqual([1, 2, 3, 1]);
+    expect(verseIndicator(verseTwo[0])).toBe("Verse 2 of 5");
+
+    const dLines = expandArrangement(song, "D");
+    const dVerseTwo = dLines.filter((line) => line.verse === 2);
+    expect(dVerseTwo[1].notes).toEqual([{ deg: 5, oct: 0, dur: 4 }]);
+    expect(arrangementBeats(cLines)).toBe(60);
+    expect(arrangementBeats(dLines)).toBe(58);
+    expect(formatClock(playbackSeconds(arrangementBeats(cLines), song.tempo))).toBe("0:18");
+    expect(formatClock(playbackSeconds(arrangementBeats(dLines), song.tempo))).toBe("0:17");
+
+    const verseTwoIndex = cLines.findIndex((line) => line.verse === 2);
+    const events = flattenLines(cLines.map((line) => ({ notes: line.notes.map((note) => parseNote(note)) })));
+    const cursor = events.filter((event) => event.lineIndex === verseTwoIndex);
+    expect(cursor.map((event) => event.dur)).toEqual([2, 2, 2]);
+    expect(cursor.every((event) => event.lineIndex === verseTwoIndex)).toBe(true);
+  });
+
+  it("ignores a section field on a variant and still plays that variant", () => {
+    const song = withVerseLines(valid, {
+      verse: { "3": { "0": pair({}) } },
+    });
+    const variant = song.verseLines?.verse["3"]["0"].C as { section?: string };
+    variant.section = "refrain";
+    const line = expandArrangement(song, "C").find((item) => item.verse === 3);
+    expect(line?.section).toBe("verse");
+    expect(line?.notes).toEqual(fitting);
+    expect(validate(song)).toBe(false);
+  });
+
+  it("rejects verseLines when form is absent", () => {
+    const song = withVerseLines(valid, { verse: { "1": { "0": pair({}) } } });
+    delete song.form;
+    expect(formProblems(song).map((problem) => problem.error)).toContain("verseLines requires form");
+  });
+
+  it("rejects a section that is missing or not listed in verses", () => {
+    const unknown = withVerseLines(valid, { bridge: { "1": { "0": pair({}) } } });
+    expect(formProblems(unknown).some((problem) => problem.error.includes('section "bridge" is not a section'))).toBe(
+      true,
+    );
+
+    const refrain = withVerseLines(valid, { refrain: { "1": { "0": pair({}) } } });
+    expect(formProblems(refrain).some((problem) => problem.error.includes('section "refrain" is not in verses'))).toBe(
+      true,
+    );
+  });
+
+  it("rejects a verse number that is not in verses[section]", () => {
+    const song = withVerseLines(valid, { verse: { "9": { "0": pair({}) } } });
+    expect(formProblems(song).some((problem) => problem.error.includes('verse 9 of "verse" does not exist'))).toBe(true);
+
+    const zero = withVerseLines(valid, { verse: { "0": { "0": pair({}) } } });
+    expect(formProblems(zero).some((problem) => problem.error.includes('verse "0"'))).toBe(true);
+    expect(validate(zero)).toBe(false);
+  });
+
+  it("rejects a line index outside that section's line count", () => {
+    const song = withVerseLines(valid, { verse: { "2": { "2": pair({}) } } });
+    expect(formProblems(song).some((problem) => problem.error.includes("outside that section's line count"))).toBe(true);
+    expect(validate(song)).toBe(true);
+  });
+
+  it("rejects a variant that is missing C or D", () => {
+    const song = withVerseLines(valid, { verse: { "2": { "0": pair({}) } } });
+    delete (song.verseLines?.verse["2"]["0"] as { D?: unknown }).D;
+    expect(formProblems(song).some((problem) => problem.error.includes("needs both C and D"))).toBe(true);
+    expect(validate(song)).toBe(false);
+  });
+
+  it("rejects notes that do not fit that key's minLayout", () => {
+    const lowFive: SongNote[] = [{ deg: 5, oct: -1, dur: 4 }];
+    const song = withVerseLines(valid, {
+      verse: { "2": { "0": { C: { notes: lowFive }, D: { notes: fitting } } } },
+    });
+    const problems = formProblems(song);
+    expect(problems.some((problem) => problem.field.endsWith("/C/notes") && problem.error.includes("8-note layout"))).toBe(
+      true,
+    );
+    expect(problems.some((problem) => problem.field.endsWith("/D/notes"))).toBe(false);
+
+    song.arrangements.C.minLayout = "11";
+    expect(formProblems(song).filter((problem) => problem.field.includes("/verseLines"))).toEqual([]);
+  });
+
+  it("accepts variant notes that fit minLayout when a smaller layout would also fit", () => {
+    const song = withVerseLines(valid, { verse: { "2": { "0": pair({ notes: [{ deg: 1, oct: 0, dur: 4 }] }) } } });
+    song.arrangements.C.minLayout = "11";
+    song.arrangements.D.minLayout = "11";
+    expect(formProblems(song)).toEqual([]);
+  });
+
+  it("rejects a variant lyric that differs from the shared verse lyric", () => {
+    const song = withVerseLines(valid, {
+      verse: { "2": { "0": pair({ lyric: "Not the verse" }, { lyric: "Line A two" }) } },
+    });
+    const problems = formProblems(song);
+    expect(problems.some((problem) => problem.field.endsWith("/C/lyric") && problem.error.includes("must equal"))).toBe(
+      true,
+    );
+    expect(problems.some((problem) => problem.field.endsWith("/D/lyric"))).toBe(false);
+
+    const blank = withVerseLines(valid, { verse: { "2": { "1": pair({ lyric: "" }, { lyric: "" }) } } });
+    expect(formProblems(blank).some((problem) => problem.error.includes('verses["verse"][1][1]'))).toBe(true);
   });
 });
 
