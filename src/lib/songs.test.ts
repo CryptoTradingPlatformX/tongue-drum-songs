@@ -15,6 +15,8 @@ describe("song index", () => {
     const yankee = songIndex.find((song) => song.id === "yankee-doodle");
     expect(yankee?.minLayout).toEqual({ C: "11", D: "15" });
     expect(yankee).not.toHaveProperty("arrangements");
+    expect(yankee?.durationSeconds.C).toBeGreaterThan(0);
+    expect(yankee?.durationSeconds.D).toBeGreaterThan(0);
     expect(readSongIndex(root).map((song) => song.id).sort()).toEqual(songIndex.map((song) => song.id).sort());
   });
 });

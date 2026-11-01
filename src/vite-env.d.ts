@@ -12,6 +12,7 @@ declare module "virtual:song-index" {
     timeSignature: TimeSignature;
     tempo: number;
     minLayout: { C: LayoutId; D: LayoutId };
+    durationSeconds: { C: number; D: number };
   };
 
   export const songIndex: SongSummary[];

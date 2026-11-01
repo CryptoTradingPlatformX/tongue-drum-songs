@@ -87,6 +87,7 @@ export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote
             data-line={lineIndex}
             className={lineIndex === markedLine ? "phrase is-current" : "phrase"}
           >
+            {line.heading ? <p className="section-heading">{line.heading}</p> : null}
             {line.lyric ? <p className="lyric">{line.lyric}</p> : null}
             <div className="bars">
               {lineIndex === 0 ? <span className="sig">{timeSignature}</span> : null}

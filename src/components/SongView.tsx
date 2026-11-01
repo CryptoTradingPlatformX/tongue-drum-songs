@@ -4,6 +4,7 @@ import { Notation } from "./Notation";
 import { NotationTools } from "./NotationTools";
 import { PlayerBar } from "./PlayerBar";
 import { libraryBackHref } from "../lib/libraryUrl";
+import { arrangementBeats, expandArrangement, formatClock, playbackSeconds, verseIndicator } from "../lib/songForm";
 import {
   beatsPerBar,
   eventIndex,
@@ -169,21 +170,24 @@ function SongPractice({
   const [manualPlaying, setManualPlaying] = useState(false);
   const [guide, setGuide] = useState<number | null>(null);
   const followedLine = useRef(-1);
+  const [scrolledLine, setScrolledLine] = useState(0);
   const arrangement = song.arrangements[drumKey];
+  const expanded = useMemo(() => expandArrangement(song, drumKey), [song, drumKey]);
   const parsed = useMemo(() => {
     try {
-      const lines = arrangement.lines.map((line) => ({
+      const lines = expanded.map((line) => ({
         lyric: line.lyric,
+        heading: line.heading,
         notes: line.notes.map((note) => parseNote(note)),
       }));
       return { lines, error: null as string | null };
     } catch (error) {
       return {
-        lines: [] as { lyric?: string; notes: NoteEvent[] }[],
+        lines: [] as { lyric?: string; heading?: string; notes: NoteEvent[] }[],
         error: error instanceof Error ? error.message : "Could not read this song",
       };
     }
-  }, [arrangement]);
+  }, [expanded]);
 
   const events = useMemo(() => flattenLines(parsed.lines), [parsed.lines]);
   const laid = useMemo(
@@ -214,6 +218,14 @@ function SongPractice({
   const player = usePlayer(events, bpm, midiFor);
   const active = player.index >= 0 ? events[player.index] : undefined;
   const markedLine = player.playing || guide == null ? (active?.lineIndex ?? -1) : guide;
+  const playbackBeats = useMemo(() => arrangementBeats(expanded), [expanded]);
+  const playbackLabel = `Playback ${formatClock(playbackSeconds(playbackBeats, bpm))} at ${Math.round(bpm)} BPM`;
+  const indicatorIndex = player.playing
+    ? Math.max(0, active?.lineIndex ?? 0)
+    : manualPlaying && guide != null
+      ? guide
+      : scrolledLine;
+  const verseLabel = song.form ? verseIndicator(expanded[indicatorIndex]) : null;
 
   const revealLine = useCallback((lineIndex: number, preferNote: boolean) => {
     const line = document.querySelector(`[data-line="${lineIndex}"]`);
@@ -248,6 +260,22 @@ function SongPractice({
     setManualPlaying(false);
     setGuide(null);
   }, [player.playing]);
+
+  useEffect(() => {
+    if (!song.form) return;
+    const update = () => {
+      const chrome = chromeInsets().top;
+      const phrases = [...document.querySelectorAll(".notation .phrase")];
+      let current = 0;
+      phrases.forEach((node, index) => {
+        if (node.getBoundingClientRect().top <= chrome + 28) current = index;
+      });
+      setScrolledLine(current);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [song.form, laid]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -372,6 +400,7 @@ function SongPractice({
           </li>
           <li>{song.timeSignature}</li>
           <li>{song.tempo} BPM</li>
+          <li>{playbackLabel}</li>
           {(song.tags ?? []).map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
@@ -503,6 +532,7 @@ function SongPractice({
         playing={player.playing}
         bpm={bpm}
         songBpm={song.tempo}
+        verseLabel={verseLabel}
         onBpm={setBpm}
         onToggle={player.toggle}
         onPrev={() => {

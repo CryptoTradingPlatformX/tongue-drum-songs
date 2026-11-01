@@ -4,18 +4,24 @@ type Props = {
   playing: boolean;
   bpm: number;
   songBpm: number;
+  verseLabel?: string | null;
   onBpm: (bpm: number) => void;
   onToggle: () => void;
   onPrev: () => void;
   onNext: () => void;
 };
 
-export function PlayerBar({ index, total, playing, bpm, songBpm, onBpm, onToggle, onPrev, onNext }: Props) {
+export function PlayerBar({ index, total, playing, bpm, songBpm, verseLabel, onBpm, onToggle, onPrev, onNext }: Props) {
   const atEnd = index >= total - 1 && index >= 0 && !playing;
   const position = index < 0 ? "Ready" : `Note ${index + 1} of ${total}`;
 
   return (
     <div className="player-dock" data-sticky-chrome>
+      {verseLabel ? (
+        <p className="verse-indicator" aria-live="polite">
+          {verseLabel}
+        </p>
+      ) : null}
       <div className="player" role="group" aria-label="Practice">
         <div className="transport">
           <button type="button" onClick={onPrev} disabled={total === 0}>

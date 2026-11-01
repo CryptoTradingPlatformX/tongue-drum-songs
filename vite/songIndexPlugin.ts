@@ -1,6 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import type { Plugin } from "vite";
+import { arrangementBeats, expandArrangement, playbackSeconds } from "../src/lib/songForm";
+import type { DrumKey, Song } from "../src/lib/types.ts";
 
 export const SONG_INDEX_ID = "virtual:song-index";
 const RESOLVED_ID = "\0virtual:song-index";
@@ -14,6 +16,7 @@ export type SongIndexRecord = {
   timeSignature: string;
   tempo: number;
   minLayout: { C: string; D: string };
+  durationSeconds: { C: number; D: number };
 };
 
 function readJson(file: string): Record<string, unknown> {
@@ -38,6 +41,8 @@ export function readSongIndex(root: string): SongIndexRecord[] {
     const song = readJson(file);
     const arrangements = song.arrangements as { C?: { minLayout?: unknown }; D?: { minLayout?: unknown } } | undefined;
     const tags = Array.isArray(song.tags) ? song.tags.filter((tag): tag is string => typeof tag === "string") : [];
+    const tempo = typeof song.tempo === "number" ? song.tempo : 0;
+    const duration = (key: DrumKey) => playbackSeconds(arrangementBeats(expandArrangement(song as Song, key)), tempo);
     return {
       id: String(song.id ?? ""),
       title: String(song.title ?? ""),
@@ -45,11 +50,12 @@ export function readSongIndex(root: string): SongIndexRecord[] {
       difficulty: String(song.difficulty ?? ""),
       tags,
       timeSignature: String(song.timeSignature ?? ""),
-      tempo: typeof song.tempo === "number" ? song.tempo : 0,
+      tempo,
       minLayout: {
         C: asLayout(arrangements?.C?.minLayout, name, "C"),
         D: asLayout(arrangements?.D?.minLayout, name, "D"),
       },
+      durationSeconds: { C: duration("C"), D: duration("D") },
     };
   });
 }
