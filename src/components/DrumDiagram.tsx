@@ -1,5 +1,6 @@
 import { useId } from "react";
-import { layoutById, noteName, pitchCompare } from "../lib/music";
+import type { KeyboardEvent, MouseEvent } from "react";
+import { layoutById, noteName, pitchCompare, tonguePhrase } from "../lib/music";
 import type { DrumKey, LayoutId, Tongue } from "../lib/types";
 import { Drum15Diagram } from "./Drum15Diagram";
 import { paintFill, paintStroke, tonguePaint } from "./drumTone";
@@ -12,6 +13,27 @@ type Props = {
   onTongue?: (tongue: Tongue) => void;
   pitchLabel?: (tongue: Tongue) => string;
 };
+
+function activate(onTongue: ((tongue: Tongue) => void) | undefined, tongue: Tongue, drumKey: DrumKey) {
+  if (!onTongue) return {};
+  const press = () => onTongue(tongue);
+  return {
+    role: "button" as const,
+    tabIndex: 0,
+    className: "tongue-hit",
+    "aria-label": tonguePhrase(drumKey, tongue),
+    onClick: (event: MouseEvent<SVGElement>) => {
+      event.stopPropagation();
+      press();
+    },
+    onKeyDown: (event: KeyboardEvent<SVGElement>) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      event.stopPropagation();
+      press();
+    },
+  };
+}
 
 function sector(cx: number, cy: number, inner: number, outer: number, start: number, end: number): string {
   const large = end - start > Math.PI ? 1 : 0;
@@ -52,7 +74,13 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
   const nameOffset = count >= 13 ? 15 : 18;
 
   return (
-    <svg className="drum-svg" viewBox="0 0 400 400" role={onTongue ? "group" : "img"} aria-hidden={onTongue ? undefined : true}>
+    <svg
+      className={onTongue ? "drum-svg is-interactive" : "drum-svg"}
+      viewBox="0 0 400 400"
+      role={onTongue ? "group" : "img"}
+      aria-hidden={onTongue ? undefined : true}
+      aria-label={onTongue ? `${drumKey} drum` : undefined}
+    >
       <defs>
         <radialGradient id={`${rawId}-wood`} cx="50%" cy="42%" r="60%">
           <stop offset="0%" stopColor="#c9844a" />
@@ -87,26 +115,13 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
               stroke={paintStroke(paint, "#7a5332")}
               strokeWidth={lit ? 3 : 1.4}
               filter={lit ? `url(#${rawId}-glow)` : undefined}
-              style={onTongue ? { cursor: "pointer" } : undefined}
-              role={onTongue ? "button" : undefined}
-              tabIndex={onTongue ? 0 : undefined}
-              aria-label={onTongue ? `${tongue.deg} ${pitchName(drumKey, tongue, pitchLabel)}` : undefined}
-              onClick={onTongue ? () => onTongue(tongue) : undefined}
-              onKeyDown={
-                onTongue
-                  ? (event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        onTongue(tongue);
-                      }
-                    }
-                  : undefined
-              }
+              {...activate(onTongue, tongue, drumKey)}
             />
             {tongue.oct !== 0 ? (
               <circle cx={cx + dotR * Math.cos(mid)} cy={cy + dotR * Math.sin(mid)} r="2.5" fill="#3c2614" style={{ pointerEvents: "none" }} />
             ) : null}
             <text
+              className="tongue-label"
               style={{ pointerEvents: "none" }}
               x={numberX}
               y={numberY}
@@ -120,6 +135,7 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
               {tongue.deg}
             </text>
             <text
+              className="tongue-label"
               style={{ pointerEvents: "none" }}
               x={cx + nameR * Math.cos(mid)}
               y={cy + nameR * Math.sin(mid)}

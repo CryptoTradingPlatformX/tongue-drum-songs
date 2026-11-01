@@ -9,7 +9,7 @@ One file per song: `songs/<id>.json`. All fields required unless marked optional
   "title": "Ode to Joy",
   "artist": "Ludwig van Beethoven",          // composer/performer or "Traditional"
   "source": { "name": "IMSLP score / Mutopia / etc.", "url": "https://..." },
-  "license": "public-domain",                // public-domain | CC0 | CC-BY-4.0 | CC-BY-SA-4.0 | other-permissive
+  "license": "public-domain",                // public-domain | CC0 | CC-BY-4.0 | CC-BY-SA-4.0 | other-permissive | personal
   "attribution": "Melody: Beethoven (1824), public domain. Arrangement: Tongue Drum Song Finder.",
   "difficulty": "easy",                      // easy | medium | hard
   "tags": ["classical", "kids"],            // optional
@@ -37,7 +37,9 @@ One file per song: `songs/<id>.json`. All fields required unless marked optional
 ```
 
 Rules
-- Only public-domain or properly (openly) licensed melodies. `source.url` must point to where the melody/score came from.
+- Only public-domain or properly (openly) licensed melodies belong in `songs/`. `source.url` must point to where the melody/score came from.
+- `personal` is for songs kept on the player's own device (My Songs). Those files are not part of the library. `attribution` for a personal song is `Created by you`, and the id starts with `my-`.
+- An arrangement is either playable (`minLayout` + `lines`) or unavailable (`unavailable.notes`, and no lines). Unavailable means those numbered notes are not on that drum, so the file lists them instead of storing pitches the drum cannot play.
 - Octave: oct 0 = the drum's main octave (8-note drum: 1 2 3 4 5 6 7 1̇ where 1̇ is deg 1, oct +1). Extended layouts add notes below (oct -1) and/or above (oct +1).
 - `dur` is in beats (0.5 = eighth note in 4/4, 1.5 = dotted quarter, 2 = half). `dur` 1/3 (often written `0.333...`) is a triplet eighth; three in a row fill one quarter-beat.
 - No accidentals: anything off the major scale must be simplified away by the arranger.

@@ -8,6 +8,8 @@ type Props = {
   drumKey: DrumKey;
   activeLine: number;
   activeNote: number;
+  pickedLine?: number;
+  pickedNote?: number;
   markedLine: number;
   missing: Set<string>;
   onSelect: (lineIndex: number, noteIndex: number) => void;
@@ -77,7 +79,18 @@ function sliceGroups(slices: DisplaySlice[]): Array<{ kind: "triplet" | "note"; 
   return groups;
 }
 
-export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote, markedLine, missing, onSelect }: Props) {
+export function Notation({
+  lines,
+  timeSignature,
+  drumKey,
+  activeLine,
+  activeNote,
+  pickedLine = -1,
+  pickedNote = -1,
+  markedLine,
+  missing,
+  onSelect,
+}: Props) {
   return (
     <div className={`notation meter-${timeSignature.replace("/", "")}`} aria-label={`Numbered notation in ${timeSignature}`}>
       <ol className="phrases">
@@ -114,6 +127,7 @@ export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote
                                     slice={slice}
                                     drumKey={drumKey}
                                     active={slice.lineIndex === activeLine && slice.noteIndex === activeNote}
+                                    picked={slice.lineIndex === pickedLine && slice.noteIndex === pickedNote}
                                     missing={noteMissing(slice, missing)}
                                     onSelect={onSelect}
                                   />
@@ -126,6 +140,7 @@ export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote
                               slice={item.slices[0]}
                               drumKey={drumKey}
                               active={item.slices[0].lineIndex === activeLine && item.slices[0].noteIndex === activeNote}
+                              picked={item.slices[0].lineIndex === pickedLine && item.slices[0].noteIndex === pickedNote}
                               missing={noteMissing(item.slices[0], missing)}
                               onSelect={onSelect}
                             />
@@ -173,12 +188,14 @@ function NoteButton({
   slice,
   drumKey,
   active,
+  picked,
   missing,
   onSelect,
 }: {
   slice: DisplaySlice;
   drumKey: DrumKey;
   active: boolean;
+  picked: boolean;
   missing: boolean;
   onSelect: (lineIndex: number, noteIndex: number) => void;
 }) {
@@ -200,6 +217,7 @@ function NoteButton({
       className={[
         "note",
         active ? "is-active" : "",
+        picked && !active ? "is-picked" : "",
         missing ? "is-missing" : "",
         slice.note.rest ? "is-rest" : "",
         slice.tie ? `tie-${slice.tie}` : "",

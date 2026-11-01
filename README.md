@@ -27,6 +27,8 @@ npm run preview
 5. Only public-domain or openly licensed melodies. `source.url` should point at the score or transcription you used, and `attribution` is shown on the song page.
 6. Run `npm run validate:songs`. The app does not need a hand-written index. The dev server and production build read `songs/*.json` and publish a lightweight list (title, artist, tags, difficulty, tempo, and the smallest drum for each key). Opening a tune loads that song file on its own.
 
+My Songs (`#/my-songs`) keeps tunes in this browser only. They use the same song document, with ids starting `my-`, license `personal`, and attribution `Created by you`. Nothing in My Songs is uploaded.
+
 Drum maps live in [data/layouts.json](data/layouts.json).
 
 | Layout | Tongues | Notes |

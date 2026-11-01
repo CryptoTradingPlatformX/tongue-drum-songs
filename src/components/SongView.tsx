@@ -42,6 +42,7 @@ const LICENSE_LABEL: Record<License, string> = {
   "CC-BY-4.0": "CC BY 4.0",
   "CC-BY-SA-4.0": "CC BY-SA 4.0",
   "other-permissive": "Other permissive license",
+  personal: "Personal",
 };
 
 type Props = {
