@@ -79,12 +79,21 @@ describe("library browsing", () => {
     );
     expect(eitherTag.map((song) => song.id).sort()).toEqual(["alias", "primary"]);
     const sinatra = categoryById("sinatra-standards");
-    expect(sinatra?.tags).toEqual(["sinatra"]);
+    expect(sinatra?.tags).toEqual(["sinatra", "sinatra-songbook"]);
     expect(sinatra?.subtitle).toBe(
       "Public-domain standards Frank Sinatra sang, arranged from the original sheet music.",
     );
     expect(sinatra?.emptyMessage).toBe("Sinatra Standards songs are coming soon");
     expect(filterSongs(songs, { ...base, categoryTags: sinatra?.tags })).toEqual([]);
+    const sinatraEither = filterSongs(
+      [
+        { id: "sinatra", title: "Sinatra", artist: "A", difficulty: "easy", tags: ["sinatra"] },
+        { id: "songbook", title: "Songbook", artist: "B", difficulty: "easy", tags: ["sinatra-songbook"] },
+        { id: "other-tag", title: "Other", artist: "C", difficulty: "easy", tags: ["folk"] },
+      ],
+      { ...base, categoryTags: sinatra?.tags },
+    );
+    expect(sinatraEither.map((song) => song.id).sort()).toEqual(["sinatra", "songbook"]);
     expect(LIBRARY_CATEGORIES.map((category) => category.id)).toEqual([
       "hymns",
       "folk",

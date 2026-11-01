@@ -29,7 +29,7 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
   {
     id: "sinatra-standards",
     label: "Sinatra Standards",
-    tags: ["sinatra"],
+    tags: ["sinatra", "sinatra-songbook"],
     emptyMessage: "Sinatra Standards songs are coming soon",
     subtitle: "Public-domain standards Frank Sinatra sang, arranged from the original sheet music.",
   },
