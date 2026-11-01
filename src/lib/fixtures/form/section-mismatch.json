@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "id": "multi-verse-fixture",
+  "title": "Multi-verse fixture",
+  "artist": "Test",
+  "source": {
+    "name": "Test fixture",
+    "url": "https://example.com/multi-verse-fixture"
+  },
+  "license": "public-domain",
+  "attribution": "Test fixture for multi-verse playback. Not part of the song library.",
+  "difficulty": "easy",
+  "tags": [
+    "test"
+  ],
+  "tempo": 200,
+  "timeSignature": "4/4",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Line A one",
+        "Line B one"
+      ],
+      [
+        "Line A two",
+        "Line B two"
+      ],
+      [
+        "Line A three",
+        "Line B three"
+      ],
+      [
+        "Line A four",
+        "Line B four"
+      ],
+      [
+        "Line A five",
+        "Line B five"
+      ]
+    ]
+  },
+  "arrangements": {
+    "C": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "section": "verse",
+          "lyric": "Line A one",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "section": "refrain",
+          "lyric": "Sing the refrain",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "section": "verse",
+          "lyric": "Line B one",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "8",
+      "lines": [
+        {
+          "section": "verse",
+          "lyric": "Line A one",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "section": "verse",
+          "lyric": "Sing the refrain",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "section": "verse",
+          "lyric": "Line B one",
+          "notes": [
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "verified": true
+}

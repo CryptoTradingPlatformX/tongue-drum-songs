@@ -353,7 +353,21 @@ main.has-player { padding-bottom: 8.5rem; }
   background: #fff6e4;
   box-shadow: inset 4px 0 0 var(--copper);
 }
+.section-heading {
+  margin: 0.15rem 0 0.2rem;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 .lyric { margin: 0 0 0.25rem; font-style: italic; }
+.verse-indicator {
+  width: min(1480px, calc(100% - 2rem));
+  margin: 0 auto 0.35rem;
+  text-align: center;
+  font-weight: 700;
+}
 .bars {
   display: flex;
   flex-wrap: wrap;
@@ -610,7 +624,7 @@ main.has-player { padding-bottom: 8.5rem; }
   font-size: 0.92rem;
   padding-bottom: 1.5rem;
 }
-main.has-player + .site-footer { padding-bottom: calc(7.5rem + env(safe-area-inset-bottom, 0px)); }
+main.has-player + .site-footer { padding-bottom: calc(9rem + env(safe-area-inset-bottom, 0px)); }
 
 :focus-visible { outline: 3px solid var(--copper-bright); outline-offset: 2px; }
 .sr-only {

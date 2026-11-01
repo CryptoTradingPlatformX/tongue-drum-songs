@@ -68,6 +68,23 @@
         "D": { "$ref": "#/$defs/arrangement" }
       }
     },
+    "form": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Optional play order. Each entry repeats a section. verse selects lyrics when that section is listed in verses.",
+      "items": { "$ref": "#/$defs/formEntry" }
+    },
+    "verses": {
+      "type": "object",
+      "description": "Optional lyrics by section. verses[section][n-1] is verse n, one string per line of that section. An empty string means no lyric.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
     "arrangerNotes": { "type": "string" },
     "verified": { "type": "boolean" }
   },
@@ -91,6 +108,11 @@
       "required": ["notes"],
       "properties": {
         "lyric": { "type": "string" },
+        "section": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Optional section slug. Required on every line when form is set."
+        },
         "notes": {
           "type": "array",
           "minItems": 1,
@@ -120,6 +142,15 @@
           }
         }
       ]
+    },
+    "formEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["section"],
+      "properties": {
+        "section": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "verse": { "type": "integer", "minimum": 1 }
+      }
     },
     "dur": {
       "type": "number",

@@ -18,7 +18,14 @@ export type SongNote = {
 
 export type SongLine = {
   lyric?: string;
+  /** Optional section slug. Required on every line when the song has form. */
+  section?: string;
   notes: SongNote[];
+};
+
+export type FormEntry = {
+  section: string;
+  verse?: number;
 };
 
 export type Arrangement = {
@@ -39,6 +46,10 @@ export type Song = {
   tempo: number;
   timeSignature: TimeSignature;
   arrangements: { C: Arrangement; D: Arrangement };
+  /** Play order. Absent means the arrangement lines play once, as written. */
+  form?: FormEntry[];
+  /** Extra lyrics keyed by section. verses[section][n - 1] is verse n. */
+  verses?: Record<string, string[][]>;
   arrangerNotes?: string;
   verified: boolean;
 };

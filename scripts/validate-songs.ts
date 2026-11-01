@@ -13,6 +13,7 @@ import {
   totalBeats,
   type NoteEvent,
 } from "../src/lib/music.ts";
+import { formProblems } from "../src/lib/songForm.ts";
 import type { LayoutId, Song } from "../src/lib/types.ts";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -105,6 +106,9 @@ function checkSong(file: string, data: unknown): Failure[] {
         error: `total ${raw} beats differs from rounded ${formatBeats(rounded)} by more than ${1e-6}`,
       });
     }
+  }
+  for (const problem of formProblems(song)) {
+    failures.push({ file, field: problem.field, error: problem.error });
   }
   return failures;
 }

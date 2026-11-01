@@ -52,6 +52,7 @@ export type DisplayBar = {
 
 export type DisplayLine = {
   lyric?: string;
+  heading?: string;
   bars: DisplayBar[];
 };
 
@@ -459,7 +460,7 @@ export function measureBars(lines: DisplayLine[]): BarMeasure[] {
 }
 
 export function layoutNotation(
-  lines: { lyric?: string; notes: NoteEvent[] }[],
+  lines: { lyric?: string; notes: NoteEvent[]; heading?: string }[],
   timeSignature: TimeSignature | string,
 ): DisplayLine[] {
   const barBeats = beatsPerBar(timeSignature);
@@ -511,7 +512,7 @@ export function layoutNotation(
       bar.beats = bar.slices.reduce((sum, slice) => sum + beatsToTicks(slice.dur), 0) / BEAT_TICKS;
       markTriplets(bar.slices);
     }
-    return { lyric: line.lyric, bars };
+    return { lyric: line.lyric, heading: line.heading, bars };
   });
 }
 

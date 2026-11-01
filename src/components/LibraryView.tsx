@@ -9,6 +9,7 @@ import {
   type LibraryUrlState,
 } from "../lib/libraryUrl";
 import { songNeedsBiggerLayout } from "../lib/music";
+import { formatClock } from "../lib/songForm";
 import { scrollBehavior } from "../lib/scroll";
 import type { SongSummary } from "../lib/songs";
 import type { Difficulty, DrumKey, LayoutId } from "../lib/types";
@@ -270,6 +271,7 @@ function SongCard({ song, drumKey, layout }: { song: SongSummary; drumKey: DrumK
         <span className={`diff diff-${song.difficulty}`}>{labelDifficulty(song.difficulty)}</span>
         <span>{song.timeSignature}</span>
         <span>{song.tempo} BPM</span>
+        <span>{formatClock(song.durationSeconds[drumKey])}</span>
       </p>
       {song.tags.length > 0 ? <p className="card-tags">{song.tags.join(" · ")}</p> : null}
       <p className={fits ? "fit is-fit" : "fit is-short"}>{fit}</p>
