@@ -5,6 +5,8 @@ export type LibraryCategory = {
   tags: string[];
   /** Shown when the library has no songs in this category yet. */
   emptyMessage?: string;
+  /** Short line under the chips while this category is selected. */
+  subtitle?: string;
 };
 
 export const LIBRARY_CATEGORIES: LibraryCategory[] = [
@@ -23,6 +25,13 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
     label: "Black Composers",
     tags: ["african-american-composers", "black-composers"], // primary tag, plus the shorter alias
     emptyMessage: "Black Composers songs are coming soon",
+  },
+  {
+    id: "sinatra-standards",
+    label: "Sinatra Standards",
+    tags: ["sinatra"],
+    emptyMessage: "Sinatra Standards songs are coming soon",
+    subtitle: "Public-domain standards Frank Sinatra sang, arranged from the original sheet music.",
   },
 ];
 

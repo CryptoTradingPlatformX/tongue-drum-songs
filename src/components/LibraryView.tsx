@@ -139,6 +139,7 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
             );
           })}
         </nav>
+        {category?.subtitle ? <p className="category-subtitle">{category.subtitle}</p> : null}
         <label className="search">
           <span>Search</span>
           <input

@@ -213,6 +213,7 @@ main.has-player { padding-bottom: 8.5rem; }
   text-decoration: none;
 }
 .category.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.category-subtitle { margin: 0; color: var(--ink-soft); max-width: 40rem; }
 .tag-filter { display: grid; gap: 0.35rem; }
 .tag-filter p { margin: 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }

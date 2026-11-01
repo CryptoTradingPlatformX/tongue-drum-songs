@@ -25,6 +25,7 @@ describe("library URL", () => {
     expect(libraryHash(jazz)).toBe("#/?category=jazz-blues");
     expect(parseLibraryHash("#/library?category=jazz-blues").category).toBe("jazz-blues");
     expect(libraryHash(parseLibraryHash("#/?category=black-composers"))).toBe("#/?category=black-composers");
+    expect(libraryHash(parseLibraryHash("#/?category=sinatra-standards"))).toBe("#/?category=sinatra-standards");
     expect(parseLibraryHash("#/?category=nope").category).toBe("");
   });
 });

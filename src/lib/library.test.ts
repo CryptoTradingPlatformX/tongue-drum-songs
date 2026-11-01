@@ -78,6 +78,13 @@ describe("library browsing", () => {
       { ...base, categoryTags: blackComposers?.tags },
     );
     expect(eitherTag.map((song) => song.id).sort()).toEqual(["alias", "primary"]);
+    const sinatra = categoryById("sinatra-standards");
+    expect(sinatra?.tags).toEqual(["sinatra"]);
+    expect(sinatra?.subtitle).toBe(
+      "Public-domain standards Frank Sinatra sang, arranged from the original sheet music.",
+    );
+    expect(sinatra?.emptyMessage).toBe("Sinatra Standards songs are coming soon");
+    expect(filterSongs(songs, { ...base, categoryTags: sinatra?.tags })).toEqual([]);
     expect(LIBRARY_CATEGORIES.map((category) => category.id)).toEqual([
       "hymns",
       "folk",
@@ -85,6 +92,7 @@ describe("library browsing", () => {
       "american-classics",
       "jazz-blues",
       "black-composers",
+      "sinatra-standards",
     ]);
     const hymns = filterSongs(songs, { ...base, categoryTags: categoryById("hymns")?.tags });
     expect(hymns.length).toBeGreaterThan(0);
