@@ -9,6 +9,7 @@ type Props = {
   drumKey: DrumKey;
   active: Tongue | null;
   chordTones?: Tongue[];
+  onTongue?: (tongue: Tongue) => void;
 };
 
 function sector(cx: number, cy: number, inner: number, outer: number, start: number, end: number): string {
@@ -24,12 +25,12 @@ function sector(cx: number, cy: number, inner: number, outer: number, start: num
   return `M ${x0} ${y0} A ${outer} ${outer} 0 ${large} 1 ${x1} ${y1} L ${x2} ${y2} A ${inner} ${inner} 0 ${large} 0 ${x3} ${y3} Z`;
 }
 
-export function DrumDiagram({ layoutId, drumKey, active, chordTones }: Props) {
-  if (layoutId === "15") return <Drum15Diagram drumKey={drumKey} active={active} chordTones={chordTones} />;
-  return <SchematicDrum layoutId={layoutId} drumKey={drumKey} active={active} chordTones={chordTones} />;
+export function DrumDiagram({ layoutId, drumKey, active, chordTones, onTongue }: Props) {
+  if (layoutId === "15") return <Drum15Diagram drumKey={drumKey} active={active} chordTones={chordTones} onTongue={onTongue} />;
+  return <SchematicDrum layoutId={layoutId} drumKey={drumKey} active={active} chordTones={chordTones} onTongue={onTongue} />;
 }
 
-function SchematicDrum({ layoutId, drumKey, active, chordTones }: Props) {
+function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue }: Props) {
   const rawId = useId().replace(/:/g, "");
   const layout = layoutById(layoutId);
   const tongues = [...layout.tongues].sort(pitchCompare);
@@ -44,7 +45,7 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones }: Props) {
   const nameOffset = count >= 13 ? 15 : 18;
 
   return (
-    <svg className="drum-svg" viewBox="0 0 400 400" role="img" aria-hidden="true">
+    <svg className="drum-svg" viewBox="0 0 400 400" role={onTongue ? "group" : "img"} aria-hidden={onTongue ? undefined : true}>
       <defs>
         <radialGradient id={`${rawId}-wood`} cx="50%" cy="42%" r="60%">
           <stop offset="0%" stopColor="#c9844a" />
@@ -79,11 +80,27 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones }: Props) {
               stroke={paintStroke(paint, "#7a5332")}
               strokeWidth={lit ? 3 : 1.4}
               filter={lit ? `url(#${rawId}-glow)` : undefined}
+              style={onTongue ? { cursor: "pointer" } : undefined}
+              role={onTongue ? "button" : undefined}
+              tabIndex={onTongue ? 0 : undefined}
+              aria-label={onTongue ? `${tongue.deg} ${noteName(drumKey, tongue.deg, tongue.oct)}` : undefined}
+              onClick={onTongue ? () => onTongue(tongue) : undefined}
+              onKeyDown={
+                onTongue
+                  ? (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        onTongue(tongue);
+                      }
+                    }
+                  : undefined
+              }
             />
             {tongue.oct !== 0 ? (
-              <circle cx={cx + dotR * Math.cos(mid)} cy={cy + dotR * Math.sin(mid)} r="2.5" fill="#3c2614" />
+              <circle cx={cx + dotR * Math.cos(mid)} cy={cy + dotR * Math.sin(mid)} r="2.5" fill="#3c2614" style={{ pointerEvents: "none" }} />
             ) : null}
             <text
+              style={{ pointerEvents: "none" }}
               x={numberX}
               y={numberY}
               textAnchor="middle"
@@ -96,6 +113,7 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones }: Props) {
               {tongue.deg}
             </text>
             <text
+              style={{ pointerEvents: "none" }}
               x={cx + nameR * Math.cos(mid)}
               y={cy + nameR * Math.sin(mid)}
               textAnchor="middle"
