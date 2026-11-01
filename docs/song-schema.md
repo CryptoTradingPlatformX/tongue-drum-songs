@@ -41,6 +41,7 @@ Rules
 - Octave: oct 0 = the drum's main octave (8-note drum: 1 2 3 4 5 6 7 1̇ where 1̇ is deg 1, oct +1). Extended layouts add notes below (oct -1) and/or above (oct +1).
 - `dur` is in beats (0.5 = eighth note in 4/4, 1.5 = dotted quarter, 2 = half). `dur` 1/3 (often written `0.333...`) is a triplet eighth; three in a row fill one quarter-beat.
 - No accidentals: anything off the major scale must be simplified away by the arranger.
+- Do not add a per-note or per-line `note` for blue notes or other simplifications. Song Finder mentions those in `attribution` or in the optional `arrangerNotes` text. The song page shows `arrangerNotes` under the title as “Arrangement notes”.
 
 Time signatures
 - `timeSignature` must be one of `"4/4"`, `"3/4"`, `"2/4"`, `"2/2"`, `"3/2"`, `"4/2"`, `"6/4"`, `"6/8"`, `"9/8"`, or `"12/8"`.

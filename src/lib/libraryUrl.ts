@@ -1,5 +1,6 @@
-import type { Difficulty } from "./types";
+import { categoryById } from "./categories";
 import type { LibrarySort } from "./library";
+import type { Difficulty } from "./types";
 
 export const LIBRARY_SESSION_KEY = "tongue-drum-library";
 export const SEARCH_DEBOUNCE_MS = 200;
@@ -8,6 +9,7 @@ export type LibraryUrlState = {
   text: string;
   difficulty: Difficulty | "all";
   tags: string[];
+  category: string;
   fitsOnly: boolean;
   sort: LibrarySort;
   page: number;
@@ -17,6 +19,7 @@ export const DEFAULT_LIBRARY_URL: LibraryUrlState = {
   text: "",
   difficulty: "all",
   tags: [],
+  category: "",
   fitsOnly: false,
   sort: "title",
   page: 1,
@@ -34,7 +37,7 @@ export function parseLibraryHash(hash: string): LibraryUrlState {
   const raw = hash.replace(/^#/, "") || "/";
   const queryAt = raw.indexOf("?");
   const path = queryAt >= 0 ? raw.slice(0, queryAt) : raw;
-  if (path !== "/" && path !== "") return { ...DEFAULT_LIBRARY_URL };
+  if (path !== "/" && path !== "" && path !== "/library") return { ...DEFAULT_LIBRARY_URL };
   const params = new URLSearchParams(queryAt >= 0 ? raw.slice(queryAt + 1) : "");
   const difficulty = params.get("difficulty") ?? "";
   const sort = params.get("sort") ?? "";
@@ -43,10 +46,12 @@ export function parseLibraryHash(hash: string): LibraryUrlState {
     .split(",")
     .map((tag) => tag.trim())
     .filter(Boolean);
+  const category = params.get("category") ?? "";
   return {
     text: params.get("q") ?? "",
     difficulty: isDifficulty(difficulty) ? difficulty : "all",
     tags,
+    category: categoryById(category) ? category : "",
     fitsOnly: params.get("fits") === "1",
     sort: isSort(sort) ? sort : "title",
     page: Number.isFinite(page) && page > 1 ? Math.floor(page) : 1,
@@ -59,6 +64,7 @@ export function libraryHash(state: LibraryUrlState): string {
   if (text) params.set("q", text);
   if (state.difficulty !== "all") params.set("difficulty", state.difficulty);
   if (state.tags.length > 0) params.set("tags", state.tags.join(","));
+  if (state.category) params.set("category", state.category);
   if (state.fitsOnly) params.set("fits", "1");
   if (state.sort !== "title") params.set("sort", state.sort);
   if (state.page > 1) params.set("page", String(Math.floor(state.page)));

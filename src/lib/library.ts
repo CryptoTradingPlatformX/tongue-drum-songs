@@ -7,6 +7,8 @@ export type LibraryQuery = {
   text: string;
   difficulty: Difficulty | "all";
   tags: string[];
+  /** When set, the song must have at least one of these tags. */
+  categoryTags?: string[];
   fitsOnly: boolean;
   sort: LibrarySort;
   drumKey: DrumKey;
@@ -61,6 +63,9 @@ export function filterSongs<T extends LibraryEntry>(songs: T[], query: LibraryQu
     if (needle && !haystack(song).includes(needle)) return false;
     if (query.difficulty !== "all" && song.difficulty !== query.difficulty) return false;
     if (query.tags.length > 0 && !query.tags.some((tag) => song.tags?.includes(tag))) return false;
+    if (query.categoryTags && query.categoryTags.length > 0 && !query.categoryTags.some((tag) => song.tags?.includes(tag))) {
+      return false;
+    }
     if (query.fitsOnly && !entryFits(song, query.drumKey, query.layout)) return false;
     return true;
   });

@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { LIBRARY_CATEGORIES, categoryById } from "./categories";
 import { filterSongs, paginate, songFitsDrum, type LibraryEntry } from "./library";
 import type { Difficulty, LayoutId, Song } from "./types";
 
@@ -59,6 +60,52 @@ describe("library browsing", () => {
     expect(onD11).toEqual([]);
     const onC11 = filterSongs(songs, { ...base, text: "yankee", fitsOnly: true, drumKey: "C", layout: "11" });
     expect(onC11.map((song) => song.id)).toEqual(["yankee-doodle"]);
+
+    const jazz = categoryById("jazz-blues");
+    expect(jazz?.tags).toEqual(["jazz", "blues", "ragtime"]);
+    expect(jazz?.emptyMessage).toBe("Jazz & Blues songs are coming soon");
+    expect(filterSongs(songs, { ...base, categoryTags: jazz?.tags })).toEqual([]);
+    const blackComposers = categoryById("black-composers");
+    expect(blackComposers?.tags).toEqual(["african-american-composers", "black-composers"]);
+    expect(blackComposers?.emptyMessage).toBe("Black Composers songs are coming soon");
+    expect(filterSongs(songs, { ...base, categoryTags: blackComposers?.tags })).toEqual([]);
+    const eitherTag = filterSongs(
+      [
+        { id: "primary", title: "Primary", artist: "A", difficulty: "easy", tags: ["african-american-composers"] },
+        { id: "alias", title: "Alias", artist: "B", difficulty: "easy", tags: ["black-composers"] },
+        { id: "other", title: "Other", artist: "C", difficulty: "easy", tags: ["folk"] },
+      ],
+      { ...base, categoryTags: blackComposers?.tags },
+    );
+    expect(eitherTag.map((song) => song.id).sort()).toEqual(["alias", "primary"]);
+    const sinatra = categoryById("sinatra-standards");
+    expect(sinatra?.tags).toEqual(["sinatra", "sinatra-songbook"]);
+    expect(sinatra?.subtitle).toBe(
+      "Public-domain standards Frank Sinatra sang, arranged from the original sheet music.",
+    );
+    expect(sinatra?.emptyMessage).toBe("Sinatra Standards songs are coming soon");
+    expect(filterSongs(songs, { ...base, categoryTags: sinatra?.tags })).toEqual([]);
+    const sinatraEither = filterSongs(
+      [
+        { id: "sinatra", title: "Sinatra", artist: "A", difficulty: "easy", tags: ["sinatra"] },
+        { id: "songbook", title: "Songbook", artist: "B", difficulty: "easy", tags: ["sinatra-songbook"] },
+        { id: "other-tag", title: "Other", artist: "C", difficulty: "easy", tags: ["folk"] },
+      ],
+      { ...base, categoryTags: sinatra?.tags },
+    );
+    expect(sinatraEither.map((song) => song.id).sort()).toEqual(["sinatra", "songbook"]);
+    expect(LIBRARY_CATEGORIES.map((category) => category.id)).toEqual([
+      "hymns",
+      "folk",
+      "holiday",
+      "american-classics",
+      "jazz-blues",
+      "black-composers",
+      "sinatra-standards",
+    ]);
+    const hymns = filterSongs(songs, { ...base, categoryTags: categoryById("hymns")?.tags });
+    expect(hymns.length).toBeGreaterThan(0);
+    expect(hymns.every((song) => song.tags?.includes("hymn"))).toBe(true);
 
     const hymnOn8 = filterSongs(songs, { ...base, tags: ["hymn"], fitsOnly: true, drumKey: "C", layout: "8" });
     expect(hymnOn8.every((song) => songFitsDrum(song, "C", "8") && song.tags?.includes("hymn"))).toBe(true);
