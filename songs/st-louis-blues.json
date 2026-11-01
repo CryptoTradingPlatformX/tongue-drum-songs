@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 1,
+  "id": "st-louis-blues",
+  "title": "St. Louis Blues",
+  "artist": "W. C. Handy",
+  "source": {
+    "name": "Original sheet music, Pace & Handy Music Co., Memphis, 1914 (Internet Archive, via Wikimedia Commons)",
+    "url": "https://commons.wikimedia.org/wiki/File:W._C._Handy_-_St._Louis_Blues_(1914_Pace_and_Handy).pdf"
+  },
+  "license": "public-domain",
+  "attribution": "Words and music: W. C. Handy (published 1914 by Pace & Handy Music Co., Memphis). Public domain in the US (published 1914). William Christopher Handy (1873-1958) was an African-American composer and bandleader known as the \"Father of the Blues\" (Wikipedia, 'W. C. Handy'). Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "hard",
+  "tags": [
+    "blues",
+    "african-american-composers"
+  ],
+  "tempo": 80,
+  "timeSignature": "2/4",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.25
+            },
+            {
+              "rest": true,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "notes": [
+            {
+              "rest": true,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.25
+            },
+            {
+              "rest": true,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "notes": [
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3.5
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.25
+            },
+            {
+              "rest": true,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "notes": [
+            {
+              "rest": true,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1.25
+            },
+            {
+              "rest": true,
+              "dur": 0.25
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3.5
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "notes": [
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1
+            },
+            {
+              "rest": true,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 3.5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "First strain, verse 1 (12 bars), vocal line, transcribed by visual reading of the original 1914 Pace & Handy sheet music (scan and LilyPond transcription saved in scores/b9/scan/), key G major, 2/4 (durations in quarter-note beats). Blue notes replaced by the nearest drum note: the three B flats (the blue 3rd, b3, on 'sun' twice and on 'he') are played as 3 (B natural), keeping the falling 3-2-1 'sun go down'; the D sharp on the first 'de' is played as 5, (D). The printed grace note (A sharp) before 'I' is left out. Melody only: the 1914 lyrics are printed in dialect spelling, so they are left out and the tune is given without words. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "verified": true
+}
