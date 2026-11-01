@@ -2,6 +2,16 @@ let context: AudioContext | null = null;
 let silentLoop: HTMLAudioElement | null = null;
 let silentSrc: string | null = null;
 let lifecycleBound = false;
+let recording = false;
+const sounding: { stop: () => void }[] = [];
+
+/** Partials used by the preview tone. The microphone tests synthesize the same set. */
+export const TONGUE_PARTIALS: { ratio: number; gain: number; type: OscillatorType }[] = [
+  { ratio: 1, gain: 0.55, type: "sine" },
+  { ratio: 2.003, gain: 0.2, type: "sine" },
+  { ratio: 2.98, gain: 0.08, type: "sine" },
+  { ratio: 4.04, gain: 0.035, type: "triangle" },
+];
 
 type AudioSessionNavigator = Navigator & {
   audioSession?: { type: string };
@@ -36,6 +46,12 @@ function silentWavUrl(): string {
   return silentSrc;
 }
 
+export function audioContextReady(): AudioContext {
+  const ctx = audioContext();
+  resumeContext(ctx);
+  return ctx;
+}
+
 function audioContext(): AudioContext {
   if (!context) {
     const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -56,10 +72,33 @@ function resumeContext(ctx: AudioContext): void {
   if (pending && typeof pending.catch === "function") pending.catch(() => {});
 }
 
-function enablePlaybackSession(): void {
+function setAudioSession(type: "playback" | "play-and-record"): void {
   if (typeof navigator === "undefined") return;
   const session = (navigator as AudioSessionNavigator).audioSession;
-  if (session) session.type = "playback";
+  if (session) session.type = type;
+}
+
+function enablePlaybackSession(): void {
+  setAudioSession("playback");
+}
+
+/** Stop tones that are still ringing, and keep new ones from starting while the mic is open. */
+export function beginRecordingAudio(): void {
+  recording = true;
+  for (const node of sounding) {
+    try {
+      node.stop();
+    } catch {
+      // Already stopped.
+    }
+  }
+  sounding.length = 0;
+  setAudioSession("play-and-record");
+}
+
+export function endRecordingAudio(): void {
+  recording = false;
+  setAudioSession("playback");
 }
 
 function silentElement(): HTMLAudioElement {
@@ -117,7 +156,26 @@ export function unlockAudio(): void {
  * A short, bell-like tone built from a few slightly inharmonic partials.
  * Synthesized in the browser — no recorded samples.
  */
+export function playClick(): void {
+  if (recording) return;
+  const ctx = audioContext();
+  resumeContext(ctx);
+  const now = ctx.currentTime;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.frequency.setValueAtTime(1400, now);
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(0.35, now + 0.004);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(now);
+  osc.stop(now + 0.06);
+  sounding.push(osc);
+}
+
 export function playTongue(midi: number): void {
+  if (recording) return;
   const ctx = audioContext();
   resumeContext(ctx);
   const now = ctx.currentTime;
@@ -133,12 +191,7 @@ export function playTongue(midi: number): void {
   master.connect(filter);
   filter.connect(ctx.destination);
 
-  const partials: { ratio: number; gain: number; type: OscillatorType }[] = [
-    { ratio: 1, gain: 0.55, type: "sine" },
-    { ratio: 2.003, gain: 0.2, type: "sine" },
-    { ratio: 2.98, gain: 0.08, type: "sine" },
-    { ratio: 4.04, gain: 0.035, type: "triangle" },
-  ];
+  const partials = TONGUE_PARTIALS;
   const ring = 1.7;
   for (const partial of partials) {
     const osc = ctx.createOscillator();
@@ -152,6 +205,7 @@ export function playTongue(midi: number): void {
     gain.connect(master);
     osc.start(now);
     osc.stop(now + ring + 0.05);
+    sounding.push(osc);
   }
 
   const clickSeconds = 0.02;
@@ -174,4 +228,5 @@ export function playTongue(midi: number): void {
   noiseGain.connect(master);
   noise.start(now);
   noise.stop(now + clickSeconds);
+  sounding.push(noise);
 }

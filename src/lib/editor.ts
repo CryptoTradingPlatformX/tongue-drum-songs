@@ -2,7 +2,8 @@ import { DRUM_LAYOUT, generateArrangement, otherDrum, tongueLabel } from "./arra
 import { noteFitsLayout } from "./music";
 import type { DrumKey, SongNote, TimeSignature } from "./types";
 
-export type EditorLine = { lyric: string; notes: SongNote[] };
+export type EditorNote = SongNote & { uncertain?: boolean };
+export type EditorLine = { lyric: string; notes: EditorNote[] };
 
 export type NoteSelection = { line: number; note: number };
 
@@ -30,6 +31,7 @@ export type EditorAction =
   | { type: "setDuration"; duration: number }
   | { type: "select"; line: number; note: number }
   | { type: "appendTongue"; deg: number; oct: number }
+  | { type: "appendDetected"; deg: number; oct: number; dur: number; uncertain: boolean; previousDur?: number }
   | { type: "appendRest" }
   | { type: "insertNote" }
   | { type: "insertRest" }
@@ -144,6 +146,21 @@ export function editorReducer(state: EditorState, action: EditorAction): EditorS
       const lines = ensureLine(cloneLines(state.lines));
       const line = lines.length - 1;
       lines[line].notes.push(pitched(state.duration, action.deg, action.oct));
+      return commit(state, { lines, selection: { line, note: lines[line].notes.length - 1 } });
+    }
+    case "appendDetected": {
+      if (!fits(state, action.deg, action.oct)) return state;
+      const lines = ensureLine(cloneLines(state.lines));
+      const line = lines.length - 1;
+      if (action.previousDur != null && lines[line].notes.length > 0) {
+        const previous = lines[line].notes[lines[line].notes.length - 1];
+        lines[line].notes[lines[line].notes.length - 1] = { ...previous, dur: action.previousDur };
+      }
+      lines[line].notes.push(
+        action.uncertain
+          ? { deg: action.deg, oct: action.oct, dur: action.dur, uncertain: true }
+          : { deg: action.deg, oct: action.oct, dur: action.dur },
+      );
       return commit(state, { lines, selection: { line, note: lines[line].notes.length - 1 } });
     }
     case "appendRest": {

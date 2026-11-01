@@ -514,6 +514,11 @@ main.has-player { padding-bottom: 8.5rem; }
   border-color: var(--copper);
   background: #fff4df;
 }
+.note.is-uncertain {
+  border-style: dashed;
+  border-color: var(--warn-ink);
+  color: var(--warn-ink);
+}
 .note.is-missing { border-style: dashed; border-color: var(--warn-ink); }
 .note.is-rest { color: var(--ink-soft); }
 .glyph { display: flex; align-items: center; justify-content: space-evenly; width: 100%; gap: 0.25rem; }
@@ -854,6 +859,26 @@ a.button-link {
 .other-key h2 { margin: 0 0 0.25rem; font-size: 1.05rem; }
 .other-key p, .bar-status { margin: 0; }
 .other-key.is-unavailable { background: var(--warn-bg); border-color: #f0c09a; }
+.record-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.8rem;
+  align-items: end;
+  margin: 0.4rem 0 0.8rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  position: static;
+}
+.record-panel h2 { margin: 0; font-size: 1.05rem; flex: 1 1 100%; }
+.record-panel p { margin: 0; flex: 1 1 100%; color: var(--ink-soft); }
+.record-panel label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.92rem; }
+.record-panel select, .count-in { min-height: 44px; }
+.record-panel label.count-in { flex-direction: row; align-items: center; gap: 0.4rem; }
+.record-panel button { min-height: 44px; padding: 0.35rem 0.9rem; border-radius: 999px; border: 1px solid var(--copper); background: var(--paper); }
+.record-panel button[aria-pressed="true"] { background: var(--copper); color: #fffaf3; }
+.listening { color: var(--copper); font-weight: 700; }
 .save-notice { color: var(--moss); }
 .my-list { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
 .my-row {

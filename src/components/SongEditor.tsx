@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DRUM_LAYOUT, generateArrangement, otherDrum, tongueLabel } from "../lib/arrangements";
-import { playTongue, unlockAudio } from "../lib/audio";
+import { endRecordingAudio, playClick, playTongue, unlockAudio } from "../lib/audio";
+import { detectNotes, type DetectedNote } from "../lib/detect";
+import { describeMicError, listenToMicrophone, openMicrophone, recordingSession } from "../lib/microphone";
 import { createEditor, editorReducer, type EditorLine, type EditorState } from "../lib/editor";
 import {
   beatsPerBar,
@@ -18,6 +20,7 @@ import {
   totalBeats,
   type DisplayLine,
   type NoteEvent,
+  type PlayEvent,
 } from "../lib/music";
 import { allocateId, buildPersonalSong, editorLines, exportSongs, isPlayable, issuesForPersonalSong, playableDrum, slugifyTitle, type SongFile } from "../lib/mySongs";
 import {
@@ -185,8 +188,19 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
   const [state, dispatch] = useStateReducer(initial);
   const [errors, setErrors] = useState<string[]>([]);
   const [notice, setNotice] = useState<string | null>(null);
+  const [recording, setRecording] = useState(false);
+  const [recordError, setRecordError] = useState<string | null>(null);
+  const [countIn, setCountIn] = useState(false);
+  const [grid, setGrid] = useState(0.5);
+  const recordStop = useRef<(() => void) | null>(null);
+  const recordBuffer = useRef<Float32Array>(new Float32Array(0));
+  const recordCount = useRef(0);
+  const recordCancel = useRef(false);
+  const analyzed = useRef(0);
   const [bpm, setBpm] = useState(initial.tempo);
   const [speed, setSpeed] = useState(1);
+  const detectOptions = useRef({ drum: state.drum, bpm, grid });
+  detectOptions.current = { drum: state.drum, bpm, grid };
   const [manualPlaying, setManualPlaying] = useState(false);
   const [guide, setGuide] = useState<number | null>(null);
   const followedLine = useRef(-1);
@@ -218,19 +232,29 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
     [parsed, state.timeSignature],
   );
   const midiFor = useCallback(
-    (event: { rest: boolean; deg?: number; oct?: number }) => {
+    (event: PlayEvent) => {
       if (event.rest || event.deg == null || event.oct == null) return null;
+      if (state.lines[event.lineIndex]?.notes[event.noteIndex]?.uncertain) return null;
       if (!layoutById(DRUM_LAYOUT[state.drum]).tongues.some((tongue) => tongue.deg === event.deg && tongue.oct === event.oct)) {
         return null;
       }
       return noteMidi(state.drum, event.deg, event.oct);
     },
-    [state.drum],
+    [state.drum, state.lines],
   );
   const player = usePlayer(events, bpm, midiFor);
   const active = player.index >= 0 ? events[player.index] : undefined;
   const markedLine = player.playing || guide == null ? (active?.lineIndex ?? -1) : guide;
   const other = useMemo(() => generateArrangement(otherDrum(state.drum), state.lines), [state.drum, state.lines]);
+  const uncertain = useMemo(() => {
+    const marks = new Set<string>();
+    state.lines.forEach((line, lineIndex) => {
+      line.notes.forEach((note, noteIndex) => {
+        if (note.uncertain) marks.add(`${lineIndex}:${noteIndex}`);
+      });
+    });
+    return marks;
+  }, [state.lines]);
   const tongues = useMemo(
     () => [...layoutById(DRUM_LAYOUT[state.drum]).tongues].sort(pitchCompare),
     [state.drum],
@@ -330,6 +354,86 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
     const total = laid.reduce((sum, line) => sum + lineBeats(line), 0);
     return total / laid.length || beatsPerBar(state.timeSignature);
   }, [laid, state.timeSignature]);
+
+  useEffect(() => () => recordStop.current?.(), []);
+
+  function applyDetected(notes: DetectedNote[]) {
+    if (notes.length <= recordCount.current) return;
+    const start = recordCount.current;
+    const previousDur = start > 0 ? notes[start - 1].dur : undefined;
+    for (let index = start; index < notes.length; index += 1) {
+      const note = notes[index];
+      dispatch({
+        type: "appendDetected",
+        deg: note.deg,
+        oct: note.oct,
+        dur: note.dur,
+        uncertain: note.uncertain,
+        previousDur: index === start ? previousDur : undefined,
+      });
+    }
+    recordCount.current = notes.length;
+  }
+
+  function stopRecording() {
+    recordCancel.current = true;
+    recordStop.current?.();
+    recordStop.current = null;
+    if (!recordStop.current) endRecordingAudio();
+    setRecording(false);
+  }
+
+  async function startRecording() {
+    setRecordError(null);
+    recordCancel.current = false;
+    setRecording(true);
+    player.pause();
+    setManualPlaying(false);
+    if (countIn) {
+      unlockAudio();
+      for (let beat = 0; beat < 4; beat += 1) {
+        if (recordCancel.current) {
+          setRecording(false);
+          return;
+        }
+        playClick();
+        await new Promise((resolve) => window.setTimeout(resolve, 60000 / Math.max(40, bpm)));
+      }
+    }
+    if (recordCancel.current) {
+      setRecording(false);
+      return;
+    }
+    recordingSession();
+    let stream: MediaStream;
+    try {
+      stream = await openMicrophone();
+    } catch (error) {
+      endRecordingAudio();
+      setRecording(false);
+      setRecordError(describeMicError(error));
+      return;
+    }
+    if (recordCancel.current) {
+      for (const track of stream.getTracks()) track.stop();
+      endRecordingAudio();
+      setRecording(false);
+      return;
+    }
+    recordBuffer.current = new Float32Array(0);
+    recordCount.current = 0;
+    analyzed.current = 0;
+    recordStop.current = listenToMicrophone(stream, (chunk, sampleRate) => {
+      const current = recordBuffer.current;
+      const next = new Float32Array(current.length + chunk.length);
+      next.set(current);
+      next.set(chunk, current.length);
+      recordBuffer.current = next;
+      if (next.length - analyzed.current < sampleRate * 0.08) return;
+      analyzed.current = next.length;
+      applyDetected(detectNotes(next, sampleRate, detectOptions.current));
+    });
+  }
 
   async function validatedSong(): Promise<{ song: SongFile } | { error: string }> {
     const claimed = new Set(taken);
@@ -474,6 +578,32 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
         ) : null}
       </section>
 
+      <section className="record-panel" aria-labelledby="record-heading">
+        <h2 id="record-heading">Record</h2>
+        <p>Recording stays on this device. The microphone audio is not uploaded.</p>
+        <label className="count-in">
+          <input type="checkbox" checked={countIn} onChange={(event) => setCountIn(event.target.checked)} disabled={recording} />
+          Count-in
+        </label>
+        <label>
+          Grid
+          <select value={grid} disabled={recording} onChange={(event) => setGrid(Number(event.target.value))}>
+            <option value={0.25}>16th notes</option>
+            <option value={0.5}>Eighth notes</option>
+            <option value={1}>Quarter notes</option>
+          </select>
+        </label>
+        <button type="button" aria-pressed={recording} onClick={() => (recording ? stopRecording() : void startRecording())}>
+          {recording ? "Stop" : "Record"}
+        </button>
+        {recording ? <p className="listening">Listening… notes show up as they are heard.</p> : null}
+        {recordError ? (
+          <p className="banner" role="alert">
+            {recordError}
+          </p>
+        ) : null}
+      </section>
+
       {errors.length > 0 ? (
         <div className="banner" role="alert">
           {errors.join(" ")}
@@ -597,6 +727,7 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
               activeNote={active?.noteIndex ?? -1}
               pickedLine={state.selection?.line ?? -1}
               pickedNote={state.selection?.note ?? -1}
+              uncertain={uncertain}
               markedLine={markedLine}
               missing={new Set()}
               onSelect={(lineIndex, noteIndex) => {
