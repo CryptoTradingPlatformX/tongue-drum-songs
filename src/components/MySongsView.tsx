@@ -50,10 +50,8 @@ export function MySongsView({ songId, noteSize, onNoteSize, followScroll, onFoll
   useEffect(() => {
     let live = true;
     openSongStore()
-      .then(async (opened) => {
-        if (!live) return;
-        setStore(opened);
-        setSongs(await opened.list());
+      .then((opened) => {
+        if (live) setStore(opened);
       })
       .catch((reason: unknown) => {
         if (live) setError(reason instanceof Error ? reason.message : "Could not open song storage");
@@ -62,6 +60,18 @@ export function MySongsView({ songId, noteSize, onNoteSize, followScroll, onFoll
       live = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (!store) return;
+    let live = true;
+    if (!songId) setSongs(null);
+    store.list().then((records) => {
+      if (live) setSongs(records);
+    });
+    return () => {
+      live = false;
+    };
+  }, [store, songId]);
 
   if (error) {
     return (

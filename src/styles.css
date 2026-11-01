@@ -834,7 +834,12 @@ main.has-player + .site-footer { padding-bottom: calc(9rem + env(safe-area-inset
   text-decoration: none;
 }
 .editor-actions button:disabled { opacity: 0.45; }
-.button-link { background: var(--copper); color: #fffaf3; border-color: var(--copper); }
+.editor-actions a.button-link,
+a.button-link {
+  background: var(--copper);
+  color: #fffaf3;
+  border-color: var(--copper);
+}
 .editor-tools { margin: 0.4rem 0 0.8rem; }
 .tongue-picker label { min-height: 44px; }
 .lyric-editor { list-style: none; margin: 0 0 0.8rem; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
