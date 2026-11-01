@@ -62,7 +62,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "my great Redeemer's praise,",
@@ -97,7 +98,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the glories of my God and King,",
@@ -142,7 +144,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the triumphs of His grace!",
@@ -182,7 +185,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -232,7 +236,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "my great Redeemer's praise,",
@@ -267,7 +272,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the glories of my God and King,",
@@ -312,7 +318,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the triumphs of His grace!",
@@ -352,11 +359,78 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "3/2 time (half note = 2 beats). Soprano (melody) line, verified against the Mutopia LilyPond score. No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "verse",
+      "verse": 6
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "O for a thousand tongues to sing",
+        "my great Redeemer's praise,",
+        "the glories of my God and King,",
+        "the triumphs of His grace!"
+      ],
+      [
+        "My gracious Master and my God,",
+        "assist me to proclaim,",
+        "to spread through all the earth abroad",
+        "the honors of Thy name."
+      ],
+      [
+        "Jesus! the name that charms our fears,",
+        "that bids our sorrows cease;",
+        "'tis music in the sinner's ears,",
+        "'tis life, and health, and peace."
+      ],
+      [
+        "He breaks the power of canceled sin,",
+        "He sets the prisoner free;",
+        "His blood can make the foulest clean,",
+        "His blood availed for me."
+      ],
+      [
+        "He speaks, and, listening to His voice,",
+        "new life the dead receive,",
+        "the mournful, broken hearts rejoice,",
+        "the humble poor believe."
+      ],
+      [
+        "Hear Him, ye deaf; His praise, ye dumb,",
+        "your loosened tongues employ;",
+        "ye blind, behold your Savior come,",
+        "and leap, ye lame, for joy."
+      ]
+    ]
+  },
+  "arrangerNotes": "3/2 time (half note = 2 beats). Soprano (melody) line, verified against the Mutopia LilyPond score. No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–6: Charles Wesley's text (1739; the stanzas that follow 'O for a thousand tongues' in the original poem), from Wikisource (https://en.wikisource.org/wiki/O_for_a_Thousand_Tongues_to_Sing).",
   "verified": true
 }

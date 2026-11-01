@@ -73,7 +73,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "whose goodness faileth never;",
@@ -128,7 +129,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "I nothing lack if I am his",
@@ -173,7 +175,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and he is mine for ever.",
@@ -213,7 +216,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -273,7 +277,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "whose goodness faileth never;",
@@ -328,7 +333,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "I nothing lack if I am his",
@@ -373,7 +379,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and he is mine for ever.",
@@ -413,11 +420,68 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1, soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two or three notes; 'faileth' has a quarter-note triplet (each note 1/3 beat). No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "The King of love my shepherd is,",
+        "whose goodness faileth never;",
+        "I nothing lack if I am his",
+        "and he is mine for ever."
+      ],
+      [
+        "Where streams of living water flow,",
+        "my ransomed soul he leadeth,",
+        "and, where the verdant pastures grow,",
+        "with food celestial feedeth."
+      ],
+      [
+        "Perverse and foolish oft I strayed,",
+        "but yet in love he sought me,",
+        "and on his shoulder gently laid,",
+        "and home, rejoicing, brought me."
+      ],
+      [
+        "In death's dark vale I fear no ill",
+        "with thee, dear Lord, beside me;",
+        "thy rod and staff my comfort still,",
+        "thy cross before to guide me."
+      ],
+      [
+        "And so through all the length of days,",
+        "thy goodness faileth never;",
+        "Good Shepherd, may I sing thy praise",
+        "within thy house for ever."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1, soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two or three notes; 'faileth' has a quarter-note triplet (each note 1/3 beat). No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–5: Henry W. Baker (1868) as printed in The Army and Navy Hymnal (1920), from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/The_King_of_Love_My_Shepherd_Is); that hymnal prints five of Baker's six stanzas.",
   "verified": true
 }

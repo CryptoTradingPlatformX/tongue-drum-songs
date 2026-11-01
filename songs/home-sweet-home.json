@@ -98,7 +98,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "be it ever so humble, there's no place like home;",
@@ -177,7 +178,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "a charm from the skies seems to hallow us there,",
@@ -251,7 +253,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "which, seek through the world, is ne'er met with elsewhere.",
@@ -330,7 +333,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Home! Home! Sweet, sweet home!",
@@ -369,7 +373,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "There's no place like home, oh, there's no place like home!",
@@ -439,7 +444,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -523,7 +529,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "be it ever so humble, there's no place like home;",
@@ -602,7 +609,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "a charm from the skies seems to hallow us there,",
@@ -676,7 +684,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "which, seek through the world, is ne'er met with elsewhere.",
@@ -755,7 +764,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Home! Home! Sweet, sweet home!",
@@ -794,7 +804,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "There's no place like home, oh, there's no place like home!",
@@ -864,11 +875,70 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "Verified against the LilyPond score on Japanese Wikipedia (an instrumental melody line; slurred note pairs share one syllable). The score's rests between phrases are kept. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "'Mid pleasures and palaces though we may roam,",
+        "be it ever so humble, there's no place like home;",
+        "a charm from the skies seems to hallow us there,",
+        "which, seek through the world, is ne'er met with elsewhere."
+      ],
+      [
+        "An exile from home, splendour dazzles in vain;",
+        "O, give me my lowly thatched cottage again!",
+        "The birds singing gaily, that came at my call —",
+        "give me them — and the peace of mind, dearer than all!"
+      ],
+      [
+        "How sweet 'tis to sit 'neath a fond father's smile,",
+        "and the cares of a mother to soothe and beguile!",
+        "Let others delight 'mid new pleasures to roam,",
+        "but give me, oh, give me, the pleasures of home!"
+      ],
+      [
+        "To thee I'll return, overburdened with care;",
+        "the heart's dearest solace will smile on me there;",
+        "no more from that cottage again will I roam;",
+        "be it ever so humble, there's no place like home."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verified against the LilyPond score on Japanese Wikipedia (an instrumental melody line; slurred note pairs share one syllable). The score's rests between phrases are kept. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: John Howard Payne (1823), from Poems That Every Child Should Know (1904) on Wikisource (https://en.wikisource.org/wiki/Poems_That_Every_Child_Should_Know/Home,_Sweet_Home). The refrain is sung after every verse.",
   "verified": true
 }

@@ -84,7 +84,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "is laid for your faith in His excellent Word!",
@@ -154,7 +155,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "What more can He say than to you He hath said,",
@@ -219,7 +221,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "to you who for refuge to Jesus have fled?",
@@ -289,7 +292,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -359,7 +363,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "is laid for your faith in His excellent Word!",
@@ -429,7 +434,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "What more can He say than to you He hath said,",
@@ -494,7 +500,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "to you who for refuge to Jesus have fled?",
@@ -564,11 +571,58 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two notes. No simplification needed. Range low 5 to 5. Pentatonic tune. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "How firm a foundation, ye saints of the Lord,",
+        "is laid for your faith in His excellent Word!",
+        "What more can He say than to you He hath said,",
+        "to you who for refuge to Jesus have fled?"
+      ],
+      [
+        "'Fear not, I am with thee, O be not dismayed;",
+        "for I am thy God, I will still give thee aid:",
+        "I'll strengthen thee, help thee, and cause thee to stand,",
+        "upheld by my righteous, omnipotent hand.'"
+      ],
+      [
+        "'When through the deep waters I call thee to go,",
+        "the rivers of sorrow shall not overflow;",
+        "for I will be near thee, thy troubles to bless,",
+        "and sanctify to thee thy deepest distress.'"
+      ],
+      [
+        "'The soul that on Jesus hath leaned for repose,",
+        "I will not, I will not desert to his foes;",
+        "that soul, though all hell should endeavor to shake,",
+        "I'll never, no, never, no, never forsake.'"
+      ]
+    ]
+  },
+  "arrangerNotes": "Soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two notes. No simplification needed. Range low 5 to 5. Pentatonic tune. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: 'K' in Rippon's Selection (1787), as printed in The Army and Navy Hymnal (1920), from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/How_Firm_a_Foundation). The hymnal's repeat of each stanza's last line belongs to a different tune and is not used here.",
   "verified": true
 }

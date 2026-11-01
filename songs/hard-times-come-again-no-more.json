@@ -89,7 +89,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "while we all sup sorrow with the poor;",
@@ -143,7 +144,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "there's a song that will linger forever in our ears;",
@@ -213,7 +215,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "oh! Hard Times, come again no more.",
@@ -262,7 +265,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "'Tis the song, the sigh of the weary;",
@@ -320,7 +324,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Hard Times, Hard Times, come again no more.",
@@ -370,7 +375,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Many days you have lingered around my cabin door;",
@@ -440,7 +446,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "oh! Hard Times, come again no more.",
@@ -485,7 +492,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     },
@@ -560,7 +568,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "while we all sup sorrow with the poor;",
@@ -614,7 +623,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "there's a song that will linger forever in our ears;",
@@ -684,7 +694,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "oh! Hard Times, come again no more.",
@@ -733,7 +744,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "'Tis the song, the sigh of the weary;",
@@ -791,7 +803,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Hard Times, Hard Times, come again no more.",
@@ -841,7 +854,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Many days you have lingered around my cabin door;",
@@ -911,7 +925,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "oh! Hard Times, come again no more.",
@@ -956,11 +971,70 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1 and chorus, vocal line, verified against the Mutopia LilyPond score; the score's rests are kept. Simplification: one chromatic A♮ (passing note in the first line, in A♭ major) is played as 4 (A♭). Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "chorus"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Let us pause in life's pleasures and count its many tears,",
+        "while we all sup sorrow with the poor;",
+        "there's a song that will linger forever in our ears;",
+        "oh! Hard Times, come again no more."
+      ],
+      [
+        "While we seek mirth and beauty and music light and gay,",
+        "there are frail forms fainting at the door;",
+        "though their voices are silent, their pleading looks will say",
+        "oh! Hard Times, come again no more."
+      ],
+      [
+        "There's a pale drooping maiden who toils her life away,",
+        "with a worn heart whose better days are o'er;",
+        "though her voice would be merry, 'tis sighing all the day,",
+        "oh! Hard Times, come again no more."
+      ],
+      [
+        "'Tis a sigh that is wafted across the troubled wave,",
+        "'tis a wail that is heard upon the shore,",
+        "'tis a dirge that is murmured around the lowly grave,",
+        "oh! Hard Times, come again no more."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1 and chorus, vocal line, verified against the Mutopia LilyPond score; the score's rests are kept. Simplification: one chromatic A♮ (passing note in the first line, in A♭ major) is played as 4 (A♭). Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: Stephen Foster (1854), from the same Mutopia LilyPond score the melody was checked against, where they are set under the same notes (https://www.mutopiaproject.org/ftp/FosterSC/hardtimes/hardtimes.ly); as in that score, 'heart whose' (verse 3) and 'that is' (verse 4) share one note. The chorus is sung after every verse.",
   "verified": true
 }

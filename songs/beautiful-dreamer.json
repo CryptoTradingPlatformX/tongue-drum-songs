@@ -69,7 +69,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Starlight and dewdrops are waiting for thee;",
@@ -124,7 +125,8 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Sounds of the rude world heard in the day,",
@@ -174,7 +176,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Lull'd by the moonlight have all pass'd away!",
@@ -229,7 +232,8 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Beautiful dreamer, queen of my song,",
@@ -279,7 +283,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "List while I woo thee with soft melody;",
@@ -334,7 +339,8 @@
               "oct": -1,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Gone are the cares of life's busy throng,",
@@ -384,7 +390,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Beautiful dreamer, awake unto me!",
@@ -439,7 +446,8 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Beautiful dreamer, awake unto me!",
@@ -494,7 +502,8 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -549,7 +558,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Starlight and dewdrops are waiting for thee;",
@@ -604,7 +614,8 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Sounds of the rude world heard in the day,",
@@ -654,7 +665,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Lull'd by the moonlight have all pass'd away!",
@@ -709,7 +721,8 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Beautiful dreamer, queen of my song,",
@@ -759,7 +772,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "List while I woo thee with soft melody;",
@@ -814,7 +828,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Gone are the cares of life's busy throng,",
@@ -864,7 +879,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Beautiful dreamer, awake unto me!",
@@ -919,7 +935,8 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Beautiful dreamer, awake unto me!",
@@ -974,11 +991,48 @@
               "oct": 0,
               "dur": 4.5
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "9/8 time (eighth = 0.5 beat). Verse 1, vocal line, verified against the Wikisource LilyPond transcription of the 1864/65 Pond first edition (pages 2–3); the piano part is left out. Simplifications: (1) the chromatic E♮ neighbour note in 'wake unto me', 'heard in the day' and 'life's busy throng' (written F–E♮–F) is played as the scale tone 1 (E♭ in the original key), since tongue drums have no chromatic notes; (2) the small grace note in the final 'awake unto me' is left out. Source correction: in bar 21 the Wikisource transcription writes the first note an octave too high (C6); the original 1865 scan on Wikimedia Commons (page 3) shows C5, matching bar 19, so we use that. D drum: as written (range low 7 to high 2), D minLayout 13. C drum: the C drum has no high 2, so the line 'List while I woo thee with soft melody' (score events 48–57) is played one octave lower; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Beautiful dreamer, wake unto me,",
+        "Starlight and dewdrops are waiting for thee;",
+        "Sounds of the rude world heard in the day,",
+        "Lull'd by the moonlight have all pass'd away!",
+        "Beautiful dreamer, queen of my song,",
+        "List while I woo thee with soft melody;",
+        "Gone are the cares of life's busy throng,",
+        "Beautiful dreamer, awake unto me!",
+        "Beautiful dreamer, awake unto me!"
+      ],
+      [
+        "Beautiful dreamer, out on the sea,",
+        "Mermaids are chaunting the wild lorelei;",
+        "Over the streamlet vapors are borne,",
+        "Waiting to fade at the bright coming morn.",
+        "Beautiful dreamer, beam on my heart,",
+        "E'en as the morn on the streamlet and sea;",
+        "Then will all clouds of sorrow depart,",
+        "Beautiful dreamer, awake unto me!",
+        "Beautiful dreamer, awake unto me!"
+      ]
+    ]
+  },
+  "arrangerNotes": "9/8 time (eighth = 0.5 beat). Verse 1, vocal line, verified against the Wikisource LilyPond transcription of the 1864/65 Pond first edition (pages 2–3); the piano part is left out. Simplifications: (1) the chromatic E♮ neighbour note in 'wake unto me', 'heard in the day' and 'life's busy throng' (written F–E♮–F) is played as the scale tone 1 (E♭ in the original key), since tongue drums have no chromatic notes; (2) the small grace note in the final 'awake unto me' is left out. Source correction: in bar 21 the Wikisource transcription writes the first note an octave too high (C6); the original 1865 scan on Wikimedia Commons (page 3) shows C5, matching bar 19, so we use that. D drum: as written (range low 7 to high 2), D minLayout 13. C drum: the C drum has no high 2, so the line 'List while I woo thee with soft melody' (score events 48–57) is played one octave lower; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum). Lyrics of the added verses: Verse 2: Stephen Foster, from the same Pond first edition (1864/65) the melody was checked against, where verse 2 is engraved under the same notes (Wikisource transcription, pages 4–5: https://en.wikisource.org/wiki/Page:Beautiful_Dreamer_Stephen_Foster_(Pond_1865).pdf/4); wording also as on English Wikipedia.",
   "verified": true
 }

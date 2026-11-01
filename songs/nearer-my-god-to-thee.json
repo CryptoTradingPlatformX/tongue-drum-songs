@@ -76,7 +76,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "E'en though it be a cross that raiseth me;",
@@ -140,7 +141,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "still all my song shall be,",
@@ -175,7 +177,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "nearer, my God, to Thee,",
@@ -210,7 +213,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "nearer, my God, to Thee, nearer to Thee!",
@@ -270,7 +274,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -334,7 +339,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "E'en though it be a cross that raiseth me;",
@@ -398,7 +404,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "still all my song shall be,",
@@ -433,7 +440,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "nearer, my God, to Thee,",
@@ -468,7 +476,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "nearer, my God, to Thee, nearer to Thee!",
@@ -528,11 +537,73 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verified against the LilyPond score on German Wikipedia (Mason's American tune 'Bethany'; the score has English and German words). The score's rests are kept; slurred notes carry one syllable over two notes. No simplification needed. Range low 5 to 6. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Nearer, my God, to Thee, nearer to Thee!",
+        "E'en though it be a cross that raiseth me;",
+        "still all my song shall be,",
+        "nearer, my God, to Thee,",
+        "nearer, my God, to Thee, nearer to Thee!"
+      ],
+      [
+        "Though like the wanderer, the sun gone down,",
+        "darkness be over me, my rest a stone;",
+        "yet in my dream I'd be",
+        "nearer, my God, to Thee,",
+        "nearer, my God, to Thee, nearer to Thee!"
+      ],
+      [
+        "There let the way appear, step unto heaven;",
+        "all that Thou sendest me, in mercy given;",
+        "angels to beckon me",
+        "nearer, my God, to Thee,",
+        "nearer, my God, to Thee, nearer to Thee!"
+      ],
+      [
+        "Then, with my waking thoughts bright with Thy praise,",
+        "out of my stony griefs Bethel I'll raise;",
+        "so by my woes to be",
+        "nearer, my God, to Thee,",
+        "nearer, my God, to Thee, nearer to Thee!"
+      ],
+      [
+        "Or if, on joyful wing cleaving the sky,",
+        "sun, moon, and stars forgot, upwards I fly,",
+        "still all my song shall be,",
+        "nearer, my God, to Thee,",
+        "nearer, my God, to Thee, nearer to Thee!"
+      ]
+    ]
+  },
+  "arrangerNotes": "Verified against the LilyPond score on German Wikipedia (Mason's American tune 'Bethany'; the score has English and German words). The score's rests are kept; slurred notes carry one syllable over two notes. No simplification needed. Range low 5 to 6. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–5: Sarah Flower Adams (1841) as printed in The Army and Navy Hymnal (1920), from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/Nearer,_My_God,_to_Thee).",
   "verified": true
 }

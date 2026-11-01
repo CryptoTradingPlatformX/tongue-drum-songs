@@ -62,7 +62,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "where bright angel feet have trod;",
@@ -107,7 +108,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "with its crystal tide forever",
@@ -162,7 +164,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "flowing by the throne of God?",
@@ -202,7 +205,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Yes, we'll gather at the river,",
@@ -252,7 +256,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "the beautiful, the beautiful river;",
@@ -307,7 +312,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "gather with the saints at the river",
@@ -367,7 +373,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "that flows by the throne of God.",
@@ -407,7 +414,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -457,7 +465,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "where bright angel feet have trod;",
@@ -502,7 +511,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "with its crystal tide forever",
@@ -557,7 +567,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "flowing by the throne of God?",
@@ -597,7 +608,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Yes, we'll gather at the river,",
@@ -647,7 +659,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "the beautiful, the beautiful river;",
@@ -702,7 +715,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "gather with the saints at the river",
@@ -762,7 +776,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "that flows by the throne of God.",
@@ -802,11 +817,83 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "Verified against the soprano line of the Wikipedia LilyPond SATB score. Slurred notes are written separately. No accidentals. Range 1 to high 1, minLayout 8. Medium because of the dotted eighth-sixteenth rhythms. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Shall we gather at the river,",
+        "where bright angel feet have trod;",
+        "with its crystal tide forever",
+        "flowing by the throne of God?"
+      ],
+      [
+        "On the margin of the river,",
+        "washing up its silver spray,",
+        "we will walk and worship ever,",
+        "all the happy golden day."
+      ],
+      [
+        "Ere we reach the shining river,",
+        "lay we every burden down;",
+        "grace our spirits will deliver,",
+        "and provide a robe and crown."
+      ],
+      [
+        "At the smiling of the river,",
+        "mirror of the Saviour's face,",
+        "saints whom death will never sever",
+        "lift their songs of saving grace."
+      ],
+      [
+        "Soon we'll reach the shining river,",
+        "soon our pilgrimage will cease;",
+        "soon our happy hearts will quiver",
+        "with the melody of peace."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verified against the soprano line of the Wikipedia LilyPond SATB score. Slurred notes are written separately. No accidentals. Range 1 to high 1, minLayout 8. Medium because of the dotted eighth-sixteenth rhythms. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–5: Robert Lowry (1864) as printed in The Army and Navy Hymnal (1920), from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/Shall_We_Gather_at_the_River). The refrain is sung after every verse.",
   "verified": true
 }
