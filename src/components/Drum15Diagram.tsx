@@ -2,10 +2,12 @@ import { useId } from "react";
 import { DRUM_15_CENTER, DRUM_15_OUTER, type Drum15Outer } from "../lib/drum15";
 import { noteName } from "../lib/music";
 import type { DrumKey, Tongue } from "../lib/types";
+import { paintFill, paintStroke, tonguePaint, type TonguePaint } from "./drumTone";
 
 type Props = {
   drumKey: DrumKey;
   active: Tongue | null;
+  chordTones?: Tongue[];
 };
 
 const CX = 200;
@@ -58,11 +60,7 @@ function slotPath(deg: number, outerR: number, tip: number, halfW: number, close
   return `${body} A ${outerR} ${outerR} 0 0 ${sweep === 1 ? 0 : 1} ${olx} ${oly} Z`;
 }
 
-function isLit(active: Tongue | null, tongue: Tongue): boolean {
-  return active != null && active.deg === tongue.deg && active.oct === tongue.oct;
-}
-
-export function Drum15Diagram({ drumKey, active }: Props) {
+export function Drum15Diagram({ drumKey, active, chordTones }: Props) {
   const rawId = useId().replace(/:/g, "");
   const steel = `${rawId}-steel`;
   const glow = `${rawId}-glow`;
@@ -87,29 +85,29 @@ export function Drum15Diagram({ drumKey, active }: Props) {
 
       {DRUM_15_OUTER.map((tongue) => {
         const geo = tongueGeometry(tongue);
-        const lit = isLit(active, tongue);
+        const paint = tonguePaint(active, chordTones, tongue);
         return (
           <path
             key={`fill-${tongue.deg}:${tongue.oct}`}
             d={slotPath(tongue.angle, geo.outerR, geo.tip, geo.halfW, true)}
-            fill={lit ? "#f6c445" : "none"}
+            fill={paintFill(paint, "none")}
             stroke="none"
-            filter={lit ? `url(#${glow})` : undefined}
+            filter={paint ? `url(#${glow})` : undefined}
           />
         );
       })}
-      <CenterTongue lit={isLit(active, DRUM_15_CENTER)} glow={`url(#${glow})`} />
+      <CenterTongue paint={tonguePaint(active, chordTones, DRUM_15_CENTER)} glow={`url(#${glow})`} />
 
       {DRUM_15_OUTER.map((tongue) => {
         const geo = tongueGeometry(tongue);
-        const lit = isLit(active, tongue);
+        const paint = tonguePaint(active, chordTones, tongue);
         return (
           <path
             key={`slot-${tongue.deg}:${tongue.oct}`}
             d={slotPath(tongue.angle, geo.outerR, geo.tip, geo.halfW, false)}
             fill="none"
-            stroke={lit ? "#8a3b1c" : "#14283a"}
-            strokeWidth={lit ? 3 : 2.4}
+            stroke={paintStroke(paint, "#14283a")}
+            strokeWidth={paint ? 3 : 2.4}
             strokeLinejoin="round"
             strokeLinecap="round"
           />
@@ -117,14 +115,19 @@ export function Drum15Diagram({ drumKey, active }: Props) {
       })}
 
       {DRUM_15_OUTER.map((tongue) => (
-        <TongueLabel key={`label-${tongue.deg}:${tongue.oct}`} tongue={tongue} drumKey={drumKey} lit={isLit(active, tongue)} />
+        <TongueLabel
+          key={`label-${tongue.deg}:${tongue.oct}`}
+          tongue={tongue}
+          drumKey={drumKey}
+          paint={tonguePaint(active, chordTones, tongue)}
+        />
       ))}
-      <CenterLabel drumKey={drumKey} lit={isLit(active, DRUM_15_CENTER)} />
+      <CenterLabel drumKey={drumKey} paint={tonguePaint(active, chordTones, DRUM_15_CENTER)} />
     </svg>
   );
 }
 
-function CenterTongue({ lit, glow }: { lit: boolean; glow: string }) {
+function CenterTongue({ paint, glow }: { paint: TonguePaint; glow: string }) {
   return (
     <rect
       x={CX - 26}
@@ -132,23 +135,23 @@ function CenterTongue({ lit, glow }: { lit: boolean; glow: string }) {
       width={52}
       height={116}
       rx={26}
-      fill={lit ? "#f6c445" : "none"}
-      stroke={lit ? "#8a3b1c" : "#14283a"}
-      strokeWidth={lit ? 3 : 2.4}
-      filter={lit ? glow : undefined}
+      fill={paintFill(paint, "none")}
+      stroke={paintStroke(paint, "#14283a")}
+      strokeWidth={paint ? 3 : 2.4}
+      filter={paint ? glow : undefined}
     />
   );
 }
 
-function TongueLabel({ tongue, drumKey, lit }: { tongue: Drum15Outer; drumKey: DrumKey; lit: boolean }) {
+function TongueLabel({ tongue, drumKey, paint }: { tongue: Drum15Outer; drumKey: DrumKey; paint: TonguePaint }) {
   const name = noteName(drumKey, tongue.deg, tongue.oct);
   const numR = 146;
   const [nx, ny] = radial(tongue.angle, numR);
   const dotR = tongue.oct > 0 ? numR + 13 : numR - 14;
   const [dx, dy] = radial(tongue.angle, dotR);
   const [lx, ly] = radial(tongue.angle, tongue.oct < 0 ? numR - 28 : numR - 16);
-  const ink = lit ? "#3c2614" : "#f7fbff";
-  const soft = lit ? "#5c4634" : "#e4f0fa";
+  const ink = paint ? "#3c2614" : "#f7fbff";
+  const soft = paint ? "#5c4634" : "#e4f0fa";
   return (
     <g>
       <title>{`${tongue.deg} ${name}`}</title>
@@ -182,10 +185,10 @@ function TongueLabel({ tongue, drumKey, lit }: { tongue: Drum15Outer; drumKey: D
   );
 }
 
-function CenterLabel({ drumKey, lit }: { drumKey: DrumKey; lit: boolean }) {
+function CenterLabel({ drumKey, paint }: { drumKey: DrumKey; paint: TonguePaint }) {
   const name = noteName(drumKey, DRUM_15_CENTER.deg, DRUM_15_CENTER.oct);
-  const ink = lit ? "#3c2614" : "#f7fbff";
-  const soft = lit ? "#5c4634" : "#e4f0fa";
+  const ink = paint ? "#3c2614" : "#f7fbff";
+  const soft = paint ? "#5c4634" : "#e4f0fa";
   return (
     <g>
       <title>{`3 ${name}`}</title>

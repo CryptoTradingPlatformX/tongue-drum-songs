@@ -66,7 +66,28 @@ a:hover { color: var(--copper-bright); }
   border-bottom: 1px solid var(--line);
 }
 .site-header, .settings, main, .site-footer { width: min(1480px, calc(100% - 2rem)); margin-inline: auto; }
-.site-header { padding: 0.85rem 0 0.35rem; }
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  padding: 0.85rem 0 0.35rem;
+}
+.site-nav { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.2rem 0.9rem;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  background: var(--paper);
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--ink);
+}
+.site-nav a[aria-current="page"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .brand {
   display: flex;
   gap: 0.75rem;
@@ -509,6 +530,34 @@ main.has-player { padding-bottom: 8.5rem; }
 
 .practice-help { margin: 0.8rem 0 0; }
 
+.chords-page { display: grid; gap: 1rem; }
+.chords-stage { display: grid; gap: 1rem; align-items: start; }
+.voicing-list { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.85rem; }
+.voicing-label { margin: 0 0 0.35rem; font-weight: 700; }
+.voicing-empty { margin: 0; color: var(--ink-soft); }
+.voicing-options { display: grid; gap: 0.45rem; }
+.voicing-row { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+.voicing {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 0.15rem;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.15rem 0.45rem;
+  border-radius: 14px;
+  border: 2px solid var(--line);
+  background: var(--paper);
+  cursor: pointer;
+}
+.voicing .glyph { width: auto; }
+.voicing.is-selected { border-color: #0f5c56; background: #e7f6f4; }
+.chords-diagram .now-value { font-size: 1.15rem; line-height: 1.35; }
+.chords-diagram .diagram-caption { overflow-wrap: anywhere; }
+.chord-table-wrap { overflow-x: auto; margin-top: 0.6rem; }
+.chord-table { width: 100%; border-collapse: collapse; }
+.chord-table th, .chord-table td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.chord-table .is-current { font-weight: 700; }
+
 .player-dock {
   position: fixed;
   left: 0;
@@ -600,6 +649,9 @@ main.has-player + .site-footer { padding-bottom: calc(7.5rem + env(safe-area-ins
   main.has-player + .site-footer { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); }
   .diagram-panel { position: static; z-index: 0; }
   .notation-panel { position: relative; z-index: 1; }
+  .chords-diagram { position: static; z-index: 0; }
+  .chords-stage { display: flex; flex-direction: column; }
+  .chords-diagram { order: -1; }
   .phrase,
   .note {
     scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
@@ -625,6 +677,8 @@ main.has-player + .site-footer { padding-bottom: calc(7.5rem + env(safe-area-ins
 @media (min-width: 1100px) {
   .practice-grid { grid-template-columns: minmax(0, 1fr) 380px; align-items: start; }
   .diagram-panel { position: sticky; top: calc(var(--sticky-top, 8.75rem) + 0.35rem); }
+  .chords-stage { grid-template-columns: minmax(0, 1fr) 380px; }
+  .chords-diagram { position: sticky; top: calc(var(--sticky-top, 8.75rem) + 0.35rem); }
   .drum-svg { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
