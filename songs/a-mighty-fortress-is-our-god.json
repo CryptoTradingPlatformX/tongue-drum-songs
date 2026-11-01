@@ -73,7 +73,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "a bulwark never failing;",
@@ -123,7 +124,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "our helper he amid the flood",
@@ -178,7 +180,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "of mortal ills prevailing.",
@@ -228,7 +231,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "For still our ancient foe",
@@ -263,7 +267,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "doth seek to work us woe;",
@@ -298,7 +303,8 @@
               "oct": 1,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "his craft and power are great,",
@@ -333,7 +339,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and armed with cruel hate,",
@@ -368,7 +375,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "on earth is not his equal.",
@@ -418,7 +426,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -478,7 +487,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "a bulwark never failing;",
@@ -528,7 +538,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "our helper he amid the flood",
@@ -583,7 +594,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "of mortal ills prevailing.",
@@ -633,7 +645,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "For still our ancient foe",
@@ -668,7 +681,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "doth seek to work us woe;",
@@ -703,7 +717,8 @@
               "oct": 1,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "his craft and power are great,",
@@ -738,7 +753,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and armed with cruel hate,",
@@ -773,7 +789,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "on earth is not his equal.",
@@ -823,11 +840,78 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1, soprano (melody) line (isorhythmic setting), verified against the Mutopia LilyPond score; the repeat of the first half is written out. Eighth-note pairs carry one syllable over two notes. Simplification: one chromatic F♯ (lower neighbour on 'ancient foe', C major) is played as 4 (F). Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "A mighty fortress is our God,",
+        "a bulwark never failing;",
+        "our helper he amid the flood",
+        "of mortal ills prevailing.",
+        "For still our ancient foe",
+        "doth seek to work us woe;",
+        "his craft and power are great,",
+        "and armed with cruel hate,",
+        "on earth is not his equal."
+      ],
+      [
+        "Did we in our own strength confide,",
+        "our striving would be losing;",
+        "were not the right man on our side,",
+        "the man of God's own choosing.",
+        "Dost ask who that may be?",
+        "Christ Jesus, it is he;",
+        "Lord Sabaoth his name,",
+        "from age to age the same,",
+        "and he must win the battle."
+      ],
+      [
+        "And though this world, with devils filled,",
+        "should threaten to undo us,",
+        "we will not fear, for God hath willed",
+        "his truth to triumph through us.",
+        "The prince of darkness grim,",
+        "we tremble not for him;",
+        "his rage we can endure,",
+        "for lo! his doom is sure,",
+        "one little word shall fell him."
+      ],
+      [
+        "That word above all earthly powers,",
+        "no thanks to them, abideth;",
+        "the Spirit and the gifts are ours",
+        "through him who with us sideth.",
+        "Let goods and kindred go,",
+        "this mortal life also;",
+        "the body they may kill:",
+        "God's truth abideth still,",
+        "his kingdom is forever."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1, soprano (melody) line (isorhythmic setting), verified against the Mutopia LilyPond score; the repeat of the first half is written out. Eighth-note pairs carry one syllable over two notes. Simplification: one chromatic F♯ (lower neighbour on 'ancient foe', C major) is played as 4 (F). Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: Frederick H. Hedge's translation (1853) as printed in The Army and Navy Hymnal (1920), from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/A_Mighty_Fortress_is_Our_God); 'from age to age the same' corrects the transcription's typo 'to the same'.",
   "verified": true
 }

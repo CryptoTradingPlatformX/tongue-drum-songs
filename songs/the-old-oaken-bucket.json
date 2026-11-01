@@ -88,7 +88,8 @@
               "rest": true,
               "dur": 0.25
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "when fond recollection presents them to view!",
@@ -148,7 +149,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "The orchard, the meadow, the deep-tangled wildwood,",
@@ -213,7 +215,8 @@
               "oct": 0,
               "dur": 0.75
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and every loved spot which my infancy knew!",
@@ -273,7 +276,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "The wide-spreading stream, the mill that stood near it,",
@@ -338,7 +342,8 @@
               "oct": -1,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the bridge and the rock where the cataract fell;",
@@ -398,7 +403,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the cot of my father, the dairy-house by it,",
@@ -463,7 +469,8 @@
               "oct": 0,
               "dur": 0.75
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and e'en the rude bucket that hung in the well.",
@@ -523,7 +530,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "The old oaken bucket, the iron-bound bucket,",
@@ -588,7 +596,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "the moss-covered bucket that hung in the well.",
@@ -648,7 +657,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -722,7 +732,8 @@
               "rest": true,
               "dur": 0.25
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "when fond recollection presents them to view!",
@@ -782,7 +793,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "The orchard, the meadow, the deep-tangled wildwood,",
@@ -847,7 +859,8 @@
               "oct": 0,
               "dur": 0.75
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and every loved spot which my infancy knew!",
@@ -907,7 +920,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "The wide-spreading stream, the mill that stood near it,",
@@ -972,7 +986,8 @@
               "oct": -1,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the bridge and the rock where the cataract fell;",
@@ -1032,7 +1047,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the cot of my father, the dairy-house by it,",
@@ -1097,7 +1113,8 @@
               "oct": 0,
               "dur": 0.75
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and e'en the rude bucket that hung in the well.",
@@ -1157,7 +1174,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "The old oaken bucket, the iron-bound bucket,",
@@ -1222,7 +1240,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "the moss-covered bucket that hung in the well.",
@@ -1282,11 +1301,69 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "6/8 time (eighth = 0.5 beat). Verse 1 and chorus, vocal line, verified against the Mutopia LilyPond score; the score's rest is kept. Simplification: one chromatic E♮ (passing note before 'fell', in B♭ major) is played as low 4 (E♭). D drum: as written (range low 4 to 3), D minLayout 15. C drum: the C drum has no low 4, so the two notes on 'cataract fell' (low 4, low 5; score events 69–70) are played one octave higher; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "How dear to this heart are the scenes of my childhood,",
+        "when fond recollection presents them to view!",
+        "The orchard, the meadow, the deep-tangled wildwood,",
+        "and every loved spot which my infancy knew!",
+        "The wide-spreading stream, the mill that stood near it,",
+        "the bridge and the rock where the cataract fell;",
+        "the cot of my father, the dairy-house by it,",
+        "and e'en the rude bucket that hung in the well."
+      ],
+      [
+        "The moss-cover'd bucket I hail as a treasure,",
+        "for often at noon when return'd from the field,",
+        "I found it the source of an exquisite pleasure,",
+        "the purest and sweetest that nature can yield.",
+        "How ardent I seized it with hands that were glowing,",
+        "and quick to the white-pebbled bottom it fell;",
+        "then soon with the emblem of truth overflowing,",
+        "and dripping with coolness it rose from the well."
+      ],
+      [
+        "How soon from the green mossy rim to receive it,",
+        "as pois'd on the curb it reclin'd to my lips,",
+        "not a full flowing goblet could tempt me to leave it,",
+        "tho' fill'd with the nectar that Jupiter sips.",
+        "And now far removed from the loved situation,",
+        "the tear of regret will intrusively swell,",
+        "as fancy reverts to my father's plantation,",
+        "and sighs for the bucket that hung in the well."
+      ]
+    ]
+  },
+  "arrangerNotes": "6/8 time (eighth = 0.5 beat). Verse 1 and chorus, vocal line, verified against the Mutopia LilyPond score; the score's rest is kept. Simplification: one chromatic E♮ (passing note before 'fell', in B♭ major) is played as low 4 (E♭). D drum: as written (range low 4 to 3), D minLayout 15. C drum: the C drum has no low 4, so the two notes on 'cataract fell' (low 4, low 5; score events 69–70) are played one octave higher; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum). Lyrics of the added verses: Verses 2–3: Samuel Woodworth (1817), from the same Mutopia LilyPond score the melody was checked against, where they are set under the same notes (https://www.mutopiaproject.org/ftp/KiallmarkGF/oakbucket/oakbucket.ly); as in that score, 'Not a' (verse 3) shares one note. Woodworth's text is also on Wikisource (Poems That Every Child Should Know, 1904). The refrain is sung after every verse.",
   "verified": true
 }

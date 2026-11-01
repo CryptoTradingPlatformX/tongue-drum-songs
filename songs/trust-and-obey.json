@@ -84,7 +84,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "what a glory He sheds on our way!",
@@ -134,7 +135,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "While we do His good will, He abides with us still,",
@@ -199,7 +201,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and with all who will trust and obey.",
@@ -249,7 +252,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Trust and obey, for there's no other way",
@@ -304,7 +308,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "to be happy in Jesus, but to trust and obey.",
@@ -374,7 +379,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -444,7 +450,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "what a glory He sheds on our way!",
@@ -494,7 +501,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "While we do His good will, He abides with us still,",
@@ -559,7 +567,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and with all who will trust and obey.",
@@ -609,7 +618,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Trust and obey, for there's no other way",
@@ -664,7 +674,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "to be happy in Jesus, but to trust and obey.",
@@ -734,11 +745,83 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1 and refrain, soprano (melody) line, verified against the Mutopia LilyPond score (the score's repeated-phrase macro is written out). No simplification needed. Range 1 to 6. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "When we walk with the Lord in the light of His Word,",
+        "what a glory He sheds on our way!",
+        "While we do His good will, He abides with us still,",
+        "and with all who will trust and obey."
+      ],
+      [
+        "Not a shadow can rise, not a cloud in the skies,",
+        "but His smile quickly drives it away;",
+        "not a doubt nor a fear, not a sigh nor a tear,",
+        "can abide while we trust and obey."
+      ],
+      [
+        "Not a burden we bear, not a sorrow we share,",
+        "but our toil He doth richly repay;",
+        "not a grief nor a loss, not a frown nor a cross,",
+        "but is blest if we trust and obey."
+      ],
+      [
+        "But we never can prove the delights of His love",
+        "until all on the altar we lay;",
+        "for the favor He shows, and the joy He bestows,",
+        "are for them who will trust and obey."
+      ],
+      [
+        "Then in fellowship sweet we will sit at His feet,",
+        "or we'll walk by His side in the way;",
+        "what He says we will do, where He sends we will go;",
+        "never fear, only trust and obey."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1 and refrain, soprano (melody) line, verified against the Mutopia LilyPond score (the score's repeated-phrase macro is written out). No simplification needed. Range 1 to 6. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–5: John H. Sammis (1887) as printed in The Army and Navy Hymnal (1920), from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/When_We_Walk_with_the_Lord); 'not a grief nor a loss' reads the transcription's 'Nor a grief not a loss' as the parallel 'not … nor' of the rest of the line. The refrain is sung after every verse.",
   "verified": true
 }

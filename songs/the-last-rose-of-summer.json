@@ -73,7 +73,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "left blooming alone;",
@@ -118,7 +119,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "all her lovely companions",
@@ -172,7 +174,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "are faded and gone.",
@@ -226,7 +229,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "No flower of her kindred,",
@@ -271,7 +275,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "no rosebud is nigh,",
@@ -326,7 +331,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "to reflect back her blushes,",
@@ -380,7 +386,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "or give sigh for sigh.",
@@ -425,7 +432,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "To reflect back her blushes,",
@@ -479,7 +487,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "coda"
         },
         {
           "lyric": "or give sigh for sigh.",
@@ -524,7 +533,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "coda"
         }
       ]
     },
@@ -583,7 +593,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "left blooming alone;",
@@ -628,7 +639,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "all her lovely companions",
@@ -682,7 +694,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "are faded and gone.",
@@ -736,7 +749,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "No flower of her kindred,",
@@ -781,7 +795,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "no rosebud is nigh,",
@@ -836,7 +851,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "to reflect back her blushes,",
@@ -890,7 +906,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "or give sigh for sigh.",
@@ -935,7 +952,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "To reflect back her blushes,",
@@ -989,7 +1007,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "coda"
         },
         {
           "lyric": "or give sigh for sigh.",
@@ -1034,11 +1053,86 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "coda"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1, vocal line, verified against the Mutopia LilyPond score; the repeat is written out with the second (final) ending, which repeats the last two lines, and the score's rests are kept. Grace notes are left out. Simplification: one chromatic A♯ (passing note in 'no rosebud') is played as 6 (A). Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "coda",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "coda",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "coda",
+      "verse": 3
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "'Tis the last rose of summer,",
+        "left blooming alone;",
+        "all her lovely companions",
+        "are faded and gone.",
+        "No flower of her kindred,",
+        "no rosebud is nigh,",
+        "to reflect back her blushes,",
+        "or give sigh for sigh."
+      ],
+      [
+        "I'll not leave thee, thou lone one,",
+        "to pine on the stem;",
+        "since the lovely are sleeping,",
+        "go, sleep thou with them.",
+        "Thus kindly I scatter",
+        "thy leaves o'er the bed",
+        "where thy mates of the garden",
+        "lie scentless and dead."
+      ],
+      [
+        "So soon may I follow,",
+        "when friendships decay,",
+        "and from love's shining circle",
+        "the gems drop away!",
+        "When true hearts lie withered,",
+        "and fond ones are flown,",
+        "oh! who would inhabit",
+        "this bleak world alone?"
+      ]
+    ],
+    "coda": [
+      [
+        "To reflect back her blushes,",
+        "or give sigh for sigh."
+      ],
+      [
+        "Where thy mates of the garden",
+        "lie scentless and dead."
+      ],
+      [
+        "Oh! who would inhabit",
+        "this bleak world alone?"
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1, vocal line, verified against the Mutopia LilyPond score; the repeat is written out with the second (final) ending, which repeats the last two lines, and the score's rests are kept. Grace notes are left out. Simplification: one chromatic A♯ (passing note in 'no rosebud') is played as 6 (A). Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–3: Thomas Moore (1813), from the same Mutopia LilyPond score the melody was checked against, where they are set under the same notes (https://www.mutopiaproject.org/ftp/MooreT/lrose/lrose.ly); compare Poems That Every Child Should Know (1904) on Wikisource. As in verse 1, each verse ends by repeating its last two lines (the 'coda' section).",
   "verified": true
 }

@@ -64,7 +64,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "how still we see thee lie!",
@@ -104,7 +105,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Above thy deep and dreamless sleep",
@@ -149,7 +151,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the silent stars go by.",
@@ -189,7 +192,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Yet in thy dark streets shineth",
@@ -229,7 +233,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the everlasting Light;",
@@ -264,7 +269,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the hopes and fears of all the years",
@@ -309,7 +315,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "are met in thee tonight.",
@@ -344,7 +351,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -394,7 +402,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "how still we see thee lie!",
@@ -434,7 +443,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Above thy deep and dreamless sleep",
@@ -479,7 +489,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the silent stars go by.",
@@ -519,7 +530,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Yet in thy dark streets shineth",
@@ -559,7 +571,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the everlasting Light;",
@@ -594,7 +607,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the hopes and fears of all the years",
@@ -639,7 +653,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "are met in thee tonight.",
@@ -674,11 +689,74 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verified against the LilyPond score on English Wikipedia (the American tune 'St. Louis'). Simplification: the chromatic A♯ passing note in 'O little town' and 'the hopes and fears' (written B–B–A♯–B) is played as 2 (A), since tongue drums have no chromatic notes. Range low 6 to 6. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "O little town of Bethlehem,",
+        "how still we see thee lie!",
+        "Above thy deep and dreamless sleep",
+        "the silent stars go by.",
+        "Yet in thy dark streets shineth",
+        "the everlasting Light;",
+        "the hopes and fears of all the years",
+        "are met in thee tonight."
+      ],
+      [
+        "For Christ is born of Mary,",
+        "and, gathered all above,",
+        "while mortals sleep, the angels keep",
+        "their watch of wondering love.",
+        "O morning stars, together",
+        "proclaim the holy birth!",
+        "And praises sing to God the King,",
+        "and peace to men on earth."
+      ],
+      [
+        "How silently, how silently,",
+        "the wondrous gift is given!",
+        "So God imparts to human hearts",
+        "the blessings of His heaven.",
+        "No ear may hear His coming,",
+        "but in this world of sin,",
+        "where meek souls will receive Him still,",
+        "the dear Christ enters in."
+      ],
+      [
+        "O holy Child of Bethlehem!",
+        "Descend to us, we pray;",
+        "cast out our sin, and enter in,",
+        "be born in us today.",
+        "We hear the Christmas angels",
+        "the great glad tidings tell;",
+        "oh, come to us, abide with us,",
+        "our Lord Emmanuel!"
+      ]
+    ]
+  },
+  "arrangerNotes": "Verified against the LilyPond score on English Wikipedia (the American tune 'St. Louis'). Simplification: the chromatic A♯ passing note in 'O little town' and 'the hopes and fears' (written B–B–A♯–B) is played as 2 (A), since tongue drums have no chromatic notes. Range low 6 to 6. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: Phillips Brooks (1868), from Our American Holidays: Christmas (1907) on Wikisource (https://en.wikisource.org/wiki/Our_American_Holidays_-_Christmas/O_Little_Town_of_Bethlehem).",
   "verified": true
 }

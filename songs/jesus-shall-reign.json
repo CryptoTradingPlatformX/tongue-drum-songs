@@ -72,7 +72,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "does his successive journeys run;",
@@ -117,7 +118,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "his kingdom stretch from shore to shore,",
@@ -182,7 +184,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "till moons shall wax and wane no more.",
@@ -227,7 +230,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -287,7 +291,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "does his successive journeys run;",
@@ -332,7 +337,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "his kingdom stretch from shore to shore,",
@@ -397,7 +403,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "till moons shall wax and wane no more.",
@@ -442,11 +449,58 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "2/2 time written in quarter-note beats. Verse 1, soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two or more notes. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Jesus shall reign where'er the sun",
+        "does his successive journeys run;",
+        "his kingdom stretch from shore to shore,",
+        "till moons shall wax and wane no more."
+      ],
+      [
+        "People and realms of ev'ry tongue",
+        "dwell on His love with sweetest song;",
+        "and infant voices shall proclaim",
+        "their early blessings on His Name."
+      ],
+      [
+        "Let ev'ry creature rise and bring",
+        "His holiest off'rings to our King;",
+        "angels descend with songs again,",
+        "and earth repeat the loud amen."
+      ],
+      [
+        "Praise God, from whom all blessings flow;",
+        "praise Him, all creatures here below;",
+        "praise Him above, ye heav'nly host,",
+        "praise Father, Son, and Holy Ghost."
+      ]
+    ]
+  },
+  "arrangerNotes": "2/2 time written in quarter-note beats. Verse 1, soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two or more notes. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: Isaac Watts (1719) as printed in A Selection of Hymns, Used in the Parish Church … Ulverston (1863), Hymn 60, which closes with Thomas Ken's doxology (1674); text from Wikisource (https://en.wikisource.org/wiki/A_Selection_of_Hymns,_Used_in_the_Parish_Church,_and_the_Church_of_the_Holy_Trinity,_Ulverston/Hymn_60).",
   "verified": true
 }

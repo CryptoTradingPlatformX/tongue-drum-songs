@@ -59,7 +59,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "to thee, Redeemer, King,",
@@ -94,7 +95,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "to whom the lips of children",
@@ -134,7 +136,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "made sweet hosannas ring.",
@@ -169,7 +172,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Thou art the King of Israel,",
@@ -214,7 +218,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "thou David's royal Son,",
@@ -249,7 +254,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "who in the Lord's name comest,",
@@ -294,7 +300,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the King and Blessed One.",
@@ -329,7 +336,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -374,7 +382,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "to thee, Redeemer, King,",
@@ -409,7 +418,8 @@
               "oct": 1,
               "dur": 3
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "to whom the lips of children",
@@ -449,7 +459,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "made sweet hosannas ring.",
@@ -484,7 +495,8 @@
               "oct": 1,
               "dur": 3
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Thou art the King of Israel,",
@@ -529,7 +541,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "thou David's royal Son,",
@@ -564,7 +577,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "who in the Lord's name comest,",
@@ -609,7 +623,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "the King and Blessed One.",
@@ -644,11 +659,86 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1 (Palm Sunday hymn), soprano (melody) line, verified against the Mutopia LilyPond score. 'Israel' is sung in three syllables; a slurred pair carries one syllable in 'comest'. No simplification needed. D drum: as written (range 1 to high 3), D minLayout 13. C drum: the C drum has no high 2/3, so line 2 ('to thee, Redeemer, King') and lines 4–5 ('made sweet hosannas ring. Thou art the King of Israel') are played one octave lower; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum).",
+  "form": [
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Thou art the King of Israel,",
+        "thou David's royal Son,",
+        "who in the Lord's name comest,",
+        "the King and Blessed One."
+      ],
+      [
+        "The company of angels",
+        "are praising Thee on high,",
+        "and mortal men, and all things",
+        "created, make reply."
+      ],
+      [
+        "The people of the Hebrews",
+        "with palms before Thee went;",
+        "our praise, and prayer, and anthems",
+        "before Thee we present."
+      ],
+      [
+        "In hastening to Thy Passion,",
+        "they raised their hymns of praise;",
+        "in reigning 'midst Thy glory,",
+        "our melody we raise."
+      ],
+      [
+        "Thou didst accept their praises;",
+        "accept the prayers we bring,",
+        "who in all good delightest,",
+        "Thou good and gracious King!"
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1 (Palm Sunday hymn), soprano (melody) line, verified against the Mutopia LilyPond score. 'Israel' is sung in three syllables; a slurred pair carries one syllable in 'comest'. No simplification needed. D drum: as written (range 1 to high 3), D minLayout 13. C drum: the C drum has no high 2/3, so line 2 ('to thee, Redeemer, King') and lines 4–5 ('made sweet hosannas ring. Thou art the King of Israel') are played one octave lower; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum). Lyrics of the added verses: Verses 2–5: John Mason Neale's translation for the Hymnal Noted, as printed in his Mediæval Hymns and Sequences (1867), from Wikisource (https://en.wikisource.org/wiki/Mediaeval_Hymns_and_Sequences/Gloria,_laus,_et_honor). Sung as refrain, verse, refrain, … ending with the refrain.",
   "verified": true
 }

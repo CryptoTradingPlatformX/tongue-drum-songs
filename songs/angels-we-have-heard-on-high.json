@@ -58,7 +58,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "sweetly singing o'er the plains,",
@@ -98,7 +99,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and the mountains in reply",
@@ -138,7 +140,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "echoing their joyous strains.",
@@ -178,7 +181,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Glo - - - - - - - - - - - - - - - ri-a",
@@ -273,7 +277,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "in excelsis Deo!",
@@ -308,7 +313,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Glo - - - - - - - - - - - - - - - ri-a",
@@ -403,7 +409,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "in excelsis Deo!",
@@ -443,7 +450,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -488,7 +496,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "sweetly singing o'er the plains,",
@@ -528,7 +537,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and the mountains in reply",
@@ -568,7 +578,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "echoing their joyous strains.",
@@ -608,7 +619,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Glo - - - - - - - - - - - - - - - ri-a",
@@ -703,7 +715,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "in excelsis Deo!",
@@ -738,7 +751,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Glo - - - - - - - - - - - - - - - ri-a",
@@ -833,7 +847,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "in excelsis Deo!",
@@ -873,11 +888,70 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "Verified against the LilyPond score on English Wikipedia; the repeats and first/second endings are written out. No simplification needed. Range low 5 to 6. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Angels we have heard on high",
+        "sweetly singing o'er the plains,",
+        "and the mountains in reply",
+        "echoing their joyous strains."
+      ],
+      [
+        "Shepherds, why this jubilee?",
+        "Why your joyous strains prolong?",
+        "What the gladsome tidings be",
+        "which inspire your heavenly song?"
+      ],
+      [
+        "Come to Bethlehem and see",
+        "Him whose birth the angels sing;",
+        "come, adore on bended knee",
+        "Christ the Lord, the newborn King."
+      ],
+      [
+        "See Him in a manger laid,",
+        "whom the choirs of angels praise;",
+        "Mary, Joseph, lend your aid,",
+        "while our hearts in love we raise."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verified against the LilyPond score on English Wikipedia; the repeats and first/second endings are written out. No simplification needed. Range low 5 to 6. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: the 19th-century English text (after James Chadwick, 1862) as given on English Wikipedia (https://en.wikipedia.org/wiki/Angels_We_Have_Heard_on_High). The 'Gloria' refrain is sung after every verse.",
   "verified": true
 }
