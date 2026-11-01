@@ -199,6 +199,20 @@ main.has-player { padding-bottom: 8.5rem; }
   background: var(--paper);
   font-size: 1rem;
 }
+.categories { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.category {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.35rem 0.9rem;
+  border: 2px solid var(--copper);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+.category.is-on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .tag-filter { display: grid; gap: 0.35rem; }
 .tag-filter p { margin: 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -220,6 +234,9 @@ main.has-player { padding-bottom: 8.5rem; }
 }
 .result-count { color: var(--ink-soft); margin: 0.6rem 0; }
 .empty { background: var(--paper); border-radius: var(--radius); padding: 1rem 1.1rem; }
+.arrangement-notes { margin: 0.35rem 0 0.6rem; max-width: 42rem; }
+.arrangement-notes h2 { margin: 0 0 0.2rem; font-size: 1rem; }
+.arrangement-notes p { margin: 0; color: var(--ink-soft); overflow-wrap: anywhere; }
 .pager {
   display: flex;
   flex-wrap: wrap;

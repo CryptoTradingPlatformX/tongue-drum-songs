@@ -366,6 +366,12 @@ function SongPractice({
       <header className="song-head">
         <p className="kicker">{song.artist}</p>
         <h1>{song.title}</h1>
+        {song.arrangerNotes ? (
+          <section className="arrangement-notes" aria-labelledby="arrangement-notes-heading">
+            <h2 id="arrangement-notes-heading">Arrangement notes</h2>
+            <p>{song.arrangerNotes}</p>
+          </section>
+        ) : null}
         <ul className="meta">
           <li className={`diff diff-${song.difficulty}`}>
             {song.difficulty === "easy" ? "Easy" : song.difficulty === "medium" ? "Medium" : "Hard"}
@@ -526,7 +532,6 @@ function SongPractice({
             {song.source.name}
           </a>
         </p>
-        {song.arrangerNotes ? <p className="arranger-notes">{song.arrangerNotes}</p> : null}
       </section>
     </div>
   );

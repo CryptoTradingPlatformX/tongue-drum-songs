@@ -11,6 +11,7 @@ describe("library URL", () => {
       text: "yankee",
       difficulty: "easy",
       tags: ["folk", "hymn"],
+      category: "",
       fitsOnly: true,
       sort: "difficulty",
       page: 3,
@@ -18,5 +19,11 @@ describe("library URL", () => {
     expect(parseLibraryHash(libraryHash(state))).toEqual(state);
     expect(parseLibraryHash("#/song/yankee-doodle")).toMatchObject({ text: "", page: 1 });
     expect(parseLibraryHash("#/?difficulty=nope&page=0&sort=nope").difficulty).toBe("all");
+
+    const jazz = parseLibraryHash("#/?category=jazz-blues");
+    expect(jazz.category).toBe("jazz-blues");
+    expect(libraryHash(jazz)).toBe("#/?category=jazz-blues");
+    expect(parseLibraryHash("#/library?category=jazz-blues").category).toBe("jazz-blues");
+    expect(parseLibraryHash("#/?category=nope").category).toBe("");
   });
 });

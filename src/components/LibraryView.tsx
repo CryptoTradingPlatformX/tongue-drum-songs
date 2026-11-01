@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { categoryById, LIBRARY_CATEGORIES } from "../lib/categories";
 import { collectTags, filterSongs, paginate, PAGE_SIZE, type LibrarySort } from "../lib/library";
 import {
+  DEFAULT_LIBRARY_URL,
   libraryHash,
   parseLibraryHash,
   rememberLibraryHash,
@@ -50,19 +52,24 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
   const [state, commit] = useLibraryUrl();
   const [draft, setDraft] = useState(state.text);
   const tags = useMemo(() => collectTags(songs), [songs]);
+  const category = categoryById(state.category);
   const visible = useMemo(
     () =>
       filterSongs(songs, {
         text: state.text,
         difficulty: state.difficulty,
         tags: state.tags,
+        categoryTags: category?.tags,
         fitsOnly: state.fitsOnly,
         sort: state.sort,
         drumKey,
         layout,
       }),
-    [songs, state, drumKey, layout],
+    [songs, state, drumKey, layout, category],
   );
+  const categoryHasSongs = category
+    ? songs.some((song) => category.tags.some((tag) => song.tags.includes(tag)))
+    : true;
   const paged = paginate(visible, state.page, PAGE_SIZE);
   const countRef = useRef<HTMLParagraphElement>(null);
   const sawPage = useRef(false);
@@ -93,11 +100,16 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
   }, [state.page]);
 
   const filtersOn =
-    state.text.trim() !== "" || state.difficulty !== "all" || state.tags.length > 0 || state.fitsOnly || state.sort !== "title";
+    state.text.trim() !== "" ||
+    state.difficulty !== "all" ||
+    state.tags.length > 0 ||
+    state.category !== "" ||
+    state.fitsOnly ||
+    state.sort !== "title";
 
   const clear = () => {
     setDraft("");
-    commit({ text: "", difficulty: "all", tags: [], fitsOnly: false, sort: "title", page: 1 });
+    commit({ ...DEFAULT_LIBRARY_URL });
   };
 
   const count =
@@ -116,6 +128,17 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
       </header>
 
       <div className="filters">
+        <nav className="categories" aria-label="Categories">
+          {LIBRARY_CATEGORIES.map((item) => {
+            const on = state.category === item.id;
+            const href = libraryHash(on ? { ...state, category: "", page: 1 } : { ...DEFAULT_LIBRARY_URL, category: item.id });
+            return (
+              <a key={item.id} className={on ? "category is-on" : "category"} href={href} aria-current={on ? "true" : undefined}>
+                {item.label}
+              </a>
+            );
+          })}
+        </nav>
         <label className="search">
           <span>Search</span>
           <input
@@ -209,9 +232,9 @@ export function LibraryView({ songs, drumKey, layout }: Props) {
 
       {visible.length === 0 ? (
         <div className="empty">
-          <p>No tunes match these filters.</p>
+          <p>{category && !categoryHasSongs && category.emptyMessage ? category.emptyMessage : "No tunes match these filters."}</p>
           <button type="button" className="text-button" onClick={clear}>
-            Clear filters
+            {category && !categoryHasSongs ? "Show all songs" : "Clear filters"}
           </button>
         </div>
       ) : (

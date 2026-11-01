@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { LIBRARY_CATEGORIES, categoryById } from "./categories";
 import { filterSongs, paginate, songFitsDrum, type LibraryEntry } from "./library";
 import type { Difficulty, LayoutId, Song } from "./types";
 
@@ -59,6 +60,21 @@ describe("library browsing", () => {
     expect(onD11).toEqual([]);
     const onC11 = filterSongs(songs, { ...base, text: "yankee", fitsOnly: true, drumKey: "C", layout: "11" });
     expect(onC11.map((song) => song.id)).toEqual(["yankee-doodle"]);
+
+    const jazz = categoryById("jazz-blues");
+    expect(jazz?.tags).toEqual(["jazz", "blues", "ragtime"]);
+    expect(jazz?.emptyMessage).toBe("Jazz & Blues songs are coming soon");
+    expect(filterSongs(songs, { ...base, categoryTags: jazz?.tags })).toEqual([]);
+    expect(LIBRARY_CATEGORIES.map((category) => category.id)).toEqual([
+      "hymns",
+      "folk",
+      "holiday",
+      "american-classics",
+      "jazz-blues",
+    ]);
+    const hymns = filterSongs(songs, { ...base, categoryTags: categoryById("hymns")?.tags });
+    expect(hymns.length).toBeGreaterThan(0);
+    expect(hymns.every((song) => song.tags?.includes("hymn"))).toBe(true);
 
     const hymnOn8 = filterSongs(songs, { ...base, tags: ["hymn"], fitsOnly: true, drumKey: "C", layout: "8" });
     expect(hymnOn8.every((song) => songFitsDrum(song, "C", "8") && song.tags?.includes("hymn"))).toBe(true);
