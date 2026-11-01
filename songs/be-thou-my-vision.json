@@ -84,7 +84,8 @@
               "oct": 0,
               "dur": 6
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "naught be all else to me, save that Thou art.",
@@ -139,7 +140,8 @@
               "oct": 0,
               "dur": 6
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Thou my best Thought, by day or by night,",
@@ -209,7 +211,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "waking or sleeping, Thy presence my light.",
@@ -274,7 +277,8 @@
               "oct": 0,
               "dur": 6
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -344,7 +348,8 @@
               "oct": 0,
               "dur": 6
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "naught be all else to me, save that Thou art.",
@@ -399,7 +404,8 @@
               "oct": 0,
               "dur": 6
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Thou my best Thought, by day or by night,",
@@ -469,7 +475,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "waking or sleeping, Thy presence my light.",
@@ -534,11 +541,68 @@
               "oct": 0,
               "dur": 6
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "3/2 time (half note = 2 beats). Verified against the LilyPond score on French Wikipedia (English words in the score). Slurred notes carry one syllable over two notes. No simplification needed. Range low 5 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Be Thou my Vision, O Lord of my heart;",
+        "naught be all else to me, save that Thou art.",
+        "Thou my best Thought, by day or by night,",
+        "waking or sleeping, Thy presence my light."
+      ],
+      [
+        "Be Thou my Wisdom, and Thou my true Word;",
+        "I ever with Thee and Thou with me, Lord;",
+        "Thou my great Father, I Thy true son;",
+        "Thou in me dwelling, and I with Thee one."
+      ],
+      [
+        "Be Thou my battle Shield, Sword for the fight;",
+        "be Thou my Dignity, Thou my Delight;",
+        "Thou my soul's Shelter, Thou my high Tow'r:",
+        "raise Thou me heav'nward, O Pow'r of my pow'r."
+      ],
+      [
+        "Riches I heed not, nor man's empty praise,",
+        "Thou mine Inheritance, now and always:",
+        "Thou and Thou only, first in my heart,",
+        "High King of Heaven, my Treasure Thou art."
+      ],
+      [
+        "High King of Heaven, my victory won,",
+        "may I reach Heaven's joys, O bright Heav'n's Sun!",
+        "Heart of my own heart, whatever befall,",
+        "still be my Vision, O Ruler of all."
+      ]
+    ]
+  },
+  "arrangerNotes": "3/2 time (half note = 2 beats). Verified against the LilyPond score on French Wikipedia (English words in the score). Slurred notes carry one syllable over two notes. No simplification needed. Range low 5 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–5: Eleanor Hull's versification (1912), as given on English Wikipedia (https://en.wikipedia.org/wiki/Be_Thou_My_Vision#Lyrics).",
   "verified": true
 }

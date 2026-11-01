@@ -68,7 +68,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "that saved a wretch like me.",
@@ -108,7 +109,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "I once was lost, but now am found,",
@@ -173,7 +175,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "was blind, but now I see.",
@@ -213,7 +216,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -268,7 +272,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "that saved a wretch like me.",
@@ -308,7 +313,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "I once was lost, but now am found,",
@@ -373,7 +379,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "was blind, but now I see.",
@@ -413,11 +420,78 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "3/4 time. Verified against the Wikipedia LilyPond score: slurred two-note syllables are written as separate notes. The 'I once was lost, but now am found' phrase has its own melody (5-3 / 5-3 on 'once was', 6-1 / 1-6 on 'now am'), not a repeat of the first line. Range low 5 to 5, minLayout 11 on both drums. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "verse",
+      "verse": 6
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Amazing grace, how sweet the sound",
+        "that saved a wretch like me.",
+        "I once was lost, but now am found,",
+        "was blind, but now I see."
+      ],
+      [
+        "'Twas grace that taught my heart to fear,",
+        "and grace my fears relieved;",
+        "how precious did that grace appear",
+        "the hour I first believed!"
+      ],
+      [
+        "Through many dangers, toils, and snares,",
+        "I have already come;",
+        "'tis grace has brought me safe thus far,",
+        "and grace will lead me home."
+      ],
+      [
+        "The Lord has promised good to me,",
+        "His word my hope secures;",
+        "He will my shield and portion be",
+        "as long as life endures."
+      ],
+      [
+        "Yes, when this flesh and heart shall fail,",
+        "and mortal life shall cease,",
+        "I shall possess, within the veil,",
+        "a life of joy and peace."
+      ],
+      [
+        "The earth shall soon dissolve like snow,",
+        "the sun forbear to shine;",
+        "but God, who call'd me here below,",
+        "will be for ever mine."
+      ]
+    ]
+  },
+  "arrangerNotes": "3/4 time. Verified against the Wikipedia LilyPond score: slurred two-note syllables are written as separate notes. The 'I once was lost, but now am found' phrase has its own melody (5-3 / 5-3 on 'once was', 6-1 / 1-6 on 'now am'), not a repeat of the first line. Range low 5 to 5, minLayout 11 on both drums. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–6: John Newton's original text, Olney Hymns (1779), Book I, Hymn 41, as transcribed on Wikisource from the 1840 edition (https://en.wikisource.org/wiki/Olney_Hymns_(1840)/Book_1/Hymn_41).",
   "verified": true
 }

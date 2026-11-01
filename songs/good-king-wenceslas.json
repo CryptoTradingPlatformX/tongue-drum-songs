@@ -59,7 +59,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "on the feast of Stephen,",
@@ -94,7 +95,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "when the snow lay round about,",
@@ -134,7 +136,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "deep and crisp and even;",
@@ -169,7 +172,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "brightly shone the moon that night,",
@@ -209,7 +213,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "though the frost was cruel,",
@@ -244,7 +249,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "when a poor man came in sight,",
@@ -284,7 +290,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "gathering winter fuel.",
@@ -324,7 +331,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -369,7 +377,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "on the feast of Stephen,",
@@ -404,7 +413,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "when the snow lay round about,",
@@ -444,7 +454,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "deep and crisp and even;",
@@ -479,7 +490,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "brightly shone the moon that night,",
@@ -519,7 +531,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "though the frost was cruel,",
@@ -554,7 +567,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "when a poor man came in sight,",
@@ -594,7 +608,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "gathering winter fuel.",
@@ -634,11 +649,88 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1, melody line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two notes ('fuel' is sung over three notes). No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Good King Wenceslas looked out",
+        "on the feast of Stephen,",
+        "when the snow lay round about,",
+        "deep and crisp and even;",
+        "brightly shone the moon that night,",
+        "though the frost was cruel,",
+        "when a poor man came in sight,",
+        "gathering winter fuel."
+      ],
+      [
+        "'Hither, page, and stand by me,",
+        "if thou know'st, telling,",
+        "yonder peasant, who is he?",
+        "Where and what his dwelling?'",
+        "'Sire, he lives a good league hence,",
+        "underneath the mountain,",
+        "right against the forest fence,",
+        "by Saint Agnes' fountain.'"
+      ],
+      [
+        "'Bring me flesh, and bring me wine,",
+        "bring me pine logs hither:",
+        "thou and I will see him dine,",
+        "when we bear them thither.'",
+        "Page and monarch, forth they went,",
+        "forth they went together,",
+        "through the rude wind's wild lament",
+        "and the bitter weather."
+      ],
+      [
+        "'Sire, the night is darker now,",
+        "and the wind blows stronger;",
+        "fails my heart, I know not how;",
+        "I can go no longer.'",
+        "'Mark my footsteps, good my page;",
+        "tread thou in them boldly:",
+        "thou shalt find the winter's rage",
+        "freeze thy blood less coldly.'"
+      ],
+      [
+        "In his master's steps he trod,",
+        "where the snow lay dinted;",
+        "heat was in the very sod",
+        "which the saint had printed.",
+        "Therefore, Christian men, be sure,",
+        "wealth or rank possessing,",
+        "ye who now will bless the poor",
+        "shall yourselves find blessing."
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1, melody line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two notes ('fuel' is sung over three notes). No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–5: John Mason Neale, Carols for Christmas-tide (1853), from Wikisource (https://en.wikisource.org/wiki/Carols_for_Christmas-tide/Good_King_Wenceslas) (the wording 'if thou know'st, telling', five syllables on that line's six notes, is kept as transcribed).",
   "verified": true
 }

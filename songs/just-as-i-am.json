@@ -77,7 +77,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "but that Thy blood was shed for me,",
@@ -127,7 +128,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and that Thou bidd'st me come to Thee,",
@@ -192,7 +194,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "O Lamb of God, I come, I come!",
@@ -237,7 +240,8 @@
               "oct": 0,
               "dur": 5
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -302,7 +306,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "but that Thy blood was shed for me,",
@@ -352,7 +357,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and that Thou bidd'st me come to Thee,",
@@ -417,7 +423,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "O Lamb of God, I come, I come!",
@@ -462,11 +469,78 @@
               "oct": 0,
               "dur": 5
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "6/4 time (quarter = 1 beat). Soprano (melody) line, verified against the Mutopia LilyPond score; the last 'come' is one held note (the score slurs two equal F♯s across the bar, i.e. a tie). No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "verse",
+      "verse": 6
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Just as I am, without one plea,",
+        "but that Thy blood was shed for me,",
+        "and that Thou bidd'st me come to Thee,",
+        "O Lamb of God, I come, I come!"
+      ],
+      [
+        "Just as I am, and waiting not",
+        "to rid my soul of one dark blot,",
+        "to Thee, whose blood can cleanse each spot,",
+        "O Lamb of God, I come, I come!"
+      ],
+      [
+        "Just as I am, poor, wretched, blind;",
+        "sight, riches, healing of the mind,",
+        "yea, all I need, in Thee I find,",
+        "O Lamb of God, I come, I come!"
+      ],
+      [
+        "Just as I am, though tossed about",
+        "with many a conflict, many a doubt,",
+        "fightings within, and fears without,",
+        "O Lamb of God, I come, I come!"
+      ],
+      [
+        "Just as I am, Thou wilt receive,",
+        "with welcome, pardon, cleanse, relieve,",
+        "because Thy promise I believe,",
+        "O Lamb of God, I come, I come!"
+      ],
+      [
+        "Just as I am, Thy love unknown",
+        "has broken every barrier down;",
+        "now to be Thine, yea Thine alone,",
+        "O Lamb of God, I come, I come!"
+      ]
+    ]
+  },
+  "arrangerNotes": "6/4 time (quarter = 1 beat). Soprano (melody) line, verified against the Mutopia LilyPond score; the last 'come' is one held note (the score slurs two equal F♯s across the bar, i.e. a tie). No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–6: Charlotte Elliott (1835), from the Civil War tract 'The Soldier's Prayer and The Only Plea' on Wikisource (https://en.wikisource.org/wiki/The_Soldier%E2%80%99s_Prayer_and_The_Only_Plea).",
   "verified": true
 }
