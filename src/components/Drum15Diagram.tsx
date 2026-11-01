@@ -1,6 +1,6 @@
-import { useId } from "react";
+import { useId, type KeyboardEvent, type MouseEvent } from "react";
 import { DRUM_15_CENTER, DRUM_15_OUTER, type Drum15Outer } from "../lib/drum15";
-import { noteName } from "../lib/music";
+import { noteName, tonguePhrase } from "../lib/music";
 import type { DrumKey, Tongue } from "../lib/types";
 import { paintFill, paintStroke, tonguePaint, type TonguePaint } from "./drumTone";
 
@@ -14,6 +14,27 @@ type Props = {
 
 function pitchName(drumKey: DrumKey, tongue: Tongue, pitchLabel?: (tongue: Tongue) => string): string {
   return pitchLabel ? pitchLabel(tongue) : noteName(drumKey, tongue.deg, tongue.oct);
+}
+
+function activate(onTongue: ((tongue: Tongue) => void) | undefined, tongue: Tongue, drumKey: DrumKey) {
+  if (!onTongue) return {};
+  const press = () => onTongue(tongue);
+  return {
+    role: "button" as const,
+    tabIndex: 0,
+    className: "tongue-hit",
+    "aria-label": tonguePhrase(drumKey, tongue),
+    onClick: (event: MouseEvent<SVGElement>) => {
+      event.stopPropagation();
+      press();
+    },
+    onKeyDown: (event: KeyboardEvent<SVGElement>) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      event.stopPropagation();
+      press();
+    },
+  };
 }
 
 const CX = 200;
@@ -72,7 +93,13 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue, pitchLabe
   const glow = `${rawId}-glow`;
 
   return (
-    <svg className="drum-svg drum-15" viewBox="0 0 400 400" role={onTongue ? "group" : "img"} aria-hidden={onTongue ? undefined : true}>
+    <svg
+      className={onTongue ? "drum-svg drum-15 is-interactive" : "drum-svg drum-15"}
+      viewBox="0 0 400 400"
+      role={onTongue ? "group" : "img"}
+      aria-hidden={onTongue ? undefined : true}
+      aria-label={onTongue ? `${drumKey} drum` : undefined}
+    >
       <defs>
         <radialGradient id={steel} cx="46%" cy="40%" r="68%">
           <stop offset="0%" stopColor="#7eafd4" />
@@ -99,30 +126,10 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue, pitchLabe
             fill={paintFill(paint, "none")}
             stroke="none"
             filter={paint ? `url(#${glow})` : undefined}
-            style={onTongue ? { cursor: "pointer" } : undefined}
-            role={onTongue ? "button" : undefined}
-            tabIndex={onTongue ? 0 : undefined}
-            aria-label={onTongue ? `${tongue.deg} ${pitchName(drumKey, tongue, pitchLabel)}` : undefined}
-            onClick={onTongue ? () => onTongue(tongue) : undefined}
-            onKeyDown={
-              onTongue
-                ? (event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      onTongue(tongue);
-                    }
-                  }
-                : undefined
-            }
           />
         );
       })}
-      <CenterTongue
-        paint={tonguePaint(active, chordTones, DRUM_15_CENTER)}
-        glow={`url(#${glow})`}
-        onTongue={onTongue}
-        label={onTongue ? `3 ${pitchName(drumKey, DRUM_15_CENTER, pitchLabel)}` : undefined}
-      />
+      <CenterTongue paint={tonguePaint(active, chordTones, DRUM_15_CENTER)} glow={`url(#${glow})`} />
 
       {DRUM_15_OUTER.map((tongue) => {
         const geo = tongueGeometry(tongue);
@@ -149,21 +156,37 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue, pitchLabe
         />
       ))}
       <CenterLabel name={pitchName(drumKey, DRUM_15_CENTER, pitchLabel)} paint={tonguePaint(active, chordTones, DRUM_15_CENTER)} />
+      {onTongue
+        ? DRUM_15_OUTER.map((tongue) => {
+            const geo = tongueGeometry(tongue);
+            return (
+              <path
+                key={`hit-${tongue.deg}:${tongue.oct}`}
+                d={slotPath(tongue.angle, geo.outerR, geo.tip, geo.halfW, true)}
+                fill="transparent"
+                stroke="none"
+                {...activate(onTongue, tongue, drumKey)}
+              />
+            );
+          })
+        : null}
+      {onTongue ? (
+        <rect
+          x={CX - 26}
+          y={CY - 58}
+          width={52}
+          height={116}
+          rx={26}
+          fill="transparent"
+          stroke="none"
+          {...activate(onTongue, DRUM_15_CENTER, drumKey)}
+        />
+      ) : null}
     </svg>
   );
 }
 
-function CenterTongue({
-  paint,
-  glow,
-  onTongue,
-  label,
-}: {
-  paint: TonguePaint;
-  glow: string;
-  onTongue?: (tongue: Tongue) => void;
-  label?: string;
-}) {
+function CenterTongue({ paint, glow }: { paint: TonguePaint; glow: string }) {
   return (
     <rect
       x={CX - 26}
@@ -175,21 +198,6 @@ function CenterTongue({
       stroke={paintStroke(paint, "#14283a")}
       strokeWidth={paint ? 3 : 2.4}
       filter={paint ? glow : undefined}
-      style={onTongue ? { cursor: "pointer" } : undefined}
-      role={onTongue ? "button" : undefined}
-      tabIndex={onTongue ? 0 : undefined}
-      aria-label={label}
-      onClick={onTongue ? () => onTongue(DRUM_15_CENTER) : undefined}
-      onKeyDown={
-        onTongue
-          ? (event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                onTongue(DRUM_15_CENTER);
-              }
-            }
-          : undefined
-      }
     />
   );
 }
@@ -203,7 +211,7 @@ function TongueLabel({ tongue, name, paint }: { tongue: Drum15Outer; name: strin
   const ink = paint ? "#3c2614" : "#f7fbff";
   const soft = paint ? "#5c4634" : "#e4f0fa";
   return (
-    <g style={{ pointerEvents: "none" }}>
+    <g className="tongue-label" style={{ pointerEvents: "none" }}>
       <title>{`${tongue.deg} ${name}`}</title>
       {tongue.oct !== 0 ? <circle cx={dx} cy={dy} r="2.6" fill={ink} /> : null}
       <text
@@ -239,7 +247,7 @@ function CenterLabel({ name, paint }: { name: string; paint: TonguePaint }) {
   const ink = paint ? "#3c2614" : "#f7fbff";
   const soft = paint ? "#5c4634" : "#e4f0fa";
   return (
-    <g style={{ pointerEvents: "none" }}>
+    <g className="tongue-label" style={{ pointerEvents: "none" }}>
       <title>{`3 ${name}`}</title>
       <text
         x={CX}
