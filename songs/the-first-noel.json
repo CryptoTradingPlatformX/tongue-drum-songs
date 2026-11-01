@@ -75,7 +75,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "was to certain poor shepherds in fields as they lay;",
@@ -155,7 +156,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "in fields where they lay keeping their sheep,",
@@ -210,7 +212,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "on a cold winter's night that was so deep.",
@@ -290,7 +293,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Noel, Noel, Noel, Noel,",
@@ -355,7 +359,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "born is the King of Israel.",
@@ -415,7 +420,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -475,7 +481,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "was to certain poor shepherds in fields as they lay;",
@@ -555,7 +562,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "in fields where they lay keeping their sheep,",
@@ -610,7 +618,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "on a cold winter's night that was so deep.",
@@ -690,7 +699,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Noel, Noel, Noel, Noel,",
@@ -755,7 +765,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "born is the King of Israel.",
@@ -815,11 +826,96 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1 and refrain, soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two notes. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 6
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "The first Noel the angel did say",
+        "was to certain poor shepherds in fields as they lay;",
+        "in fields where they lay keeping their sheep,",
+        "on a cold winter's night that was so deep."
+      ],
+      [
+        "They lookèd up and saw a star,",
+        "shining in the east, beyond them far:",
+        "and to the earth it gave great light,",
+        "and so it continued both day and night:"
+      ],
+      [
+        "And by the light of that same star,",
+        "three Wise Men came from country far;",
+        "to seek for a King was their intent,",
+        "and to follow the star wheresoever it went:"
+      ],
+      [
+        "This star drew nigh to the north-west;",
+        "o'er Bethlehem it took its rest;",
+        "and there it did both stop and stay",
+        "right over the place where Jesus lay:"
+      ],
+      [
+        "Then entered in those Wise Men three,",
+        "fell reverently upon their knee,",
+        "and offered there in his presence",
+        "their gold and myrrh and frankincense:"
+      ],
+      [
+        "Then let us all with one accord",
+        "sing praises to our heavenly Lord,",
+        "that hath made heaven and earth of nought,",
+        "and with his blood mankind hath bought:"
+      ]
+    ]
+  },
+  "arrangerNotes": "Verse 1 and refrain, soprano (melody) line, verified against the Mutopia LilyPond score. Slurred notes carry one syllable over two notes. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–6: the traditional text as printed in Bramley and Stainer, Carols New and Old (c. 1878) and reproduced in The New English Hymnal, as transcribed on Wikisource (https://en.wikisource.org/wiki/The_First_Nowell; see also https://en.wikipedia.org/wiki/The_First_Noel#Textual_comparison); the transcription's 'whersoever' is spelled 'wheresoever'. The 'Noel' refrain is sung after every verse. No verse needs extra notes: every line of verses 2–6 has no more syllables than its notes. As in verse 1 (12 syllables on the 15 notes of line 2), some syllables are held over two or more notes; the song format has no per-note syllable placement, so the notes are left as in verse 1.",
   "verified": true
 }

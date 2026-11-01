@@ -69,7 +69,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "never brought to mind? Should",
@@ -104,7 +105,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "auld acquaintance be forgot, and",
@@ -149,7 +151,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "days of auld lang syne?",
@@ -179,7 +182,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "For auld lang syne, my dear,",
@@ -224,7 +228,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "for auld lang syne, we'll",
@@ -264,7 +269,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "take a cup o' kindness yet for",
@@ -309,7 +315,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "auld lang syne.",
@@ -339,7 +346,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     },
@@ -394,7 +402,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "never brought to mind? Should",
@@ -429,7 +438,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "auld acquaintance be forgot, and",
@@ -474,7 +484,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "days of auld lang syne?",
@@ -504,7 +515,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "For auld lang syne, my dear,",
@@ -549,7 +561,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "for auld lang syne, we'll",
@@ -589,7 +602,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "take a cup o' kindness yet for",
@@ -634,7 +648,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "auld lang syne.",
@@ -664,11 +679,339 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     }
   },
-  "arrangerNotes": "Pentatonic melody, so no accidentals to remove. Verified against the Wikipedia LilyPond score. 'we'll' is the same 6 as 'syne' (some session settings put it on the high 1 instead). Lyric line breaks follow the phrases; slurred notes in the score carry one syllable over two notes. Range low 5 to 6, minLayout 11 on both drums. Medium because of the dotted rhythms. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "chorus"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Should auld acquaintance be forgot, and",
+        "never brought to mind? Should",
+        "auld acquaintance be forgot, and",
+        "days of auld lang syne?"
+      ],
+      [
+        "We twa hae run about the braes, and",
+        "pu'd the gowans fine, but we've",
+        "wander'd mony a weary foot sin",
+        "auld lang syne."
+      ],
+      [
+        "We twa hae paidl't i' the burn, from",
+        "mornin sun till dine; but",
+        "seas between us braid hae roar'd sin",
+        "auld lang syne."
+      ],
+      [
+        "And here's a hand, my trusty fiere, and",
+        "gie's a hand o' thine; and we'll",
+        "tak a right guid willie-waught, for",
+        "auld lang syne."
+      ],
+      [
+        "And surely ye'll be your pint-stowp, and",
+        "surely I'll be mine; and we'll",
+        "tak a cup o' kindness yet for",
+        "auld lang syne."
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "2": {
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "pu'd the gowans fine, but we've"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "pu'd the gowans fine, but we've"
+          }
+        }
+      },
+      "4": {
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "gie's a hand o' thine; and we'll"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "gie's a hand o' thine; and we'll"
+          }
+        }
+      },
+      "5": {
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "surely I'll be mine; and we'll"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "surely I'll be mine; and we'll"
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "Pentatonic melody, so no accidentals to remove. Verified against the Wikipedia LilyPond score. 'we'll' is the same 6 as 'syne' (some session settings put it on the high 1 instead). Lyric line breaks follow the phrases; slurred notes in the score carry one syllable over two notes. Range low 5 to 6, minLayout 11 on both drums. Medium because of the dotted rhythms. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–5: Robert Burns (1788), as printed in The Poetical Works of Robert Burns, ed. Alexander Smith (1887), p. 249, from Wikisource (https://en.wikisource.org/wiki/The_Poetical_Works_of_Robert_Burns/Auld_Lang_Syne), in Burns's Scots; as in verse 1 here, each line ends with the pickup word of the next line. The chorus (verse-1 wording) is sung after every verse; 'mony a' is sung as two syllables. Per-verse notes (verseLines): in verses 2, 4 and 5 the second line ends with a two-syllable pickup ('but we've', 'and we'll'), so its last quarter note is played as two eighths of the same pitch.",
   "verified": true
 }

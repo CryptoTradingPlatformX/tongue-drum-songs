@@ -98,7 +98,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "He is trampling out the vintage where the grapes of wrath are stored,",
@@ -182,7 +183,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "He hath loosed the fateful lightning of his terrible swift sword;",
@@ -266,7 +268,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "His truth is marching on.",
@@ -305,7 +308,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Glory! glory! Hallelujah!",
@@ -354,7 +358,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Glory! glory! Hallelujah!",
@@ -399,7 +404,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Glory! glory! Hallelujah!",
@@ -448,7 +454,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "His truth is marching on.",
@@ -483,7 +490,8 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     },
@@ -567,7 +575,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "He is trampling out the vintage where the grapes of wrath are stored,",
@@ -651,7 +660,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "He hath loosed the fateful lightning of his terrible swift sword;",
@@ -735,7 +745,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "His truth is marching on.",
@@ -774,7 +785,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Glory! glory! Hallelujah!",
@@ -823,7 +835,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Glory! glory! Hallelujah!",
@@ -868,7 +881,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "Glory! glory! Hallelujah!",
@@ -917,7 +931,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "His truth is marching on.",
@@ -952,11 +967,775 @@
               "oct": 0,
               "dur": 3
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1 and chorus, verified against the LilyPond score on the Wikisource transcription of 'The Riverside Song Book' (1893; verse on page 60, chorus on page 61). The score prints the tune in two-part chords; the melody is the top note of each chord. The two tied sixteenths of the pickup are one eighth note ('Mine'); dotted-eighth/sixteenth rhythms and the score's rests are kept. No simplification needed. D drum: as written (range low 3 to 3), D minLayout 15. C drum: the C drum has no low 3/4, so the low figures 'Mine eyes have seen the glory', 'the grapes of wrath are stored, He hath loosed the fateful lightning', 'Glory! glory!' (first chorus line) and 'lujah! Glory! glory!' (end of the second, start of the third chorus line) are played one octave higher; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "chorus"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Mine eyes have seen the glory of the coming of the Lord;",
+        "He is trampling out the vintage where the grapes of wrath are stored,",
+        "He hath loosed the fateful lightning of his terrible swift sword;",
+        "His truth is marching on."
+      ],
+      [
+        "I have seen him in the watch-fires of a hundred circling camps;",
+        "they have builded him an altar in the evening dews and damps;",
+        "I have read his righteous sentence by the dim and flaring lamps;",
+        "His day is marching on."
+      ],
+      [
+        "I have read a fiery gospel, writ in burnish'd rows of steel:",
+        "\"As ye deal with my contemners, so with you my grace shall deal;",
+        "let the hero, born of woman, crush the serpent with his heel,",
+        "since God is marching on.\""
+      ],
+      [
+        "He has sounded forth the trumpet that shall never call retreat;",
+        "He is sifting out the hearts of men before his judgment-seat;",
+        "oh, be swift, my soul, to answer him! be jubilant, my feet!",
+        "Our God is marching on."
+      ],
+      [
+        "In the beauty of the lilies Christ was born across the sea,",
+        "with a glory in his bosom that transfigures you and me:",
+        "as he dies to make men holy, let us die to make men free,",
+        "while God is marching on."
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "2": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "I have seen him in the watch-fires of a hundred circling camps;"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "I have seen him in the watch-fires of a hundred circling camps;"
+          }
+        }
+      },
+      "3": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "I have read a fiery gospel, writ in burnish'd rows of steel:"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "I have read a fiery gospel, writ in burnish'd rows of steel:"
+          }
+        }
+      },
+      "4": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "He has sounded forth the trumpet that shall never call retreat;"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "He has sounded forth the trumpet that shall never call retreat;"
+          }
+        }
+      },
+      "5": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "In the beauty of the lilies Christ was born across the sea,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 4,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": -1,
+                "dur": 0.75
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "In the beauty of the lilies Christ was born across the sea,"
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "Verse 1 and chorus, verified against the LilyPond score on the Wikisource transcription of 'The Riverside Song Book' (1893; verse on page 60, chorus on page 61). The score prints the tune in two-part chords; the melody is the top note of each chord. The two tied sixteenths of the pickup are one eighth note ('Mine'); dotted-eighth/sixteenth rhythms and the score's rests are kept. No simplification needed. D drum: as written (range low 3 to 3), D minLayout 15. C drum: the C drum has no low 3/4, so the low figures 'Mine eyes have seen the glory', 'the grapes of wrath are stored, He hath loosed the fateful lightning', 'Glory! glory!' (first chorus line) and 'lujah! Glory! glory!' (end of the second, start of the third chorus line) are played one octave higher; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum). Lyrics of the added verses: Verses 2–5: Julia Ward Howe's text as printed with the tune in The Riverside Song Book (1893), pp. 36–37, from Wikisource (https://en.wikisource.org/wiki/Page:The_Riverside_song_book.djvu/60 and /61). The 'Glory! glory! Hallelujah!' chorus (ending 'His truth is marching on') is sung after every verse. Per-verse notes (verseLines): in verses 2–5 the first line starts with two syllables ('I have', 'I have', 'He has', 'In the'), so the eighth-note pickup is played as two sixteenths of the same pitch, as that songbook's score shows.",
   "verified": true
 }

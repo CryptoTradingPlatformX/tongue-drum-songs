@@ -100,7 +100,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "dwelt a miner, forty-niner, and his daughter Clementine.",
@@ -180,7 +181,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Oh my darling, oh my darling, oh my darling Clementine,",
@@ -260,7 +262,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "you are lost and gone forever, dreadful sorry, Clementine.",
@@ -340,7 +343,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     },
@@ -425,7 +429,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "dwelt a miner, forty-niner, and his daughter Clementine.",
@@ -505,7 +510,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Oh my darling, oh my darling, oh my darling Clementine,",
@@ -585,7 +591,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "chorus"
         },
         {
           "lyric": "you are lost and gone forever, dreadful sorry, Clementine.",
@@ -665,11 +672,447 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "chorus"
         }
       ]
     }
   },
-  "arrangerNotes": "Verified against the LilyPond score on Hungarian Wikipedia (8 bars with a repeat sign, written out: once for verse 1, once for the chorus, as the song is sung). The English verse/chorus words fit the notes syllable for syllable. No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 6
+    },
+    {
+      "section": "chorus"
+    },
+    {
+      "section": "verse",
+      "verse": 7
+    },
+    {
+      "section": "chorus"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "In a cavern, in a canyon, excavating for a mine,",
+        "dwelt a miner, forty-niner, and his daughter Clementine."
+      ],
+      [
+        "Light she was, and like a fairy, and her shoes were number nine;",
+        "herring boxes, without topses, sandals were for Clementine."
+      ],
+      [
+        "Drove she ducklings to the water ev'ry morning just at nine;",
+        "hit her foot against a splinter, fell into the foaming brine."
+      ],
+      [
+        "Ruby lips above the water, blowing bubbles, soft and fine,",
+        "alas, for me! I was no swimmer, so I lost my Clementine."
+      ],
+      [
+        "In a churchyard, near the canyon, where the myrtle boughs entwine,",
+        "there grow roses, and other posies, fertilized by Clementine."
+      ],
+      [
+        "Then the miner, forty-niner, soon began to peak and pine;",
+        "thought he 'oughter jine' his daughter, now he's with his Clementine."
+      ],
+      [
+        "In my dreams she still doth haunt me, robed in garments soaked in brine;",
+        "though in life I used to hug her, now she's dead, I'll draw the line."
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "4": {
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 1
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              }
+            ],
+            "lyric": "alas, for me! I was no swimmer, so I lost my Clementine."
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 1
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              }
+            ],
+            "lyric": "alas, for me! I was no swimmer, so I lost my Clementine."
+          }
+        }
+      },
+      "5": {
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 1
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              }
+            ],
+            "lyric": "there grow roses, and other posies, fertilized by Clementine."
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 1
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              }
+            ],
+            "lyric": "there grow roses, and other posies, fertilized by Clementine."
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "Verified against the LilyPond score on Hungarian Wikipedia (8 bars with a repeat sign, written out: once for verse 1, once for the chorus, as the song is sung). The English verse/chorus words fit the notes syllable for syllable. No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–7 of Percy Montrose's song as printed in Henry Randall Waite's College Songs (1887), from Wikisource (https://en.wikisource.org/wiki/College_Songs/Oh_My_Darling_Clementine); the source's 'canon' (cañon) in verse 5 is spelled 'canyon' as in verse 1. The chorus is sung after every verse. Per-verse notes (verseLines): verses 4 and 5 have 16 syllables in their second line, one more than its 15 notes, so one quarter note is played as two eighths of the same pitch ('swim-mer' in verse 4; 'roses, and' in verse 5).",
   "verified": true
 }

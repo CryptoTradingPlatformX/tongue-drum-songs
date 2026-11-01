@@ -54,7 +54,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "joyful and triumphant, O",
@@ -94,7 +95,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "come ye, O come ye to Bethlehem.",
@@ -154,7 +156,8 @@
               "oct": -1,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Come and behold Him,",
@@ -184,7 +187,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "born the King of angels. O",
@@ -219,7 +223,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "come, let us adore Him, O",
@@ -259,7 +264,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "come, let us adore Him, O",
@@ -299,7 +305,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "come, let us adore Him,",
@@ -334,7 +341,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Christ the Lord.",
@@ -369,7 +377,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -409,7 +418,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "joyful and triumphant, O",
@@ -449,7 +459,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "come ye, O come ye to Bethlehem.",
@@ -509,7 +520,8 @@
               "oct": -1,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Come and behold Him,",
@@ -539,7 +551,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "born the King of angels. O",
@@ -574,7 +587,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "come, let us adore Him, O",
@@ -614,7 +628,8 @@
               "oct": -1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "come, let us adore Him, O",
@@ -654,7 +669,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "come, let us adore Him,",
@@ -689,7 +705,8 @@
               "oct": -1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Christ the Lord.",
@@ -724,11 +741,60 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "Verified against the melody (top voice) of the Wikipedia LilyPond organ score (alto and bass voices left out). Slurred notes are written separately. No accidentals. Range low 5 to 5, minLayout 11 on both drums. Medium because of the length and the low notes. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "O come, all ye faithful,",
+        "joyful and triumphant, O",
+        "come ye, O come ye to Bethlehem.",
+        "Come and behold Him,",
+        "born the King of angels. O"
+      ],
+      [
+        "Sing, choirs of angels,",
+        "sing in exultation, O",
+        "sing, all ye bright hosts of heaven above;",
+        "Glory to God, all",
+        "glory in the highest. O"
+      ],
+      [
+        "Yea, Lord, we greet Thee,",
+        "born this happy morning; Je-",
+        "sus, to Thee be all glory given;",
+        "Word of the Father,",
+        "now in flesh appearing. O"
+      ]
+    ]
+  },
+  "arrangerNotes": "Verified against the melody (top voice) of the Wikipedia LilyPond organ score (alto and bass voices left out). Slurred notes are written separately. No accidentals. Range low 5 to 5, minLayout 11 on both drums. Medium because of the length and the low notes. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2 and 3: Frederick Oakeley's translation (1841) as printed in The Army and Navy Hymnal (1920), hymn 36, from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/O_Come,_All_Ye_Faithful), with 'Thee' capitalised as in verse 1 here. As in verse 1, a line ends with the pickup syllable of the next line ('O', and 'Je-' of 'Jesus' in verse 3); in verse 2, 'all' of 'all glory' is sung on the last note of line 4. The 'O come, let us adore Him' refrain is sung after every verse. No verse needs extra notes: no line of verses 2–3 has more syllables than its notes, so the verse-1 notes are used throughout.",
   "verified": true
 }

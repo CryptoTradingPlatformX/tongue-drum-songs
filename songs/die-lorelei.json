@@ -74,7 +74,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "dass ich so traurig bin;",
@@ -118,7 +119,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ein Märchen aus alten Zeiten,",
@@ -172,7 +174,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "das kommt mir nicht aus dem Sinn.",
@@ -216,7 +219,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Die Luft ist kühl und es dunkelt,",
@@ -270,7 +274,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "und ruhig fließt der Rhein;",
@@ -314,7 +319,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "der Gipfel des Berges funkelt",
@@ -369,7 +375,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "im Abendsonnenschein.",
@@ -409,7 +416,8 @@
               "oct": 0,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -468,7 +476,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "dass ich so traurig bin;",
@@ -512,7 +521,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ein Märchen aus alten Zeiten,",
@@ -566,7 +576,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "das kommt mir nicht aus dem Sinn.",
@@ -610,7 +621,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Die Luft ist kühl und es dunkelt,",
@@ -664,7 +676,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "und ruhig fließt der Rhein;",
@@ -708,7 +721,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "der Gipfel des Berges funkelt",
@@ -763,7 +777,8 @@
               "oct": 1,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "im Abendsonnenschein.",
@@ -803,11 +818,166 @@
               "oct": 1,
               "dur": 2
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "6/8 time (eighth = 0.5 beat). Verified against the LilyPond score on Hungarian Wikipedia (Silcher's tune; the score's key signature says A minor but the melody is in C major). The score's rests between phrases are kept. Simplification: the chromatic F♯ in 'und ruhig fließt der Rhein' (F♯–G) is played as 4 (F), since tongue drums have no chromatic notes. D drum: as written (range 1 to high 3), D minLayout 13. C drum: the C drum has no high 2/3, so the last phrase 'der Gipfel des Berges funkelt im Abendsonnenschein' (score events 55–71) is played one octave lower; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Ich weiß nicht, was soll es bedeuten,",
+        "dass ich so traurig bin;",
+        "ein Märchen aus alten Zeiten,",
+        "das kommt mir nicht aus dem Sinn.",
+        "Die Luft ist kühl und es dunkelt,",
+        "und ruhig fließt der Rhein;",
+        "der Gipfel des Berges funkelt",
+        "im Abendsonnenschein."
+      ],
+      [
+        "Die schönste Jungfrau sitzet",
+        "dort oben wunderbar,",
+        "ihr gold'nes Geschmeide blitzet,",
+        "sie kämmt ihr gold'nes Haar.",
+        "Sie kämmt es mit gold'nem Kamme",
+        "und singt ein Lied dabei;",
+        "das hat eine wundersame,",
+        "gewaltige Melodei."
+      ],
+      [
+        "Den Schiffer im kleinen Schiffe",
+        "ergreift es mit wildem Weh;",
+        "er schaut nicht die Felsenriffe,",
+        "er schaut nur hinauf in die Höh'.",
+        "Ich glaube, die Wellen verschlingen",
+        "am Ende Schiffer und Kahn;",
+        "und das hat mit ihrem Singen",
+        "die Lore-Ley getan."
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "3": {
+        "3": {
+          "C": {
+            "notes": [
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "er schaut nur hinauf in die Höh'."
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "rest": true,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "er schaut nur hinauf in die Höh'."
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "6/8 time (eighth = 0.5 beat). Verified against the LilyPond score on Hungarian Wikipedia (Silcher's tune; the score's key signature says A minor but the melody is in C major). The score's rests between phrases are kept. Simplification: the chromatic F♯ in 'und ruhig fließt der Rhein' (F♯–G) is played as 4 (F), since tongue drums have no chromatic notes. D drum: as written (range 1 to high 3), D minLayout 13. C drum: the C drum has no high 2/3, so the last phrase 'der Gipfel des Berges funkelt im Abendsonnenschein' (score events 55–71) is played one octave lower; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum). Lyrics of the added verses: Verses 2 and 3 (Heine's stanzas 3–4 and 5–6): Heinrich Heine, Buch der Lieder (1827), 'Die Heimkehr' II, from German Wikisource (https://de.wikisource.org/wiki/Ich_wei%C3%9F_nicht,_was_soll_es_bedeuten); 'gethan' is spelled 'getan' as in verse 1. Per-verse notes (verseLines): in verse 3, 'er schaut nur hinauf in die Höh'' has 8 syllables for the 7 notes of line 4, so the quarter note on 'kommt' is played as two eighths of the same pitch.",
   "verified": true
 }
