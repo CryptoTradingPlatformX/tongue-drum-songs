@@ -45,6 +45,9 @@ function toFile(generated: ReturnType<typeof generateArrangement>): ArrangementF
 export function buildPersonalSong(state: EditorState, id: string): { song: SongFile } | { error: string } {
   const title = state.title.trim();
   if (!title) return { error: "Add a title before saving." };
+  if (state.lines.some((line) => line.notes.some((note) => note.uncertain))) {
+    return { error: "Replace each ? note before saving." };
+  }
   const primary = toFile(generateArrangement(state.drum, state.lines));
   if (!primary) return { error: "Add at least one note before saving." };
   if (!isPlayable(primary)) return { error: "These notes are not on the selected drum." };

@@ -69,6 +69,30 @@ describe("editor reducer", () => {
     expect(allowed.lines[0].notes[0]).toMatchObject({ deg: 1, oct: 1 });
   });
 
+  it("appends a detected note and lets the player replace a question mark", () => {
+    let state = editorReducer(createEditor(), {
+      type: "appendDetected",
+      deg: 1,
+      oct: 0,
+      dur: 0.5,
+      uncertain: true,
+    });
+    expect(state.lines[0].notes[0]).toMatchObject({ deg: 1, oct: 0, dur: 0.5, uncertain: true });
+    state = editorReducer(state, {
+      type: "appendDetected",
+      deg: 2,
+      oct: 0,
+      dur: 0.5,
+      uncertain: false,
+      previousDur: 1,
+    });
+    expect(state.lines[0].notes[0].dur).toBe(1);
+    expect(state.lines[0].notes[0].uncertain).toBe(true);
+    state = editorReducer(state, { type: "select", line: 0, note: 0 });
+    state = editorReducer(state, { type: "setTongue", deg: 3, oct: 0 });
+    expect(state.lines[0].notes[0]).toEqual({ deg: 3, oct: 0, dur: 1 });
+  });
+
   it("ignores tongues the current drum does not have", () => {
     const state = editorReducer(createEditor({ drum: "C" }), { type: "appendTongue", deg: 3, oct: -1 });
     expect(state.lines[0].notes).toHaveLength(0);

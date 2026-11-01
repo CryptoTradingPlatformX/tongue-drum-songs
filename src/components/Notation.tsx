@@ -10,6 +10,7 @@ type Props = {
   activeNote: number;
   pickedLine?: number;
   pickedNote?: number;
+  uncertain?: Set<string>;
   markedLine: number;
   missing: Set<string>;
   onSelect: (lineIndex: number, noteIndex: number) => void;
@@ -87,6 +88,7 @@ export function Notation({
   activeNote,
   pickedLine = -1,
   pickedNote = -1,
+  uncertain,
   markedLine,
   missing,
   onSelect,
@@ -128,6 +130,7 @@ export function Notation({
                                     drumKey={drumKey}
                                     active={slice.lineIndex === activeLine && slice.noteIndex === activeNote}
                                     picked={slice.lineIndex === pickedLine && slice.noteIndex === pickedNote}
+                                    uncertain={uncertain?.has(`${slice.lineIndex}:${slice.noteIndex}`) ?? false}
                                     missing={noteMissing(slice, missing)}
                                     onSelect={onSelect}
                                   />
@@ -141,6 +144,7 @@ export function Notation({
                               drumKey={drumKey}
                               active={item.slices[0].lineIndex === activeLine && item.slices[0].noteIndex === activeNote}
                               picked={item.slices[0].lineIndex === pickedLine && item.slices[0].noteIndex === pickedNote}
+                              uncertain={uncertain?.has(`${item.slices[0].lineIndex}:${item.slices[0].noteIndex}`) ?? false}
                               missing={noteMissing(item.slices[0], missing)}
                               onSelect={onSelect}
                             />
@@ -189,6 +193,7 @@ function NoteButton({
   drumKey,
   active,
   picked,
+  uncertain = false,
   missing,
   onSelect,
 }: {
@@ -196,6 +201,7 @@ function NoteButton({
   drumKey: DrumKey;
   active: boolean;
   picked: boolean;
+  uncertain?: boolean;
   missing: boolean;
   onSelect: (lineIndex: number, noteIndex: number) => void;
 }) {
@@ -205,9 +211,11 @@ function NoteButton({
     oct: slice.note.oct,
     dur: slice.dur,
   });
-  const name = slice.note.rest
-    ? "Rest"
-    : tonguePhrase(drumKey, { deg: slice.note.deg ?? 1, oct: slice.note.oct ?? 0 });
+  const name = uncertain
+    ? "Unrecognized note"
+    : slice.note.rest
+      ? "Rest"
+      : tonguePhrase(drumKey, { deg: slice.note.deg ?? 1, oct: slice.note.oct ?? 0 });
   const tie = slice.tie ? ", tied across the barline" : "";
   const gap = missing ? ", not on the selected drum" : "";
 
@@ -218,6 +226,7 @@ function NoteButton({
         "note",
         active ? "is-active" : "",
         picked && !active ? "is-picked" : "",
+        uncertain ? "is-uncertain" : "",
         missing ? "is-missing" : "",
         slice.note.rest ? "is-rest" : "",
         slice.tie ? `tie-${slice.tie}` : "",
@@ -236,7 +245,7 @@ function NoteButton({
             ))}
           </span>
           <span className="num">
-            {mark.glyph}
+            {uncertain ? "?" : mark.glyph}
             {mark.dotted ? <span className="aug">·</span> : null}
           </span>
           <span className="dots below" aria-hidden="true">
