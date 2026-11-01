@@ -146,6 +146,28 @@ export function Notation({ lines, timeSignature, drumKey, activeLine, activeNote
   );
 }
 
+export function DegreeMark({ deg, oct }: { deg: number; oct: number }) {
+  const mark: NotationMark = notationMark({ rest: false, deg, oct, dur: 1 });
+  return (
+    <span className="glyph">
+      <span className="degree">
+        <span className="dots" aria-hidden="true">
+          {Array.from({ length: mark.dotsAbove }, (_, index) => (
+            <i key={index} />
+          ))}
+        </span>
+        <span className="num">{mark.glyph}</span>
+        <span className="dots below" aria-hidden="true">
+          {Array.from({ length: mark.dotsBelow }, (_, index) => (
+            <i key={index} />
+          ))}
+        </span>
+        <span className="underlines spacer" aria-hidden="true" />
+      </span>
+    </span>
+  );
+}
+
 function NoteButton({
   slice,
   drumKey,

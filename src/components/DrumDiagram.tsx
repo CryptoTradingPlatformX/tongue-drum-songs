@@ -2,11 +2,13 @@ import { useId } from "react";
 import { layoutById, noteName, pitchCompare } from "../lib/music";
 import type { DrumKey, LayoutId, Tongue } from "../lib/types";
 import { Drum15Diagram } from "./Drum15Diagram";
+import { paintFill, paintStroke, tonguePaint } from "./drumTone";
 
 type Props = {
   layoutId: LayoutId;
   drumKey: DrumKey;
   active: Tongue | null;
+  chordTones?: Tongue[];
 };
 
 function sector(cx: number, cy: number, inner: number, outer: number, start: number, end: number): string {
@@ -22,12 +24,12 @@ function sector(cx: number, cy: number, inner: number, outer: number, start: num
   return `M ${x0} ${y0} A ${outer} ${outer} 0 ${large} 1 ${x1} ${y1} L ${x2} ${y2} A ${inner} ${inner} 0 ${large} 0 ${x3} ${y3} Z`;
 }
 
-export function DrumDiagram({ layoutId, drumKey, active }: Props) {
-  if (layoutId === "15") return <Drum15Diagram drumKey={drumKey} active={active} />;
-  return <SchematicDrum layoutId={layoutId} drumKey={drumKey} active={active} />;
+export function DrumDiagram({ layoutId, drumKey, active, chordTones }: Props) {
+  if (layoutId === "15") return <Drum15Diagram drumKey={drumKey} active={active} chordTones={chordTones} />;
+  return <SchematicDrum layoutId={layoutId} drumKey={drumKey} active={active} chordTones={chordTones} />;
 }
 
-function SchematicDrum({ layoutId, drumKey, active }: Props) {
+function SchematicDrum({ layoutId, drumKey, active, chordTones }: Props) {
   const rawId = useId().replace(/:/g, "");
   const layout = layoutById(layoutId);
   const tongues = [...layout.tongues].sort(pitchCompare);
@@ -63,7 +65,8 @@ function SchematicDrum({ layoutId, drumKey, active }: Props) {
         const start = -Math.PI / 2 + index * sweep + gap / 2;
         const end = -Math.PI / 2 + (index + 1) * sweep - gap / 2;
         const mid = (start + end) / 2;
-        const lit = active != null && active.deg === tongue.deg && active.oct === tongue.oct;
+        const paint = tonguePaint(active, chordTones, tongue);
+        const lit = paint != null;
         const numberX = cx + labelRadius * Math.cos(mid);
         const numberY = cy + labelRadius * Math.sin(mid);
         const nameR = labelRadius + (tongue.oct < 0 ? nameOffset + 8 : nameOffset);
@@ -72,8 +75,8 @@ function SchematicDrum({ layoutId, drumKey, active }: Props) {
           <g key={`${tongue.deg}:${tongue.oct}`}>
             <path
               d={sector(cx, cy, inner, outer, start, end)}
-              fill={lit ? "#f6c445" : index % 2 === 0 ? "#f8efe3" : "#f1e2cd"}
-              stroke={lit ? "#8a3b1c" : "#7a5332"}
+              fill={paintFill(paint, index % 2 === 0 ? "#f8efe3" : "#f1e2cd")}
+              stroke={paintStroke(paint, "#7a5332")}
               strokeWidth={lit ? 3 : 1.4}
               filter={lit ? `url(#${rawId}-glow)` : undefined}
             />

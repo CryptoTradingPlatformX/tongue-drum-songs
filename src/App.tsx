@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
+import { ChordsView } from "./components/ChordsView";
 import { LibraryView } from "./components/LibraryView";
 import { SettingsBar } from "./components/SettingsBar";
 import { SongView } from "./components/SongView";
 import { useSettings } from "./lib/settings";
 import { songSummaries } from "./lib/songs";
 
-type Route = { name: "library" } | { name: "song"; id: string };
+type Route = { name: "library" } | { name: "song"; id: string } | { name: "chords" };
 
 function parseRoute(hash: string): Route {
   const raw = hash.replace(/^#/, "") || "/";
   const path = raw.split("?")[0] || "/";
+  if (path === "/chords") return { name: "chords" };
   const match = path.match(/^\/song\/([^/]+)\/?$/);
   if (match) return { name: "song", id: decodeURIComponent(match[1]) };
   return { name: "library" };
@@ -29,7 +31,7 @@ export function App() {
   const route = useRoute();
   const songs = useMemo(() => songSummaries(), []);
   const settings = useSettings();
-  const routeKey = route.name === "song" ? `song:${route.id}` : "library";
+  const routeKey = route.name === "song" ? `song:${route.id}` : route.name;
 
   useEffect(() => {
     const top = document.querySelector(".top");
@@ -44,6 +46,10 @@ export function App() {
   }, []);
 
   useEffect(() => {
+    if (route.name === "chords") {
+      document.title = "Chords · Tongue Drum Songs";
+      return;
+    }
     if (route.name === "library") {
       document.title = "Tongue Drum Songs";
       return;
@@ -61,7 +67,7 @@ export function App() {
       <a className="skip" href="#main">
         Skip to content
       </a>
-      <div className={route.name === "song" ? "top is-song" : "top"} data-sticky-chrome>
+      <div className={route.name === "library" ? "top" : "top is-song"} data-sticky-chrome>
         <header className="site-header">
           <a className="brand" href="#/">
             <span className="brand-mark" aria-hidden="true">
@@ -76,6 +82,14 @@ export function App() {
               <span className="brand-tag">Numbered tunes for steel tongue drums</span>
             </span>
           </a>
+          <nav className="site-nav" aria-label="Pages">
+            <a href="#/" aria-current={route.name === "library" ? "page" : undefined}>
+              Songs
+            </a>
+            <a href="#/chords" aria-current={route.name === "chords" ? "page" : undefined}>
+              Chords
+            </a>
+          </nav>
         </header>
         <SettingsBar
           drumKey={settings.drumKey}
@@ -87,6 +101,8 @@ export function App() {
       <main id="main" className={route.name === "song" ? "has-player" : undefined}>
         {route.name === "library" ? (
           <LibraryView songs={songs} drumKey={settings.drumKey} layout={settings.layout} />
+        ) : route.name === "chords" ? (
+          <ChordsView drumKey={settings.drumKey} />
         ) : (
           <SongView
             songId={route.id}
