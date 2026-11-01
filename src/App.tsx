@@ -1,17 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { ChordsView } from "./components/ChordsView";
+import { PianoView } from "./components/PianoView";
 import { LibraryView } from "./components/LibraryView";
 import { SettingsBar } from "./components/SettingsBar";
 import { SongView } from "./components/SongView";
 import { useSettings } from "./lib/settings";
 import { songSummaries } from "./lib/songs";
 
-type Route = { name: "library" } | { name: "song"; id: string } | { name: "chords" };
+type Route = { name: "library" } | { name: "song"; id: string } | { name: "chords" } | { name: "piano" };
 
 function parseRoute(hash: string): Route {
   const raw = hash.replace(/^#/, "") || "/";
   const path = raw.split("?")[0] || "/";
   if (path === "/chords") return { name: "chords" };
+  if (path === "/piano") return { name: "piano" };
   const match = path.match(/^\/song\/([^/]+)\/?$/);
   if (match) return { name: "song", id: decodeURIComponent(match[1]) };
   return { name: "library" };
@@ -48,6 +50,10 @@ export function App() {
   useEffect(() => {
     if (route.name === "chords") {
       document.title = "Chords · Tongue Drum Songs";
+      return;
+    }
+    if (route.name === "piano") {
+      document.title = "Drum to piano · Tongue Drum Songs";
       return;
     }
     if (route.name === "library") {
@@ -89,6 +95,9 @@ export function App() {
             <a href="#/chords" aria-current={route.name === "chords" ? "page" : undefined}>
               Chords
             </a>
+            <a href="#/piano" aria-current={route.name === "piano" ? "page" : undefined}>
+              Drum to piano
+            </a>
           </nav>
         </header>
         <SettingsBar
@@ -103,6 +112,8 @@ export function App() {
           <LibraryView songs={songs} drumKey={settings.drumKey} layout={settings.layout} />
         ) : route.name === "chords" ? (
           <ChordsView drumKey={settings.drumKey} />
+        ) : route.name === "piano" ? (
+          <PianoView drumKey={settings.drumKey} />
         ) : (
           <SongView
             songId={route.id}

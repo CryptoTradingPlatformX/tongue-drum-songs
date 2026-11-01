@@ -8,6 +8,7 @@ type Props = {
   drumKey: DrumKey;
   active: Tongue | null;
   chordTones?: Tongue[];
+  onTongue?: (tongue: Tongue) => void;
 };
 
 const CX = 200;
@@ -60,13 +61,13 @@ function slotPath(deg: number, outerR: number, tip: number, halfW: number, close
   return `${body} A ${outerR} ${outerR} 0 0 ${sweep === 1 ? 0 : 1} ${olx} ${oly} Z`;
 }
 
-export function Drum15Diagram({ drumKey, active, chordTones }: Props) {
+export function Drum15Diagram({ drumKey, active, chordTones, onTongue }: Props) {
   const rawId = useId().replace(/:/g, "");
   const steel = `${rawId}-steel`;
   const glow = `${rawId}-glow`;
 
   return (
-    <svg className="drum-svg drum-15" viewBox="0 0 400 400" role="img" aria-hidden="true">
+    <svg className="drum-svg drum-15" viewBox="0 0 400 400" role={onTongue ? "group" : "img"} aria-hidden={onTongue ? undefined : true}>
       <defs>
         <radialGradient id={steel} cx="46%" cy="40%" r="68%">
           <stop offset="0%" stopColor="#7eafd4" />
@@ -93,10 +94,30 @@ export function Drum15Diagram({ drumKey, active, chordTones }: Props) {
             fill={paintFill(paint, "none")}
             stroke="none"
             filter={paint ? `url(#${glow})` : undefined}
+            style={onTongue ? { cursor: "pointer" } : undefined}
+            role={onTongue ? "button" : undefined}
+            tabIndex={onTongue ? 0 : undefined}
+            aria-label={onTongue ? `${tongue.deg} ${noteName(drumKey, tongue.deg, tongue.oct)}` : undefined}
+            onClick={onTongue ? () => onTongue(tongue) : undefined}
+            onKeyDown={
+              onTongue
+                ? (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      onTongue(tongue);
+                    }
+                  }
+                : undefined
+            }
           />
         );
       })}
-      <CenterTongue paint={tonguePaint(active, chordTones, DRUM_15_CENTER)} glow={`url(#${glow})`} />
+      <CenterTongue
+        paint={tonguePaint(active, chordTones, DRUM_15_CENTER)}
+        glow={`url(#${glow})`}
+        onTongue={onTongue}
+        label={onTongue ? `3 ${noteName(drumKey, DRUM_15_CENTER.deg, DRUM_15_CENTER.oct)}` : undefined}
+      />
 
       {DRUM_15_OUTER.map((tongue) => {
         const geo = tongueGeometry(tongue);
@@ -127,7 +148,17 @@ export function Drum15Diagram({ drumKey, active, chordTones }: Props) {
   );
 }
 
-function CenterTongue({ paint, glow }: { paint: TonguePaint; glow: string }) {
+function CenterTongue({
+  paint,
+  glow,
+  onTongue,
+  label,
+}: {
+  paint: TonguePaint;
+  glow: string;
+  onTongue?: (tongue: Tongue) => void;
+  label?: string;
+}) {
   return (
     <rect
       x={CX - 26}
@@ -139,6 +170,21 @@ function CenterTongue({ paint, glow }: { paint: TonguePaint; glow: string }) {
       stroke={paintStroke(paint, "#14283a")}
       strokeWidth={paint ? 3 : 2.4}
       filter={paint ? glow : undefined}
+      style={onTongue ? { cursor: "pointer" } : undefined}
+      role={onTongue ? "button" : undefined}
+      tabIndex={onTongue ? 0 : undefined}
+      aria-label={label}
+      onClick={onTongue ? () => onTongue(DRUM_15_CENTER) : undefined}
+      onKeyDown={
+        onTongue
+          ? (event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onTongue(DRUM_15_CENTER);
+              }
+            }
+          : undefined
+      }
     />
   );
 }
@@ -153,7 +199,7 @@ function TongueLabel({ tongue, drumKey, paint }: { tongue: Drum15Outer; drumKey:
   const ink = paint ? "#3c2614" : "#f7fbff";
   const soft = paint ? "#5c4634" : "#e4f0fa";
   return (
-    <g>
+    <g style={{ pointerEvents: "none" }}>
       <title>{`${tongue.deg} ${name}`}</title>
       {tongue.oct !== 0 ? <circle cx={dx} cy={dy} r="2.6" fill={ink} /> : null}
       <text
@@ -190,7 +236,7 @@ function CenterLabel({ drumKey, paint }: { drumKey: DrumKey; paint: TonguePaint 
   const ink = paint ? "#3c2614" : "#f7fbff";
   const soft = paint ? "#5c4634" : "#e4f0fa";
   return (
-    <g>
+    <g style={{ pointerEvents: "none" }}>
       <title>{`3 ${name}`}</title>
       <text
         x={CX}
