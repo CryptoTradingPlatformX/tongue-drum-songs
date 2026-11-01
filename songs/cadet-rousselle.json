@@ -64,7 +64,8 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Cadet Rousselle a trois maisons,",
@@ -109,7 +110,8 @@
               "oct": -1,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "qui n'ont ni poutres, ni chevrons,",
@@ -154,7 +156,8 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "qui n'ont ni poutres, ni chevrons,",
@@ -199,7 +202,8 @@
               "oct": -1,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "c'est pour loger les hirondelles,",
@@ -249,7 +253,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "que direz-vous d'Cadet Rousselle?",
@@ -299,7 +304,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Ah! Ah! Ah! Oui, vraiment,",
@@ -334,7 +340,8 @@
               "oct": -1,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Cadet Rousselle est bon enfant!",
@@ -379,7 +386,8 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     },
@@ -429,7 +437,8 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Cadet Rousselle a trois maisons,",
@@ -474,7 +483,8 @@
               "oct": -1,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "qui n'ont ni poutres, ni chevrons,",
@@ -519,7 +529,8 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "qui n'ont ni poutres, ni chevrons,",
@@ -564,7 +575,8 @@
               "oct": -1,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "c'est pour loger les hirondelles,",
@@ -614,7 +626,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "que direz-vous d'Cadet Rousselle?",
@@ -664,7 +677,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Ah! Ah! Ah! Oui, vraiment,",
@@ -699,7 +713,8 @@
               "oct": -1,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "refrain"
         },
         {
           "lyric": "Cadet Rousselle est bon enfant!",
@@ -744,11 +759,378 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "refrain"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1, verified against the LilyPond score on French Wikipedia. 6/8 time (eighth = 0.5 beat). Slurred pairs carry one syllable over two notes; the three 'Ah!' notes are accented. No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 6
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 7
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 8
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 9
+    },
+    {
+      "section": "refrain"
+    },
+    {
+      "section": "verse",
+      "verse": 10
+    },
+    {
+      "section": "refrain"
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Cadet Rousselle a trois maisons,",
+        "Cadet Rousselle a trois maisons,",
+        "qui n'ont ni poutres, ni chevrons,",
+        "qui n'ont ni poutres, ni chevrons,",
+        "c'est pour loger les hirondelles,",
+        "que direz-vous d'Cadet Rousselle?"
+      ],
+      [
+        "Cadet Rousselle a trois habits,",
+        "Cadet Rousselle a trois habits,",
+        "deux jaunes, l'autre en papier gris,",
+        "deux jaunes, l'autre en papier gris;",
+        "il met celui-là quand il gèle,",
+        "ou quand il pleut, ou quand il grêle."
+      ],
+      [
+        "Cadet Rousselle a trois beaux yeux,",
+        "Cadet Rousselle a trois beaux yeux,",
+        "l'un r'garde à Caen, l'autre à Bayeux,",
+        "l'un r'garde à Caen, l'autre à Bayeux;",
+        "comme il n'a pas la vu' bien nette,",
+        "le troisième, c'est sa lorgnette."
+      ],
+      [
+        "Cadet Rousselle a une épé',",
+        "Cadet Rousselle a une épé',",
+        "très longue, mais toute rouillé',",
+        "très longue, mais toute rouillé';",
+        "on dit qu'ell' ne cherche querelle",
+        "qu'aux moineaux et qu'aux hirondelles."
+      ],
+      [
+        "Cadet Rousselle a trois garçons,",
+        "Cadet Rousselle a trois garçons,",
+        "l'un est voleur, l'autre est fripon,",
+        "l'un est voleur, l'autre est fripon;",
+        "le troisième est un peu ficelle,",
+        "il ressemble à Cadet Rousselle."
+      ],
+      [
+        "Cadet Rousselle a trois gros chiens,",
+        "Cadet Rousselle a trois gros chiens,",
+        "l'un court au lièvr', l'autre au lapin,",
+        "l'un court au lièvr', l'autre au lapin;",
+        "l' troisièm' s'enfuit quand on l'appelle,",
+        "comm' le chien de Jean de Nivelle."
+      ],
+      [
+        "Cadet Rousselle a trois beaux chats,",
+        "Cadet Rousselle a trois beaux chats,",
+        "qui n'attrapent jamais les rats,",
+        "qui n'attrapent jamais les rats;",
+        "le troisièm' n'a pas de prunelle,",
+        "il monte au grenier sans chandelle."
+      ],
+      [
+        "Cadet Rousselle a marié",
+        "Cadet Rousselle a marié",
+        "ses trois filles dans trois quartiers,",
+        "ses trois filles dans trois quartiers;",
+        "les deux premièr's ne sont pas belles,",
+        "la troisièm' n'a pas de cervelle."
+      ],
+      [
+        "Cadet Rousselle a trois deniers,",
+        "Cadet Rousselle a trois deniers,",
+        "c'est pour payer ses créanciers,",
+        "c'est pour payer ses créanciers;",
+        "quand il a montré ses ressources,",
+        "il les resserre dans sa bourse."
+      ],
+      [
+        "Cadet Rousselle ne mourra pas,",
+        "Cadet Rousselle ne mourra pas,",
+        "car, avant de sauter le pas,",
+        "car, avant de sauter le pas,",
+        "on dit qu'il apprend l'orthographe,",
+        "pour fair' lui-mêm' son épitaphe."
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "10": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              }
+            ],
+            "lyric": "Cadet Rousselle ne mourra pas,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1.5
+              }
+            ],
+            "lyric": "Cadet Rousselle ne mourra pas,"
+          }
+        },
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 1.5
+              }
+            ],
+            "lyric": "Cadet Rousselle ne mourra pas,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 1
+              },
+              {
+                "deg": 6,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 1.5
+              }
+            ],
+            "lyric": "Cadet Rousselle ne mourra pas,"
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "Verse 1, verified against the LilyPond score on French Wikipedia. 6/8 time (eighth = 0.5 beat). Slurred pairs carry one syllable over two notes; the three 'Ah!' notes are accented. No simplification needed. Range low 5 to 5. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–10: Gaspard de Chenu's song (1792) as printed with the tune in J.-B. Weckerlin, Chansons et rondes enfantines (Garnier, 1870), pp. 90–94, from French Wikisource (https://fr.wikisource.org/wiki/Chansons_et_rondes_enfantines/Cadet_Rousselle), keeping its sung elisions (épé', lièvr', troisièm'…). The 'Ah! Ah! Ah!' refrain (verse-1 wording) is sung after every verse. Per-verse notes (verseLines): in verse 10, 'Cadet Rousselle ne mourra pas' sings all three syllables of 'Rousselle' (9 syllables for 8 notes), so the quarter note on '-selle' is played as two eighths of the same pitch in both statements of the line.",
   "verified": true
 }

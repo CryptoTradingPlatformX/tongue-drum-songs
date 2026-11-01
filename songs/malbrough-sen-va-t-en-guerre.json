@@ -58,7 +58,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "mironton, mironton, mirontaine,",
@@ -113,7 +114,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Malbrough s'en va-t-en guerre,",
@@ -153,7 +155,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ne sait quand reviendra,",
@@ -188,7 +191,8 @@
               "oct": 0,
               "dur": 2.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ne sait quand reviendra,",
@@ -223,7 +227,8 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ne sait quand reviendra.",
@@ -258,7 +263,8 @@
               "oct": 0,
               "dur": 2.5
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -303,7 +309,8 @@
               "oct": 0,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "mironton, mironton, mirontaine,",
@@ -358,7 +365,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Malbrough s'en va-t-en guerre,",
@@ -398,7 +406,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ne sait quand reviendra,",
@@ -433,7 +442,8 @@
               "oct": 0,
               "dur": 2.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ne sait quand reviendra,",
@@ -468,7 +478,8 @@
               "oct": 0,
               "dur": 1.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "ne sait quand reviendra.",
@@ -503,11 +514,472 @@
               "oct": 0,
               "dur": 2.5
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1, verified against the LilyPond score on French Wikipedia. 6/8 time (eighth = 0.5 beat); tied notes are played as one long note. No simplification needed. Range low 5 to 6. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    },
+    {
+      "section": "verse",
+      "verse": 5
+    },
+    {
+      "section": "verse",
+      "verse": 6
+    },
+    {
+      "section": "verse",
+      "verse": 7
+    },
+    {
+      "section": "verse",
+      "verse": 8
+    },
+    {
+      "section": "verse",
+      "verse": 9
+    },
+    {
+      "section": "verse",
+      "verse": 10
+    },
+    {
+      "section": "verse",
+      "verse": 11
+    },
+    {
+      "section": "verse",
+      "verse": 12
+    },
+    {
+      "section": "verse",
+      "verse": 13
+    },
+    {
+      "section": "verse",
+      "verse": 14
+    },
+    {
+      "section": "verse",
+      "verse": 15
+    },
+    {
+      "section": "verse",
+      "verse": 16
+    },
+    {
+      "section": "verse",
+      "verse": 17
+    },
+    {
+      "section": "verse",
+      "verse": 18
+    },
+    {
+      "section": "verse",
+      "verse": 19
+    },
+    {
+      "section": "verse",
+      "verse": 20
+    },
+    {
+      "section": "verse",
+      "verse": 21
+    },
+    {
+      "section": "verse",
+      "verse": 22
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Malbrough s'en va-t-en guerre,",
+        "mironton, mironton, mirontaine,",
+        "Malbrough s'en va-t-en guerre,",
+        "ne sait quand reviendra,",
+        "ne sait quand reviendra,",
+        "ne sait quand reviendra."
+      ],
+      [
+        "Il reviendra-z-à Pâques,",
+        "mironton, mironton, mirontaine,",
+        "Il reviendra-z-à Pâques,",
+        "ou à la Trinité,",
+        "ou à la Trinité,",
+        "ou à la Trinité."
+      ],
+      [
+        "La Trinité se passe,",
+        "mironton, mironton, mirontaine,",
+        "La Trinité se passe,",
+        "Malbrough ne revient pas,",
+        "Malbrough ne revient pas,",
+        "Malbrough ne revient pas."
+      ],
+      [
+        "Madame à sa tour monte,",
+        "mironton, mironton, mirontaine,",
+        "Madame à sa tour monte,",
+        "si haut qu'ell' peut monter,",
+        "si haut qu'ell' peut monter,",
+        "si haut qu'ell' peut monter."
+      ],
+      [
+        "Elle aperçoit son page,",
+        "mironton, mironton, mirontaine,",
+        "Elle aperçoit son page,",
+        "tout de noir habillé,",
+        "tout de noir habillé,",
+        "tout de noir habillé."
+      ],
+      [
+        "« Beau page, ah ! mon beau page,",
+        "mironton, mironton, mirontaine,",
+        "beau page, ah ! mon beau page,",
+        "quell' nouvelles apportez ?",
+        "quell' nouvelles apportez ?",
+        "quell' nouvelles apportez ? »"
+      ],
+      [
+        "— Aux nouvell's que j'apporte,",
+        "mironton, mironton, mirontaine,",
+        "aux nouvell's que j'apporte,",
+        "vos beaux yeux vont pleurer,",
+        "vos beaux yeux vont pleurer,",
+        "vos beaux yeux vont pleurer."
+      ],
+      [
+        "Quittez vos habits roses,",
+        "mironton, mironton, mirontaine,",
+        "Quittez vos habits roses,",
+        "et vos satins brodés,",
+        "et vos satins brodés,",
+        "et vos satins brodés."
+      ],
+      [
+        "Monsieur d'Malbrough est more,",
+        "mironton, mironton, mirontaine,",
+        "Monsieur d'Malbrough est more,",
+        "est mort et enterré,",
+        "est mort et enterré,",
+        "est mort et enterré."
+      ],
+      [
+        "Je l'ai vu porté-z-en terre,",
+        "mironton, mironton, mirontaine,",
+        "Je l'ai vu porté-z-en terre,",
+        "par quatre-z-officiers,",
+        "par quatre-z-officiers,",
+        "par quatre-z-officiers."
+      ],
+      [
+        "L'un portait sa cuirasse,",
+        "mironton, mironton, mirontaine,",
+        "L'un portait sa cuirasse,",
+        "l'autre son bouclier,",
+        "l'autre son bouclier,",
+        "l'autre son bouclier."
+      ],
+      [
+        "L'un portait son grand sabre,",
+        "mironton, mironton, mirontaine,",
+        "L'un portait son grand sabre,",
+        "l'autre ne portait rien,",
+        "l'autre ne portait rien,",
+        "l'autre ne portait rien."
+      ],
+      [
+        "À l'entour de sa tombe,",
+        "mironton, mironton, mirontaine,",
+        "À l'entour de sa tombe,",
+        "romarins l'on planta,",
+        "romarins l'on planta,",
+        "romarins l'on planta."
+      ],
+      [
+        "Sur la plus haute branche,",
+        "mironton, mironton, mirontaine,",
+        "Sur la plus haute branche,",
+        "le rossignol chanta,",
+        "le rossignol chanta,",
+        "le rossignol chanta."
+      ],
+      [
+        "On vit voler son âme,",
+        "mironton, mironton, mirontaine,",
+        "On vit voler son âme,",
+        "au travers des lauriers,",
+        "au travers des lauriers,",
+        "au travers des lauriers."
+      ],
+      [
+        "Chacun mit ventre à terre,",
+        "mironton, mironton, mirontaine,",
+        "Chacun mit ventre à terre,",
+        "et puis se releva,",
+        "et puis se releva,",
+        "et puis se releva."
+      ],
+      [
+        "Pour chanter les victoires,",
+        "mironton, mironton, mirontaine,",
+        "Pour chanter les victoires,",
+        "que Malbrough remporta,",
+        "que Malbrough remporta,",
+        "que Malbrough remporta."
+      ],
+      [
+        "La cérémonie faite,",
+        "mironton, mironton, mirontaine,",
+        "La cérémonie faite,",
+        "chacun s'en fut coucher,",
+        "chacun s'en fut coucher,",
+        "chacun s'en fut coucher."
+      ],
+      [
+        "Les uns avec leurs femmes,",
+        "mironton, mironton, mirontaine,",
+        "Les uns avec leurs femmes,",
+        "et les autres tout seuls,",
+        "et les autres tout seuls,",
+        "et les autres tout seuls."
+      ],
+      [
+        "Ce n'est pas qu'il en manque,",
+        "mironton, mironton, mirontaine,",
+        "Ce n'est pas qu'il en manque,",
+        "car j'en connais beaucoup,",
+        "car j'en connais beaucoup,",
+        "car j'en connais beaucoup."
+      ],
+      [
+        "Des blondes et des brunes,",
+        "mironton, mironton, mirontaine,",
+        "Des blondes et des brunes,",
+        "et des châtaign's aussi,",
+        "et des châtaign's aussi,",
+        "et des châtaign's aussi."
+      ],
+      [
+        "J'n'en dis pas davantage,",
+        "mironton, mironton, mirontaine,",
+        "J'n'en dis pas davantage,",
+        "car en voilà-z-assez,",
+        "car en voilà-z-assez,",
+        "car en voilà-z-assez."
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "10": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "Je l'ai vu porté-z-en terre,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              }
+            ],
+            "lyric": "Je l'ai vu porté-z-en terre,"
+          }
+        },
+        "2": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              }
+            ],
+            "lyric": "Je l'ai vu porté-z-en terre,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 4,
+                "oct": 0,
+                "dur": 1.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 1
+              }
+            ],
+            "lyric": "Je l'ai vu porté-z-en terre,"
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "Verse 1, verified against the LilyPond score on French Wikipedia. 6/8 time (eighth = 0.5 beat); tied notes are played as one long note. No simplification needed. Range low 5 to 6. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–22: the traditional song as printed with the tune in J.-B. Weckerlin, Chansons et rondes enfantines (Garnier, 1870), pp. 58–62, from French Wikisource (https://fr.wikisource.org/wiki/Chansons_et_rondes_enfantines/Malbrough), keeping its sung liaisons and elisions (reviendra-z-à, qu'ell', nouvell's…). The refrain line keeps the verse-1 wording 'mironton, mironton, mirontaine' (Weckerlin prints 'Miron ton ton ton, mirontaine'), and the second half-line is sung three times as in verse 1. Per-verse notes (verseLines): in verse 10, 'Je l'ai vu porté-z-en terre' has 8 syllables for the 7 notes of lines 1 and 3, so the quarter note on '-brough' is played as two eighths of the same pitch.",
   "verified": true
 }

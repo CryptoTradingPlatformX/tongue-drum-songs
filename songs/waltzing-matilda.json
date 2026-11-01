@@ -83,7 +83,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "under the shade of a coolibah tree,",
@@ -142,7 +143,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and he sang as he watched and waited till his billy boiled:",
@@ -217,7 +219,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "'You'll come a-waltzing Matilda with me.'",
@@ -276,7 +279,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Waltzing Matilda, waltzing Matilda,",
@@ -331,7 +335,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "you'll come a-waltzing Matilda with me,",
@@ -390,7 +395,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and he sang as he watched and waited till his billy boiled:",
@@ -465,7 +471,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "'You'll come a-waltzing Matilda with me.'",
@@ -520,7 +527,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -590,7 +598,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "under the shade of a coolibah tree,",
@@ -649,7 +658,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and he sang as he watched and waited till his billy boiled:",
@@ -724,7 +734,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "'You'll come a-waltzing Matilda with me.'",
@@ -783,7 +794,8 @@
               "rest": true,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Waltzing Matilda, waltzing Matilda,",
@@ -838,7 +850,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "you'll come a-waltzing Matilda with me,",
@@ -897,7 +910,8 @@
               "rest": true,
               "dur": 0.5
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "and he sang as he watched and waited till his billy boiled:",
@@ -972,7 +986,8 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "'You'll come a-waltzing Matilda with me.'",
@@ -1027,11 +1042,222 @@
               "oct": 0,
               "dur": 1
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "Verse 1 and chorus verified against the LilyPond score on English Wikipedia (the familiar 1903 Cowan tune). The score's rests are kept. No simplification needed. Range low 6 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Once a jolly swagman camped by a billabong",
+        "under the shade of a coolibah tree,",
+        "and he sang as he watched and waited till his billy boiled:",
+        "'You'll come a-waltzing Matilda with me.'",
+        "Waltzing Matilda, waltzing Matilda,",
+        "you'll come a-waltzing Matilda with me,",
+        "and he sang as he watched and waited till his billy boiled:",
+        "'You'll come a-waltzing Matilda with me.'"
+      ],
+      [
+        "Down came a jumbuck to drink at that billabong,",
+        "up jumped the swagman and grabbed him with glee,",
+        "and he sang as he shoved that jumbuck in his tucker bag:",
+        "'You'll come a-waltzing Matilda with me.'",
+        "Waltzing Matilda, waltzing Matilda,",
+        "you'll come a-waltzing Matilda with me,",
+        "and he sang as he shoved that jumbuck in his tucker bag:",
+        "'You'll come a-waltzing Matilda with me.'"
+      ],
+      [
+        "Up rode the squatter, mounted on his thoroughbred,",
+        "down came the troopers, one, two, and three:",
+        "'Whose is that jumbuck you've got in your tucker bag?",
+        "You'll come a-waltzing Matilda with me.'",
+        "Waltzing Matilda, waltzing Matilda,",
+        "you'll come a-waltzing Matilda with me,",
+        "'Whose is that jumbuck you've got in your tucker bag?",
+        "You'll come a-waltzing Matilda with me.'"
+      ],
+      [
+        "Up jumped the swagman and sprang into the billabong:",
+        "'You'll never catch me alive!' said he,",
+        "and his ghost may be heard as you pass by that billabong:",
+        "'You'll come a-waltzing Matilda with me.'",
+        "Waltzing Matilda, waltzing Matilda,",
+        "you'll come a-waltzing Matilda with me,",
+        "and his ghost may be heard as you pass by that billabong:",
+        "'You'll come a-waltzing Matilda with me.'"
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "4": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              }
+            ],
+            "lyric": "Up jumped the swagman and sprang into the billabong:"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.75
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.25
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 0.5
+              },
+              {
+                "deg": 6,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 7,
+                "oct": -1,
+                "dur": 0.5
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 1
+              }
+            ],
+            "lyric": "Up jumped the swagman and sprang into the billabong:"
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "Verse 1 and chorus verified against the LilyPond score on English Wikipedia (the familiar 1903 Cowan tune). The score's rests are kept. No simplification needed. Range low 6 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: the Cowan version (sheet music, 1903) as given on English Wikipedia (https://en.wikipedia.org/wiki/Waltzing_Matilda#Typical_lyrics); as there, the chorus's third line repeats the verse's third line, so each verse here includes its own chorus. Per-verse notes (verseLines): in verse 4 'sprang into the billabong' has one more syllable than the verse-1 line, so the quarter note on 'camped' is played as two eighths of the same pitch. In verse 3 the line 'Whose is that jumbuck…' has two fewer syllables than its notes; the first two eighths ('and he') are simply played without words.",
   "verified": true
 }

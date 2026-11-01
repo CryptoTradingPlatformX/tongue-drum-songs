@@ -77,7 +77,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Early in the morning our song shall rise to Thee;",
@@ -142,7 +143,8 @@
               "oct": 0,
               "dur": 8
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Holy, holy, holy! Merciful and mighty!",
@@ -207,7 +209,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "God in three Persons, blessed Trinity!",
@@ -262,7 +265,8 @@
               "oct": 0,
               "dur": 8
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     },
@@ -327,7 +331,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Early in the morning our song shall rise to Thee;",
@@ -392,7 +397,8 @@
               "oct": 0,
               "dur": 8
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "Holy, holy, holy! Merciful and mighty!",
@@ -457,7 +463,8 @@
               "oct": 0,
               "dur": 4
             }
-          ]
+          ],
+          "section": "verse"
         },
         {
           "lyric": "God in three Persons, blessed Trinity!",
@@ -512,11 +519,758 @@
               "oct": 0,
               "dur": 8
             }
-          ]
+          ],
+          "section": "verse"
         }
       ]
     }
   },
-  "arrangerNotes": "4/2 time (half note = 2 beats, whole = 4, breve = 8). Melody (soprano) verified against the four-part LilyPond score on English Wikipedia. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums).",
+  "form": [
+    {
+      "section": "verse",
+      "verse": 1
+    },
+    {
+      "section": "verse",
+      "verse": 2
+    },
+    {
+      "section": "verse",
+      "verse": 3
+    },
+    {
+      "section": "verse",
+      "verse": 4
+    }
+  ],
+  "verses": {
+    "verse": [
+      [
+        "Holy, holy, holy! Lord God Almighty!",
+        "Early in the morning our song shall rise to Thee;",
+        "Holy, holy, holy! Merciful and mighty!",
+        "God in three Persons, blessed Trinity!"
+      ],
+      [
+        "Holy, holy, holy! all the saints adore Thee,",
+        "casting down their golden crowns around the glassy sea;",
+        "cherubim and seraphim falling down before Thee,",
+        "which wert, and art, and evermore shalt be."
+      ],
+      [
+        "Holy, holy, holy! tho' the darkness hide Thee,",
+        "though the eye of sinful man Thy glory may not see,",
+        "only Thou art holy, there is none beside Thee,",
+        "perfect in power, in love, and purity."
+      ],
+      [
+        "Holy, holy, holy! Lord God Almighty!",
+        "All Thy works shall praise Thy name, in earth, and sky, and sea;",
+        "Holy, holy, holy! Merciful and mighty!",
+        "God in three Persons, blessed Trinity!"
+      ]
+    ]
+  },
+  "verseLines": {
+    "verse": {
+      "2": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 4
+              }
+            ],
+            "lyric": "Holy, holy, holy! all the saints adore Thee,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 4
+              }
+            ],
+            "lyric": "Holy, holy, holy! all the saints adore Thee,"
+          }
+        },
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 7,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 8
+              }
+            ],
+            "lyric": "casting down their golden crowns around the glassy sea;"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 7,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 8
+              }
+            ],
+            "lyric": "casting down their golden crowns around the glassy sea;"
+          }
+        }
+      },
+      "3": {
+        "0": {
+          "C": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 4
+              }
+            ],
+            "lyric": "Holy, holy, holy! tho' the darkness hide Thee,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 4
+              },
+              {
+                "deg": 3,
+                "oct": 0,
+                "dur": 4
+              }
+            ],
+            "lyric": "Holy, holy, holy! tho' the darkness hide Thee,"
+          }
+        },
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 7,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 8
+              }
+            ],
+            "lyric": "though the eye of sinful man Thy glory may not see,"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 7,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 8
+              }
+            ],
+            "lyric": "though the eye of sinful man Thy glory may not see,"
+          }
+        }
+      },
+      "4": {
+        "1": {
+          "C": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 7,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 8
+              }
+            ],
+            "lyric": "All Thy works shall praise Thy name, in earth, and sky, and sea;"
+          },
+          "D": {
+            "notes": [
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 1,
+                "oct": 1,
+                "dur": 2
+              },
+              {
+                "deg": 7,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 2,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 2
+              },
+              {
+                "deg": 6,
+                "oct": 0,
+                "dur": 3
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 1
+              },
+              {
+                "deg": 5,
+                "oct": 0,
+                "dur": 8
+              }
+            ],
+            "lyric": "All Thy works shall praise Thy name, in earth, and sky, and sea;"
+          }
+        }
+      }
+    }
+  },
+  "arrangerNotes": "4/2 time (half note = 2 beats, whole = 4, breve = 8). Melody (soprano) verified against the four-part LilyPond score on English Wikipedia. No simplification needed. Range 1 to high 1. C and D arrangements use identical degree sequences (both fit their drums). Lyrics of the added verses: Verses 2–4: Reginald Heber's text as printed with the tune in The Army and Navy Hymnal (1920), from Wikisource (https://en.wikisource.org/wiki/The_Army_and_Navy_Hymnal/Hymns/Holy,_Holy,_Holy,_Lord_God_Almighty), with 'Thee/Thy' capitalised as in verse 1 here; the hymnal's own score sets every stanza under the notes. Per-verse notes (verseLines) follow that hymnal's underlay: in verses 2 and 3 the whole note on 'Lord' (line 1) is sung as two half notes, and in verses 2–4 the whole note on 'morn-' (line 2) is sung as two half notes. As in that score, 'seraphim' in verse 2 is sung 'ser'phim' on two notes, so that line keeps the verse-1 notes. Same pitches throughout; only notes are split.",
   "verified": true
 }
