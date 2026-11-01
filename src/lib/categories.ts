@@ -21,7 +21,7 @@ export const LIBRARY_CATEGORIES: LibraryCategory[] = [
   {
     id: "black-composers",
     label: "Black Composers",
-    tags: ["black-composers"],
+    tags: ["african-american-composers", "black-composers"], // primary tag, plus the shorter alias
     emptyMessage: "Black Composers songs are coming soon",
   },
 ];
