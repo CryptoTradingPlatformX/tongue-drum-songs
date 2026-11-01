@@ -353,7 +353,7 @@ describe("sample songs", () => {
   const files = readdirSync(path.join(root, "songs")).filter((name) => name.endsWith(".json")).sort();
 
   it("loads every delivered song and keeps duration when grouping bars", () => {
-    expect(files.length).toBe(139);
+    expect(files.length).toBe(149);
     const unsupported: string[] = [];
     for (const file of files) {
       const song = JSON.parse(readFileSync(path.join(root, "songs", file), "utf8")) as Song;
@@ -436,6 +436,7 @@ describe("sample songs", () => {
 
     const instrumental = songs.filter((song) => song.arrangements.C.lines.every((line) => line.lyric == null));
     expect(instrumental.map((song) => song.id).sort()).toEqual([
+      "carry-me-back-to-old-virginny",
       "clementi-sonatina-in-c",
       "drumroll-symphony-finale",
       "eine-kleine-nachtmusik",
@@ -443,7 +444,9 @@ describe("sample songs", () => {
       "london-symphony-finale",
       "minuet-in-g",
       "morning-mood",
+      "ol-man-river",
       "pachelbel-canon",
+      "st-louis-blues",
       "surprise-symphony",
       "the-girl-i-left-behind-me",
     ]);

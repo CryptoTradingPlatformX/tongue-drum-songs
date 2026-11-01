@@ -64,11 +64,23 @@ describe("library browsing", () => {
     const jazz = categoryById("jazz-blues");
     expect(jazz?.tags).toEqual(["jazz", "blues", "ragtime"]);
     expect(jazz?.emptyMessage).toBe("Jazz & Blues songs are coming soon");
-    expect(filterSongs(songs, { ...base, categoryTags: jazz?.tags })).toEqual([]);
+    expect(filterSongs(songs, { ...base, categoryTags: jazz?.tags }).map((song) => song.id).sort()).toEqual([
+      "beale-street-blues",
+      "darktown-strutters-ball",
+      "im-just-wild-about-harry",
+      "st-louis-blues",
+    ]);
     const blackComposers = categoryById("black-composers");
     expect(blackComposers?.tags).toEqual(["african-american-composers", "black-composers"]);
     expect(blackComposers?.emptyMessage).toBe("Black Composers songs are coming soon");
-    expect(filterSongs(songs, { ...base, categoryTags: blackComposers?.tags })).toEqual([]);
+    expect(filterSongs(songs, { ...base, categoryTags: blackComposers?.tags }).map((song) => song.id).sort()).toEqual([
+      "beale-street-blues",
+      "carry-me-back-to-old-virginny",
+      "darktown-strutters-ball",
+      "im-just-wild-about-harry",
+      "lift-every-voice-and-sing",
+      "st-louis-blues",
+    ]);
     const eitherTag = filterSongs(
       [
         { id: "primary", title: "Primary", artist: "A", difficulty: "easy", tags: ["african-american-composers"] },
@@ -84,7 +96,12 @@ describe("library browsing", () => {
       "Public-domain standards Frank Sinatra sang, arranged from the original sheet music.",
     );
     expect(sinatra?.emptyMessage).toBe("Sinatra Standards songs are coming soon");
-    expect(filterSongs(songs, { ...base, categoryTags: sinatra?.tags })).toEqual([]);
+    expect(filterSongs(songs, { ...base, categoryTags: sinatra?.tags }).map((song) => song.id).sort()).toEqual([
+      "blue-skies",
+      "my-blue-heaven",
+      "ol-man-river",
+      "someone-to-watch-over-me",
+    ]);
     const sinatraEither = filterSongs(
       [
         { id: "sinatra", title: "Sinatra", artist: "A", difficulty: "easy", tags: ["sinatra"] },
@@ -129,13 +146,13 @@ describe("library browsing", () => {
   it("pages a filtered list", () => {
     const all = filterSongs(songs, base);
     const page = paginate(all, 2, 24);
-    expect(all.length).toBe(139);
-    expect(page.pageCount).toBe(6);
+    expect(all.length).toBe(149);
+    expect(page.pageCount).toBe(7);
     expect(page.start).toBe(25);
     expect(page.items).toHaveLength(24);
-    const last = paginate(all, 6, 24);
-    expect(last.start).toBe(121);
-    expect(last.items).toHaveLength(19);
+    const last = paginate(all, 7, 24);
+    expect(last.start).toBe(145);
+    expect(last.items).toHaveLength(5);
     expect(paginate([], 4, 24)).toMatchObject({ page: 1, pageCount: 1, start: 0, end: 0, items: [] });
   });
 });
@@ -155,15 +172,15 @@ function syntheticSongs(count: number): LibraryEntry[] {
 }
 
 describe("library scale", () => {
-  it("searches the 139-song catalog quickly", () => {
+  it("searches the 149-song catalog quickly", () => {
     const songs = loadSongs();
-    expect(songs).toHaveLength(139);
+    expect(songs).toHaveLength(149);
     const started = performance.now();
     for (let index = 0; index < 50; index += 1) {
       filterSongs(songs, { ...base, text: index % 2 === 0 ? "lucia" : "folk", sort: "title" });
     }
     expect(performance.now() - started).toBeLessThan(200);
-    expect(paginate(filterSongs(songs, base), 6, 24)).toMatchObject({ page: 6, pageCount: 6, start: 121, end: 139 });
+    expect(paginate(filterSongs(songs, base), 7, 24)).toMatchObject({ page: 7, pageCount: 7, start: 145, end: 149 });
   });
 
   it("searches and filters 150 songs quickly from metadata alone", () => {
