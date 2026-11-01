@@ -9,7 +9,12 @@ type Props = {
   active: Tongue | null;
   chordTones?: Tongue[];
   onTongue?: (tongue: Tongue) => void;
+  pitchLabel?: (tongue: Tongue) => string;
 };
+
+function pitchName(drumKey: DrumKey, tongue: Tongue, pitchLabel?: (tongue: Tongue) => string): string {
+  return pitchLabel ? pitchLabel(tongue) : noteName(drumKey, tongue.deg, tongue.oct);
+}
 
 const CX = 200;
 const CY = 200;
@@ -61,7 +66,7 @@ function slotPath(deg: number, outerR: number, tip: number, halfW: number, close
   return `${body} A ${outerR} ${outerR} 0 0 ${sweep === 1 ? 0 : 1} ${olx} ${oly} Z`;
 }
 
-export function Drum15Diagram({ drumKey, active, chordTones, onTongue }: Props) {
+export function Drum15Diagram({ drumKey, active, chordTones, onTongue, pitchLabel }: Props) {
   const rawId = useId().replace(/:/g, "");
   const steel = `${rawId}-steel`;
   const glow = `${rawId}-glow`;
@@ -97,7 +102,7 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue }: Props) 
             style={onTongue ? { cursor: "pointer" } : undefined}
             role={onTongue ? "button" : undefined}
             tabIndex={onTongue ? 0 : undefined}
-            aria-label={onTongue ? `${tongue.deg} ${noteName(drumKey, tongue.deg, tongue.oct)}` : undefined}
+            aria-label={onTongue ? `${tongue.deg} ${pitchName(drumKey, tongue, pitchLabel)}` : undefined}
             onClick={onTongue ? () => onTongue(tongue) : undefined}
             onKeyDown={
               onTongue
@@ -116,7 +121,7 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue }: Props) 
         paint={tonguePaint(active, chordTones, DRUM_15_CENTER)}
         glow={`url(#${glow})`}
         onTongue={onTongue}
-        label={onTongue ? `3 ${noteName(drumKey, DRUM_15_CENTER.deg, DRUM_15_CENTER.oct)}` : undefined}
+        label={onTongue ? `3 ${pitchName(drumKey, DRUM_15_CENTER, pitchLabel)}` : undefined}
       />
 
       {DRUM_15_OUTER.map((tongue) => {
@@ -139,11 +144,11 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue }: Props) 
         <TongueLabel
           key={`label-${tongue.deg}:${tongue.oct}`}
           tongue={tongue}
-          drumKey={drumKey}
+          name={pitchName(drumKey, tongue, pitchLabel)}
           paint={tonguePaint(active, chordTones, tongue)}
         />
       ))}
-      <CenterLabel drumKey={drumKey} paint={tonguePaint(active, chordTones, DRUM_15_CENTER)} />
+      <CenterLabel name={pitchName(drumKey, DRUM_15_CENTER, pitchLabel)} paint={tonguePaint(active, chordTones, DRUM_15_CENTER)} />
     </svg>
   );
 }
@@ -189,8 +194,7 @@ function CenterTongue({
   );
 }
 
-function TongueLabel({ tongue, drumKey, paint }: { tongue: Drum15Outer; drumKey: DrumKey; paint: TonguePaint }) {
-  const name = noteName(drumKey, tongue.deg, tongue.oct);
+function TongueLabel({ tongue, name, paint }: { tongue: Drum15Outer; name: string; paint: TonguePaint }) {
   const numR = 146;
   const [nx, ny] = radial(tongue.angle, numR);
   const dotR = tongue.oct > 0 ? numR + 13 : numR - 14;
@@ -231,8 +235,7 @@ function TongueLabel({ tongue, drumKey, paint }: { tongue: Drum15Outer; drumKey:
   );
 }
 
-function CenterLabel({ drumKey, paint }: { drumKey: DrumKey; paint: TonguePaint }) {
-  const name = noteName(drumKey, DRUM_15_CENTER.deg, DRUM_15_CENTER.oct);
+function CenterLabel({ name, paint }: { name: string; paint: TonguePaint }) {
   const ink = paint ? "#3c2614" : "#f7fbff";
   const soft = paint ? "#5c4634" : "#e4f0fa";
   return (

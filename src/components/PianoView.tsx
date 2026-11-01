@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { PIANO_LAYOUT, PIANO_TONGUES, PIANO_WHITE_KEYS, blackKeyAfter, type PianoTongue } from "../data/piano";
+import { PIANO_LAYOUT, PIANO_TONGUES, type PianoTongue } from "../data/piano";
 import { playTongue, unlockAudio } from "../lib/audio";
-import { noteMidi, octaveWord, tonguePhrase } from "../lib/music";
+import { octaveWord, tonguePhrase } from "../lib/music";
+import { degreePitch, naturalMidi } from "../lib/pitch";
 import type { DrumKey, Tongue } from "../lib/types";
 import { DegreeMark } from "./Notation";
 import { DrumDiagram } from "./DrumDiagram";
+import { PianoKeyboard, type PianoKeyInfo } from "./PianoKeyboard";
 
 type Props = { drumKey: DrumKey };
 
@@ -14,9 +16,19 @@ function sameTongue(a: Tongue | null, b: Tongue): boolean {
   return a != null && a.deg === b.deg && a.oct === b.oct;
 }
 
+function DegreeLabel({ tongue }: { tongue: PianoTongue }) {
+  return (
+    <span className="piano-key-num" aria-hidden="true">
+      {tongue.oct < 0 ? <i className="piano-dot below" /> : null}
+      {tongue.deg}
+      {tongue.oct > 0 ? <i className="piano-dot above" /> : null}
+    </span>
+  );
+}
+
 export function PianoView({ drumKey }: Props) {
   const tongues = PIANO_TONGUES[drumKey];
-  const byName = new Map(tongues.map((tongue) => [tongue.name, tongue]));
+  const byMidi = new Map(tongues.map((tongue) => [degreePitch(drumKey, 4, tongue.deg, tongue.oct).midi, tongue]));
   const [hit, setHit] = useState<Tongue | null>(null);
   const timer = useRef<number | null>(null);
 
@@ -29,10 +41,24 @@ export function PianoView({ drumKey }: Props) {
 
   const play = (tongue: Tongue) => {
     unlockAudio();
-    playTongue(noteMidi(drumKey, tongue.deg, tongue.oct));
+    playTongue(degreePitch(drumKey, 4, tongue.deg, tongue.oct).midi);
     setHit(tongue);
     if (timer.current != null) window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setHit(null), HIT_MS);
+  };
+
+  const keyInfo = (midi: number): PianoKeyInfo | null => {
+    const tongue = byMidi.get(midi) ?? null;
+    if (!tongue) return midi === naturalMidi("C", 4) ? { middleC: true } : null;
+    const active = sameTongue(hit, tongue);
+    const pitch = degreePitch(drumKey, 4, tongue.deg, tongue.oct);
+    return {
+      extraClass: active ? "is-drum is-hit" : "is-drum",
+      label: <DegreeLabel tongue={tongue} />,
+      ariaLabel: `${octaveWord(tongue.oct)}${tongue.deg}, ${pitch.name}${tongue.centerLikely ? ", center tongue, likely" : ""}${pitch.name === "C4" ? ", middle C" : ""}`,
+      onClick: () => play(tongue),
+      middleC: pitch.name === "C4",
+    };
   };
 
   return (
@@ -53,26 +79,12 @@ export function PianoView({ drumKey }: Props) {
             <h2 id="piano-map-heading">{drumKey} major · {PIANO_LAYOUT[drumKey]}-note drum</h2>
             <p>C4 is middle C. Highlighted piano keys are the tongues on this drum.</p>
           </div>
-          <div className="piano-scroll">
-            <div className="piano" role="group" aria-label={`Piano from F3 to G5 for the ${drumKey} drum`}>
-              {PIANO_WHITE_KEYS.map((name) => {
-                const tongue = byName.get(name) ?? null;
-                const blackName = blackKeyAfter(name);
-                const blackTongue = blackName ? byName.get(blackName) ?? null : null;
-                return (
-                  <WhiteKey
-                    key={name}
-                    name={name}
-                    tongue={tongue}
-                    blackName={blackName}
-                    blackTongue={blackTongue}
-                    hit={hit}
-                    onPlay={play}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          <PianoKeyboard
+            lowMidi={naturalMidi("F", 3)}
+            highMidi={naturalMidi("G", 5)}
+            ariaLabel={`Piano from F3 to G5 for the ${drumKey} drum`}
+            keyInfo={keyInfo}
+          />
           <table className="chord-table piano-map">
             <thead>
               <tr>
@@ -114,76 +126,5 @@ export function PianoView({ drumKey }: Props) {
         </aside>
       </div>
     </div>
-  );
-}
-
-function WhiteKey({
-  name,
-  tongue,
-  blackName,
-  blackTongue,
-  hit,
-  onPlay,
-}: {
-  name: string;
-  tongue: PianoTongue | null;
-  blackName: string | null;
-  blackTongue: PianoTongue | null;
-  hit: Tongue | null;
-  onPlay: (tongue: Tongue) => void;
-}) {
-  return (
-    <div className="piano-white-slot">
-      <KeyFace name={name} tongue={tongue} hit={hit} onPlay={onPlay} white />
-      {blackName ? <KeyFace name={blackName} tongue={blackTongue} hit={hit} onPlay={onPlay} white={false} /> : null}
-    </div>
-  );
-}
-
-function KeyFace({
-  name,
-  tongue,
-  hit,
-  onPlay,
-  white,
-}: {
-  name: string;
-  tongue: PianoTongue | null;
-  hit: Tongue | null;
-  onPlay: (tongue: Tongue) => void;
-  white: boolean;
-}) {
-  const drum = tongue != null;
-  const active = drum && sameTongue(hit, tongue);
-  const className = [
-    white ? "piano-key is-white" : "piano-key is-black",
-    drum ? "is-drum" : "is-inert",
-    active ? "is-hit" : "",
-    name === "C4" ? "is-middle-c" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-  const label = drum ? (
-    <span className="piano-key-num" aria-hidden="true">
-      {tongue.oct < 0 ? <i className="piano-dot below" /> : null}
-      {tongue.deg}
-      {tongue.oct > 0 ? <i className="piano-dot above" /> : null}
-    </span>
-  ) : null;
-  const text = drum
-    ? `${octaveWord(tongue.oct)}${tongue.deg}, ${name}${tongue.centerLikely ? ", center tongue, likely" : ""}${name === "C4" ? ", middle C" : ""}`
-    : name;
-  if (!drum) {
-    return (
-      <div className={className} aria-hidden="true">
-        {name === "C4" ? <span className="piano-middle">middle C</span> : null}
-      </div>
-    );
-  }
-  return (
-    <button type="button" className={className} aria-label={text} onClick={() => onPlay(tongue)}>
-      {label}
-      {name === "C4" ? <span className="piano-middle">middle C</span> : null}
-    </button>
   );
 }

@@ -10,6 +10,7 @@ type Props = {
   active: Tongue | null;
   chordTones?: Tongue[];
   onTongue?: (tongue: Tongue) => void;
+  pitchLabel?: (tongue: Tongue) => string;
 };
 
 function sector(cx: number, cy: number, inner: number, outer: number, start: number, end: number): string {
@@ -25,12 +26,18 @@ function sector(cx: number, cy: number, inner: number, outer: number, start: num
   return `M ${x0} ${y0} A ${outer} ${outer} 0 ${large} 1 ${x1} ${y1} L ${x2} ${y2} A ${inner} ${inner} 0 ${large} 0 ${x3} ${y3} Z`;
 }
 
-export function DrumDiagram({ layoutId, drumKey, active, chordTones, onTongue }: Props) {
-  if (layoutId === "15") return <Drum15Diagram drumKey={drumKey} active={active} chordTones={chordTones} onTongue={onTongue} />;
-  return <SchematicDrum layoutId={layoutId} drumKey={drumKey} active={active} chordTones={chordTones} onTongue={onTongue} />;
+export function DrumDiagram({ layoutId, drumKey, active, chordTones, onTongue, pitchLabel }: Props) {
+  if (layoutId === "15") {
+    return <Drum15Diagram drumKey={drumKey} active={active} chordTones={chordTones} onTongue={onTongue} pitchLabel={pitchLabel} />;
+  }
+  return <SchematicDrum layoutId={layoutId} drumKey={drumKey} active={active} chordTones={chordTones} onTongue={onTongue} pitchLabel={pitchLabel} />;
 }
 
-function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue }: Props) {
+function pitchName(drumKey: DrumKey, tongue: Tongue, pitchLabel?: (tongue: Tongue) => string): string {
+  return pitchLabel ? pitchLabel(tongue) : noteName(drumKey, tongue.deg, tongue.oct);
+}
+
+function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchLabel }: Props) {
   const rawId = useId().replace(/:/g, "");
   const layout = layoutById(layoutId);
   const tongues = [...layout.tongues].sort(pitchCompare);
@@ -83,7 +90,7 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue }: Prop
               style={onTongue ? { cursor: "pointer" } : undefined}
               role={onTongue ? "button" : undefined}
               tabIndex={onTongue ? 0 : undefined}
-              aria-label={onTongue ? `${tongue.deg} ${noteName(drumKey, tongue.deg, tongue.oct)}` : undefined}
+              aria-label={onTongue ? `${tongue.deg} ${pitchName(drumKey, tongue, pitchLabel)}` : undefined}
               onClick={onTongue ? () => onTongue(tongue) : undefined}
               onKeyDown={
                 onTongue
@@ -122,7 +129,7 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue }: Prop
               fontSize={count >= 13 ? 8 : 10}
               fontFamily="Atkinson Hyperlegible, Segoe UI, sans-serif"
             >
-              {noteName(drumKey, tongue.deg, tongue.oct)}
+              {pitchName(drumKey, tongue, pitchLabel)}
             </text>
           </g>
         );
