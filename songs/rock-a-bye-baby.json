@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 1,
+  "id": "rock-a-bye-baby",
+  "title": "Rock-a-bye Baby",
+  "artist": "Effie I. Crockett",
+  "source": {
+    "name": "Wikipedia (de) – Rock-a-bye Baby, LilyPond score (second tune)",
+    "url": "https://de.wikipedia.org/wiki/Rock-a-bye_Baby"
+  },
+  "license": "public-domain",
+  "attribution": "Traditional nursery rhyme words; melody: Effie I. Crockett (published 1887). Public domain. Arrangement: Tongue Drum Song Finder.",
+  "difficulty": "easy",
+  "tags": [
+    "lullaby",
+    "nursery",
+    "kids",
+    "american"
+  ],
+  "tempo": 72,
+  "timeSignature": "6/8",
+  "arrangements": {
+    "C": {
+      "minLayout": "11",
+      "lines": [
+        {
+          "lyric": "Rock-a-bye baby, on the tree top,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "When the wind blows, the cradle will rock;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "When the bough breaks, the cradle will fall,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Down will come baby, cradle and all.",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    },
+    "D": {
+      "minLayout": "15",
+      "lines": [
+        {
+          "lyric": "Rock-a-bye baby, on the tree top,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "When the wind blows, the cradle will rock;",
+          "notes": [
+            {
+              "deg": 4,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "When the bough breaks, the cradle will fall,",
+          "notes": [
+            {
+              "deg": 3,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.25
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "lyric": "Down will come baby, cradle and all.",
+          "notes": [
+            {
+              "deg": 5,
+              "oct": -1,
+              "dur": 0.75
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.25
+            },
+            {
+              "deg": 4,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 3,
+              "oct": 0,
+              "dur": 1
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 2,
+              "oct": 0,
+              "dur": 0.5
+            },
+            {
+              "deg": 6,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 7,
+              "oct": -1,
+              "dur": 0.5
+            },
+            {
+              "deg": 1,
+              "oct": 0,
+              "dur": 1.5
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "arrangerNotes": "The American tune (Effie Crockett's), verified against the second LilyPond score on German Wikipedia (the first score there is a different tune). 6/8 time (eighth = 0.5 beat). No simplification needed. D drum: as written (range low 3 to 4), D minLayout 15. C drum: the C drum has no low 3/4, so every low 3 and low 4 ('Rock' and 'on' in the first line, 'When' at the start of the second and third lines, and 'the' before 'cradle will fall') is played one octave higher; C minLayout 11. C and D arrangements differ where noted above (each fits its own drum).",
+  "verified": true
+}
