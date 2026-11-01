@@ -553,6 +553,15 @@ main.has-player { padding-bottom: 8.5rem; }
 .voicing.is-selected { border-color: #0f5c56; background: #e7f6f4; }
 .chords-diagram .now-value { font-size: 1.15rem; line-height: 1.35; }
 .chords-diagram .diagram-caption { overflow-wrap: anywhere; }
+.key-picker { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: end; margin-top: 0.75rem; }
+.key-picker label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.92rem; }
+.key-picker select {
+  min-height: 44px;
+  padding: 0.35rem 0.6rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
 
 .piano-stage { display: grid; gap: 1rem; align-items: start; }
 .piano-scroll { overflow-x: auto; padding: 0.35rem 0.15rem 0.8rem; -webkit-overflow-scrolling: touch; }
@@ -594,6 +603,11 @@ main.has-player { padding-bottom: 8.5rem; }
 .piano-key.is-white.is-drum { background: #f6d7a4; }
 .piano-key.is-black.is-drum { background: #6a3d28; color: #fffaf3; }
 .piano-key.is-hit { background: #f6c445; color: #3c2614; }
+.piano-key.is-scale.is-white { background: #efe2cf; }
+.piano-key.is-scale.is-black { background: #3d2c22; }
+.piano-key.is-voicing.is-white { background: #2a9d8f; color: #f7fffd; }
+.piano-key.is-voicing.is-black { background: #0f5c56; color: #f7fffd; }
+.piano-scale-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; display: block; opacity: 0.8; }
 .piano-key-num { display: flex; flex-direction: column; align-items: center; line-height: 1; font-size: 1rem; }
 .piano-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; display: block; }
 .piano-dot.above { margin-bottom: 2px; }
@@ -709,9 +723,9 @@ main.has-player + .site-footer { padding-bottom: calc(7.5rem + env(safe-area-ins
   main.has-player + .site-footer { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)); }
   .diagram-panel { position: static; z-index: 0; }
   .notation-panel { position: relative; z-index: 1; }
-  .chords-diagram { position: static; z-index: 0; }
+  .chords-diagram, .chords-piano { position: static; z-index: 0; }
   .chords-stage { display: flex; flex-direction: column; }
-  .chords-diagram { order: -1; }
+  .chords-diagram, .chords-piano { order: -1; }
   .piano-stage { display: flex; flex-direction: column; }
   .piano-diagram { order: -1; position: static; z-index: 0; }
   .phrase,
@@ -733,13 +747,13 @@ main.has-player + .site-footer { padding-bottom: calc(7.5rem + env(safe-area-ins
   .tag { flex: 0 0 auto; }
 }
 @media (max-width: 1099px) {
-  .diagram-panel { order: -1; }
+  .diagram-panel, .chords-piano { order: -1; }
   .drum-svg { width: min(100%, 320px); }
 }
 @media (min-width: 1100px) {
   .practice-grid { grid-template-columns: minmax(0, 1fr) 380px; align-items: start; }
   .diagram-panel { position: sticky; top: calc(var(--sticky-top, 8.75rem) + 0.35rem); }
-  .chords-stage { grid-template-columns: minmax(0, 1fr) 380px; }
+  .chords-stage { grid-template-columns: minmax(0, 1.05fr) 270px minmax(280px, 1fr); }
   .chords-diagram { position: sticky; top: calc(var(--sticky-top, 8.75rem) + 0.35rem); }
   .piano-stage { grid-template-columns: minmax(0, 1fr) 380px; }
   .drum-svg { width: 100%; }

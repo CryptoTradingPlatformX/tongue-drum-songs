@@ -1,4 +1,5 @@
 import layoutFile from "../../data/layouts.json";
+import { degreePitch } from "./pitch";
 import type { DrumKey, LayoutId, TimeSignature, Tongue } from "./types";
 
 export type NoteEvent = {
@@ -75,8 +76,6 @@ export const DRUM_KEYS = data.keys;
 export const LAYOUTS: LayoutRecord[] = data.layouts;
 export const LAYOUT_ORDER: LayoutId[] = ["8", "11", "13", "15"];
 
-const SHARP_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-const MAJOR_STEPS = [0, 2, 4, 5, 7, 9, 11];
 /** Beat comparisons tolerate a millionth of a quarter, enough for summed 1/3 notes. */
 export const BEAT_EPS = 1e-6;
 /**
@@ -138,14 +137,11 @@ export function parseLineNotes(rawNotes: unknown[]): NoteEvent[] {
 }
 
 export function noteMidi(key: DrumKey, deg: number, oct: number): number {
-  return DRUM_KEYS[key].tonicMidi + MAJOR_STEPS[deg - 1] + oct * 12;
+  return degreePitch(key, 4, deg, oct).midi;
 }
 
 export function noteName(key: DrumKey, deg: number, oct: number): string {
-  const midi = noteMidi(key, deg, oct);
-  const pitchClass = ((midi % 12) + 12) % 12;
-  const octave = Math.floor(midi / 12) - 1;
-  return `${SHARP_NAMES[pitchClass]}${octave}`;
+  return degreePitch(key, 4, deg, oct).name;
 }
 
 export function octaveWord(oct: number): string {

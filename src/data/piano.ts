@@ -1,48 +1,62 @@
+import { degreePitch } from "../lib/pitch";
 import type { DrumKey, LayoutId } from "../lib/types";
 
 export type PianoTongue = {
   deg: number;
   oct: number;
-  /** Scientific pitch name. C4 is middle C. */
+  /** Scientific pitch name. C4 is middle C. Derived from the shared pitch module. */
   name: string;
   black: boolean;
   /** The 11-note C drum's low 5 is present but unconfirmed. */
   centerLikely?: boolean;
 };
 
-/** C 11-note drum, C major, all white keys. */
-export const C_DRUM_TONGUES: PianoTongue[] = [
-  { deg: 5, oct: -1, name: "G3", black: false, centerLikely: true },
-  { deg: 6, oct: -1, name: "A3", black: false },
-  { deg: 7, oct: -1, name: "B3", black: false },
-  { deg: 1, oct: 0, name: "C4", black: false },
-  { deg: 2, oct: 0, name: "D4", black: false },
-  { deg: 3, oct: 0, name: "E4", black: false },
-  { deg: 4, oct: 0, name: "F4", black: false },
-  { deg: 5, oct: 0, name: "G4", black: false },
-  { deg: 6, oct: 0, name: "A4", black: false },
-  { deg: 7, oct: 0, name: "B4", black: false },
-  { deg: 1, oct: 1, name: "C5", black: false },
+const C_ROWS: { deg: number; oct: number; centerLikely?: boolean }[] = [
+  { deg: 5, oct: -1, centerLikely: true },
+  { deg: 6, oct: -1 },
+  { deg: 7, oct: -1 },
+  { deg: 1, oct: 0 },
+  { deg: 2, oct: 0 },
+  { deg: 3, oct: 0 },
+  { deg: 4, oct: 0 },
+  { deg: 5, oct: 0 },
+  { deg: 6, oct: 0 },
+  { deg: 7, oct: 0 },
+  { deg: 1, oct: 1 },
 ];
 
-/** D 15-note Hopewell drum, D major. */
-export const D_DRUM_TONGUES: PianoTongue[] = [
-  { deg: 3, oct: -1, name: "F#3", black: true },
-  { deg: 4, oct: -1, name: "G3", black: false },
-  { deg: 5, oct: -1, name: "A3", black: false },
-  { deg: 6, oct: -1, name: "B3", black: false },
-  { deg: 7, oct: -1, name: "C#4", black: true },
-  { deg: 1, oct: 0, name: "D4", black: false },
-  { deg: 2, oct: 0, name: "E4", black: false },
-  { deg: 3, oct: 0, name: "F#4", black: true },
-  { deg: 4, oct: 0, name: "G4", black: false },
-  { deg: 5, oct: 0, name: "A4", black: false },
-  { deg: 6, oct: 0, name: "B4", black: false },
-  { deg: 7, oct: 0, name: "C#5", black: true },
-  { deg: 1, oct: 1, name: "D5", black: false },
-  { deg: 2, oct: 1, name: "E5", black: false },
-  { deg: 3, oct: 1, name: "F#5", black: true },
+const D_ROWS: { deg: number; oct: number }[] = [
+  { deg: 3, oct: -1 },
+  { deg: 4, oct: -1 },
+  { deg: 5, oct: -1 },
+  { deg: 6, oct: -1 },
+  { deg: 7, oct: -1 },
+  { deg: 1, oct: 0 },
+  { deg: 2, oct: 0 },
+  { deg: 3, oct: 0 },
+  { deg: 4, oct: 0 },
+  { deg: 5, oct: 0 },
+  { deg: 6, oct: 0 },
+  { deg: 7, oct: 0 },
+  { deg: 1, oct: 1 },
+  { deg: 2, oct: 1 },
+  { deg: 3, oct: 1 },
 ];
+
+function withPitch(key: DrumKey, rows: { deg: number; oct: number; centerLikely?: boolean }[]): PianoTongue[] {
+  return rows.map((row) => {
+    const pitch = degreePitch(key, 4, row.deg, row.oct);
+    const pc = ((pitch.midi % 12) + 12) % 12;
+    const black = pc === 1 || pc === 3 || pc === 6 || pc === 8 || pc === 10;
+    return { deg: row.deg, oct: row.oct, name: pitch.name, black, centerLikely: row.centerLikely };
+  });
+}
+
+/** C 11-note drum. Home 1 is C4. Names come from the shared pitch module. */
+export const C_DRUM_TONGUES: PianoTongue[] = withPitch("C", C_ROWS);
+
+/** D 15-note Hopewell drum. Home 1 is D4. */
+export const D_DRUM_TONGUES: PianoTongue[] = withPitch("D", D_ROWS);
 
 export const PIANO_TONGUES: Record<DrumKey, PianoTongue[]> = {
   C: C_DRUM_TONGUES,
