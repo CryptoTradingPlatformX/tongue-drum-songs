@@ -117,4 +117,82 @@ describe("microphone detector", () => {
     expect(detected.length).toBeGreaterThan(0);
     expect(detected[0].uncertain).toBe(true);
   });
+
+  it("keeps ringing, detuned, noisy tongues from being named wrong", () => {
+    const rates = { correct: 0, flagged: 0, wrong: 0, total: 0 };
+    const byGap = {
+      0.5: { ...rates },
+      0.25: { ...rates },
+    };
+    const seed = { value: 7 };
+    const random = () => {
+      seed.value = (seed.value * 1103515245 + 12345) % 2147483648;
+      return seed.value / 2147483648;
+    };
+    const harsh = {
+      clean: { detune: 0, second: 0.3, third: 0.1, noise: 0.002, inharm: 3 },
+      detuned20: { detune: 20, second: 0.3, third: 0.1, noise: 0.005, inharm: 3 },
+      strongOctave: { detune: 10, second: 0.8, third: 0.2, noise: 0.005, inharm: 3 },
+      inharmonic: { detune: 10, second: 0.4, third: 0.3, noise: 0.005, inharm: 2.76 },
+      noisy: { detune: 10, second: 0.3, third: 0.1, noise: 0.03, inharm: 3 },
+    };
+    const sampleRate = 44100;
+    for (const drum of ["C", "D"] as const) {
+      const tongues = layoutById(DRUM_LAYOUT[drum]).tongues;
+      for (const options of Object.values(harsh)) {
+        for (const gap of [0.5, 0.25] as const) {
+          const sequence: Tongue[] = [];
+          for (let round = 0; round < 3; round += 1) {
+            const order = [...tongues].sort(() => random() - 0.5);
+            sequence.push(...order);
+          }
+          const length = Math.floor(sampleRate * (gap * sequence.length + 0.6));
+          const samples = new Float32Array(length);
+          sequence.forEach((tongue, index) => {
+            const cents = (random() * 2 - 1) * options.detune;
+            const freq = 440 * 2 ** ((noteMidi(drum, tongue.deg, tongue.oct) - 69 + cents / 100) / 12);
+            const amp = 0.3 + 0.6 * random();
+            const start = Math.floor(index * gap * sampleRate) + Math.floor(0.1 * sampleRate);
+            const ring = Math.floor(sampleRate * 1.2);
+            for (let step = 0; step < ring && start + step < length; step += 1) {
+              const time = step / sampleRate;
+              const env = Math.min(1, time / 0.003) * Math.exp(-time * 3);
+              samples[start + step] +=
+                amp *
+                env *
+                (Math.sin(2 * Math.PI * freq * time) +
+                  options.second * Math.exp(-time * 6) * Math.sin(2 * Math.PI * freq * 2 * time) +
+                  options.third * Math.exp(-time * 9) * Math.sin(2 * Math.PI * freq * options.inharm * time));
+            }
+          });
+          for (let index = 0; index < length; index += 1) samples[index] += options.noise * (random() * 2 - 1);
+          const detected = detectNotes(samples, sampleRate, { drum, bpm: 120, grid: 0.5 });
+          const bucket = byGap[gap];
+          for (let index = 0; index < sequence.length; index += 1) {
+            bucket.total += 1;
+            const expectedAt = 0.1 + index * gap;
+            const note = detected.find((item) => Math.abs(item.at - expectedAt) < 0.06);
+            if (!note) continue;
+            const match = note.deg === sequence[index].deg && note.oct === sequence[index].oct;
+            if (note.uncertain) bucket.flagged += 1;
+            else if (match) bucket.correct += 1;
+            else bucket.wrong += 1;
+          }
+        }
+      }
+    }
+    for (const gap of [0.5, 0.25] as const) {
+      const bucket = byGap[gap];
+      const percent = (count: number) => ((100 * count) / bucket.total).toFixed(1);
+      console.log(
+        `harsh ${gap}s correct ${percent(bucket.correct)}% flagged ? ${percent(bucket.flagged)}% wrong unflagged ${percent(bucket.wrong)}% (${bucket.total} notes)`,
+      );
+    }
+    const slow = byGap[0.5];
+    const fast = byGap[0.25];
+    expect(slow.correct / slow.total).toBeGreaterThanOrEqual(0.95);
+    expect(slow.wrong / slow.total).toBeLessThanOrEqual(0.02);
+    expect(fast.correct / fast.total).toBeGreaterThanOrEqual(0.8);
+    expect(fast.wrong / fast.total).toBeLessThanOrEqual(0.05);
+  }, 60_000);
 });

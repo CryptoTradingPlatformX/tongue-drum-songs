@@ -116,9 +116,10 @@ export function findOnsets(samples: Float32Array, sampleRate: number): number[] 
     const history = fluxes.slice(Math.max(0, index - 30), index);
     const sorted = [...history].sort((a, b) => a - b);
     const median = sorted[Math.floor(sorted.length / 2)] ?? 0;
-    const mean = history.reduce((sum, value) => sum + value, 0) / Math.max(1, history.length);
-    const deviation = Math.sqrt(history.reduce((sum, value) => sum + (value - mean) ** 2, 0) / Math.max(1, history.length));
-    const threshold = Math.max(median * 1.8 + deviation * 0.6, mean + deviation * 1.4, 1e-4);
+    // Median absolute deviation ignores one loud attack, so a ringing note does not hide the next one.
+    const mad =
+      sorted.reduce((sum, value) => sum + Math.abs(value - median), 0) / Math.max(1, sorted.length);
+    const threshold = Math.max(median + mad * 3.5, median * 1.55, 1e-4);
     const time = ((index * hop) + frame / 2) / sampleRate;
     const peak = fluxes[index] >= fluxes[index - 1] && fluxes[index] > fluxes[index + 1] && fluxes[index] > threshold;
     if (peak && time - last >= REFRACTORY_SECONDS) {
@@ -189,9 +190,43 @@ function bandEnergy(mags: Float32Array, freq: number, sampleRate: number): numbe
   return Math.max(0, peak);
 }
 
+function noiseFloor(mags: Float32Array): number {
+  const sample: number[] = [];
+  for (let index = 4; index < mags.length; index += 4) sample.push(mags[index]);
+  if (sample.length === 0) return 0;
+  sample.sort((left, right) => left - right);
+  return sample[Math.floor(sample.length / 2)] ?? 0;
+}
+
+function subtractSpectrum(current: Float32Array, baseline: Float32Array | null): Float32Array {
+  if (!baseline || baseline.length !== current.length) return current;
+  const residual = new Float32Array(current.length);
+  for (let index = 0; index < current.length; index += 1) residual[index] = Math.max(0, current[index] - baseline[index]);
+  return residual;
+}
+
+function tongueFreq(drum: DrumKey, tongue: Tongue): number {
+  return 440 * 2 ** ((noteMidi(drum, tongue.deg, tongue.oct) - 69) / 12);
+}
+
 function centsBetween(left: number, right: number): number {
   if (left <= 0 || right <= 0) return 1200;
   return Math.abs(1200 * Math.log2(left / right));
+}
+
+/** How far the residual spectral peak sits from a tongue, in cents. */
+function spectralCents(mags: Float32Array, freq: number, sampleRate: number): number {
+  const bin = (freq * mags.length * 2) / sampleRate;
+  const center = Math.round(bin);
+  if (center < 1 || center >= mags.length - 1) return 1200;
+  const left = mags[center - 1];
+  const mid = mags[center];
+  const right = mags[center + 1];
+  const denom = left - 2 * mid + right;
+  const shift = denom === 0 ? 0 : (0.5 * (left - right)) / denom;
+  const peakBin = center + Math.max(-1, Math.min(1, shift));
+  const peakFreq = (peakBin * sampleRate) / (mags.length * 2);
+  return centsBetween(peakFreq, freq);
 }
 
 export function quantizeGap(seconds: number, bpm: number, grid: number): number {
@@ -203,32 +238,72 @@ export function quantizeGap(seconds: number, bpm: number, grid: number): number 
 
 type Candidate = { tongue: Tongue; score: number; cents: number };
 
+function isOctavePair(left: Tongue, right: Tongue): boolean {
+  return left.deg === right.deg && Math.abs(left.oct - right.oct) === 1;
+}
+
+/**
+ * Prefer the higher tongue unless the lower one has its own fundamental,
+ * measured against its 2f and the noise floor. Returns whether that choice was decisive.
+ */
+function preferOctave(
+  ranked: Candidate[],
+  mags: Float32Array,
+  sampleRate: number,
+  drum: DrumKey,
+): { best: Candidate | null; octaveResolved: boolean } {
+  const best = ranked[0] ?? null;
+  if (!best) return { best, octaveResolved: false };
+  const partner = ranked.find((candidate) => isOctavePair(candidate.tongue, best.tongue));
+  if (!partner || partner.score <= 0) return { best, octaveResolved: false };
+  const lower = best.tongue.oct < partner.tongue.oct ? best : partner;
+  const higher = lower === best ? partner : best;
+  const lowFreq = tongueFreq(drum, lower.tongue);
+  const fundamental = bandEnergy(mags, lowFreq, sampleRate);
+  const second = bandEnergy(mags, lowFreq * 2, sampleRate);
+  const floor = noiseFloor(mags);
+  const clearlyLow = fundamental > floor * 12 && fundamental > second * 0.85;
+  const clearlyHigh = fundamental < second * 0.35 || fundamental < floor * 5;
+  const higherHasEnergy = higher.score > lower.score * 0.35;
+  if (clearlyHigh && higherHasEnergy) return { best: higher, octaveResolved: true };
+  if (clearlyLow) return { best: lower, octaveResolved: true };
+  return { best, octaveResolved: false };
+}
+
 function scoreTongues(
   frame: Float32Array,
   sampleRate: number,
   drum: DrumKey,
-): { best: Candidate | null; confidence: number } {
-  const mags = magnitudeSpectrum(frame);
+  baseline: Float32Array | null,
+): { best: Candidate | null; confidence: number; octaveResolved: boolean; spectralCents: number } {
+  const mags = subtractSpectrum(magnitudeSpectrum(frame), baseline);
   const yin = yinPitch(frame, sampleRate);
   const tongues = layoutById(DRUM_LAYOUT[drum]).tongues;
   const ranked: Candidate[] = tongues.map((tongue) => {
-    const freq = 440 * 2 ** ((noteMidi(drum, tongue.deg, tongue.oct) - 69) / 12);
+    const freq = tongueFreq(drum, tongue);
     const fundamental = bandEnergy(mags, freq, sampleRate);
     const second = bandEnergy(mags, freq * 2, sampleRate);
     const third = bandEnergy(mags, freq * 3, sampleRate);
     const sub = bandEnergy(mags, freq / 2, sampleRate);
-    const harmonic = fundamental + 0.4 * second + 0.22 * third - 0.9 * sub;
+    // A small, capped f/2 term. A large subtraction made the lower octave win on the higher note's fundamental.
+    const harmonic = fundamental + 0.35 * second + 0.16 * third - Math.min(sub, fundamental * 0.35) * 0.2;
     const cents = centsBetween(yin.freq, freq);
-    const yinWeight = yin.confidence * Math.exp(-(cents * cents) / (2 * 40 * 40));
-    return { tongue, score: Math.max(0, harmonic) * (0.4 + yinWeight), cents };
+    const yinWeight = yin.confidence * Math.exp(-(cents * cents) / (2 * 45 * 45));
+    return { tongue, score: Math.max(0, harmonic) * (0.82 + 0.35 * yinWeight), cents };
   });
   ranked.sort((left, right) => right.score - left.score);
-  const best = ranked[0] ?? null;
-  const runner = ranked[1];
-  if (!best || best.score <= 0) return { best, confidence: 0 };
-  const margin = runner && runner.score > 0 ? best.score / runner.score : 2;
-  const confidence = Math.min(1, yin.confidence * Math.min(margin, 2) * (best.cents < CENTS_LIMIT ? 1 : 0.4));
-  return { best, confidence };
+  const choice = preferOctave(ranked, mags, sampleRate, drum);
+  const best = choice.best;
+  const rival = ranked.find((candidate) => best && candidate !== best && !isOctavePair(candidate.tongue, best.tongue));
+  if (!best || best.score <= 0) return { best, confidence: 0, octaveResolved: false, spectralCents: 1200 };
+  const margin = rival && rival.score > 0 ? best.score / rival.score : 2;
+  const confidence = Math.min(1, (0.62 + 0.38 * Math.max(yin.confidence, margin > 1.4 ? 0.7 : 0)) * Math.min(margin, 2));
+  return {
+    best,
+    confidence,
+    octaveResolved: choice.octaveResolved,
+    spectralCents: spectralCents(mags, tongueFreq(drum, best.tongue), sampleRate),
+  };
 }
 
 export function detectNotes(samples: Float32Array, sampleRate: number, options: DetectOptions): DetectedNote[] {
@@ -240,12 +315,21 @@ export function detectNotes(samples: Float32Array, sampleRate: number, options: 
     const at = onsets[index];
     const origin = Math.floor(at * sampleRate);
     if (origin + endSamples >= samples.length) break;
+    const frameLength = endSamples - startSamples;
+    const preEnd = origin - Math.floor(0.01 * sampleRate);
+    const preStart = preEnd - frameLength;
+    const baseline = preStart >= 0 ? magnitudeSpectrum(samples.subarray(preStart, preEnd)) : null;
     const frame = samples.subarray(origin + startSamples, origin + endSamples);
-    const scored = scoreTongues(frame, sampleRate, options.drum);
+    const scored = scoreTongues(frame, sampleRate, options.drum, baseline);
     const next = onsets[index + 1];
     const dur = next == null ? options.grid : quantizeGap(next - at, options.bpm, options.grid);
     if (!scored.best) continue;
-    const uncertain = scored.best.cents > CENTS_LIMIT || scored.confidence < 0.45;
+    // YIN still hears a ringing tongue, so a far YIN miss does not flag a clear spectrum.
+    // A YIN pitch near this tongue but more than 50 cents off is an out-of-tune guess.
+    const spectrumSure = scored.confidence >= 0.7 || scored.octaveResolved;
+    const yinNear = scored.best.cents <= 150;
+    const outOfTune = yinNear && scored.best.cents > CENTS_LIMIT;
+    const uncertain = outOfTune || scored.spectralCents >= CENTS_LIMIT - 5 || (!spectrumSure && scored.confidence < 0.45);
     notes.push({
       deg: scored.best.tongue.deg,
       oct: scored.best.tongue.oct,
