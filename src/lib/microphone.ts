@@ -25,8 +25,12 @@ export function describeMicError(error: unknown): string {
   return "The microphone could not be opened. You can keep editing by tapping the drum.";
 }
 
-/** Pull mic samples without playing them back. Returns a function that stops the mic. */
-export function listenToMicrophone(stream: MediaStream, onSamples: (chunk: Float32Array, sampleRate: number) => void): () => void {
+/** Pull mic samples without playing them back. Returns a function that stops the tap. */
+export function listenToMicrophone(
+  stream: MediaStream,
+  onSamples: (chunk: Float32Array, sampleRate: number) => void,
+  options?: { stopTracks?: boolean },
+): () => void {
   const ctx = audioContextReady();
   const source = ctx.createMediaStreamSource(stream);
   const processor = ctx.createScriptProcessor(2048, 1, 1);
@@ -43,8 +47,10 @@ export function listenToMicrophone(stream: MediaStream, onSamples: (chunk: Float
     processor.disconnect();
     source.disconnect();
     mute.disconnect();
-    for (const track of stream.getTracks()) track.stop();
-    endRecordingAudio();
+    if (options?.stopTracks !== false) {
+      for (const track of stream.getTracks()) track.stop();
+      endRecordingAudio();
+    }
   };
 }
 

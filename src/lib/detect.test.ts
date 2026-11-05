@@ -190,9 +190,123 @@ describe("microphone detector", () => {
     }
     const slow = byGap[0.5];
     const fast = byGap[0.25];
-    expect(slow.correct / slow.total).toBeGreaterThanOrEqual(0.95);
-    expect(slow.wrong / slow.total).toBeLessThanOrEqual(0.02);
+    expect(slow.correct / slow.total).toBeGreaterThanOrEqual(0.97);
+    expect(slow.wrong / slow.total).toBeLessThanOrEqual(0.01);
     expect(fast.correct / fast.total).toBeGreaterThanOrEqual(0.8);
     expect(fast.wrong / fast.total).toBeLessThanOrEqual(0.05);
   }, 60_000);
+
+  it("drops noise, hum, crackle, and speech instead of writing notes", () => {
+    const sampleRate = 44100;
+    const seconds = 4;
+    let seed = 11;
+    const random = () => {
+      seed = (seed * 1103515245 + 12345) % 2147483648;
+      return seed / 2147483648;
+    };
+    const white = (amp: number) => {
+      const samples = new Float32Array(sampleRate * seconds);
+      for (let index = 0; index < samples.length; index += 1) samples[index] = (random() * 2 - 1) * amp;
+      return samples;
+    };
+    const pink = (amp: number) => {
+      const samples = new Float32Array(sampleRate * seconds);
+      let b0 = 0;
+      let b1 = 0;
+      let b2 = 0;
+      for (let index = 0; index < samples.length; index += 1) {
+        const next = random() * 2 - 1;
+        b0 = 0.99765 * b0 + next * 0.099;
+        b1 = 0.963 * b1 + next * 0.296;
+        b2 = 0.57 * b2 + next * 1.05;
+        samples[index] = (b0 + b1 + b2) * amp;
+      }
+      return samples;
+    };
+    const hum = () => {
+      const samples = new Float32Array(sampleRate * seconds);
+      for (let index = 0; index < samples.length; index += 1) {
+        const time = index / sampleRate;
+        samples[index] =
+          0.08 * Math.sin(2 * Math.PI * 60 * time) +
+          0.04 * Math.sin(2 * Math.PI * 120 * time) +
+          0.02 * Math.sin(2 * Math.PI * 180 * time);
+      }
+      return samples;
+    };
+    const clicks = () => {
+      const samples = new Float32Array(sampleRate * seconds);
+      for (let tap = 0; tap < 30; tap += 1) {
+        const at = Math.floor(random() * samples.length);
+        for (let step = 0; step < 4; step += 1) samples[Math.min(samples.length - 1, at + step)] = (random() * 2 - 1) * 0.9;
+      }
+      return samples;
+    };
+    const crackle = () => {
+      const samples = new Float32Array(sampleRate * seconds);
+      for (let index = 0; index < samples.length; index += 1) {
+        samples[index] = random() < 0.003 ? (random() * 2 - 1) * 0.7 : (random() * 2 - 1) * 0.015;
+      }
+      return samples;
+    };
+    const bursts = () => {
+      const samples = new Float32Array(sampleRate * seconds);
+      for (let burst = 0; burst < 20; burst += 1) {
+        const at = Math.floor(random() * (samples.length - sampleRate * 0.05));
+        for (let step = 0; step < sampleRate * 0.03; step += 1) samples[at + step] = (random() * 2 - 1) * 0.5;
+      }
+      return samples;
+    };
+    const speech = () => {
+      const samples = new Float32Array(sampleRate * seconds);
+      let low = 0;
+      let mid = 0;
+      let high = 0;
+      for (let index = 0; index < samples.length; index += 1) {
+        const next = random() * 2 - 1;
+        const formant = 450 + 120 * Math.sin((2 * Math.PI * 4 * index) / sampleRate);
+        low += (next - low) * Math.min(1, (2 * Math.PI * formant) / sampleRate);
+        mid += (next - mid) * Math.min(1, (2 * Math.PI * 1500) / sampleRate);
+        high += (next - high) * Math.min(1, (2 * Math.PI * 2700) / sampleRate);
+        samples[index] = 0.2 * (low + 0.5 * mid + 0.3 * high);
+      }
+      return samples;
+    };
+    const alone = [white(0.02), white(0.08), white(0.2), pink(0.02), pink(0.08), hum(), clicks(), crackle(), bursts(), speech()];
+    let falseNotes = 0;
+    for (const samples of alone) {
+      for (const drum of ["C", "D"] as const) {
+        falseNotes += detectNotes(samples, sampleRate, { drum, bpm: 100, grid: 0.5, sensitivity: "normal" }).length;
+      }
+    }
+    const minutes = (alone.length * 2 * seconds) / 60;
+    const perMinute = falseNotes / minutes;
+    console.log(`noise-only false notes ${perMinute.toFixed(1)} per minute`);
+    expect(perMinute).toBe(0);
+
+    const tongues = layoutById(DRUM_LAYOUT.C).tongues.slice(0, 8);
+    const mixed = crackle();
+    tongues.forEach((tongue, index) => {
+      const freq = 440 * 2 ** ((noteMidi("C", tongue.deg, tongue.oct) - 69) / 12);
+      const start = Math.floor((0.3 + index * 0.5) * sampleRate);
+      for (let step = 0; step < sampleRate * 0.4 && start + step < mixed.length; step += 1) {
+        const time = step / sampleRate;
+        const env = Math.min(1, time / 0.003) * Math.exp(-time * 3);
+        mixed[start + step] += 0.55 * env * Math.sin(2 * Math.PI * freq * time);
+      }
+    });
+    const found = detectNotes(mixed, sampleRate, { drum: "C", bpm: 120, grid: 0.5, sensitivity: "normal" });
+    let correct = 0;
+    let extras = 0;
+    for (const note of found) {
+      const hit = tongues.some((tongue, index) => {
+        const at = 0.3 + index * 0.5;
+        return Math.abs(note.at - at) < 0.08 && note.deg === tongue.deg && note.oct === tongue.oct;
+      });
+      if (hit) correct += 1;
+      else extras += 1;
+    }
+    expect(correct).toBeGreaterThanOrEqual(6);
+    expect(extras).toBe(0);
+  }, 30_000);
 });
