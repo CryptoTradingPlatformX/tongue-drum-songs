@@ -2,8 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DRUM_LAYOUT, generateArrangement, otherDrum, tongueLabel } from "../lib/arrangements";
 import { endRecordingAudio, playClick, playTongue, unlockAudio } from "../lib/audio";
 import { detectNotes, measureNoise, type DetectedNote, type NoiseProfile, type RecordSensitivity } from "../lib/detect";
+import { barsInUse, createEditor, editorReducer, selectedNotes, type EditorLine, type EditorState } from "../lib/editor";
+import { parseNotationText, serializeNotation } from "../lib/notationText";
 import { describeMicError, listenToMicrophone, openMicrophone, recordingSession } from "../lib/microphone";
-import { createEditor, editorReducer, type EditorLine, type EditorState } from "../lib/editor";
 import {
   beatsPerBar,
   beatsToTicks,
@@ -15,7 +16,6 @@ import {
   meterHelp,
   noteMidi,
   parseNote,
-  pitchCompare,
   roundBeats,
   totalBeats,
   type DisplayLine,
@@ -40,17 +40,6 @@ import { DrumDiagram } from "./DrumDiagram";
 import { Notation } from "./Notation";
 import { NotationTools } from "./NotationTools";
 import { PlayerBar } from "./PlayerBar";
-
-const DURATIONS: { dur: number; label: string }[] = [
-  { dur: 4, label: "Whole" },
-  { dur: 3, label: "Dotted half" },
-  { dur: 2, label: "Half" },
-  { dur: 1.5, label: "Dotted quarter" },
-  { dur: 1, label: "Quarter" },
-  { dur: 0.75, label: "Dotted eighth" },
-  { dur: 0.5, label: "Eighth" },
-  { dur: 0.25, label: "16th" },
-];
 
 const METERS: TimeSignature[] = ["4/4", "3/4", "2/4", "2/2", "3/2", "4/2", "6/4", "6/8", "9/8", "12/8"];
 
@@ -139,7 +128,25 @@ export function SongEditor(props: Props) {
         live = false;
       };
     }
-    props.store.get(props.songId).then((record) => {
+    props.store.getDraft(props.songId).then(async (draft) => {
+      if (!live) return;
+      if (draft) {
+        setInitial(
+          createEditor({
+            id: draft.id,
+            title: draft.title,
+            tempo: draft.tempo,
+            timeSignature: draft.timeSignature,
+            drum: draft.drum,
+            lines: draft.lines,
+            duration: draft.duration,
+            dotted: draft.dotted,
+            barsPerLine: draft.barsPerLine,
+          }),
+        );
+        return;
+      }
+      const record = await props.store.get(props.songId);
       if (!live) return;
       if (!record) {
         setMissing(true);
@@ -218,6 +225,16 @@ function EditorSession({
   const [recordError, setRecordError] = useState<string | null>(null);
   const [countIn, setCountIn] = useState(false);
   const [grid, setGrid] = useState(0.5);
+  const [metronome, setMetronome] = useState(false);
+  const [loopSelection, setLoopSelection] = useState(false);
+  const [clipboard, setClipboard] = useState<EditorLine["notes"]>([]);
+  const [typed, setTyped] = useState("");
+  const [typeError, setTypeError] = useState<string | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
+  const [showSheet, setShowSheet] = useState(false);
+  const [saveState, setSaveState] = useState<"Saved" | "Unsaved" | "Saving">("Saved");
+  const typing = useRef(false);
+  const skipSave = useRef(true);
   const recordStop = useRef<(() => void) | null>(null);
   const recordBuffer = useRef<Float32Array>(new Float32Array(0));
   const recordCount = useRef(0);
@@ -234,8 +251,49 @@ function EditorSession({
   const followedLine = useRef(-1);
 
   useEffect(() => {
-    document.title = `${state.title.trim() || "Untitled"} · My Songs`;
+    document.title = `${state.title.trim() || "Untitled song"} · My Songs`;
   }, [state.title]);
+
+  useEffect(() => {
+    if (typing.current) return;
+    setTyped(serializeNotation(state.lines, state.timeSignature));
+  }, [state.lines, state.timeSignature]);
+
+  useEffect(() => {
+    if (skipSave.current) {
+      skipSave.current = false;
+      return;
+    }
+    setSaveState("Unsaved");
+    const timer = window.setTimeout(() => {
+      setSaveState("Saving");
+      const draft = {
+        id: state.id,
+        updatedAt: new Date().toISOString(),
+        title: state.title.trim() || "Untitled song",
+        tempo: state.tempo,
+        timeSignature: state.timeSignature,
+        drum: state.drum,
+        lines: state.lines,
+        duration: state.duration,
+        dotted: state.dotted,
+        barsPerLine: state.barsPerLine,
+      };
+      void store.putDraft(draft).then(() => setSaveState("Saved"));
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [state.lines, state.title, state.tempo, state.timeSignature, state.drum, state.duration, state.dotted, state.barsPerLine, store, state.id]);
+
+  useEffect(() => {
+    const warn = (event: BeforeUnloadEvent) => {
+      if (saveState === "Unsaved" || saveState === "Saving") {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [saveState]);
 
   const parsed = useMemo(() => {
     try {
@@ -270,7 +328,20 @@ function EditorSession({
     },
     [state.drum, state.lines],
   );
-  const player = usePlayer(events, bpm, midiFor);
+  const loop = useMemo(() => {
+    if (!loopSelection || !state.selection) return null;
+    const end = state.rangeEnd ?? state.selection;
+    const startIndex = eventIndex(events, state.selection.line, state.selection.note);
+    const endIndex = eventIndex(events, end.line, end.note);
+    if (startIndex < 0 || endIndex < 0) return null;
+    return { start: Math.min(startIndex, endIndex), end: Math.max(startIndex, endIndex) };
+  }, [loopSelection, state.selection, state.rangeEnd, events]);
+  const player = usePlayer(events, bpm, midiFor, loop);
+  useEffect(() => {
+    if (!metronome || !player.playing) return;
+    const timer = window.setInterval(() => playClick(), (60 / Math.max(40, bpm)) * 1000);
+    return () => window.clearInterval(timer);
+  }, [metronome, player.playing, bpm]);
   const active = player.index >= 0 ? events[player.index] : undefined;
   const markedLine = player.playing || guide == null ? (active?.lineIndex ?? -1) : guide;
   const other = useMemo(() => generateArrangement(otherDrum(state.drum), state.lines), [state.drum, state.lines]);
@@ -283,10 +354,6 @@ function EditorSession({
     });
     return marks;
   }, [state.lines]);
-  const tongues = useMemo(
-    () => [...layoutById(DRUM_LAYOUT[state.drum]).tongues].sort(pitchCompare),
-    [state.drum],
-  );
   const selected = state.selection ? state.lines[state.selection.line]?.notes[state.selection.note] : undefined;
   const selectedTongue: Tongue | null =
     selected && selected.rest !== true && selected.deg != null && selected.oct != null
@@ -349,6 +416,44 @@ function EditorSession({
     return () => window.clearTimeout(timer);
   }, [manualPlaying, guide, laid, bpm, speed, revealLine]);
 
+  const countInBeats = useCallback(async () => {
+    if (!countIn) return;
+    unlockAudio();
+    const beats = Math.max(1, beatsPerBar(state.timeSignature));
+    for (let beat = 0; beat < beats; beat += 1) {
+      playClick();
+      await new Promise((resolve) => window.setTimeout(resolve, 60000 / Math.max(40, bpm)));
+    }
+  }, [countIn, state.timeSignature, bpm]);
+
+  const togglePlayback = useCallback(async () => {
+    if (player.playing) {
+      player.pause();
+      return;
+    }
+    await countInBeats();
+    player.play();
+  }, [player, countInBeats]);
+
+  const playFromHere = useCallback(async () => {
+    player.pause();
+    await countInBeats();
+    const anchor = state.rangeEnd && state.selection
+      ? state.selection.line < state.rangeEnd.line || (state.selection.line === state.rangeEnd.line && state.selection.note <= state.rangeEnd.note)
+        ? state.selection
+        : state.rangeEnd
+      : state.selection;
+    if (anchor) {
+      const index = eventIndex(events, anchor.line, anchor.note);
+      if (index >= 0) player.playFrom(index);
+      return;
+    }
+    const line = state.lines[state.caret.line];
+    const note = line && state.caret.index < line.notes.length ? state.caret.index : Math.max(0, (line?.notes.length ?? 1) - 1);
+    const index = eventIndex(events, state.caret.line, note);
+    if (index >= 0) player.playFrom(index);
+  }, [player, countInBeats, state.rangeEnd, state.selection, state.caret, state.lines, events]);
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const target = event.target instanceof HTMLElement ? event.target : null;
@@ -358,24 +463,76 @@ function EditorSession({
         dispatch(event.shiftKey ? { type: "redo" } : { type: "undo" });
         return;
       }
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        void save();
+        return;
+      }
       if (inField) return;
-      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "c" && state.selection) {
+        event.preventDefault();
+        setClipboard(selectedNotes(state));
+        return;
+      }
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "v" && clipboard.length > 0) {
+        event.preventDefault();
+        dispatch({ type: "paste", notes: clipboard });
+        return;
+      }
+      if (event.key === "?" || (event.shiftKey && event.key === "/")) {
+        event.preventDefault();
+        setShowHelp((open) => !open);
+        return;
+      }
+      const digit = Number(event.key);
+      if (event.key >= "1" && event.key <= "7" && !inField) {
+        event.preventDefault();
+        const oct = event.shiftKey ? 1 : event.altKey ? -1 : 0;
+        playDegree(digit, oct);
+        return;
+      }
+      if ((event.key === "0" || event.key.toLowerCase() === "r") && !inField) {
+        event.preventDefault();
+        dispatch({ type: "paste", notes: [{ rest: true, dur: state.dotted ? state.duration * 1.5 : state.duration }] });
+        return;
+      }
+      if (event.altKey && event.key >= "1" && event.key <= "5" && !inField) {
+        event.preventDefault();
+        dispatch({ type: "setDuration", duration: [4, 2, 1, 0.5, 0.25][Number(event.key) - 1] });
+        return;
+      }
+      if (event.key === "ArrowRight" && !inField) {
+        event.preventDefault();
+        dispatch({ type: "moveBy", delta: 1 });
+        return;
+      }
+      if (event.key === "ArrowLeft" && !inField) {
+        event.preventDefault();
+        dispatch({ type: "moveBy", delta: -1 });
+        return;
+      }
+      if ((event.key === "Backspace" || event.key === "Delete") && !inField) {
+        event.preventDefault();
+        dispatch({ type: event.key === "Backspace" ? "deleteBackward" : "deleteForward" });
+        return;
+      }
+      if (event.key === "ArrowDown" && !inField) {
         event.preventDefault();
         clearGuide();
         player.step(1);
-      } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      } else if (event.key === "ArrowUp" && !inField) {
         event.preventDefault();
         clearGuide();
         player.step(-1);
       } else if (event.key === " ") {
         if (target?.closest("button, a")) return;
         event.preventDefault();
-        player.toggle();
+        void togglePlayback();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [player, clearGuide]);
+  }, [player, clearGuide, state, dispatch, clipboard, togglePlayback]);
 
   const averageBeats = useMemo(() => {
     if (!laid.length) return beatsPerBar(state.timeSignature);
@@ -556,6 +713,16 @@ function EditorSession({
     downloadJson(`${result.song.id}.json`, exportSongs([result.song]));
   }
 
+  function playDegree(deg: number, oct: number) {
+    try {
+      unlockAudio();
+      playTongue(noteMidi(state.drum, deg, oct));
+    } catch {
+      // Still enter the note if audio is blocked.
+    }
+    dispatch({ type: "strike", deg, oct });
+  }
+
   function playTongueNow(tongue: Tongue) {
     try {
       unlockAudio();
@@ -563,7 +730,7 @@ function EditorSession({
     } catch {
       // The note is still written if audio is blocked.
     }
-    dispatch({ type: "appendTongue", deg: tongue.deg, oct: tongue.oct });
+    dispatch({ type: "strike", deg: tongue.deg, oct: tongue.oct });
   }
 
   const startManual = () => {
@@ -722,12 +889,6 @@ function EditorSession({
       ) : null}
 
       <div className="editor-actions">
-        <button type="button" onClick={() => dispatch({ type: "undo" })} disabled={state.past.length === 0}>
-          Undo
-        </button>
-        <button type="button" onClick={() => dispatch({ type: "redo" })} disabled={state.future.length === 0}>
-          Redo
-        </button>
         <button type="button" onClick={() => void save()}>
           Save
         </button>
@@ -736,80 +897,47 @@ function EditorSession({
         </button>
       </div>
 
-      <div className="practice-grid">
+      <p className="save-state" role="status">{saveState}{state.lines.every((line) => line.notes.length === 0) ? ". Tap the drum to add a note." : ""}</p>
+      <div className="editor-stage">
         <section className="panel notation-panel" aria-labelledby="notation-heading">
           <div className="panel-head">
             <h2 id="notation-heading">Notation</h2>
-            <p>Tap a tongue to append a note. Select a note to change it.</p>
+            <p>Tap the drum. The caret shows where the next note goes.</p>
           </div>
-          <div className="editor-tools">
-            <fieldset className="pills">
-              <legend>Duration</legend>
-              {DURATIONS.map((item) => (
-                <label key={item.dur} className={state.duration === item.dur ? "is-selected" : ""}>
-                  <input
-                    type="radio"
-                    name="duration"
-                    value={item.dur}
-                    checked={state.duration === item.dur}
-                    onChange={() => dispatch({ type: "setDuration", duration: item.dur })}
-                  />
-                  {item.label}
-                </label>
-              ))}
-            </fieldset>
-            <div className="editor-actions">
-              <button type="button" onClick={() => dispatch({ type: "insertNote" })}>
-                Insert note
-              </button>
-              <button type="button" onClick={() => dispatch({ type: "insertRest" })}>
-                Insert rest
-              </button>
-              <button type="button" onClick={() => dispatch({ type: "deleteNote" })} disabled={!state.selection}>
-                Delete
-              </button>
-              <button type="button" onClick={() => dispatch({ type: "splitLine" })} disabled={!state.selection || state.selection.note === 0}>
-                Split line
-              </button>
-              <button type="button" onClick={() => dispatch({ type: "mergeLine" })} disabled={state.lines.length < 2}>
-                Merge lines
-              </button>
-              <button type="button" onClick={() => dispatch({ type: "toggleRest" })} disabled={!state.selection}>
-                {selected?.rest === true ? "Make note" : "Make rest"}
-              </button>
+          <label className="type-notes">
+            Type notes
+            <textarea
+              value={typed}
+              spellCheck={false}
+              aria-invalid={typeError != null}
+              aria-describedby="type-help"
+              onFocus={() => { typing.current = true; }}
+              onBlur={() => { typing.current = false; }}
+              onChange={(event) => {
+                const value = event.target.value;
+                setTyped(value);
+                typing.current = true;
+                const parsedText = parseNotationText(value, state.drum);
+                if ("error" in parsedText) {
+                  setTypeError(`${parsedText.error.message} (character ${parsedText.error.index + 1})`);
+                  return;
+                }
+                setTypeError(parsedText.warnings[0] ? `${parsedText.warnings[0].message} (character ${parsedText.warnings[0].index + 1})` : null);
+                const withLyrics = parsedText.lines.map((line, index) => ({ ...line, lyric: state.lines[index]?.lyric ?? "" }));
+                dispatch({ type: "replaceLines", lines: withLyrics });
+              }}
+            />
+          </label>
+          <p id="type-help">
+            1–7 are degrees and 0 is a rest. An apostrophe marks the high octave and a comma marks the low octave. _ is an eighth, = is a 16th, - adds a beat, and . dots the note. Spaces separate notes, | is a bar, and a new line starts a line.
+            <button type="button" className="text-button" onClick={() => setShowSheet((open) => !open)}>Cheat sheet</button>
+          </p>
+          {typeError ? <p className="banner" role="alert">{typeError}</p> : null}
+          {showSheet ? (
+            <div className="cheat-sheet" role="dialog" aria-label="Notation cheat sheet">
+              <p>1 2 3 quarter notes. 1' high 1. 5, low 5. 1_ eighth. 1= sixteenth. 1- half. 1. dotted quarter. 0 rest. | bar line.</p>
             </div>
-            <fieldset className="pills tongue-picker">
-              <legend>Selected note</legend>
-              {tongues.map((tongue) => {
-                const on = selectedTongue?.deg === tongue.deg && selectedTongue.oct === tongue.oct;
-                return (
-                  <label key={`${tongue.deg}:${tongue.oct}`} className={on ? "is-selected" : ""}>
-                    <input
-                      type="radio"
-                      name="selected-tongue"
-                      checked={on}
-                      disabled={!state.selection}
-                      onChange={() => dispatch({ type: "setTongue", deg: tongue.deg, oct: tongue.oct })}
-                    />
-                    {tongueLabel(tongue)}
-                  </label>
-                );
-              })}
-            </fieldset>
-          </div>
-          <ol className="lyric-editor">
-            {state.lines.map((line, index) => (
-              <li key={index}>
-                <label>
-                  Line {index + 1} lyric
-                  <input
-                    value={line.lyric}
-                    onChange={(event) => dispatch({ type: "setLyric", line: index, lyric: event.target.value })}
-                  />
-                </label>
-              </li>
-            ))}
-          </ol>
+          ) : null}
           <NotationTools
             noteSize={noteSize}
             onNoteSize={onNoteSize}
@@ -824,6 +952,13 @@ function EditorSession({
             bpm={bpm}
           />
           {parsed.error ? null : (
+            <>
+            <p className="sr-only" aria-live="polite">
+              {state.selection
+                ? `Selected note ${state.selection.note + 1} on line ${state.selection.line + 1}`
+                : `Caret on line ${state.caret.line + 1}, before note ${state.caret.index + 1}`}
+              . {saveState}.
+            </p>
             <Notation
               lines={laid}
               timeSignature={state.timeSignature}
@@ -832,37 +967,143 @@ function EditorSession({
               activeNote={active?.noteIndex ?? -1}
               pickedLine={state.selection?.line ?? -1}
               pickedNote={state.selection?.note ?? -1}
+              caretLine={state.caret.line}
+              caretIndex={state.caret.index}
+              rangeStart={state.rangeEnd ? state.selection : null}
+              rangeEnd={state.rangeEnd}
+              lyrics={state.lines.map((line) => line.lyric)}
+              onLyric={(lineIndex, lyric) => dispatch({ type: "setLyric", line: lineIndex, lyric })}
+              showBarFill
               uncertain={uncertain}
               markedLine={markedLine}
               missing={new Set()}
-              onSelect={(lineIndex, noteIndex) => {
+              onSelect={(lineIndex, noteIndex, shiftKey) => {
                 clearGuide();
-                dispatch({ type: "select", line: lineIndex, note: noteIndex });
+                if (shiftKey) dispatch({ type: "selectRange", line: lineIndex, note: noteIndex });
+                else dispatch({ type: "select", line: lineIndex, note: noteIndex });
                 const index = eventIndex(events, lineIndex, noteIndex);
-                if (index >= 0) player.jumpTo(index);
+                if (index >= 0 && !shiftKey) {
+                  const event = events[index];
+                  if (event && !event.rest && event.deg != null && event.oct != null) {
+                    try {
+                      unlockAudio();
+                      playTongue(noteMidi(state.drum, event.deg, event.oct));
+                    } catch {
+                      // Preview is optional.
+                    }
+                  }
+                  player.jumpTo(index);
+                }
               }}
             />
+            </>
           )}
         </section>
 
-        <section className="panel diagram-panel">
+        <section className="panel diagram-panel editor-dock">
           <h2 className="sr-only">Drum</h2>
-          <DrumDiagram
-            layoutId={DRUM_LAYOUT[state.drum]}
-            drumKey={state.drum}
-            active={player.playing ? playingTongue : selectedTongue ?? playingTongue}
-            onTongue={playTongueNow}
-          />
-          <div className="editor-actions">
-            <button type="button" onClick={() => dispatch({ type: "appendRest" })}>
-              Add rest
-            </button>
+          <div className="dock-drum">
+            <DrumDiagram
+              layoutId={DRUM_LAYOUT[state.drum]}
+              drumKey={state.drum}
+              active={player.playing ? playingTongue : selectedTongue ?? playingTongue}
+              onTongue={playTongueNow}
+            />
+            <p className="diagram-caption">
+              Tap a tongue to write a note at the caret. With a note selected, the next tap replaces it and moves on.
+            </p>
           </div>
-          <p className="diagram-caption">
-            {state.drum} major, {DRUM_LAYOUT[state.drum]} notes. Tap a tongue to append a {DURATIONS.find((item) => item.dur === state.duration)?.label.toLowerCase() ?? "note"}.
-          </p>
+          <div className="entry-toolbar" role="toolbar" aria-label="Note entry">
+            <div className="duration-bar">
+              {[
+                [4, "Whole"],
+                [2, "Half"],
+                [1, "Quarter"],
+                [0.5, "Eighth"],
+                [0.25, "16th"],
+              ].map(([dur, label]) => (
+                <button
+                  key={label}
+                  type="button"
+                  className={state.duration === dur ? "is-on" : ""}
+                  aria-pressed={state.duration === dur}
+                  onClick={() => dispatch({ type: "setDuration", duration: Number(dur) })}
+                >
+                  <NoteIcon dur={Number(dur)} />
+                  <span>{label}</span>
+                </button>
+              ))}
+              <button type="button" className={state.dotted ? "is-on" : ""} aria-pressed={state.dotted} onClick={() => dispatch({ type: "setDotted", dotted: !state.dotted })}>
+                <span className="dot-mark">.</span>
+                <span>Dot</span>
+              </button>
+              <button type="button" onClick={() => dispatch({ type: "paste", notes: [{ rest: true, dur: state.dotted ? state.duration * 1.5 : state.duration }] })}>
+                <span>0</span>
+                <span>Rest</span>
+              </button>
+              <button type="button" onClick={() => dispatch({ type: "repeatLast" })}>
+                <span aria-hidden="true">↩</span>
+                <span>Repeat</span>
+              </button>
+            </div>
+            <div className="edit-bar">
+              <button type="button" onClick={() => dispatch({ type: "undo" })} disabled={state.past.length === 0}>Undo</button>
+              <button type="button" onClick={() => dispatch({ type: "redo" })} disabled={state.future.length === 0}>Redo</button>
+              <button type="button" onClick={() => { if (state.selection) setClipboard(selectedNotes(state)); }} disabled={!state.selection}>Copy</button>
+              <button type="button" onClick={() => dispatch({ type: "paste", notes: clipboard })} disabled={clipboard.length === 0}>Paste</button>
+              <button type="button" onClick={() => dispatch({ type: "deleteRange" })} disabled={!state.selection}>Delete</button>
+              <button type="button" onClick={() => dispatch({ type: "duplicateRange" })} disabled={!state.selection}>Duplicate</button>
+              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: 1 })} disabled={!state.selection}>Up</button>
+              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: -1 })} disabled={!state.selection}>Down</button>
+              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: 7 })} disabled={!state.selection}>Octave up</button>
+              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: -7 })} disabled={!state.selection}>Octave down</button>
+              <button type="button" onClick={() => dispatch({ type: "splitLine" })} disabled={!state.selection || state.selection.note === 0}>Split</button>
+              <button type="button" onClick={() => dispatch({ type: "mergeLine" })} disabled={state.lines.length < 2}>Merge</button>
+              <button type="button" onClick={() => dispatch({ type: "selectAll" })}>Select all</button>
+              <button type="button" onClick={() => { if (window.confirm("Clear every note in this song?")) dispatch({ type: "clearAll" }); }}>Clear</button>
+              <button type="button" onClick={() => setShowHelp(true)} aria-label="Keyboard shortcuts">?</button>
+            </div>
+          </div>
+          <div className="hearing-bar">
+            <button type="button" onClick={() => void playFromHere()} disabled={events.length === 0}>Play from here</button>
+            <button type="button" onClick={() => {
+              const found = state.lines.flatMap((line, lineIndex) => line.notes.map((note, noteIndex) => ({ note, lineIndex, noteIndex }))).find((item) => item.note.uncertain && (item.lineIndex > (state.selection?.line ?? -1) || (item.lineIndex === state.selection?.line && item.noteIndex > (state.selection?.note ?? -1))));
+              const first = found ?? state.lines.flatMap((line, lineIndex) => line.notes.map((note, noteIndex) => ({ note, lineIndex, noteIndex }))).find((item) => item.note.uncertain);
+              if (first) dispatch({ type: "select", line: first.lineIndex, note: first.noteIndex });
+            }}>Next uncertain</button>
+            <label className="count-in">
+              <input type="checkbox" checked={metronome} onChange={(event) => setMetronome(event.target.checked)} />
+              Metronome
+            </label>
+            <label className="count-in">
+              <input type="checkbox" checked={loopSelection} onChange={(event) => setLoopSelection(event.target.checked)} />
+              Loop selection
+            </label>
+            <label>
+              Bars per line
+              <select value={state.barsPerLine} onChange={(event) => dispatch({ type: "setBarsPerLine", bars: Number(event.target.value) })}>
+                <option value={0}>Auto ({barsInUse(state)})</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={4}>4</option>
+                <option value={8}>8</option>
+              </select>
+            </label>
+          </div>
         </section>
       </div>
+      {showHelp ? (
+        <div className="shortcut-overlay" role="dialog" aria-label="Keyboard shortcuts">
+          <button type="button" className="text-button" onClick={() => setShowHelp(false)}>Close</button>
+          <ul>
+            <li>1–7 enter a degree. Shift is high, Alt is low.</li>
+            <li>0 or R enters a rest. Alt+1 through Alt+5 set the duration.</li>
+            <li>Arrow keys move the caret. Backspace and Delete remove a note.</li>
+            <li>Space plays and pauses. Count-in clicks a bar first when that box is checked.</li>
+            <li>Cmd or Ctrl+Z undoes, Shift+Z redoes, C copies, V pastes, and S saves.</li>
+          </ul>
+        </div>
+      ) : null}
 
       <PlayerBar
         index={player.index}
@@ -871,7 +1112,7 @@ function EditorSession({
         bpm={bpm}
         songBpm={state.tempo}
         onBpm={setBpm}
-        onToggle={player.toggle}
+        onToggle={() => void togglePlayback()}
         onPrev={() => {
           clearGuide();
           player.step(-1);
@@ -883,6 +1124,11 @@ function EditorSession({
       />
     </div>
   );
+}
+
+function NoteIcon({ dur }: { dur: number }) {
+  const glyph = dur >= 4 ? "W" : dur >= 2 ? "H" : dur >= 1 ? "Q" : dur >= 0.5 ? "E" : "S";
+  return <span className="note-icon" aria-hidden="true">{glyph}</span>;
 }
 
 function useStateReducer(initial: EditorState): [EditorState, (action: Parameters<typeof editorReducer>[1]) => void] {

@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { allocateId, exportSongs, importSongDocuments, isPlayable, type SongFile } from "../lib/mySongs";
+import { createEditor } from "../lib/editor";
+import { allocateId, exportSongs, importSongDocuments, isPlayable, slugifyTitle, type SongFile } from "../lib/mySongs";
+import type { DrumKey, TimeSignature } from "../lib/types";
 import { openSongStore, type SongStore, type StoredSong } from "../lib/songStore";
 import type { RecordSensitivity } from "../lib/detect";
 import type { NoteSize } from "../lib/settings";
@@ -31,6 +33,64 @@ function when(iso: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "";
   return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+}
+
+function NewSongForm({ store, taken }: { store: SongStore; taken: Set<string> }) {
+  const [title, setTitle] = useState("Untitled song");
+  const [drum, setDrum] = useState<DrumKey>("C");
+  const [meter, setMeter] = useState<TimeSignature>("4/4");
+  return (
+    <form
+      className="song-page"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const editor = createEditor({ title: title.trim() || "Untitled song", drum, timeSignature: meter });
+        const id = allocateId(`my-${slugifyTitle(editor.title)}`, taken);
+        void store
+          .putDraft({
+            id,
+            updatedAt: new Date().toISOString(),
+            title: editor.title,
+            tempo: editor.tempo,
+            timeSignature: editor.timeSignature,
+            drum: editor.drum,
+            lines: editor.lines,
+            duration: editor.duration,
+            dotted: editor.dotted,
+            barsPerLine: editor.barsPerLine,
+          })
+          .then(() => {
+            window.location.hash = `#/my-songs/${id}`;
+          });
+      }}
+    >
+      <a className="back" href="#/my-songs">My songs</a>
+      <h1>New song</h1>
+      <p>Choose a title, drum, and meter. Then tap the drum to enter notes.</p>
+      <label>
+        Title
+        <input value={title} onChange={(event) => setTitle(event.target.value)} />
+      </label>
+      <fieldset className="pills">
+        <legend>Drum</legend>
+        {(["C", "D"] as const).map((key) => (
+          <label key={key} className={drum === key ? "is-selected" : ""}>
+            <input type="radio" name="new-drum" checked={drum === key} onChange={() => setDrum(key)} />
+            {key} major
+          </label>
+        ))}
+      </fieldset>
+      <label>
+        Time signature
+        <select value={meter} onChange={(event) => setMeter(event.target.value as TimeSignature)}>
+          {["4/4", "3/4", "2/4", "6/8"].map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
+      </label>
+      <button type="submit">Start writing</button>
+    </form>
+  );
 }
 
 function drumsOf(song: SongFile): string {
@@ -101,6 +161,9 @@ export function MySongsView({
         <p className="loading-tune">Loading songs saved on this device…</p>
       </div>
     );
+  }
+  if (songId === "new") {
+    return <NewSongForm taken={new Set(songs.map((record) => record.song.id))} store={store} />;
   }
   if (songId) {
     return (
@@ -209,7 +272,7 @@ export function MySongsView({
           ))}
         </div>
       ) : null}
-      {songs.length === 0 ? <p>No songs yet.</p> : null}
+      {songs.length === 0 ? <p>No songs yet. Start one and tap the drum to enter the first note.</p> : null}
       <ul className="my-list">
         {songs.map((record) => (
           <li key={record.song.id} className="my-row">
