@@ -15,12 +15,28 @@ export type DetectedNote = {
   at: number;
 };
 
+export type RecordSensitivity = "low" | "normal" | "high";
+
+/** Per-bin magnitude and RMS measured while the room is quiet. */
+export type NoiseProfile = {
+  rms: number;
+  spectrum: Float32Array;
+};
+
 export type DetectOptions = {
   drum: DrumKey;
   bpm: number;
   /** Grid in quarter-note beats. An eighth note is 0.5. */
   grid: number;
+  /** How far a strike must rise above the noise floor. Normal is about 12 dB. */
+  sensitivity?: RecordSensitivity;
+  /** Room noise measured before the take. The floor still tracks later quiet gaps. */
+  noise?: NoiseProfile;
 };
+
+const GATE_DB: Record<RecordSensitivity, number> = { low: 16, normal: 12, high: 8 };
+const FLATNESS_MAX: Record<RecordSensitivity, number> = { low: 0.22, normal: 0.42, high: 0.58 };
+const PEAK_RATIO_MIN: Record<RecordSensitivity, number> = { low: 14, normal: 8, high: 5 };
 
 function hann(length: number): Float32Array {
   const window = new Float32Array(length);
@@ -68,6 +84,187 @@ function fft(real: Float32Array, imag: Float32Array) {
       }
     }
   }
+}
+
+function biquad(samples: Float32Array, b0: number, b1: number, b2: number, a0: number, a1: number, a2: number): Float32Array {
+  const out = new Float32Array(samples.length);
+  let x1 = 0;
+  let x2 = 0;
+  let y1 = 0;
+  let y2 = 0;
+  for (let index = 0; index < samples.length; index += 1) {
+    const x0 = samples[index];
+    const y0 = (b0 / a0) * x0 + (b1 / a0) * x1 + (b2 / a0) * x2 - (a1 / a0) * y1 - (a2 / a0) * y2;
+    out[index] = y0;
+    x2 = x1;
+    x1 = x0;
+    y2 = y1;
+    y1 = y0;
+  }
+  return out;
+}
+
+function highpass(samples: Float32Array, sampleRate: number, freq: number): Float32Array {
+  const w0 = (2 * Math.PI * freq) / sampleRate;
+  const cos = Math.cos(w0);
+  const alpha = Math.sin(w0) / (2 * 0.707);
+  const b0 = (1 + cos) / 2;
+  const b1 = -(1 + cos);
+  const b2 = (1 + cos) / 2;
+  return biquad(samples, b0, b1, b2, 1 + alpha, -2 * cos, 1 - alpha);
+}
+
+function notch(samples: Float32Array, sampleRate: number, freq: number): Float32Array {
+  const w0 = (2 * Math.PI * freq) / sampleRate;
+  const cos = Math.cos(w0);
+  const alpha = Math.sin(w0) / (2 * 30);
+  return biquad(samples, 1, -2 * cos, 1, 1 + alpha, -2 * cos, 1 - alpha);
+}
+
+/** Drop hum and rumble below the lowest tongue (F#3 ≈ 185 Hz, G3 ≈ 196 Hz). */
+function conditionInput(samples: Float32Array, sampleRate: number): Float32Array {
+  let out = highpass(samples, sampleRate, 120);
+  for (const freq of [50, 60, 100, 120, 150]) out = notch(out, sampleRate, freq);
+  return out;
+}
+
+function frameRms(samples: Float32Array, start: number, length: number): number {
+  const end = Math.min(samples.length, start + length);
+  const count = Math.max(1, end - start);
+  let sum = 0;
+  for (let index = start; index < end; index += 1) sum += samples[index] * samples[index];
+  return Math.sqrt(sum / count);
+}
+
+function dbAbove(level: number, floor: number): number {
+  if (!(floor > 1e-8)) return 80;
+  return 20 * Math.log10(Math.max(level, 1e-12) / floor);
+}
+
+function spectralFlatness(mags: Float32Array): number {
+  let logSum = 0;
+  let sum = 0;
+  let count = 0;
+  for (let index = 4; index < mags.length; index += 2) {
+    const value = mags[index] + 1e-12;
+    logSum += Math.log(value);
+    sum += value;
+    count += 1;
+  }
+  if (count === 0 || sum <= 0) return 1;
+  return Math.exp(logSum / count) / (sum / count);
+}
+
+function peakStats(mags: Float32Array, sampleRate: number): { ratio: number; freq: number } {
+  let max = 0;
+  let maxBin = 2;
+  const sample: number[] = [];
+  for (let index = 2; index < mags.length; index += 1) {
+    if (mags[index] > max) {
+      max = mags[index];
+      maxBin = index;
+    }
+    if (index % 4 === 0) sample.push(mags[index]);
+  }
+  sample.sort((left, right) => left - right);
+  const median = sample[Math.floor(sample.length / 2)] ?? 1e-12;
+  return { ratio: max / Math.max(median, 1e-12), freq: (maxBin * sampleRate) / (mags.length * 2) };
+}
+
+function nearestTongueCents(freq: number, drum: DrumKey): number {
+  let nearest = 1200;
+  for (const tongue of layoutById(DRUM_LAYOUT[drum]).tongues) {
+    nearest = Math.min(nearest, centsBetween(freq, tongueFreq(drum, tongue)));
+  }
+  return nearest;
+}
+
+/** Quiet-frame RMS and average spectrum. Loud strikes are left out of the average. */
+function profileFrom(samples: Float32Array, sampleRate: number): NoiseProfile {
+  const hop = Math.max(64, Math.round(sampleRate * 0.02));
+  const levels: number[] = [];
+  for (let start = 0; start + hop <= samples.length; start += hop) {
+    const level = frameRms(samples, start, hop);
+    if (level > 1e-6) levels.push(level);
+  }
+  levels.sort((left, right) => left - right);
+  const quietCount = Math.max(1, Math.round(levels.length * 0.005));
+  const rms = levels[Math.min(levels.length - 1, quietCount - 1)] ?? 1e-5;
+  const window = Math.max(hop, Math.round(sampleRate * 0.08));
+  const acc = new Float32Array(4096);
+  let count = 0;
+  for (let start = 0; start + window <= samples.length; start += hop) {
+    const level = frameRms(samples, start, window);
+    if (level > Math.max(rms * 2.2, 1e-5)) continue;
+    const mags = magnitudeSpectrum(samples.subarray(start, start + window));
+    for (let index = 0; index < acc.length && index < mags.length; index += 1) acc[index] += mags[index];
+    count += 1;
+  }
+  if (count > 0) {
+    for (let index = 0; index < acc.length; index += 1) acc[index] /= count;
+  }
+  return { rms: Math.max(rms, 1e-8), spectrum: acc };
+}
+
+export function measureNoise(samples: Float32Array, sampleRate: number): NoiseProfile {
+  return profileFrom(conditionInput(samples, sampleRate), sampleRate);
+}
+
+function activeNoise(samples: Float32Array, sampleRate: number, prior: NoiseProfile | undefined): NoiseProfile {
+  const estimated = profileFrom(samples, sampleRate);
+  if (!prior) return estimated;
+  const quieter = estimated.rms > 1e-7 && estimated.rms < prior.rms ? estimated.rms : prior.rms;
+  const settled = estimated.rms < prior.rms * 1.8;
+  if (!settled) return { rms: quieter, spectrum: prior.spectrum };
+  const spectrum = new Float32Array(prior.spectrum.length);
+  for (let index = 0; index < spectrum.length; index += 1) {
+    spectrum[index] = prior.spectrum[index] * 0.9 + (estimated.spectrum[index] ?? 0) * 0.1;
+  }
+  return { rms: quieter, spectrum };
+}
+
+function windowSpectrum(
+  samples: Float32Array,
+  start: number,
+  length: number,
+  noise: NoiseProfile,
+  baseline: Float32Array | null,
+): Float32Array {
+  return subtractSpectrum(subtractSpectrum(magnitudeSpectrum(samples.subarray(start, start + length)), noise.spectrum), baseline);
+}
+
+function peakedOnATongue(mags: Float32Array, sampleRate: number, drum: DrumKey, sensitivity: RecordSensitivity): boolean {
+  const stats = peakStats(mags, sampleRate);
+  if (spectralFlatness(mags) > FLATNESS_MAX[sensitivity]) return false;
+  if (stats.ratio < PEAK_RATIO_MIN[sensitivity]) return false;
+  return nearestTongueCents(stats.freq, drum) <= 60;
+}
+
+function soundsLikeTongue(
+  samples: Float32Array,
+  sampleRate: number,
+  at: number,
+  drum: DrumKey,
+  noise: NoiseProfile,
+  sensitivity: RecordSensitivity,
+): boolean {
+  const origin = Math.floor(at * sampleRate);
+  const half = Math.floor(0.04 * sampleRate);
+  const start = origin + Math.floor(0.015 * sampleRate);
+  if (start + half * 2 >= samples.length || start < 0) return false;
+  const preStart = origin - half - Math.floor(0.008 * sampleRate);
+  const baseline = preStart >= 0 ? magnitudeSpectrum(samples.subarray(preStart, preStart + half)) : null;
+  const first = windowSpectrum(samples, start, half, noise, baseline);
+  const second = windowSpectrum(samples, start + half, half, noise, baseline);
+  const firstOk = peakedOnATongue(first, sampleRate, drum, sensitivity);
+  const secondOk = peakedOnATongue(second, sampleRate, drum, sensitivity);
+  if (firstOk && secondOk) return centsBetween(peakStats(first, sampleRate).freq, peakStats(second, sampleRate).freq) <= 90;
+  const attack = frameRms(samples, origin, half);
+  if (dbAbove(attack, noise.rms) < GATE_DB[sensitivity] - 2) return false;
+  if (firstOk || secondOk) return true;
+  const plainFirst = subtractSpectrum(magnitudeSpectrum(samples.subarray(start, start + half)), noise.spectrum);
+  const plainSecond = subtractSpectrum(magnitudeSpectrum(samples.subarray(start + half, start + half * 2)), noise.spectrum);
+  return peakedOnATongue(plainFirst, sampleRate, drum, sensitivity) && peakedOnATongue(plainSecond, sampleRate, drum, sensitivity);
 }
 
 function magnitudeSpectrum(frame: Float32Array): Float32Array {
@@ -275,8 +472,9 @@ function scoreTongues(
   sampleRate: number,
   drum: DrumKey,
   baseline: Float32Array | null,
-): { best: Candidate | null; confidence: number; octaveResolved: boolean; spectralCents: number } {
-  const mags = subtractSpectrum(magnitudeSpectrum(frame), baseline);
+  noise: NoiseProfile | null,
+): { best: Candidate | null; confidence: number; octaveResolved: boolean; spectralCents: number; margin: number } {
+  const mags = subtractSpectrum(subtractSpectrum(magnitudeSpectrum(frame), noise?.spectrum ?? null), baseline);
   const yin = yinPitch(frame, sampleRate);
   const tongues = layoutById(DRUM_LAYOUT[drum]).tongues;
   const ranked: Candidate[] = tongues.map((tongue) => {
@@ -295,7 +493,7 @@ function scoreTongues(
   const choice = preferOctave(ranked, mags, sampleRate, drum);
   const best = choice.best;
   const rival = ranked.find((candidate) => best && candidate !== best && !isOctavePair(candidate.tongue, best.tongue));
-  if (!best || best.score <= 0) return { best, confidence: 0, octaveResolved: false, spectralCents: 1200 };
+  if (!best || best.score <= 0) return { best, confidence: 0, octaveResolved: false, spectralCents: 1200, margin: 1 };
   const margin = rival && rival.score > 0 ? best.score / rival.score : 2;
   const confidence = Math.min(1, (0.62 + 0.38 * Math.max(yin.confidence, margin > 1.4 ? 0.7 : 0)) * Math.min(margin, 2));
   return {
@@ -303,38 +501,43 @@ function scoreTongues(
     confidence,
     octaveResolved: choice.octaveResolved,
     spectralCents: spectralCents(mags, tongueFreq(drum, best.tongue), sampleRate),
+    margin,
   };
 }
 
 export function detectNotes(samples: Float32Array, sampleRate: number, options: DetectOptions): DetectedNote[] {
-  const onsets = findOnsets(samples, sampleRate);
+  const filtered = conditionInput(samples, sampleRate);
+  const sensitivity = options.sensitivity ?? "normal";
+  const noise = activeNoise(filtered, sampleRate, options.noise);
+  const gate = GATE_DB[sensitivity];
+  const onsets = findOnsets(filtered, sampleRate);
   const notes: DetectedNote[] = [];
   const startSamples = Math.floor(PITCH_START * sampleRate);
   const endSamples = Math.floor(PITCH_END * sampleRate);
   for (let index = 0; index < onsets.length; index += 1) {
     const at = onsets[index];
     const origin = Math.floor(at * sampleRate);
-    if (origin + endSamples >= samples.length) break;
+    if (origin + endSamples >= filtered.length) break;
+    const attack = frameRms(filtered, origin, Math.floor(0.03 * sampleRate));
+    if (dbAbove(attack, noise.rms) < gate) continue;
+    if (!soundsLikeTongue(filtered, sampleRate, at, options.drum, noise, sensitivity)) continue;
     const frameLength = endSamples - startSamples;
     const preEnd = origin - Math.floor(0.01 * sampleRate);
     const preStart = preEnd - frameLength;
-    const baseline = preStart >= 0 ? magnitudeSpectrum(samples.subarray(preStart, preEnd)) : null;
-    const frame = samples.subarray(origin + startSamples, origin + endSamples);
-    const scored = scoreTongues(frame, sampleRate, options.drum, baseline);
+    const baseline = preStart >= 0 ? magnitudeSpectrum(filtered.subarray(preStart, preEnd)) : null;
+    const frame = filtered.subarray(origin + startSamples, origin + endSamples);
+    const scored = scoreTongues(frame, sampleRate, options.drum, baseline, noise);
     const next = onsets[index + 1];
     const dur = next == null ? options.grid : quantizeGap(next - at, options.bpm, options.grid);
-    if (!scored.best) continue;
-    // YIN still hears a ringing tongue, so a far YIN miss does not flag a clear spectrum.
-    // A YIN pitch near this tongue but more than 50 cents off is an out-of-tune guess.
-    const spectrumSure = scored.confidence >= 0.7 || scored.octaveResolved;
+    if (!scored.best || scored.best.score <= 0) continue;
     const yinNear = scored.best.cents <= 150;
     const outOfTune = yinNear && scored.best.cents > CENTS_LIMIT;
-    const uncertain = outOfTune || scored.spectralCents >= CENTS_LIMIT - 5 || (!spectrumSure && scored.confidence < 0.45);
+    const ambiguous = !scored.octaveResolved && scored.margin < 1.15;
     notes.push({
       deg: scored.best.tongue.deg,
       oct: scored.best.tongue.oct,
       dur,
-      uncertain,
+      uncertain: ambiguous || outOfTune,
       at,
     });
   }

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { allocateId, exportSongs, importSongDocuments, isPlayable, type SongFile } from "../lib/mySongs";
 import { openSongStore, type SongStore, type StoredSong } from "../lib/songStore";
+import type { RecordSensitivity } from "../lib/detect";
 import type { NoteSize } from "../lib/settings";
 import { SongEditor } from "./SongEditor";
 
@@ -10,6 +11,8 @@ type Props = {
   onNoteSize: (size: NoteSize) => void;
   followScroll: boolean;
   onFollowScroll: (value: boolean) => void;
+  recordSensitivity: RecordSensitivity;
+  onRecordSensitivity: (value: RecordSensitivity) => void;
 };
 
 function downloadJson(filename: string, data: unknown) {
@@ -35,7 +38,15 @@ function drumsOf(song: SongFile): string {
   return names.length === 2 ? "C and D" : `${names[0] ?? "—"} only`;
 }
 
-export function MySongsView({ songId, noteSize, onNoteSize, followScroll, onFollowScroll }: Props) {
+export function MySongsView({
+  songId,
+  noteSize,
+  onNoteSize,
+  followScroll,
+  onFollowScroll,
+  recordSensitivity,
+  onRecordSensitivity,
+}: Props) {
   const [store, setStore] = useState<SongStore | null>(null);
   const [songs, setSongs] = useState<StoredSong[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -101,6 +112,8 @@ export function MySongsView({ songId, noteSize, onNoteSize, followScroll, onFoll
         onNoteSize={onNoteSize}
         followScroll={followScroll}
         onFollowScroll={onFollowScroll}
+        recordSensitivity={recordSensitivity}
+        onRecordSensitivity={onRecordSensitivity}
       />
     );
   }

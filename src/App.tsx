@@ -144,6 +144,8 @@ export function App() {
               onNoteSize={settings.setNoteSize}
               followScroll={settings.followScroll}
               onFollowScroll={settings.setFollowScroll}
+              recordSensitivity={settings.recordSensitivity}
+              onRecordSensitivity={settings.setRecordSensitivity}
             />
           </Suspense>
         ) : (

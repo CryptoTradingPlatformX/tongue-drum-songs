@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { RecordSensitivity } from "./detect";
 import type { DrumKey, LayoutId } from "./types";
 
 const STORAGE_KEY = "tongue-drum-settings";
@@ -17,11 +18,16 @@ function isLayout(value: unknown): value is LayoutId {
   return value === "8" || value === "11" || value === "13" || value === "15";
 }
 
+function isSensitivity(value: unknown): value is RecordSensitivity {
+  return value === "low" || value === "normal" || value === "high";
+}
+
 export function useSettings() {
   const [drumKey, setDrumKey] = useState<DrumKey>("C");
   const [layout, setLayout] = useState<LayoutId>("8");
   const [noteSize, setNoteSize] = useState<NoteSize>("compact");
   const [followScroll, setFollowScroll] = useState(true);
+  const [recordSensitivity, setRecordSensitivity] = useState<RecordSensitivity>("normal");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -33,11 +39,13 @@ export function useSettings() {
           layout?: unknown;
           noteSize?: unknown;
           followScroll?: unknown;
+          recordSensitivity?: unknown;
         };
         if (isKey(parsed.key)) setDrumKey(parsed.key);
         if (isLayout(parsed.layout)) setLayout(parsed.layout);
         if (isNoteSize(parsed.noteSize)) setNoteSize(parsed.noteSize);
         if (typeof parsed.followScroll === "boolean") setFollowScroll(parsed.followScroll);
+        if (isSensitivity(parsed.recordSensitivity)) setRecordSensitivity(parsed.recordSensitivity);
       }
     } catch {
       // Ignore a broken saved preference and keep the defaults.
@@ -49,9 +57,9 @@ export function useSettings() {
     if (!ready) return;
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ key: drumKey, layout, noteSize, followScroll }),
+      JSON.stringify({ key: drumKey, layout, noteSize, followScroll, recordSensitivity }),
     );
-  }, [drumKey, layout, noteSize, followScroll, ready]);
+  }, [drumKey, layout, noteSize, followScroll, recordSensitivity, ready]);
 
   return {
     drumKey,
@@ -62,5 +70,7 @@ export function useSettings() {
     setNoteSize,
     followScroll,
     setFollowScroll,
+    recordSensitivity,
+    setRecordSensitivity,
   };
 }

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DRUM_LAYOUT, generateArrangement, otherDrum, tongueLabel } from "../lib/arrangements";
 import { endRecordingAudio, playClick, playTongue, unlockAudio } from "../lib/audio";
-import { detectNotes, type DetectedNote } from "../lib/detect";
+import { detectNotes, measureNoise, type DetectedNote, type NoiseProfile, type RecordSensitivity } from "../lib/detect";
 import { describeMicError, listenToMicrophone, openMicrophone, recordingSession } from "../lib/microphone";
 import { createEditor, editorReducer, type EditorLine, type EditorState } from "../lib/editor";
 import {
@@ -62,6 +62,8 @@ type Props = {
   onNoteSize: (size: NoteSize) => void;
   followScroll: boolean;
   onFollowScroll: (value: boolean) => void;
+  recordSensitivity: RecordSensitivity;
+  onRecordSensitivity: (value: RecordSensitivity) => void;
 };
 
 function lineBeats(line: DisplayLine): number {
@@ -184,11 +186,35 @@ export function SongEditor(props: Props) {
   return <EditorSession key={`${props.songId}:${initial.id}`} {...props} initial={initial} />;
 }
 
-function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScroll, onFollowScroll, initial }: Props & { initial: EditorState }) {
+function chunkRms(chunk: Float32Array): number {
+  let sum = 0;
+  for (let index = 0; index < chunk.length; index += 1) sum += chunk[index] * chunk[index];
+  return Math.sqrt(sum / Math.max(1, chunk.length));
+}
+
+function meterPercent(rms: number): number {
+  const db = 20 * Math.log10(Math.max(rms, 1e-6));
+  return Math.max(0, Math.min(100, ((db + 60) / 60) * 100));
+}
+
+function EditorSession({
+  songId,
+  store,
+  taken,
+  noteSize,
+  onNoteSize,
+  followScroll,
+  onFollowScroll,
+  recordSensitivity,
+  onRecordSensitivity,
+  initial,
+}: Props & { initial: EditorState }) {
   const [state, dispatch] = useStateReducer(initial);
   const [errors, setErrors] = useState<string[]>([]);
   const [notice, setNotice] = useState<string | null>(null);
   const [recording, setRecording] = useState(false);
+  const [recordPhase, setRecordPhase] = useState<"idle" | "measuring" | "listening">("idle");
+  const [levels, setLevels] = useState({ input: 0, floor: 0 });
   const [recordError, setRecordError] = useState<string | null>(null);
   const [countIn, setCountIn] = useState(false);
   const [grid, setGrid] = useState(0.5);
@@ -199,8 +225,10 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
   const analyzed = useRef(0);
   const [bpm, setBpm] = useState(initial.tempo);
   const [speed, setSpeed] = useState(1);
-  const detectOptions = useRef({ drum: state.drum, bpm, grid });
-  detectOptions.current = { drum: state.drum, bpm, grid };
+  const noiseProfile = useRef<NoiseProfile | null>(null);
+  const levelStamp = useRef(0);
+  const detectOptions = useRef({ drum: state.drum, bpm, grid, sensitivity: recordSensitivity });
+  detectOptions.current = { drum: state.drum, bpm, grid, sensitivity: recordSensitivity };
   const [manualPlaying, setManualPlaying] = useState(false);
   const [guide, setGuide] = useState<number | null>(null);
   const followedLine = useRef(-1);
@@ -375,35 +403,29 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
     recordCount.current = notes.length;
   }
 
+  function rememberLevel(input: number, floor: number) {
+    const now = performance.now();
+    if (now - levelStamp.current < 50) return;
+    levelStamp.current = now;
+    setLevels({ input, floor });
+  }
+
   function stopRecording() {
     recordCancel.current = true;
     recordStop.current?.();
     recordStop.current = null;
     if (!recordStop.current) endRecordingAudio();
     setRecording(false);
+    setRecordPhase("idle");
   }
 
   async function startRecording() {
     setRecordError(null);
     recordCancel.current = false;
     setRecording(true);
+    setRecordPhase("measuring");
     player.pause();
     setManualPlaying(false);
-    if (countIn) {
-      unlockAudio();
-      for (let beat = 0; beat < 4; beat += 1) {
-        if (recordCancel.current) {
-          setRecording(false);
-          return;
-        }
-        playClick();
-        await new Promise((resolve) => window.setTimeout(resolve, 60000 / Math.max(40, bpm)));
-      }
-    }
-    if (recordCancel.current) {
-      setRecording(false);
-      return;
-    }
     recordingSession();
     let stream: MediaStream;
     try {
@@ -411,6 +433,7 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
     } catch (error) {
       endRecordingAudio();
       setRecording(false);
+      setRecordPhase("idle");
       setRecordError(describeMicError(error));
       return;
     }
@@ -418,12 +441,74 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
       for (const track of stream.getTracks()) track.stop();
       endRecordingAudio();
       setRecording(false);
+      setRecordPhase("idle");
+      return;
+    }
+    const calibration = await new Promise<{ samples: Float32Array; sampleRate: number }>((resolve) => {
+      const chunks: Float32Array[] = [];
+      let sampleRate = 44100;
+      let count = 0;
+      const stop = listenToMicrophone(
+        stream,
+        (chunk, rate) => {
+          sampleRate = rate;
+          chunks.push(chunk);
+          count += chunk.length;
+          rememberLevel(chunkRms(chunk), chunkRms(chunk));
+          if (count >= rate || recordCancel.current) {
+            stop();
+            const samples = new Float32Array(count);
+            let offset = 0;
+            for (const piece of chunks) {
+              samples.set(piece, offset);
+              offset += piece.length;
+            }
+            resolve({ samples, sampleRate });
+          }
+        },
+        { stopTracks: false },
+      );
+      recordStop.current = () => {
+        stop();
+        for (const track of stream.getTracks()) track.stop();
+      };
+    });
+    recordStop.current = null;
+    if (recordCancel.current) {
+      for (const track of stream.getTracks()) track.stop();
+      endRecordingAudio();
+      setRecording(false);
+      setRecordPhase("idle");
+      return;
+    }
+    noiseProfile.current = measureNoise(calibration.samples, calibration.sampleRate);
+    if (countIn) {
+      unlockAudio();
+      for (let beat = 0; beat < 4; beat += 1) {
+        if (recordCancel.current) {
+          for (const track of stream.getTracks()) track.stop();
+          endRecordingAudio();
+          setRecording(false);
+          setRecordPhase("idle");
+          return;
+        }
+        playClick();
+        await new Promise((resolve) => window.setTimeout(resolve, 60000 / Math.max(40, bpm)));
+      }
+    }
+    if (recordCancel.current) {
+      for (const track of stream.getTracks()) track.stop();
+      endRecordingAudio();
+      setRecording(false);
+      setRecordPhase("idle");
       return;
     }
     recordBuffer.current = new Float32Array(0);
     recordCount.current = 0;
     analyzed.current = 0;
+    setRecordPhase("listening");
     recordStop.current = listenToMicrophone(stream, (chunk, sampleRate) => {
+      rememberLevel(chunkRms(chunk), noiseProfile.current?.rms ?? 0);
       const current = recordBuffer.current;
       const next = new Float32Array(current.length + chunk.length);
       next.set(current);
@@ -431,7 +516,8 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
       recordBuffer.current = next;
       if (next.length - analyzed.current < sampleRate * 0.08) return;
       analyzed.current = next.length;
-      applyDetected(detectNotes(next, sampleRate, detectOptions.current));
+      const profile = noiseProfile.current ?? undefined;
+      applyDetected(detectNotes(next, sampleRate, { ...detectOptions.current, noise: profile }));
     });
   }
 
@@ -593,10 +679,29 @@ function EditorSession({ songId, store, taken, noteSize, onNoteSize, followScrol
             <option value={1}>Quarter notes</option>
           </select>
         </label>
+        <label>
+          Sensitivity
+          <select
+            value={recordSensitivity}
+            disabled={recording}
+            onChange={(event) => onRecordSensitivity(event.target.value as RecordSensitivity)}
+          >
+            <option value="low">Low</option>
+            <option value="normal">Normal</option>
+            <option value="high">High</option>
+          </select>
+        </label>
         <button type="button" aria-pressed={recording} onClick={() => (recording ? stopRecording() : void startRecording())}>
           {recording ? "Stop" : "Record"}
         </button>
-        {recording ? <p className="listening">Listening… notes show up as they are heard.</p> : null}
+        {recording ? (
+          <div className="input-meter" aria-label="Input level">
+            <span style={{ width: `${meterPercent(levels.input)}%` }} />
+            <i style={{ left: `${meterPercent(levels.floor)}%` }} />
+          </div>
+        ) : null}
+        {recordPhase === "measuring" ? <p className="listening">Measuring room noise… stay quiet</p> : null}
+        {recordPhase === "listening" ? <p className="listening">Listening… notes show up as they are heard.</p> : null}
         {recordError ? (
           <p className="banner" role="alert">
             {recordError}
