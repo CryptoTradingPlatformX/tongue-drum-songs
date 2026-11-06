@@ -38,7 +38,6 @@ import type { DrumKey, TimeSignature, Tongue } from "../lib/types";
 import { usePlayer } from "../lib/usePlayer";
 import { DrumDiagram } from "./DrumDiagram";
 import { Notation } from "./Notation";
-import { NotationTools } from "./NotationTools";
 import { PlayerBar } from "./PlayerBar";
 
 const METERS: TimeSignature[] = ["4/4", "3/4", "2/4", "2/2", "3/2", "4/2", "6/4", "6/8", "9/8", "12/8"];
@@ -229,8 +228,10 @@ function EditorSession({
   const [loopSelection, setLoopSelection] = useState(false);
   const [clipboard, setClipboard] = useState<EditorLine["notes"]>([]);
   const [typed, setTyped] = useState("");
-  const [typeError, setTypeError] = useState<string | null>(null);
+  const [typeIssue, setTypeIssue] = useState<{ index: number; length: number; message: string; applied: boolean } | null>(null);
+  const [typeOpen, setTypeOpen] = useState(() => initial.lines.every((line) => line.notes.length === 0));
   const [showHelp, setShowHelp] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const [showSheet, setShowSheet] = useState(false);
   const [saveState, setSaveState] = useState<"Saved" | "Unsaved" | "Saving">("Saved");
   const typing = useRef(false);
@@ -387,6 +388,25 @@ function EditorSession({
   }, [player.playing]);
 
   useEffect(() => {
+    if (player.playing) return;
+    const caret = document.querySelector(".song-page.is-editor .insert-caret");
+    if (!(caret instanceof HTMLElement)) return;
+    const dock = document.querySelector(".editor-dock");
+    const dockTop = dock && getComputedStyle(dock).position === "fixed" ? dock.getBoundingClientRect().top : window.innerHeight;
+    const rect = caret.getBoundingClientRect();
+    if (rect.top >= 8 && rect.bottom <= dockTop - 12) return;
+    caret.scrollIntoView({ block: "nearest", inline: "nearest", behavior: scrollBehavior() });
+  }, [state.caret.line, state.caret.index, state.lines, player.playing]);
+
+  useEffect(() => {
+    if (typeIssue && !typeIssue.applied) {
+      setTypeOpen(true);
+      return;
+    }
+    if (state.lines.some((line) => line.notes.length > 0) && !typing.current) setTypeOpen(false);
+  }, [state.lines, typeIssue]);
+
+  useEffect(() => {
     if (!player.playing || !followScroll) return;
     const lineIndex = active?.lineIndex ?? -1;
     if (lineIndex < 0) return;
@@ -458,6 +478,11 @@ function EditorSession({
     const onKey = (event: KeyboardEvent) => {
       const target = event.target instanceof HTMLElement ? event.target : null;
       const inField = Boolean(target?.closest("input, textarea, select"));
+      if (event.key === "Escape") {
+        setShowHelp(false);
+        setShowMore(false);
+        setShowSheet(false);
+      }
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "z") {
         event.preventDefault();
         dispatch(event.shiftKey ? { type: "redo" } : { type: "undo" });
@@ -748,7 +773,7 @@ function EditorSession({
   const canUse = (drum: DrumKey) => drum === state.drum || other.status !== "unavailable";
 
   return (
-    <div className={`song-page notes-${noteSize}`}>
+    <div className={`song-page is-editor notes-${noteSize}`}>
       <a className="back" href="#/my-songs">
         My songs
       </a>
@@ -902,55 +927,65 @@ function EditorSession({
         <section className="panel notation-panel" aria-labelledby="notation-heading">
           <div className="panel-head">
             <h2 id="notation-heading">Notation</h2>
-            <p>Tap the drum. The caret shows where the next note goes.</p>
+            <p>
+              {state.lines.some((line) => line.notes.length > 0)
+                ? "The caret shows where the next note goes."
+                : "Tap a tongue to write a note at the caret. With a note selected, the next tap replaces it and moves on."}
+            </p>
           </div>
-          <label className="type-notes">
-            Type notes
-            <textarea
-              value={typed}
-              spellCheck={false}
-              aria-invalid={typeError != null}
-              aria-describedby="type-help"
-              onFocus={() => { typing.current = true; }}
-              onBlur={() => { typing.current = false; }}
-              onChange={(event) => {
-                const value = event.target.value;
-                setTyped(value);
-                typing.current = true;
-                const parsedText = parseNotationText(value, state.drum);
-                if ("error" in parsedText) {
-                  setTypeError(`${parsedText.error.message} (character ${parsedText.error.index + 1})`);
-                  return;
-                }
-                setTypeError(parsedText.warnings[0] ? `${parsedText.warnings[0].message} (character ${parsedText.warnings[0].index + 1})` : null);
-                const withLyrics = parsedText.lines.map((line, index) => ({ ...line, lyric: state.lines[index]?.lyric ?? "" }));
-                dispatch({ type: "replaceLines", lines: withLyrics });
-              }}
-            />
-          </label>
-          <p id="type-help">
-            1–7 are degrees and 0 is a rest. An apostrophe marks the high octave and a comma marks the low octave. _ is an eighth, = is a 16th, - adds a beat, and . dots the note. Spaces separate notes, | is a bar, and a new line starts a line.
-            <button type="button" className="text-button" onClick={() => setShowSheet((open) => !open)}>Cheat sheet</button>
-          </p>
-          {typeError ? <p className="banner" role="alert">{typeError}</p> : null}
-          {showSheet ? (
-            <div className="cheat-sheet" role="dialog" aria-label="Notation cheat sheet">
-              <p>1 2 3 quarter notes. 1' high 1. 5, low 5. 1_ eighth. 1= sixteenth. 1- half. 1. dotted quarter. 0 rest. | bar line.</p>
-            </div>
-          ) : null}
-          <NotationTools
-            noteSize={noteSize}
-            onNoteSize={onNoteSize}
-            followScroll={followScroll}
-            onFollowScroll={onFollowScroll}
-            manualPlaying={manualPlaying}
-            onToggleManual={() => (manualPlaying ? setManualPlaying(false) : startManual())}
-            canScroll={laid.length > 0}
-            speed={speed}
-            onSpeed={(value) => setSpeed(clampSpeed(value))}
-            linesPerMinute={linesPerMinute(averageBeats, bpm, speed)}
-            bpm={bpm}
-          />
+          <div className="type-notes">
+            <button type="button" className="type-toggle" aria-expanded={typeOpen} onClick={() => setTypeOpen((open) => !open)}>
+              Type notes
+            </button>
+            {typeOpen ? (
+              <>
+                <div className={typeIssue && !typeIssue.applied ? "type-field has-error" : "type-field"}>
+                  {typeIssue && !typeIssue.applied ? (
+                    <pre aria-hidden="true">{highlightedToken(typed, typeIssue.index, typeIssue.length)}{"\n"}</pre>
+                  ) : null}
+                  <textarea
+                    value={typed}
+                    spellCheck={false}
+                    aria-invalid={typeIssue != null && !typeIssue.applied}
+                    aria-describedby="type-help"
+                    onFocus={() => { typing.current = true; }}
+                    onBlur={() => { typing.current = false; }}
+                    onScroll={(event) => {
+                      const mirror = event.currentTarget.previousElementSibling;
+                      if (mirror instanceof HTMLElement) mirror.scrollTop = event.currentTarget.scrollTop;
+                    }}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setTyped(value);
+                      typing.current = true;
+                      const parsedText = parseNotationText(value, state.drum);
+                      if ("error" in parsedText) {
+                        setTypeIssue({ ...parsedText.error, applied: false });
+                        return;
+                      }
+                      const warning = parsedText.warnings[0];
+                      setTypeIssue(warning ? { ...warning, applied: true } : null);
+                      const withLyrics = parsedText.lines.map((line, index) => ({ ...line, lyric: state.lines[index]?.lyric ?? "" }));
+                      dispatch({ type: "replaceLines", lines: withLyrics });
+                    }}
+                  />
+                </div>
+                <p id="type-help">
+                  1–7 are degrees and 0 is a rest. An apostrophe marks the high octave and a comma marks the low octave. _ is an eighth, = is a 16th, - adds a beat, and . dots the note. Spaces separate notes, | is a bar, and a new line starts a line.
+                  <button type="button" className="text-button" onClick={() => setShowSheet((open) => !open)}>Cheat sheet</button>
+                </p>
+                {typeIssue && !typeIssue.applied ? (
+                  <p className="banner" role="alert">Not applied yet. Fix the highlighted character. {typeIssue.message}</p>
+                ) : null}
+                {typeIssue && typeIssue.applied ? <p className="banner" role="status">{typeIssue.message}</p> : null}
+                {showSheet ? (
+                  <div className="cheat-sheet" role="dialog" aria-label="Notation cheat sheet">
+                    <p>1 2 3 quarter notes. 1' high 1. 5, low 5. 1_ eighth. 1= sixteenth. 1- half. 1. dotted quarter. 0 rest. | bar line.</p>
+                  </div>
+                ) : null}
+              </>
+            ) : null}
+          </div>
           {parsed.error ? null : (
             <>
             <p className="sr-only" aria-live="polite">
@@ -1002,93 +1037,119 @@ function EditorSession({
 
         <section className="panel diagram-panel editor-dock">
           <h2 className="sr-only">Drum</h2>
-          <div className="dock-drum">
-            <DrumDiagram
-              layoutId={DRUM_LAYOUT[state.drum]}
-              drumKey={state.drum}
-              active={player.playing ? playingTongue : selectedTongue ?? playingTongue}
-              onTongue={playTongueNow}
-            />
-            <p className="diagram-caption">
-              Tap a tongue to write a note at the caret. With a note selected, the next tap replaces it and moves on.
-            </p>
+          {state.selection ? (
+            <div className="selection-bar" role="toolbar" aria-label="Selection">
+              <ToolButton label="Copy" icon="copy" onClick={() => setClipboard(selectedNotes(state))} />
+              <ToolButton label="Paste" icon="paste" disabled={clipboard.length === 0} onClick={() => dispatch({ type: "paste", notes: clipboard })} />
+              <ToolButton label="Duplicate" icon="copy" onClick={() => dispatch({ type: "duplicateRange" })} />
+              <ToolButton label="Up" icon="up" onClick={() => dispatch({ type: "shiftRange", steps: 1 })} />
+              <ToolButton label="Down" icon="down" onClick={() => dispatch({ type: "shiftRange", steps: -1 })} />
+              <ToolButton label="Octave up" icon="up" onClick={() => dispatch({ type: "shiftRange", steps: 7 })} />
+              <ToolButton label="Octave down" icon="down" onClick={() => dispatch({ type: "shiftRange", steps: -7 })} />
+            </div>
+          ) : null}
+          <div className="dock-main">
+            <div className="dock-drum">
+              <DrumDiagram
+                layoutId={DRUM_LAYOUT[state.drum]}
+                drumKey={state.drum}
+                active={player.playing ? playingTongue : selectedTongue ?? playingTongue}
+                onTongue={playTongueNow}
+              />
+            </div>
+            <div className="dock-play">
+              <button type="button" className="play" onClick={() => void togglePlayback()} aria-pressed={player.playing} disabled={events.length === 0}>
+                {player.playing ? "Pause" : "Play"}
+              </button>
+              <p className="position">{player.index < 0 ? "Ready" : `Note ${player.index + 1} of ${events.length}`}</p>
+              <button type="button" onClick={() => void playFromHere()} disabled={events.length === 0}>From here</button>
+              <label className="count-in">
+                <input type="checkbox" checked={loopSelection} onChange={(event) => setLoopSelection(event.target.checked)} />
+                Loop
+              </label>
+              <label className="count-in">
+                <input type="checkbox" checked={metronome} onChange={(event) => setMetronome(event.target.checked)} />
+                Metronome
+              </label>
+            </div>
           </div>
           <div className="entry-toolbar" role="toolbar" aria-label="Note entry">
-            <div className="duration-bar">
-              {[
-                [4, "Whole"],
-                [2, "Half"],
-                [1, "Quarter"],
-                [0.5, "Eighth"],
-                [0.25, "16th"],
-              ].map(([dur, label]) => (
-                <button
-                  key={label}
-                  type="button"
-                  className={state.duration === dur ? "is-on" : ""}
-                  aria-pressed={state.duration === dur}
-                  onClick={() => dispatch({ type: "setDuration", duration: Number(dur) })}
-                >
-                  <NoteIcon dur={Number(dur)} />
-                  <span>{label}</span>
-                </button>
-              ))}
-              <button type="button" className={state.dotted ? "is-on" : ""} aria-pressed={state.dotted} onClick={() => dispatch({ type: "setDotted", dotted: !state.dotted })}>
-                <span className="dot-mark">.</span>
-                <span>Dot</span>
+            {[
+              [4, "Whole"],
+              [2, "Half"],
+              [1, "Quarter"],
+              [0.5, "Eighth"],
+              [0.25, "16th"],
+            ].map(([dur, label]) => (
+              <button
+                key={label}
+                type="button"
+                className={state.duration === dur ? "is-on" : ""}
+                aria-pressed={state.duration === dur}
+                onClick={() => dispatch({ type: "setDuration", duration: Number(dur) })}
+              >
+                <NoteIcon dur={Number(dur)} />
+                <span>{label}</span>
               </button>
-              <button type="button" onClick={() => dispatch({ type: "paste", notes: [{ rest: true, dur: state.dotted ? state.duration * 1.5 : state.duration }] })}>
-                <span>0</span>
-                <span>Rest</span>
+            ))}
+            <ToolButton label="Dot" icon="dot" pressed={state.dotted} onClick={() => dispatch({ type: "setDotted", dotted: !state.dotted })} />
+            <ToolButton label="Rest" icon="rest" onClick={() => dispatch({ type: "paste", notes: [{ rest: true, dur: state.dotted ? state.duration * 1.5 : state.duration }] })} />
+            <ToolButton label="Repeat" icon="repeat" onClick={() => dispatch({ type: "repeatLast" })} />
+            <ToolButton label="Undo" icon="undo" disabled={state.past.length === 0} onClick={() => dispatch({ type: "undo" })} />
+            <ToolButton label="Redo" icon="redo" disabled={state.future.length === 0} onClick={() => dispatch({ type: "redo" })} />
+            <ToolButton label="Delete" icon="delete" disabled={!state.selection} onClick={() => dispatch({ type: "deleteRange" })} />
+            <div className="more-wrap">
+              <button type="button" aria-expanded={showMore} aria-haspopup="menu" aria-label="More editing actions" onClick={() => setShowMore((open) => !open)}>
+                <ToolGlyph name="more" />
+                <span>More</span>
               </button>
-              <button type="button" onClick={() => dispatch({ type: "repeatLast" })}>
-                <span aria-hidden="true">↩</span>
-                <span>Repeat</span>
-              </button>
+              {showMore ? (
+                <div className="more-menu" role="menu" aria-label="More">
+                  <button type="button" role="menuitem" disabled={!state.selection || state.selection.note === 0} onClick={() => { dispatch({ type: "splitLine" }); setShowMore(false); }}>Split line</button>
+                  <button type="button" role="menuitem" disabled={state.lines.length < 2} onClick={() => { dispatch({ type: "mergeLine" }); setShowMore(false); }}>Merge line</button>
+                  <button type="button" role="menuitem" onClick={() => { dispatch({ type: "selectAll" }); setShowMore(false); }}>Select all</button>
+                  <button type="button" role="menuitem" onClick={() => { if (window.confirm("Clear every note in this song?")) dispatch({ type: "clearAll" }); setShowMore(false); }}>Clear song</button>
+                  <button type="button" role="menuitem" onClick={() => {
+                    const notes = state.lines.flatMap((line, lineIndex) => line.notes.map((note, noteIndex) => ({ note, lineIndex, noteIndex })));
+                    const found = notes.find((item) => item.note.uncertain && (item.lineIndex > (state.selection?.line ?? -1) || (item.lineIndex === state.selection?.line && item.noteIndex > (state.selection?.note ?? -1))));
+                    const first = found ?? notes.find((item) => item.note.uncertain);
+                    if (first) dispatch({ type: "select", line: first.lineIndex, note: first.noteIndex });
+                    setShowMore(false);
+                  }}>Next uncertain</button>
+                  <label className="span-2">
+                    Bars per line
+                    <select value={state.barsPerLine} onChange={(event) => dispatch({ type: "setBarsPerLine", bars: Number(event.target.value) })}>
+                      <option value={0}>Auto ({barsInUse(state)})</option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={4}>4</option>
+                      <option value={8}>8</option>
+                    </select>
+                  </label>
+                  <button type="button" role="menuitem" onClick={() => { setShowHelp(true); setShowMore(false); }}>Keyboard shortcuts</button>
+                  <fieldset className="pills span-2">
+                    <legend>Note size</legend>
+                    {(["compact", "large"] as const).map((size) => (
+                      <label key={size} className={noteSize === size ? "is-selected" : ""}>
+                        <input type="radio" name="editor-note-size" value={size} checked={noteSize === size} onChange={() => onNoteSize(size)} />
+                        {size === "compact" ? "Compact" : "Large"}
+                      </label>
+                    ))}
+                  </fieldset>
+                  <label className="count-in">
+                    <input type="checkbox" checked={followScroll} onChange={(event) => onFollowScroll(event.target.checked)} />
+                    Follow playback
+                  </label>
+                  <button type="button" role="menuitem" disabled={laid.length === 0} onClick={() => (manualPlaying ? setManualPlaying(false) : startManual())}>
+                    {manualPlaying ? "Pause scroll" : "Scroll along"}
+                  </button>
+                  <label className="span-2">
+                    Scroll speed {speed.toFixed(2)}× · about {Math.round(linesPerMinute(averageBeats, bpm, speed))} lines/min
+                    <input type="range" min={0.25} max={3} step={0.25} value={speed} onChange={(event) => setSpeed(clampSpeed(Number(event.target.value)))} />
+                  </label>
+                </div>
+              ) : null}
             </div>
-            <div className="edit-bar">
-              <button type="button" onClick={() => dispatch({ type: "undo" })} disabled={state.past.length === 0}>Undo</button>
-              <button type="button" onClick={() => dispatch({ type: "redo" })} disabled={state.future.length === 0}>Redo</button>
-              <button type="button" onClick={() => { if (state.selection) setClipboard(selectedNotes(state)); }} disabled={!state.selection}>Copy</button>
-              <button type="button" onClick={() => dispatch({ type: "paste", notes: clipboard })} disabled={clipboard.length === 0}>Paste</button>
-              <button type="button" onClick={() => dispatch({ type: "deleteRange" })} disabled={!state.selection}>Delete</button>
-              <button type="button" onClick={() => dispatch({ type: "duplicateRange" })} disabled={!state.selection}>Duplicate</button>
-              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: 1 })} disabled={!state.selection}>Up</button>
-              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: -1 })} disabled={!state.selection}>Down</button>
-              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: 7 })} disabled={!state.selection}>Octave up</button>
-              <button type="button" onClick={() => dispatch({ type: "shiftRange", steps: -7 })} disabled={!state.selection}>Octave down</button>
-              <button type="button" onClick={() => dispatch({ type: "splitLine" })} disabled={!state.selection || state.selection.note === 0}>Split</button>
-              <button type="button" onClick={() => dispatch({ type: "mergeLine" })} disabled={state.lines.length < 2}>Merge</button>
-              <button type="button" onClick={() => dispatch({ type: "selectAll" })}>Select all</button>
-              <button type="button" onClick={() => { if (window.confirm("Clear every note in this song?")) dispatch({ type: "clearAll" }); }}>Clear</button>
-              <button type="button" onClick={() => setShowHelp(true)} aria-label="Keyboard shortcuts">?</button>
-            </div>
-          </div>
-          <div className="hearing-bar">
-            <button type="button" onClick={() => void playFromHere()} disabled={events.length === 0}>Play from here</button>
-            <button type="button" onClick={() => {
-              const found = state.lines.flatMap((line, lineIndex) => line.notes.map((note, noteIndex) => ({ note, lineIndex, noteIndex }))).find((item) => item.note.uncertain && (item.lineIndex > (state.selection?.line ?? -1) || (item.lineIndex === state.selection?.line && item.noteIndex > (state.selection?.note ?? -1))));
-              const first = found ?? state.lines.flatMap((line, lineIndex) => line.notes.map((note, noteIndex) => ({ note, lineIndex, noteIndex }))).find((item) => item.note.uncertain);
-              if (first) dispatch({ type: "select", line: first.lineIndex, note: first.noteIndex });
-            }}>Next uncertain</button>
-            <label className="count-in">
-              <input type="checkbox" checked={metronome} onChange={(event) => setMetronome(event.target.checked)} />
-              Metronome
-            </label>
-            <label className="count-in">
-              <input type="checkbox" checked={loopSelection} onChange={(event) => setLoopSelection(event.target.checked)} />
-              Loop selection
-            </label>
-            <label>
-              Bars per line
-              <select value={state.barsPerLine} onChange={(event) => dispatch({ type: "setBarsPerLine", bars: Number(event.target.value) })}>
-                <option value={0}>Auto ({barsInUse(state)})</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={4}>4</option>
-                <option value={8}>8</option>
-              </select>
-            </label>
           </div>
         </section>
       </div>
@@ -1121,6 +1182,11 @@ function EditorSession({
           clearGuide();
           player.step(1);
         }}
+        onPlayFrom={() => void playFromHere()}
+        loop={loopSelection}
+        onLoop={setLoopSelection}
+        metronome={metronome}
+        onMetronome={setMetronome}
       />
     </div>
   );
@@ -1129,6 +1195,57 @@ function EditorSession({
 function NoteIcon({ dur }: { dur: number }) {
   const glyph = dur >= 4 ? "W" : dur >= 2 ? "H" : dur >= 1 ? "Q" : dur >= 0.5 ? "E" : "S";
   return <span className="note-icon" aria-hidden="true">{glyph}</span>;
+}
+
+function highlightedToken(value: string, index: number, length: number) {
+  const start = Math.max(0, Math.min(index, value.length));
+  const end = Math.max(start, Math.min(value.length, start + Math.max(length, 1)));
+  return (
+    <>
+      {value.slice(0, start)}
+      <mark>{value.slice(start, end) || "·"}</mark>
+      {value.slice(end)}
+    </>
+  );
+}
+
+function ToolButton({
+  label,
+  icon,
+  pressed,
+  disabled,
+  onClick,
+}: {
+  label: string;
+  icon: "dot" | "rest" | "repeat" | "undo" | "redo" | "delete" | "copy" | "paste" | "up" | "down";
+  pressed?: boolean;
+  disabled?: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button type="button" className={pressed ? "is-on" : ""} aria-pressed={pressed} disabled={disabled} onClick={onClick}>
+      <ToolGlyph name={icon} />
+      <span>{label}</span>
+    </button>
+  );
+}
+
+function ToolGlyph({ name }: { name: "dot" | "rest" | "repeat" | "undo" | "redo" | "delete" | "copy" | "paste" | "up" | "down" | "more" }) {
+  return (
+    <svg className="tool-icon" viewBox="0 0 18 18" aria-hidden="true">
+      {name === "dot" ? <circle cx="9" cy="9" r="2.2" /> : null}
+      {name === "rest" ? <text x="9" y="13" textAnchor="middle" fontSize="12" fontFamily="sans-serif">0</text> : null}
+      {name === "repeat" ? <path d="M4 9a5 5 0 1 0 1.4-3.4M4 3v3.2H7.2" /> : null}
+      {name === "undo" ? <path d="M7 5H4v3M4.2 8A5 5 0 1 0 6 4.5" /> : null}
+      {name === "redo" ? <path d="M11 5h3v3M13.8 8A5 5 0 1 1 12 4.5" /> : null}
+      {name === "delete" ? <path d="M4 5h10M7 5V4h4v1M6 5l.6 9h4.8L12 5" /> : null}
+      {name === "copy" ? <path d="M6 6h8v9H6zM4 4h8" /> : null}
+      {name === "paste" ? <path d="M6 4h4M7 3h4v2H7zM5 6h8v9H5z" /> : null}
+      {name === "up" ? <path d="M9 14V5M5 8l4-4 4 4" /> : null}
+      {name === "down" ? <path d="M9 4v9M5 10l4 4 4-4" /> : null}
+      {name === "more" ? <path d="M4 9h10M9 4v10" /> : null}
+    </svg>
+  );
 }
 
 function useStateReducer(initial: EditorState): [EditorState, (action: Parameters<typeof editorReducer>[1]) => void] {
