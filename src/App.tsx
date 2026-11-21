@@ -45,6 +45,7 @@ export function App() {
   const songs = useMemo(() => songSummaries(), []);
   const settings = useSettings();
   const routeKey = route.name === "song" || route.name === "my-song" ? `${route.name}:${route.id}` : route.name;
+  const editingSong = route.name === "my-song";
 
   useEffect(() => {
     const top = document.querySelector(".top");
@@ -92,7 +93,7 @@ export function App() {
       <a className="skip" href="#main">
         Skip to content
       </a>
-      <div className={route.name === "library" ? "top" : "top is-song"} data-sticky-chrome>
+      <div className={route.name === "library" ? "top" : editingSong ? "top is-song is-editor" : "top is-song"} data-sticky-chrome>
         <header className="site-header">
           <a className="brand" href="#/">
             <span className="brand-mark" aria-hidden="true">
@@ -122,12 +123,14 @@ export function App() {
             </a>
           </nav>
         </header>
-        <SettingsBar
-          drumKey={settings.drumKey}
-          layout={settings.layout}
-          onKey={settings.setDrumKey}
-          onLayout={settings.setLayout}
-        />
+        {editingSong ? null : (
+          <SettingsBar
+            drumKey={settings.drumKey}
+            layout={settings.layout}
+            onKey={settings.setDrumKey}
+            onLayout={settings.setLayout}
+          />
+        )}
       </div>
       <main id="main" className={route.name === "song" || route.name === "my-song" ? "has-player" : undefined}>
         {route.name === "library" ? (

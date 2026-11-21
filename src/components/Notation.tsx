@@ -1,5 +1,5 @@
 import type { DisplayBar, DisplayLine, DisplaySlice, NotationMark } from "../lib/music";
-import { notationMark, tonguePhrase } from "../lib/music";
+import { beatsPerBar, notationMark, tonguePhrase } from "../lib/music";
 import type { DrumKey } from "../lib/types";
 
 type Props = {
@@ -10,10 +10,17 @@ type Props = {
   activeNote: number;
   pickedLine?: number;
   pickedNote?: number;
+  caretLine?: number;
+  caretIndex?: number;
+  rangeStart?: { line: number; note: number } | null;
+  rangeEnd?: { line: number; note: number } | null;
+  lyrics?: string[];
+  onLyric?: (lineIndex: number, lyric: string) => void;
+  showBarFill?: boolean;
   uncertain?: Set<string>;
   markedLine: number;
   missing: Set<string>;
-  onSelect: (lineIndex: number, noteIndex: number) => void;
+  onSelect: (lineIndex: number, noteIndex: number, shiftKey: boolean) => void;
 };
 
 function durationPhrase(dur: number): string {
@@ -80,6 +87,14 @@ function sliceGroups(slices: DisplaySlice[]): Array<{ kind: "triplet" | "note"; 
   return groups;
 }
 
+function lastNoteIndex(line: DisplayLine): number {
+  let max = -1;
+  for (const bar of line.bars) {
+    for (const slice of bar.slices) max = Math.max(max, slice.noteIndex);
+  }
+  return max;
+}
+
 export function Notation({
   lines,
   timeSignature,
@@ -91,8 +106,25 @@ export function Notation({
   uncertain,
   markedLine,
   missing,
+  caretLine = -1,
+  caretIndex = -1,
+  rangeStart = null,
+  rangeEnd = null,
+  lyrics,
+  onLyric,
+  showBarFill = false,
   onSelect,
 }: Props) {
+  const perBar = beatsPerBar(timeSignature);
+  const inRange = (line: number, note: number) => {
+    if (!rangeStart || !rangeEnd) return false;
+    const start = rangeStart.line < rangeEnd.line || (rangeStart.line === rangeEnd.line && rangeStart.note <= rangeEnd.note) ? rangeStart : rangeEnd;
+    const end = start === rangeStart ? rangeEnd : rangeStart;
+    if (line < start.line || line > end.line) return false;
+    if (line === start.line && note < start.note) return false;
+    if (line === end.line && note > end.note) return false;
+    return true;
+  };
   return (
     <div className={`notation meter-${timeSignature.replace("/", "")}`} aria-label={`Numbered notation in ${timeSignature}`}>
       <ol className="phrases">
@@ -103,11 +135,23 @@ export function Notation({
             className={lineIndex === markedLine ? "phrase is-current" : "phrase"}
           >
             {line.heading ? <p className="section-heading">{line.heading}</p> : null}
-            {line.lyric ? <p className="lyric">{line.lyric}</p> : null}
+            {lyrics && onLyric ? (
+              <input
+                className="lyric-inline"
+                aria-label={`Lyric for line ${lineIndex + 1}`}
+                placeholder="Lyric"
+                value={lyrics[lineIndex] ?? ""}
+                onChange={(event) => onLyric(lineIndex, event.target.value)}
+              />
+            ) : line.lyric ? (
+              <p className="lyric">{line.lyric}</p>
+            ) : null}
             <div className="bars">
               {lineIndex === 0 ? <span className="sig">{timeSignature}</span> : null}
-              {line.bars.map((bar, barIndex) => (
-                <div key={bar.number + "-" + barIndex} className="bar">
+              {line.bars.map((bar, barIndex) => {
+                const fill = !showBarFill ? "" : bar.beats > perBar + 0.05 ? " is-over" : bar.beats + 0.05 < perBar ? " is-short" : " is-complete";
+                return (
+                <div key={bar.number + "-" + barIndex} className={`bar${fill}`}>
                   {bar.openedHere ? (
                     <span className="barline" aria-hidden="true">
                       <span className="bar-no">{bar.number}</span>
@@ -124,6 +168,10 @@ export function Notation({
                               </span>
                               <span className="triplet-notes">
                                 {item.slices.map((slice) => (
+                                  <>
+                                  {caretLine === slice.lineIndex && caretIndex === slice.noteIndex ? (
+                                    <span className="insert-caret" aria-hidden="true" />
+                                  ) : null}
                                   <NoteButton
                                     key={`${slice.noteIndex}-${slice.beat}`}
                                     slice={slice}
@@ -134,20 +182,27 @@ export function Notation({
                                     missing={noteMissing(slice, missing)}
                                     onSelect={onSelect}
                                   />
+                                  </>
                                 ))}
                               </span>
                             </span>
                           ) : (
+                            <>
+                              {caretLine === item.slices[0].lineIndex && caretIndex === item.slices[0].noteIndex ? (
+                                <span className="insert-caret" aria-hidden="true" />
+                              ) : null}
                             <NoteButton
                               key={`${item.slices[0].noteIndex}-${item.slices[0].beat}`}
                               slice={item.slices[0]}
                               drumKey={drumKey}
                               active={item.slices[0].lineIndex === activeLine && item.slices[0].noteIndex === activeNote}
                               picked={item.slices[0].lineIndex === pickedLine && item.slices[0].noteIndex === pickedNote}
+                              ranged={inRange(item.slices[0].lineIndex, item.slices[0].noteIndex)}
                               uncertain={uncertain?.has(`${item.slices[0].lineIndex}:${item.slices[0].noteIndex}`) ?? false}
                               missing={noteMissing(item.slices[0], missing)}
                               onSelect={onSelect}
                             />
+                            </>
                           ),
                         )}
                       </div>
@@ -156,8 +211,13 @@ export function Notation({
                   {barIndex === line.bars.length - 1 && bar.closedHere ? (
                     <span className="barline end" aria-hidden="true" />
                   ) : null}
+                  {barIndex === line.bars.length - 1 && caretLine === lineIndex && caretIndex > lastNoteIndex(line) ? (
+                    <span className="insert-caret" aria-hidden="true" />
+                  ) : null}
                 </div>
-              ))}
+                );
+              })}
+              {line.bars.length === 0 && caretLine === lineIndex ? <span className="insert-caret" aria-hidden="true" /> : null}
             </div>
           </li>
         ))}
@@ -193,6 +253,7 @@ function NoteButton({
   drumKey,
   active,
   picked,
+  ranged = false,
   uncertain = false,
   missing,
   onSelect,
@@ -201,9 +262,10 @@ function NoteButton({
   drumKey: DrumKey;
   active: boolean;
   picked: boolean;
+  ranged?: boolean;
   uncertain?: boolean;
   missing: boolean;
-  onSelect: (lineIndex: number, noteIndex: number) => void;
+  onSelect: (lineIndex: number, noteIndex: number, shiftKey: boolean) => void;
 }) {
   const mark: NotationMark = notationMark({
     rest: slice.note.rest,
@@ -226,6 +288,7 @@ function NoteButton({
         "note",
         active ? "is-active" : "",
         picked && !active ? "is-picked" : "",
+        ranged ? "is-range" : "",
         uncertain ? "is-uncertain" : "",
         missing ? "is-missing" : "",
         slice.note.rest ? "is-rest" : "",
@@ -235,7 +298,15 @@ function NoteButton({
         .join(" ")}
       aria-current={active ? "true" : undefined}
       aria-label={`${name}, ${durationPhrase(slice.dur)}${tie}${gap}`}
-      onClick={() => onSelect(slice.lineIndex, slice.noteIndex)}
+      onClick={(event) => onSelect(slice.lineIndex, slice.noteIndex, event.shiftKey)}
+      onPointerDown={(event) => {
+        const button = event.currentTarget;
+        const timer = window.setTimeout(() => onSelect(slice.lineIndex, slice.noteIndex, true), 480);
+        const clear = () => window.clearTimeout(timer);
+        button.addEventListener("pointerup", clear, { once: true });
+        button.addEventListener("pointercancel", clear, { once: true });
+        button.addEventListener("pointerleave", clear, { once: true });
+      }}
     >
       <span className="glyph">
         <span className="degree">

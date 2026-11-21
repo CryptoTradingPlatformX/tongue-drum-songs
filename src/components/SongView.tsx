@@ -3,6 +3,9 @@ import { DrumDiagram } from "./DrumDiagram";
 import { Notation } from "./Notation";
 import { NotationTools } from "./NotationTools";
 import { PlayerBar } from "./PlayerBar";
+import { createEditor } from "../lib/editor";
+import { allocateId, buildPersonalSong, editorLines, isPlayable } from "../lib/mySongs";
+import { openSongStore } from "../lib/songStore";
 import { libraryBackHref } from "../lib/libraryUrl";
 import { arrangementBeats, expandArrangement, formatClock, playbackSeconds, verseIndicator } from "../lib/songForm";
 import {
@@ -54,6 +57,37 @@ type Props = {
   followScroll: boolean;
   onFollowScroll: (value: boolean) => void;
 };
+
+async function copyToMySongs(song: Song, drumKey: DrumKey) {
+  const store = await openSongStore();
+  const taken = new Set((await store.list()).map((record) => record.song.id));
+  const id = allocateId(`my-${song.id}`, taken);
+  const playable = (["C", "D"] as const).find((drum) => isPlayable(song.arrangements[drum])) ?? drumKey;
+  const chosen = isPlayable(song.arrangements[drumKey]) ? drumKey : playable;
+  const editor = createEditor({
+    id,
+    title: song.title,
+    tempo: song.tempo,
+    timeSignature: song.timeSignature,
+    drum: chosen,
+    lines: editorLines(song.arrangements[chosen]),
+  });
+  await store.putDraft({
+    id,
+    updatedAt: new Date().toISOString(),
+    title: editor.title,
+    tempo: editor.tempo,
+    timeSignature: editor.timeSignature,
+    drum: editor.drum,
+    lines: editor.lines,
+    duration: editor.duration,
+    dotted: editor.dotted,
+    barsPerLine: editor.barsPerLine,
+  });
+  const built = buildPersonalSong(editor, id);
+  if ("song" in built) await store.put({ updatedAt: new Date().toISOString(), song: built.song });
+  window.location.hash = `#/my-songs/${id}`;
+}
 
 export function SongView({ songId, drumKey, layout, noteSize, onNoteSize, followScroll, onFollowScroll }: Props) {
   const [song, setSong] = useState<Song | null | undefined>(undefined);
@@ -393,6 +427,9 @@ function SongPractice({
         All songs
       </a>
       <header className="song-head">
+        <button type="button" className="text-button" onClick={() => void copyToMySongs(song, drumKey)}>
+          Copy to My Songs
+        </button>
         <h1>{song.title}</h1>
         <p className="composer">Composer: {song.artist}</p>
         {song.arrangerNotes ? (

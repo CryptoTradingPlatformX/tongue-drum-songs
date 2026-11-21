@@ -123,6 +123,25 @@ describe("song storage", () => {
     expect((await opened.list()).map((item) => item.song.id)).toEqual(["my-old"]);
   });
 
+  it("saves and restores an editor draft", async () => {
+    const store = memoryStore();
+    await store.putDraft({
+      id: "my-draft",
+      updatedAt: "2026-05-02T00:00:00.000Z",
+      title: "Untitled song",
+      tempo: 96,
+      timeSignature: "3/4",
+      drum: "D",
+      lines: [{ lyric: "", notes: [{ deg: 1, oct: 0, dur: 1 }] }],
+      duration: 1,
+      dotted: false,
+      barsPerLine: 0,
+    });
+    expect((await store.getDraft("my-draft"))?.title).toBe("Untitled song");
+    await store.removeDraft("my-draft");
+    expect(await store.getDraft("my-draft")).toBeNull();
+  });
+
   it("uses localStorage when IndexedDB cannot open", async () => {
     const storage = new MemoryStorage();
     const factory = {

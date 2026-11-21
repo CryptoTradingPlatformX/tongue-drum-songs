@@ -9,9 +9,30 @@ type Props = {
   onToggle: () => void;
   onPrev: () => void;
   onNext: () => void;
+  onPlayFrom?: () => void;
+  loop?: boolean;
+  onLoop?: (value: boolean) => void;
+  metronome?: boolean;
+  onMetronome?: (value: boolean) => void;
 };
 
-export function PlayerBar({ index, total, playing, bpm, songBpm, verseLabel, onBpm, onToggle, onPrev, onNext }: Props) {
+export function PlayerBar({
+  index,
+  total,
+  playing,
+  bpm,
+  songBpm,
+  verseLabel,
+  onBpm,
+  onToggle,
+  onPrev,
+  onNext,
+  onPlayFrom,
+  loop = false,
+  onLoop,
+  metronome = false,
+  onMetronome,
+}: Props) {
   const atEnd = index >= total - 1 && index >= 0 && !playing;
   const position = index < 0 ? "Ready" : `Note ${index + 1} of ${total}`;
 
@@ -55,6 +76,27 @@ export function PlayerBar({ index, total, playing, bpm, songBpm, verseLabel, onB
             </button>
           ) : null}
         </label>
+        {onPlayFrom || onLoop || onMetronome ? (
+          <div className="player-extras">
+            {onPlayFrom ? (
+              <button type="button" onClick={onPlayFrom} disabled={total === 0}>
+                Play from here
+              </button>
+            ) : null}
+            {onLoop ? (
+              <label className="count-in">
+                <input type="checkbox" checked={loop} onChange={(event) => onLoop(event.target.checked)} />
+                Loop
+              </label>
+            ) : null}
+            {onMetronome ? (
+              <label className="count-in">
+                <input type="checkbox" checked={metronome} onChange={(event) => onMetronome(event.target.checked)} />
+                Metronome
+              </label>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );

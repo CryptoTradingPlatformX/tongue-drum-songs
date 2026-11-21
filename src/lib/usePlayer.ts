@@ -2,10 +2,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { playTongue, unlockAudio } from "./audio";
 import { scheduleCursorMs, type PlayEvent } from "./music";
 
+export type LoopRange = { start: number; end: number };
+
 export function usePlayer(
   events: PlayEvent[],
   bpm: number,
   midiFor: (event: PlayEvent) => number | null,
+  loop: LoopRange | null = null,
 ) {
   const [index, setIndex] = useState(-1);
   const [playing, setPlaying] = useState(false);
@@ -16,10 +19,12 @@ export function usePlayer(
   const indexRef = useRef(-1);
   const timer = useRef<number | null>(null);
   const clock = useRef<{ origin: number; baseIndex: number } | null>(null);
+  const loopRef = useRef(loop);
 
   eventsRef.current = events;
   bpmRef.current = bpm;
   midiRef.current = midiFor;
+  loopRef.current = loop;
 
   const clearTimer = useCallback(() => {
     if (timer.current != null) {
@@ -61,7 +66,10 @@ export function usePlayer(
       const local = nextIndex - clock.current.baseIndex;
       const target = clock.current.origin + (cursor[local + 1] ?? cursor[cursor.length - 1]);
       const delay = Math.max(1, Math.round(target - performance.now()));
-      timer.current = window.setTimeout(() => arm(nextIndex + 1, false), delay);
+      const range = loopRef.current;
+      const upcoming = nextIndex + 1;
+      const wrapped = range && range.end >= range.start && upcoming > range.end ? range.start : upcoming;
+      timer.current = window.setTimeout(() => arm(wrapped, wrapped !== upcoming), delay);
     },
     [clearTimer, sound],
   );
@@ -117,16 +125,23 @@ export function usePlayer(
     clearTimer();
   }, [clearTimer]);
 
-  const play = useCallback(() => {
+  const playFrom = useCallback((nextIndex: number) => {
     unlockAudio();
     const list = eventsRef.current;
     if (!list.length) return;
+    const start = nextIndex < 0 || nextIndex >= list.length ? 0 : nextIndex;
     playingRef.current = true;
     setPlaying(true);
+    arm(start, true);
+  }, [arm]);
+
+  const play = useCallback(() => {
+    const list = eventsRef.current;
+    if (!list.length) return;
     const current = indexRef.current;
     const atEnd = current >= list.length - 1 && current >= 0;
-    arm(atEnd || current < 0 ? 0 : current, true);
-  }, [arm]);
+    playFrom(atEnd || current < 0 ? 0 : current);
+  }, [playFrom]);
 
   const toggle = useCallback(() => {
     if (playingRef.current) pause();
@@ -141,5 +156,5 @@ export function usePlayer(
     setIndex(-1);
   }, [clearTimer]);
 
-  return { index, playing, step, jumpTo, toggle, pause, stop };
+  return { index, playing, step, jumpTo, toggle, pause, stop, play, playFrom };
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createEditor, editorReducer, type EditorState } from "./editor";
+import { barFills, createEditor, editorReducer, selectedNotes, type EditorState } from "./editor";
 
 function tap(state: EditorState, deg: number, oct = 0): EditorState {
   return editorReducer(state, { type: "appendTongue", deg, oct });
@@ -91,6 +91,55 @@ describe("editor reducer", () => {
     state = editorReducer(state, { type: "select", line: 0, note: 0 });
     state = editorReducer(state, { type: "setTongue", deg: 3, oct: 0 });
     expect(state.lines[0].notes[0]).toEqual({ deg: 3, oct: 0, dur: 1 });
+  });
+
+  it("lands a recording at the caret and keeps an uncertain note selected", () => {
+    let state = ["1", "2", "3"].reduce(
+      (current, deg) => editorReducer(current, { type: "strike", deg: Number(deg), oct: 0 }),
+      createEditor(),
+    );
+    state = editorReducer(state, { type: "moveCaret", line: 0, index: 1 });
+    state = editorReducer(state, { type: "appendDetected", deg: 5, oct: 0, dur: 1, uncertain: true });
+    expect(state.lines[0].notes.map((note) => note.deg)).toEqual([1, 5, 2, 3]);
+    expect(state.selection).toEqual({ line: 0, note: 1 });
+    expect(state.caret).toEqual({ line: 0, index: 2 });
+    state = editorReducer(state, { type: "appendDetected", deg: 6, oct: 0, dur: 0.5, uncertain: false, previousDur: 2 });
+    expect(state.lines[0].notes[1]).toMatchObject({ deg: 5, dur: 2, uncertain: true });
+    expect(state.lines[0].notes.map((note) => note.deg)).toEqual([1, 5, 6, 2, 3]);
+    expect(state.selection).toBeNull();
+  });
+
+  it("inserts at the caret, overwrites a selected note, and breaks long lines", () => {
+    let state = editorReducer(createEditor({ timeSignature: "2/4", barsPerLine: 1 }), { type: "setDuration", duration: 1 });
+    state = editorReducer(state, { type: "strike", deg: 1, oct: 0 });
+    state = editorReducer(state, { type: "strike", deg: 2, oct: 0 });
+    state = editorReducer(state, { type: "strike", deg: 3, oct: 0 });
+    expect(state.lines.map((line) => line.notes.length)).toEqual([2, 1]);
+    expect(barFills(state.lines[0].notes, "2/4")).toEqual(["complete"]);
+    expect(barFills([{ dur: 1 }, { dur: 1 }, { dur: 1 }], "2/4")).toEqual(["complete", "short"]);
+    state = editorReducer(state, { type: "select", line: 0, note: 0 });
+    state = editorReducer(state, { type: "strike", deg: 5, oct: 0 });
+    expect(state.lines[0].notes[0]).toMatchObject({ deg: 5 });
+    expect(state.selection).toEqual({ line: 0, note: 1 });
+  });
+
+  it("moves the caret from the keyboard and edits a range", () => {
+    let state = ["1", "2", "3", "4"].reduce((current, deg) => editorReducer(current, { type: "strike", deg: Number(deg), oct: 0 }), createEditor());
+    state = editorReducer(state, { type: "moveCaret", line: 0, index: 1 });
+    state = editorReducer(state, { type: "deleteBackward" });
+    expect(state.lines[0].notes.map((note) => note.deg)).toEqual([2, 3, 4]);
+    state = editorReducer(state, { type: "select", line: 0, note: 0 });
+    state = editorReducer(state, { type: "selectRange", line: 0, note: 1 });
+    const copied = selectedNotes(state);
+    expect(copied.map((note) => note.deg)).toEqual([2, 3]);
+    state = editorReducer(state, { type: "shiftRange", steps: 1 });
+    expect(state.lines[0].notes.map((note) => note.deg)).toEqual([3, 4, 4]);
+    state = editorReducer(state, { type: "moveCaret", line: 0, index: 3 });
+    state = editorReducer(state, { type: "paste", notes: copied });
+    expect(state.lines[0].notes.map((note) => note.deg)).toEqual([3, 4, 4, 2, 3]);
+    state = editorReducer(state, { type: "selectAll" });
+    state = editorReducer(state, { type: "clearAll" });
+    expect(state.lines[0].notes).toEqual([]);
   });
 
   it("ignores tongues the current drum does not have", () => {
