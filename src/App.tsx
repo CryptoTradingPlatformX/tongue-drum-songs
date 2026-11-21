@@ -3,6 +3,7 @@ import { ChordsView } from "./components/ChordsView";
 import { PianoView } from "./components/PianoView";
 import { LibraryView } from "./components/LibraryView";
 import { SettingsBar } from "./components/SettingsBar";
+import { ThemePicker } from "./components/ThemePicker";
 import { SongView } from "./components/SongView";
 import { useSettings } from "./lib/settings";
 import { songSummaries } from "./lib/songs";
@@ -98,9 +99,9 @@ export function App() {
           <a className="brand" href="#/">
             <span className="brand-mark" aria-hidden="true">
               <svg viewBox="0 0 32 32" width="32" height="32">
-                <circle cx="16" cy="16" r="15" fill="#8a4e28" />
-                <circle cx="16" cy="16" r="11" fill="none" stroke="#f8efe3" strokeWidth="1.4" />
-                <circle cx="16" cy="16" r="4.5" fill="#f6c445" />
+                <circle cx="16" cy="16" r="15" fill="var(--copper)" />
+                <circle cx="16" cy="16" r="11" fill="none" stroke="var(--on-accent)" strokeWidth="1.4" />
+                <circle cx="16" cy="16" r="4.5" fill="var(--gold)" />
               </svg>
             </span>
             <span>
@@ -122,6 +123,7 @@ export function App() {
               My Songs
             </a>
           </nav>
+          <ThemePicker />
         </header>
         {editingSong ? null : (
           <SettingsBar

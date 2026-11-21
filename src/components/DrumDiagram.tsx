@@ -83,20 +83,20 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
     >
       <defs>
         <radialGradient id={`${rawId}-wood`} cx="50%" cy="42%" r="60%">
-          <stop offset="0%" stopColor="#c9844a" />
-          <stop offset="70%" stopColor="#8a4e28" />
-          <stop offset="100%" stopColor="#5c3016" />
+          <stop offset="0%" stopColor="var(--drum-wood-0)" />
+          <stop offset="70%" stopColor="var(--drum-wood-1)" />
+          <stop offset="100%" stopColor="var(--drum-wood-2)" />
         </radialGradient>
         <radialGradient id={`${rawId}-steel`} cx="50%" cy="40%" r="65%">
-          <stop offset="0%" stopColor="#f7efe4" />
-          <stop offset="100%" stopColor="#d9c4a6" />
+          <stop offset="0%" stopColor="var(--drum-steel-0)" />
+          <stop offset="100%" stopColor="var(--drum-steel-1)" />
         </radialGradient>
         <filter id={`${rawId}-glow`} x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow dx="0" dy="1" stdDeviation="2.2" floodColor="#e2a322" floodOpacity="0.95" />
+          <feDropShadow dx="0" dy="1" stdDeviation="2.2" floodColor="var(--drum-glow)" floodOpacity="0.95" />
         </filter>
       </defs>
       <circle cx={cx} cy={cy} r="190" fill={`url(#${rawId}-wood)`} />
-      <circle cx={cx} cy={cy} r="180" fill="none" stroke="#3c2614" strokeOpacity="0.25" strokeWidth="2" />
+      <circle cx={cx} cy={cy} r="180" fill="none" stroke="var(--drum-rim)" strokeOpacity="0.25" strokeWidth="2" />
       {tongues.map((tongue, index) => {
         const start = -Math.PI / 2 + index * sweep + gap / 2;
         const end = -Math.PI / 2 + (index + 1) * sweep - gap / 2;
@@ -111,14 +111,14 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
           <g key={`${tongue.deg}:${tongue.oct}`}>
             <path
               d={sector(cx, cy, inner, outer, start, end)}
-              fill={paintFill(paint, index % 2 === 0 ? "#f8efe3" : "#f1e2cd")}
-              stroke={paintStroke(paint, "#7a5332")}
+              fill={paintFill(paint, index % 2 === 0 ? "var(--drum-tongue)" : "var(--drum-tongue-alt)")}
+              stroke={paintStroke(paint, "var(--drum-stroke)")}
               strokeWidth={lit ? 3 : 1.4}
               filter={lit ? `url(#${rawId}-glow)` : undefined}
               {...activate(onTongue, tongue, drumKey)}
             />
             {tongue.oct !== 0 ? (
-              <circle cx={cx + dotR * Math.cos(mid)} cy={cy + dotR * Math.sin(mid)} r="2.5" fill="#3c2614" style={{ pointerEvents: "none" }} />
+              <circle cx={cx + dotR * Math.cos(mid)} cy={cy + dotR * Math.sin(mid)} r="2.5" fill={lit ? "var(--drum-label-on)" : "var(--drum-label)"} style={{ pointerEvents: "none" }} />
             ) : null}
             <text
               className="tongue-label"
@@ -127,10 +127,10 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
               y={numberY}
               textAnchor="middle"
               dominantBaseline="middle"
-              fill="#3c2614"
+              fill={lit ? "var(--drum-label-on)" : "var(--drum-label)"}
               fontSize={count >= 13 ? 14 : 18}
               fontWeight={700}
-              fontFamily="Fraunces, Georgia, serif"
+              fontFamily="var(--display)"
             >
               {tongue.deg}
             </text>
@@ -141,24 +141,24 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
               y={cy + nameR * Math.sin(mid)}
               textAnchor="middle"
               dominantBaseline="middle"
-              fill="#5c4634"
+              fill={lit ? "var(--drum-label-on)" : "var(--drum-label-soft)"}
               fontSize={count >= 13 ? 8 : 10}
-              fontFamily="Atkinson Hyperlegible, Segoe UI, sans-serif"
+              fontFamily="var(--font)"
             >
               {pitchName(drumKey, tongue, pitchLabel)}
             </text>
           </g>
         );
       })}
-      <circle cx={cx} cy={cy} r={inner - 8} fill={`url(#${rawId}-steel)`} stroke="#7a5332" strokeWidth="2" />
+      <circle cx={cx} cy={cy} r={inner - 8} fill={`url(#${rawId}-steel)`} stroke="var(--drum-stroke)" strokeWidth="2" />
       <text
         x={cx}
         y={cy - 8}
         textAnchor="middle"
-        fill="#3c2614"
+        fill="var(--drum-label)"
         fontSize="42"
         fontWeight={700}
-        fontFamily="Fraunces, Georgia, serif"
+        fontFamily="var(--display)"
       >
         {drumKey}
       </text>
@@ -166,9 +166,9 @@ function SchematicDrum({ layoutId, drumKey, active, chordTones, onTongue, pitchL
         x={cx}
         y={cy + 22}
         textAnchor="middle"
-        fill="#5c4634"
+        fill="var(--drum-label-soft)"
         fontSize="13"
-        fontFamily="Atkinson Hyperlegible, Segoe UI, sans-serif"
+        fontFamily="var(--font)"
       >
         {layout.noteCount} notes
       </text>
