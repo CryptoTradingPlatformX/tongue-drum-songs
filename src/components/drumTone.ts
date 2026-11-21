@@ -1,9 +1,9 @@
 import type { Tongue } from "../lib/types";
 
-export const PLAYBACK_FILL = "#f6c445";
-export const PLAYBACK_STROKE = "#8a3b1c";
-export const CHORD_FILL = "#2a9d8f";
-export const CHORD_STROKE = "#0f5c56";
+export const PLAYBACK_FILL = "var(--drum-highlight)";
+export const PLAYBACK_STROKE = "var(--drum-highlight-stroke)";
+export const CHORD_FILL = "var(--drum-chord)";
+export const CHORD_STROKE = "var(--drum-chord-stroke)";
 
 export type TonguePaint = "play" | "chord" | null;
 

@@ -102,19 +102,19 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue, pitchLabe
     >
       <defs>
         <radialGradient id={steel} cx="46%" cy="40%" r="68%">
-          <stop offset="0%" stopColor="#7eafd4" />
-          <stop offset="55%" stopColor="#3f78aa" />
-          <stop offset="100%" stopColor="#2c5d8c" />
+          <stop offset="0%" stopColor="var(--drum15-steel-0)" />
+          <stop offset="55%" stopColor="var(--drum15-steel-1)" />
+          <stop offset="100%" stopColor="var(--drum15-steel-2)" />
         </radialGradient>
         <filter id={glow} x="-40%" y="-40%" width="180%" height="180%">
-          <feDropShadow dx="0" dy="0" stdDeviation="2.4" floodColor="#f6c445" floodOpacity="0.95" />
+          <feDropShadow dx="0" dy="0" stdDeviation="2.4" floodColor="var(--drum-glow)" floodOpacity="0.95" />
         </filter>
       </defs>
 
-      <circle cx={CX} cy={CY} r="194" fill="#c9b08a" />
-      <circle cx={CX} cy={CY} r="184" fill="#e4d2b4" />
-      <circle cx={CX} cy={CY} r="176" fill="#a8845c" />
-      <circle cx={CX} cy={CY} r="168" fill={`url(#${steel})`} stroke="#1d3348" strokeWidth="2.5" />
+      <circle cx={CX} cy={CY} r="194" fill="var(--drum15-ring-0)" />
+      <circle cx={CX} cy={CY} r="184" fill="var(--drum15-ring-1)" />
+      <circle cx={CX} cy={CY} r="176" fill="var(--drum15-ring-2)" />
+      <circle cx={CX} cy={CY} r="168" fill={`url(#${steel})`} stroke="var(--drum15-slot)" strokeWidth="2.5" />
 
       {DRUM_15_OUTER.map((tongue) => {
         const geo = tongueGeometry(tongue);
@@ -139,7 +139,7 @@ export function Drum15Diagram({ drumKey, active, chordTones, onTongue, pitchLabe
             key={`slot-${tongue.deg}:${tongue.oct}`}
             d={slotPath(tongue.angle, geo.outerR, geo.tip, geo.halfW, false)}
             fill="none"
-            stroke={paintStroke(paint, "#14283a")}
+            stroke={paintStroke(paint, "var(--drum15-slot)")}
             strokeWidth={paint ? 3 : 2.4}
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -195,7 +195,7 @@ function CenterTongue({ paint, glow }: { paint: TonguePaint; glow: string }) {
       height={116}
       rx={26}
       fill={paintFill(paint, "none")}
-      stroke={paintStroke(paint, "#14283a")}
+      stroke={paintStroke(paint, "var(--drum15-slot)")}
       strokeWidth={paint ? 3 : 2.4}
       filter={paint ? glow : undefined}
     />
@@ -208,8 +208,8 @@ function TongueLabel({ tongue, name, paint }: { tongue: Drum15Outer; name: strin
   const dotR = tongue.oct > 0 ? numR + 13 : numR - 14;
   const [dx, dy] = radial(tongue.angle, dotR);
   const [lx, ly] = radial(tongue.angle, tongue.oct < 0 ? numR - 28 : numR - 16);
-  const ink = paint ? "#3c2614" : "#f7fbff";
-  const soft = paint ? "#5c4634" : "#e4f0fa";
+  const ink = paint ? "var(--drum-label-on)" : "var(--drum15-label)";
+  const soft = paint ? "var(--drum-label-on)" : "var(--drum15-label-soft)";
   return (
     <g className="tongue-label" style={{ pointerEvents: "none" }}>
       <title>{`${tongue.deg} ${name}`}</title>
@@ -220,7 +220,7 @@ function TongueLabel({ tongue, name, paint }: { tongue: Drum15Outer; name: strin
         fill={ink}
         fontSize="16"
         fontWeight={700}
-        fontFamily="Fraunces, Georgia, serif"
+        fontFamily="var(--display)"
         textAnchor="middle"
         dominantBaseline="middle"
         transform={`rotate(${tongue.angle} ${nx} ${ny})`}
@@ -232,7 +232,7 @@ function TongueLabel({ tongue, name, paint }: { tongue: Drum15Outer; name: strin
         y={ly}
         fill={soft}
         fontSize="8"
-        fontFamily="Atkinson Hyperlegible, Segoe UI, sans-serif"
+        fontFamily="var(--font)"
         textAnchor="middle"
         dominantBaseline="middle"
         transform={`rotate(${tongue.angle} ${lx} ${ly})`}
@@ -244,8 +244,8 @@ function TongueLabel({ tongue, name, paint }: { tongue: Drum15Outer; name: strin
 }
 
 function CenterLabel({ name, paint }: { name: string; paint: TonguePaint }) {
-  const ink = paint ? "#3c2614" : "#f7fbff";
-  const soft = paint ? "#5c4634" : "#e4f0fa";
+  const ink = paint ? "var(--drum-label-on)" : "var(--drum15-label)";
+  const soft = paint ? "var(--drum-label-on)" : "var(--drum15-label-soft)";
   return (
     <g className="tongue-label" style={{ pointerEvents: "none" }}>
       <title>{`3 ${name}`}</title>
@@ -255,7 +255,7 @@ function CenterLabel({ name, paint }: { name: string; paint: TonguePaint }) {
         fill={ink}
         fontSize="20"
         fontWeight={700}
-        fontFamily="Fraunces, Georgia, serif"
+        fontFamily="var(--display)"
         textAnchor="middle"
         dominantBaseline="middle"
       >
@@ -267,7 +267,7 @@ function CenterLabel({ name, paint }: { name: string; paint: TonguePaint }) {
         y={CY + 10}
         fill={soft}
         fontSize="9"
-        fontFamily="Atkinson Hyperlegible, Segoe UI, sans-serif"
+        fontFamily="var(--font)"
         textAnchor="middle"
         dominantBaseline="middle"
       >
